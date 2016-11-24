@@ -1,0 +1,3473 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  13:24:48 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Components\hal /
+//                          \target\CC2530EB\hal_key.c                        /
+//    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\..\.. /
+//                          \..\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ    /
+//                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3        /
+//                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3             /
+//                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1   /
+//                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800         /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DLINK_STATUS_JITTER_MASK=0x007F                  /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
+//                          __code" -DGENERIC=__generic                       /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
+//                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Components\hal\target\CC2530EB\hal_key.c /
+//                           -D SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE   /
+//                          -D SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D  /
+//                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D          /
+//                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D       /
+//                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC          /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Proje /
+//                          cts\zstack\Applications\SmartApp\CC2530DB\bin\Dem /
+//                          oBaseZD\List\ --diag_suppress Pe001,Pa010 -o      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\O /
+//                          bj\ -e --debug --core=plain --dptr=16,1           /
+//                          --data_model=large --code_model=banked            /
+//                          --calling_convention=xdata_reentrant              /
+//                          --place_constants=data_rom --nr_virtual_regs 16   /
+//                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Connector\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\Source\Board\ -I                  /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Manage\Callbacks\ -I         /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart /
+//                          -2.5.2b\Projects\zstack\Applications\SmartApp\CC2 /
+//                          530DB\Devices\..\..\Source\Manage\HeartBeat\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\incode\ -I E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC /
+//                          2530DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\target\CC2530EB\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\high_level\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\single_c /
+//                          hip\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projec /
+//                          ts\zstack\Applications\SmartApp\CC2530DB\Devices\ /
+//                          ..\..\..\..\..\..\Components\mt\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\osal\include\ -I             /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\saddr\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\sdata\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\af\ -I                 /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\nwk\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sapi\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sec\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sys\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\zdo\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\ -I                     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\f8w\ -Oh                /
+//                          --require_prototypes                              /
+//    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\hal_key.s51                                   /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME hal_key
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?CALL_IND
+        EXTERN ?INTERRUPT_ENTER_XSP
+        EXTERN ?INTERRUPT_LEAVE_XSP
+        EXTERN ?L_MOV_X
+        EXTERN ?L_SUB_X
+        EXTERN ?UL_GE_X
+        EXTERN ?US_SWITCH_SPARSE
+        EXTERN ?V0
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSTORE_R2345
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??HalKeyConfig?relay
+        FUNCTION ??HalKeyConfig?relay,0203H
+        PUBLIC ??HalKeyCountPoll?relay
+        FUNCTION ??HalKeyCountPoll?relay,0203H
+        PUBLIC ??HalKeyEnterSleep?relay
+        FUNCTION ??HalKeyEnterSleep?relay,0203H
+        PUBLIC ??HalKeyExitSleep?relay
+        FUNCTION ??HalKeyExitSleep?relay,0203H
+        PUBLIC ??HalKeyInit?relay
+        FUNCTION ??HalKeyInit?relay,0203H
+        PUBLIC ??HalKeyPoll?relay
+        FUNCTION ??HalKeyPoll?relay,0203H
+        PUBLIC ??HalKeyRead?relay
+        FUNCTION ??HalKeyRead?relay,0203H
+        PUBLIC ??HalLongKeyListener?relay
+        FUNCTION ??HalLongKeyListener?relay,0203H
+        PUBLIC ??get_keys_id?relay
+        FUNCTION ??get_keys_id?relay,0203H
+        PUBLIC ??halGetJoyKeyInput?relay
+        FUNCTION ??halGetJoyKeyInput?relay,0203H
+        PUBLIC ??halGetKeyCount?relay
+        FUNCTION ??halGetKeyCount?relay,0203H
+        PUBWEAK `??halKeyPort0Isr??INTVEC 107`
+        PUBLIC ??halProcessKeyInterrupt?relay
+        FUNCTION ??halProcessKeyInterrupt?relay,0203H
+        PUBLIC ??set_keys_id?relay
+        FUNCTION ??set_keys_id?relay,0203H
+        PUBLIC HalKeyConfig
+        FUNCTION HalKeyConfig,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC HalKeyCountPoll
+        FUNCTION HalKeyCountPoll,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC HalKeyEnterSleep
+        FUNCTION HalKeyEnterSleep,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC HalKeyExitSleep
+        FUNCTION HalKeyExitSleep,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC HalKeyInit
+        FUNCTION HalKeyInit,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC HalKeyPoll
+        FUNCTION HalKeyPoll,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        PUBLIC HalKeyRead
+        FUNCTION HalKeyRead,0203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUBLIC HalLongKeyListener
+        FUNCTION HalLongKeyListener,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC Hal_KeyIntEnable
+        PUBWEAK P0DIR
+        PUBWEAK P0IEN
+        PUBWEAK P0IFG
+        PUBWEAK P0SEL
+        PUBWEAK PICTL
+        PUBWEAK _A_IEN0
+        PUBWEAK _A_IEN1
+        PUBWEAK _A_IRCON
+        PUBWEAK _A_P0
+        PUBWEAK __Constant_0
+        PUBWEAK __Constant_384
+        PUBLIC get_keys_id
+        FUNCTION get_keys_id,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC halGetJoyKeyInput
+        FUNCTION halGetJoyKeyInput,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC halGetKeyCount
+        FUNCTION halGetKeyCount,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC halKeyPort0Isr
+        FUNCTION halKeyPort0Isr,021233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 15, STACK
+        PUBLIC halProcessKeyInterrupt
+        FUNCTION halProcessKeyInterrupt,021203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC set_keys_id
+        FUNCTION set_keys_id,080203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+osal_stop_timerEx   SYMBOL "osal_stop_timerEx"
+osal_set_event      SYMBOL "osal_set_event"
+osal_GetSystemClock SYMBOL "osal_GetSystemClock"
+osal_start_timerEx  SYMBOL "osal_start_timerEx"
+HalAdcRead          SYMBOL "HalAdcRead"
+??HalAdcRead?relay  SYMBOL "?relay", HalAdcRead
+??osal_GetSystemClock?relay SYMBOL "?relay", osal_GetSystemClock
+??osal_set_event?relay SYMBOL "?relay", osal_set_event
+??osal_start_timerEx?relay SYMBOL "?relay", osal_start_timerEx
+??osal_stop_timerEx?relay SYMBOL "?relay", osal_stop_timerEx
+HalKeyConfig        SYMBOL "HalKeyConfig"
+??HalKeyConfig?relay SYMBOL "?relay", HalKeyConfig
+HalKeyCountPoll     SYMBOL "HalKeyCountPoll"
+??HalKeyCountPoll?relay SYMBOL "?relay", HalKeyCountPoll
+HalKeyEnterSleep    SYMBOL "HalKeyEnterSleep"
+??HalKeyEnterSleep?relay SYMBOL "?relay", HalKeyEnterSleep
+HalKeyExitSleep     SYMBOL "HalKeyExitSleep"
+??HalKeyExitSleep?relay SYMBOL "?relay", HalKeyExitSleep
+HalKeyInit          SYMBOL "HalKeyInit"
+??HalKeyInit?relay  SYMBOL "?relay", HalKeyInit
+HalKeyPoll          SYMBOL "HalKeyPoll"
+??HalKeyPoll?relay  SYMBOL "?relay", HalKeyPoll
+HalKeyRead          SYMBOL "HalKeyRead"
+??HalKeyRead?relay  SYMBOL "?relay", HalKeyRead
+HalLongKeyListener  SYMBOL "HalLongKeyListener"
+??HalLongKeyListener?relay SYMBOL "?relay", HalLongKeyListener
+get_keys_id         SYMBOL "get_keys_id"
+??get_keys_id?relay SYMBOL "?relay", get_keys_id
+halGetJoyKeyInput   SYMBOL "halGetJoyKeyInput"
+??halGetJoyKeyInput?relay SYMBOL "?relay", halGetJoyKeyInput
+halGetKeyCount      SYMBOL "halGetKeyCount"
+??halGetKeyCount?relay SYMBOL "?relay", halGetKeyCount
+halKeyPort0Isr      SYMBOL "halKeyPort0Isr"
+`??halKeyPort0Isr??INTVEC 107` SYMBOL "??INTVEC 107", halKeyPort0Isr
+halProcessKeyInterrupt SYMBOL "halProcessKeyInterrupt"
+??halProcessKeyInterrupt?relay SYMBOL "?relay", halProcessKeyInterrupt
+set_keys_id         SYMBOL "set_keys_id"
+??set_keys_id?relay SYMBOL "?relay", set_keys_id
+
+        EXTERN osal_stop_timerEx
+        FUNCTION osal_stop_timerEx,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN osal_set_event
+        FUNCTION osal_set_event,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN osal_GetSystemClock
+        FUNCTION osal_GetSystemClock,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN osal_start_timerEx
+        FUNCTION osal_start_timerEx,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalAdcRead
+        FUNCTION HalAdcRead,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??HalAdcRead?relay
+        FUNCTION ??HalAdcRead?relay,00H
+        EXTERN ??osal_GetSystemClock?relay
+        FUNCTION ??osal_GetSystemClock?relay,00H
+        EXTERN ??osal_set_event?relay
+        FUNCTION ??osal_set_event?relay,00H
+        EXTERN ??osal_start_timerEx?relay
+        FUNCTION ??osal_start_timerEx?relay,00H
+        EXTERN ??osal_stop_timerEx?relay
+        FUNCTION ??osal_stop_timerEx?relay,00H
+        EXTERN Hal_TaskID
+
+// E:\work\zigbee\ZStack-Smart-2.5.2b\Components\hal\target\CC2530EB\hal_key.c
+//    1 /**************************************************************************************************
+//    2   Filename:       hal_key.c
+//    3   Revised:        $Date: 2010-09-15 19:02:45 -0700 (Wed, 15 Sep 2010) $
+//    4   Revision:       $Revision: 23815 $
+//    5 
+//    6   Description:    This file contains the interface to the HAL KEY Service.
+//    7 
+//    8 
+//    9   Copyright 2006-2010 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights
+//   12   granted under the terms of a software license agreement between the user
+//   13   who downloaded the software, his/her employer (which must be your employer)
+//   14   and Texas Instruments Incorporated (the "License").  You may not use this
+//   15   Software unless you agree to abide by the terms of the License. The License
+//   16   limits your use, and you acknowledge, that the Software may not be modified,
+//   17   copied or distributed unless embedded on a Texas Instruments microcontroller
+//   18   or used solely and exclusively in conjunction with a Texas Instruments radio
+//   19   frequency transceiver, which is integrated into your product.  Other than for
+//   20   the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//   21   works of, modify, distribute, perform, display or sell this Software and/or
+//   22   its documentation for any purpose.
+//   23 
+//   24   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//   25   PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//   26   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//   27   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//   28   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   29   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//   30   LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+//   31   INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+//   32   OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+//   33   OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//   34   (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   35 
+//   36   Should you have any questions regarding your right to use this Software,
+//   37   contact Texas Instruments Incorporated at www.TI.com.
+//   38 **************************************************************************************************/
+//   39 /*********************************************************************
+//   40  NOTE: If polling is used, the hal_driver task schedules the KeyRead()
+//   41        to occur every 100ms.  This should be long enough to naturally
+//   42        debounce the keys.  The KeyRead() function remembers the key
+//   43        state of the previous poll and will only return a non-zero
+//   44        value if the key state changes.
+//   45 
+//   46  NOTE: If interrupts are used, the KeyRead() function is scheduled
+//   47        25ms after the interrupt occurs by the ISR.  This delay is used
+//   48        for key debouncing.  The ISR disables any further Key interrupt
+//   49        until KeyRead() is executed.  KeyRead() will re-enable Key
+//   50        interrupts after executing.  Unlike polling, when interrupts
+//   51        are enabled, the previous key state is not remembered.  This
+//   52        means that KeyRead() will return the current state of the keys
+//   53        (not a change in state of the keys).
+//   54 
+//   55  NOTE: If interrupts are used, the KeyRead() fucntion is scheduled by
+//   56        the ISR.  Therefore, the joystick movements will only be detected
+//   57        during a pushbutton interrupt caused by S1 or the center joystick
+//   58        pushbutton.
+//   59 
+//   60  NOTE: When a switch like S1 is pushed, the S1 signal goes from a normally
+//   61        high state to a low state.  This transition is typically clean.  The
+//   62        duration of the low state is around 200ms.  When the signal returns
+//   63        to the high state, there is a high likelihood of signal bounce, which
+//   64        causes a unwanted interrupts.  Normally, we would set the interrupt
+//   65        edge to falling edge to generate an interrupt when S1 is pushed, but
+//   66        because of the signal bounce, it is better to set the edge to rising
+//   67        edge to generate an interrupt when S1 is released.  The debounce logic
+//   68        can then filter out the signal bounce.  The result is that we typically
+//   69        get only 1 interrupt per button push.  This mechanism is not totally
+//   70        foolproof because occasionally, signal bound occurs during the falling
+//   71        edge as well.  A similar mechanism is used to handle the joystick
+//   72        pushbutton on the DB.  For the EB, we do not have independent control
+//   73        of the interrupt edge for the S1 and center joystick pushbutton.  As
+//   74        a result, only one or the other pushbuttons work reasonably well with
+//   75        interrupts.  The default is the make the S1 switch on the EB work more
+//   76        reliably.
+//   77 
+//   78 *********************************************************************/
+//   79 
+//   80 /**************************************************************************************************
+//   81 Modify by Sam_Chen
+//   82 Date:2015-03-03
+//   83 **************************************************************************************************/
+//   84 
+//   85 /**************************************************************************************************
+//   86  *                                            INCLUDES
+//   87  **************************************************************************************************/
+//   88 #include "hal_mcu.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,089H
+// unsigned char volatile __sfr P0IFG
+P0IFG:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,08cH
+// unsigned char volatile __sfr PICTL
+PICTL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0a8H
+// union <unnamed> volatile __sfr _A_IEN0
+_A_IEN0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0abH
+// unsigned char volatile __sfr P0IEN
+P0IEN:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b8H
+// union <unnamed> volatile __sfr _A_IEN1
+_A_IEN1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c0H
+// union <unnamed> volatile __sfr _A_IRCON
+_A_IRCON:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// unsigned char volatile __sfr P0SEL
+P0SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
+        DATA8
+        DS 1
+//   89 #include "hal_defs.h"
+//   90 #include "hal_types.h"
+//   91 #include "hal_board.h"
+//   92 #include "hal_drivers.h"
+//   93 #include "hal_adc.h"
+//   94 #include "hal_key.h"
+//   95 #include "hal_led.h"
+//   96 #include "hal_uart.h"
+//   97 #include "osal.h"
+//   98 
+//   99 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
+//  100 
+//  101 /**************************************************************************************************
+//  102  *                                              MACROS
+//  103  **************************************************************************************************/
+//  104 
+//  105 /**************************************************************************************************
+//  106  *                                            CONSTANTS
+//  107  **************************************************************************************************/
+//  108 #define HAL_KEY_RISING_EDGE   0
+//  109 #define HAL_KEY_FALLING_EDGE  1
+//  110 
+//  111 #define HAL_KEY_DEBOUNCE_VALUE  25
+//  112 
+//  113 /* CPU port interrupt */
+//  114 #define HAL_KEY_CPU_PORT_0_IF P0IF
+//  115 #define HAL_KEY_CPU_PORT_1_IF P1IF
+//  116 #define HAL_KEY_CPU_PORT_2_IF P2IF
+//  117 
+//  118 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  119 #if !defined(PUSH_PORT_1_POLARITY) || !defined(HAL_KEY_PORT_1_BITS)
+//  120 #error lack of some macro be defined when use "KEY_PUSH_PORT_1_BUTTON"!
+//  121 #endif
+//  122 
+//  123 /* KEY SW at port 1 */
+//  124 #define HAL_KEY_PORT_1_SEL	P1SEL
+//  125 #define HAL_KEY_PORT_1_DIR	P1DIR
+//  126 #define HAL_KEY_PORT_1_ICTL	P1IEN
+//  127 #define HAL_KEY_PORT_1_IEN 	IEN2
+//  128 #define HAL_KEY_PORT_1_IENBITS  BV(4)
+//  129 #define HAL_KEY_PORT_1_PXIFG	P1IFG
+//  130 
+//  131 #define HAL_KEY_PORT_1_ICTLBITS		HAL_KEY_PORT_1_BITS
+//  132 
+//  133 #define HAL_KEY_PUSH_PORT_1_BUTTON()	((PUSH_PORT_1_POLARITY(P1)) & HAL_KEY_PORT_1_BITS)
+//  134 #endif
+//  135 
+//  136 /* SW_6 is at P0.1 */
+//  137 #define HAL_KEY_SW_6_PORT   P0
+//  138 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  139 #define HAL_KEY_SW_6_BIT    BV(1)
+//  140 #else
+//  141 /* SW_6 change to P0.5 */
+//  142 #define HAL_KEY_SW_6_BIT    PUSH1_BV
+//  143 #endif
+//  144 #define HAL_KEY_SW_6_SEL    P0SEL
+//  145 #define HAL_KEY_SW_6_DIR    P0DIR
+//  146 
+//  147 /* edge interrupt */
+//  148 #define HAL_KEY_SW_6_EDGEBIT  BV(0)
+//  149 #define HAL_KEY_SW_6_EDGE     HAL_KEY_FALLING_EDGE
+//  150 
+//  151 
+//  152 /* SW_6 interrupts */
+//  153 #define HAL_KEY_SW_6_IEN      IEN1  /* CPU interrupt mask register */
+//  154 #define HAL_KEY_SW_6_IENBIT   BV(5) /* Mask bit for all of Port_0 */
+//  155 #define HAL_KEY_SW_6_ICTL     P0IEN /* Port Interrupt Control register */
+//  156 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  157 #define HAL_KEY_SW_6_ICTLBIT  BV(1) /* P0IEN - P0.1 enable/disable bit */
+//  158 #else
+//  159 #define HAL_KEY_SW_6_ICTLBIT  PUSH1_BV /* P0IEN - P0.5 enable/disable bit */
+//  160 #endif
+//  161 #define HAL_KEY_SW_6_PXIFG    P0IFG /* Interrupt flag at source */
+//  162 
+//  163 /* Joy stick move at P2.0 */
+//  164 #define HAL_KEY_JOY_MOVE_PORT   P2
+//  165 #define HAL_KEY_JOY_MOVE_BIT    BV(0)
+//  166 #define HAL_KEY_JOY_MOVE_SEL    P2SEL
+//  167 #define HAL_KEY_JOY_MOVE_DIR    P2DIR
+//  168 
+//  169 /* edge interrupt */
+//  170 #define HAL_KEY_JOY_MOVE_EDGEBIT  BV(3)
+//  171 #define HAL_KEY_JOY_MOVE_EDGE     HAL_KEY_FALLING_EDGE
+//  172 
+//  173 /* Joy move interrupts */
+//  174 #define HAL_KEY_JOY_MOVE_IEN      IEN2  /* CPU interrupt mask register */
+//  175 #define HAL_KEY_JOY_MOVE_IENBIT   BV(1) /* Mask bit for all of Port_2 */
+//  176 #define HAL_KEY_JOY_MOVE_ICTL     P2IEN /* Port Interrupt Control register */
+//  177 #define HAL_KEY_JOY_MOVE_ICTLBIT  BV(0) /* P2IENL - P2.0<->P2.3 enable/disable bit */
+//  178 #define HAL_KEY_JOY_MOVE_PXIFG    P2IFG /* Interrupt flag at source */
+//  179 
+//  180 #define HAL_KEY_JOY_CHN   HAL_ADC_CHANNEL_6
+//  181 
+//  182 #define HAL_INTERVAL_KEY_CLOCK_THRESHOLD	900u
+//  183 #define HAL_LONG_KEY_TIMEOUT	4100u
+//  184 
+//  185 #define HAL_KEY_PUSH_CLOCK_SHORT_THRESHOLD	0x200
+//  186 #define HAL_KEY_PUSH_CLOCK_LONG_THRESHOLD	0x400
+//  187 
+//  188 #if !(defined HAL_KEY_INT_METHOD) && (defined HAL_KEY_COMBINE_INT_METHOD)
+//  189 #error "you must define HAL_KEY_INT_METHOD before define HAL_KEY_COMBINE_INT_METHOD"
+//  190 #endif
+//  191 
+//  192 
+//  193 /**************************************************************************************************
+//  194  *                                            TYPEDEFS
+//  195  **************************************************************************************************/
+//  196 
+//  197 
+//  198 /**************************************************************************************************
+//  199  *                                        GLOBAL VARIABLES
+//  200  **************************************************************************************************/
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//  201 static uint16 halKeySavedKeys;     /* used to store previous key state in polling mode */
+halKeySavedKeys:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//  202 static halKeyCBack_t pHalKeyProcessFunction;
+pHalKeyProcessFunction:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  203 static uint8 HalKeyConfigured;
+HalKeyConfigured:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  204 bool Hal_KeyIntEnable;            /* interrupt enable/disable flag */
+Hal_KeyIntEnable:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//  205 
+//  206 #ifdef HAL_KEY_COMBINE_INT_METHOD
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA32
+//  207 static uint32 preKeyClock;		/* last time clock */
+preKeyClock:
+        DS 4
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA32
+//  208 static uint32 currentKeyClock;	/* current time clock */
+currentKeyClock:
+        DS 4
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  209 static uint8 constantKeyCount;	
+constantKeyCount:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  210 static bool countEnd;
+countEnd:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  211 static uint8 KeyCount;
+KeyCount:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//  212 static uint16 mKeys;
+mKeys:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//  213 #endif
+//  214 
+//  215 #ifdef HAL_KEY_MATCH_ID
+//  216 #ifndef HAL_KEY_COMBINE_INT_METHOD
+//  217 #error must define "HAL_KEY_COMBINE_INT_METHOD" before "HAL_KEY_MATCH_ID".
+//  218 #endif
+//  219 
+//  220 static const char keylist[] = {'a', '1', '2','3','4','5','6','7','8'};
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  221 static uint8 keyID[HAL_KEY_MATCH_ID_SIZE];
+keyID:
+        DS 32
+        REQUIRE __INIT_XDATA_Z
+//  222 #endif
+//  223 
+//  224 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  225 static uint8 keysPush[HAL_KEY_MATCH_ID_SIZE];
+//  226 static uint8 isCombine;
+//  227 #endif
+//  228 
+//  229 #if defined(HAL_KEY_LONG_SHORT_DISTINGUISH) && !defined(HAL_KEY_INT_METHOD)
+//  230 #error must define "HAL_KEY_INT_METHOD" before "HAL_KEY_LONG_SHORT_DISTINGUISH".
+//  231 #endif
+//  232 
+//  233 /**************************************************************************************************
+//  234  *                                        FUNCTIONS - Local
+//  235  **************************************************************************************************/
+//  236 void halProcessKeyInterrupt(void);
+//  237 uint8 halGetJoyKeyInput(void);
+//  238 #ifdef HAL_KEY_MATCH_ID
+//  239 extern void set_keys_id(uint16 keys);
+//  240 #endif
+//  241 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  242 extern void set_keys_push(uint8 keyPush);
+//  243 #endif
+//  244 
+//  245 
+//  246 /**************************************************************************************************
+//  247  *                                        FUNCTIONS - API
+//  248  **************************************************************************************************/
+//  249 
+//  250 
+//  251 /**************************************************************************************************
+//  252  * @fn      HalKeyInit
+//  253  *
+//  254  * @brief   Initilize Key Service
+//  255  *
+//  256  * @param   none
+//  257  *
+//  258  * @return  None
+//  259  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  260 void HalKeyInit( void )
+HalKeyInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function HalKeyInit
+        CODE
+//  261 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  262   /* Initialize previous key to 0 */
+//  263   halKeySavedKeys = 0;
+        MOV     DPTR,#halKeySavedKeys
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//  264 
+//  265   HAL_KEY_SW_6_SEL &= ~(HAL_KEY_SW_6_BIT);    /* Set pin function to GPIO */
+        ANL     0xf3,#0xdf
+//  266   HAL_KEY_SW_6_DIR &= ~(HAL_KEY_SW_6_BIT);    /* Set pin direction to Input */
+        ANL     0xfd,#0xdf
+//  267 
+//  268   /* No KEY JOY */
+//  269 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  270   HAL_KEY_JOY_MOVE_SEL &= ~(HAL_KEY_JOY_MOVE_BIT); /* Set pin function to GPIO */
+//  271   HAL_KEY_JOY_MOVE_DIR &= ~(HAL_KEY_JOY_MOVE_BIT); /* Set pin direction to Input */
+//  272 #endif
+//  273 
+//  274 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  275   HAL_KEY_PORT_1_SEL &= ~(HAL_KEY_PORT_1_BITS);
+//  276   HAL_KEY_PORT_1_DIR &= ~(HAL_KEY_PORT_1_BITS);
+//  277 #endif
+//  278 
+//  279 #ifdef HAL_KEY_COMBINE_INT_METHOD
+//  280 	preKeyClock = 0;
+        MOV     DPTR,#__Constant_0
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#preKeyClock
+        LCALL   ?XSTORE_R2345
+//  281 	currentKeyClock = 0;
+        MOV     DPTR,#__Constant_0
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#currentKeyClock
+        LCALL   ?XSTORE_R2345
+//  282 	constantKeyCount = 0;
+        MOV     DPTR,#constantKeyCount
+        CLR     A
+        MOVX    @DPTR,A
+//  283 	countEnd = FALSE;
+        MOV     DPTR,#countEnd
+        MOVX    @DPTR,A
+//  284 	KeyCount = 0;
+        MOV     DPTR,#KeyCount
+        MOVX    @DPTR,A
+//  285 #endif
+//  286 
+//  287   /* Initialize callback function */
+//  288   pHalKeyProcessFunction  = NULL;
+        MOV     DPTR,#pHalKeyProcessFunction
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//  289 
+//  290   /* Start with key is not configured */
+//  291   HalKeyConfigured = FALSE;
+        MOV     DPTR,#HalKeyConfigured
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock0
+        REQUIRE P0SEL
+        REQUIRE P0DIR
+//  292 }
+//  293 
+//  294 
+//  295 /**************************************************************************************************
+//  296  * @fn      HalKeyConfig
+//  297  *
+//  298  * @brief   Configure the Key serivce
+//  299  *
+//  300  * @param   interruptEnable - TRUE/FALSE, enable/disable interrupt
+//  301  *          cback - pointer to the CallBack function
+//  302  *
+//  303  * @return  None
+//  304  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  305 void HalKeyConfig (bool interruptEnable, halKeyCBack_t cback)
+HalKeyConfig:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function HalKeyConfig
+        CODE
+//  306 {
+        FUNCALL HalKeyConfig, osal_stop_timerEx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyConfig, osal_set_event
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+//  307   /* Enable/Disable Interrupt or */
+//  308   Hal_KeyIntEnable = interruptEnable;
+        MOV     DPTR,#Hal_KeyIntEnable
+        MOVX    @DPTR,A
+//  309 
+//  310   /* Register the callback fucntion */
+//  311   pHalKeyProcessFunction = cback;
+        MOV     DPTR,#pHalKeyProcessFunction
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  312 
+//  313   /* Determine if interrupt is enable or not */
+//  314   if (Hal_KeyIntEnable)
+        MOV     DPTR,#Hal_KeyIntEnable
+        MOVX    A,@DPTR
+        JZ      ??HalKeyConfig_0
+//  315   {
+//  316     /* Rising/Falling edge configuratinn */
+//  317 
+//  318 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  319     PICTL &= ~(HAL_KEY_SW_6_EDGEBIT);    /* Clear the edge bit */
+        ANL     0x8c,#0xfe
+//  320     /* For falling edge, the bit must be set. */
+//  321   #if (HAL_KEY_SW_6_EDGE == HAL_KEY_FALLING_EDGE)
+//  322     PICTL |= HAL_KEY_SW_6_EDGEBIT;
+        ORL     0x8c,#0x1
+//  323   #endif
+//  324 #else
+//  325     HalKeyEdgeChanged(0);
+//  326 #endif
+//  327 
+//  328 
+//  329     /* Interrupt configuration:
+//  330      * - Enable interrupt generation at the port
+//  331      * - Enable CPU interrupt
+//  332      * - Clear any pending interrupt
+//  333      */
+//  334     HAL_KEY_SW_6_ICTL |= HAL_KEY_SW_6_ICTLBIT;
+        ORL     0xab,#0x20
+//  335     HAL_KEY_SW_6_IEN |= HAL_KEY_SW_6_IENBIT;
+        SETB    0xb8.5
+//  336     HAL_KEY_SW_6_PXIFG = ~(HAL_KEY_SW_6_BIT);
+        MOV     0x89,#-0x21
+//  337 
+//  338 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  339 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  340 	PICTL &= ~0x06;
+//  341 	PICTL |= 0x06;
+//  342 #else
+//  343     HalKeyEdgeChanged(1);
+//  344 #endif
+//  345 
+//  346 	HAL_KEY_PORT_1_ICTL |= HAL_KEY_PORT_1_ICTLBITS;
+//  347     HAL_KEY_PORT_1_IEN |= HAL_KEY_PORT_1_IENBITS;
+//  348     HAL_KEY_PORT_1_PXIFG = ~(HAL_KEY_PORT_1_BITS);
+//  349 #endif
+//  350 
+//  351 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  352     /* Rising/Falling edge configuratinn */
+//  353 
+//  354     HAL_KEY_JOY_MOVE_ICTL &= ~(HAL_KEY_JOY_MOVE_EDGEBIT);    /* Clear the edge bit */
+//  355     /* For falling edge, the bit must be set. */
+//  356   #if (HAL_KEY_JOY_MOVE_EDGE == HAL_KEY_FALLING_EDGE)
+//  357     HAL_KEY_JOY_MOVE_ICTL |= HAL_KEY_JOY_MOVE_EDGEBIT;
+//  358   #endif
+//  359 
+//  360 
+//  361     /* Interrupt configuration:
+//  362      * - Enable interrupt generation at the port
+//  363      * - Enable CPU interrupt
+//  364      * - Clear any pending interrupt
+//  365      */
+//  366     HAL_KEY_JOY_MOVE_ICTL |= HAL_KEY_JOY_MOVE_ICTLBIT;
+//  367     HAL_KEY_JOY_MOVE_IEN |= HAL_KEY_JOY_MOVE_IENBIT;
+//  368     HAL_KEY_JOY_MOVE_PXIFG = ~(HAL_KEY_JOY_MOVE_BIT);
+//  369 #endif
+//  370 
+//  371     /* Do this only after the hal_key is configured - to work with sleep stuff */
+//  372     if (HalKeyConfigured == TRUE)
+        MOV     DPTR,#HalKeyConfigured
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??HalKeyConfig_1
+//  373     {
+//  374       osal_stop_timerEx(Hal_TaskID, HAL_KEY_EVENT);  /* Cancel polling if active */
+        ; Setup parameters for call to function osal_stop_timerEx
+        MOV     R2,#0x1
+        LCALL   ?Subroutine5 & 0xFFFF
+//  375     }
+//  376   }
+??CrossCallReturnLabel_11:
+        SJMP    ??HalKeyConfig_1
+//  377   else    /* Interrupts NOT enabled */
+//  378   {
+//  379     HAL_KEY_SW_6_ICTL &= ~(HAL_KEY_SW_6_ICTLBIT); /* don't generate interrupt */
+??HalKeyConfig_0:
+        ANL     0xab,#0xdf
+//  380     HAL_KEY_SW_6_IEN &= ~(HAL_KEY_SW_6_IENBIT);   /* Clear interrupt enable bit */
+        CLR     0xb8.5
+//  381 
+//  382 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  383 	HAL_KEY_PORT_1_ICTL &= ~(HAL_KEY_PORT_1_ICTLBITS);
+//  384     HAL_KEY_PORT_1_IEN &= ~(HAL_KEY_PORT_1_IENBITS);
+//  385 #endif
+//  386 
+//  387     osal_set_event(Hal_TaskID, HAL_KEY_EVENT);
+        ; Setup parameters for call to function osal_set_event
+        MOV     R2,#0x1
+        MOV     R3,#0x0
+        MOV     DPTR,#Hal_TaskID
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   ??osal_set_event?relay
+//  388   }
+//  389 
+//  390   /* Key now is configured */
+//  391   HalKeyConfigured = TRUE;
+??HalKeyConfig_1:
+        MOV     DPTR,#HalKeyConfigured
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  392 }
+        MOV     R7,A
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock1
+        REQUIRE PICTL
+        REQUIRE P0IEN
+        REQUIRE _A_IEN1
+        REQUIRE P0IFG
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine5:
+        CFI Block cfiCond2 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_11
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond3 Using cfiCommon0
+        CFI (cfiCond3) NoFunction
+        CFI (cfiCond3) Conditional ??CrossCallReturnLabel_12
+        CFI (cfiCond3) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond3) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond3) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond3) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond3) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond3) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond3) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond3) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond3) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond3) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond3) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond3) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond3) CFA_SP SP+0
+        CFI (cfiCond3) CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiPicker4 Using cfiCommon1
+        CFI (cfiPicker4) NoFunction
+        CFI (cfiPicker4) Picker
+        MOV     R3,#0x0
+        CFI EndBlock cfiCond2
+        CFI EndBlock cfiCond3
+        CFI EndBlock cfiPicker4
+        REQUIRE ??Subroutine7_0
+        ; // Fall through to label ??Subroutine7_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine7_0:
+        CFI Block cfiCond5 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_13
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond6 Using cfiCommon0
+        CFI (cfiCond6) NoFunction
+        CFI (cfiCond6) Conditional ??CrossCallReturnLabel_11
+        CFI (cfiCond6) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond6) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond6) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond6) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond6) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond6) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond6) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond6) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond6) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond6) CFA_SP SP+0
+        CFI (cfiCond6) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond7 Using cfiCommon0
+        CFI (cfiCond7) NoFunction
+        CFI (cfiCond7) Conditional ??CrossCallReturnLabel_12
+        CFI (cfiCond7) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond7) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond7) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond7) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond7) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond7) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond7) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond7) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond7) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond7) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond7) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond7) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond7) CFA_SP SP+0
+        CFI (cfiCond7) CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiPicker8 Using cfiCommon1
+        CFI (cfiPicker8) NoFunction
+        CFI (cfiPicker8) Picker
+        MOV     DPTR,#Hal_TaskID
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   ??osal_stop_timerEx?relay
+        RET
+        CFI EndBlock cfiCond5
+        CFI EndBlock cfiCond6
+        CFI EndBlock cfiCond7
+        CFI EndBlock cfiPicker8
+//  393 
+//  394 /**************************************************************************************************
+//  395  * @fn      HalKeyRead
+//  396  *
+//  397  * @brief   Read the current value of a key
+//  398  *
+//  399  * @param   None
+//  400  *
+//  401  * @return  keys - current keys status
+//  402  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  403 uint8 HalKeyRead ( void )
+HalKeyRead:
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI Function HalKeyRead
+        CODE
+//  404 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  405   uint16 keys = 0;
+        MOV     R0,#0x0
+//  406 
+//  407   if (HAL_PUSH_BUTTON1())
+        MOV     C,0x80.5
+        JC      ??HalKeyRead_0
+//  408   {
+//  409     keys |= HAL_KEY_SW_6;
+        MOV     R0,#0x20
+//  410   }
+//  411 
+//  412 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  413   keys |= (HAL_KEY_PUSH_PORT_1_BUTTON() << 8);
+//  414 #endif
+//  415 
+//  416 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  417   if ((HAL_KEY_JOY_MOVE_PORT & HAL_KEY_JOY_MOVE_BIT))  /* Key is active low */
+//  418   {
+//  419     keys |= halGetJoyKeyInput();
+//  420   }
+//  421 #endif
+//  422 
+//  423   return keys;
+??HalKeyRead_0:
+        MOV     A,R0
+        MOV     R1,A
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock9
+        REQUIRE _A_P0
+//  424 }
+//  425 
+//  426 
+//  427 /**************************************************************************************************
+//  428  * @fn      HalKeyPoll
+//  429  *
+//  430  * @brief   Called by hal_driver to poll the keys
+//  431  *
+//  432  * @param   None
+//  433  *
+//  434  * @return  None
+//  435  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  436 void HalKeyPoll (void)
+HalKeyPoll:
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function HalKeyPoll
+        CODE
+//  437 {
+        FUNCALL HalKeyPoll, osal_GetSystemClock
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyPoll, osal_GetSystemClock
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyPoll, osal_stop_timerEx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyPoll, osal_stop_timerEx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyPoll, set_keys_id
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyPoll, osal_start_timerEx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+//  438   uint16 keys = 0;
+        MOV     R6,#0x0
+//  439 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  440   uint8 mKeyPush = 0;
+//  441 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  442   static uint16 tKeys = 0;
+//  443 #endif
+//  444 #endif
+//  445 
+//  446 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  447   if ((HAL_KEY_JOY_MOVE_PORT & HAL_KEY_JOY_MOVE_BIT))  /* Key is active HIGH */
+//  448   {
+//  449     keys = halGetJoyKeyInput();
+//  450   }
+//  451 #endif
+//  452 
+//  453 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  454   if (HAL_PUSH_BUTTON1())
+        MOV     C,0x80.5
+        JC      ??HalKeyPoll_0
+//  455   {
+//  456     keys |= HAL_KEY_SW_6;
+        MOV     R6,#0x20
+//  457   }
+//  458 #else
+//  459   if (HalKeyGetEdge(0) ^ PUSH1_SBIT)
+//  460   {
+//  461     uint16 pushclock = (uint16)HalKeyEdgeChanged(0);
+//  462     if(pushclock != 0)
+//  463     {
+//  464 	  if (pushclock < HAL_KEY_PUSH_CLOCK_SHORT_THRESHOLD)
+//  465 	  {
+//  466 		mKeyPush = HAL_KEY_SHORT_PUSH;
+//  467 	  }
+//  468 	  else if (pushclock > HAL_KEY_PUSH_CLOCK_LONG_THRESHOLD)
+//  469 	  {
+//  470 		mKeyPush = HAL_KEY_LONG_PUSH;
+//  471 	  }
+//  472 
+//  473 	  keys |= HAL_KEY_SW_6;
+//  474     }
+//  475   }
+//  476 #endif
+//  477 
+//  478 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  479 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  480   keys |= (HAL_KEY_PUSH_PORT_1_BUTTON() << 8);
+//  481 #else
+//  482 
+//  483   if ((!!HalKeyGetEdge(1)) ^ (!HAL_KEY_PUSH_PORT_1_BUTTON()))
+//  484   {
+//  485 
+//  486     uint16 pushclock = (uint16)HalKeyEdgeChanged(1);
+//  487 	
+//  488     if(pushclock != 0)
+//  489     {
+//  490 	  if (pushclock < HAL_KEY_PUSH_CLOCK_SHORT_THRESHOLD)
+//  491 	  {
+//  492 		mKeyPush = HAL_KEY_SHORT_PUSH;
+//  493 	  }
+//  494 	  else if (pushclock > HAL_KEY_PUSH_CLOCK_LONG_THRESHOLD)
+//  495 	  {
+//  496 		mKeyPush = HAL_KEY_LONG_PUSH;
+//  497 	  }
+//  498 
+//  499 	  keys |= tKeys;
+//  500     }
+//  501 	else
+//  502 	{
+//  503 	  tKeys = (HAL_KEY_PUSH_PORT_1_BUTTON() << 8);
+//  504 	}
+//  505   }
+//  506 #endif
+//  507 #endif
+//  508 
+//  509 
+//  510   /* If interrupts are not enabled, previous key status and current key status
+//  511    * are compared to find out if a key has changed status.
+//  512    */
+//  513   if (!Hal_KeyIntEnable)
+??HalKeyPoll_0:
+        MOV     DPTR,#Hal_KeyIntEnable
+        MOVX    A,@DPTR
+        JNZ     ??HalKeyPoll_1
+//  514   {
+//  515     if (keys == halKeySavedKeys)
+        MOV     DPTR,#halKeySavedKeys
+        MOVX    A,@DPTR
+        XRL     A,R6
+        JNZ     ??HalKeyPoll_2
+        INC     DPTR
+        MOVX    A,@DPTR
+??HalKeyPoll_2:
+        JZ      ??HalKeyPoll_3
+//  516     {
+//  517       /* Exit - since no keys have changed */
+//  518       return;
+//  519     }
+//  520     /* Store the current keys for comparation next time */
+//  521     halKeySavedKeys = keys;
+        MOV     DPTR,#halKeySavedKeys
+        MOV     A,R6
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//  522   }
+//  523   else
+//  524   {
+//  525 #ifdef HAL_KEY_COMBINE_INT_METHOD
+//  526 	if (!keys) return;
+//  527 
+//  528 	if (!constantKeyCount)
+//  529 	{
+//  530 		preKeyClock = osal_GetSystemClock();
+//  531 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  532 		isCombine = 1;
+//  533 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  534 		tKeys = 0;
+//  535 #endif
+//  536 #endif
+//  537 	}
+//  538 	
+//  539 	currentKeyClock = osal_GetSystemClock();
+//  540 	countEnd = FALSE;
+//  541 	osal_stop_timerEx(Hal_TaskID, HAL_KEY_COUNT_EVENT);
+//  542 	osal_stop_timerEx( Hal_TaskID, HAL_LONG_KEY_EVENT);
+//  543 
+//  544 	if (currentKeyClock - preKeyClock < HAL_INTERVAL_KEY_CLOCK_THRESHOLD)
+//  545 	{
+//  546 		constantKeyCount++;
+//  547 		preKeyClock = currentKeyClock;
+//  548 		
+//  549 		mKeys = keys;
+//  550 #ifdef HAL_KEY_MATCH_ID
+//  551 		set_keys_id(keys);
+//  552 #endif
+//  553 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  554 		if(constantKeyCount == 1 && mKeyPush == HAL_KEY_SHORT_PUSH)
+//  555 		{
+//  556 			isCombine = 0;
+//  557 			memset(keyID, 0, sizeof(keyID));
+//  558 			memset(keysPush, 0, sizeof(keysPush));
+//  559 		}
+//  560 
+//  561 		set_keys_push(mKeyPush);
+//  562 		
+//  563 		if(!isCombine)
+//  564 		{
+//  565 			KeyCount = constantKeyCount;
+//  566 			constantKeyCount = 0;
+//  567 			goto functionSolve;
+//  568 		}
+//  569 #endif
+//  570 
+//  571 		osal_start_timerEx( Hal_TaskID, 
+//  572 			HAL_KEY_COUNT_EVENT, HAL_INTERVAL_KEY_CLOCK_THRESHOLD);
+//  573 
+//  574 		return;
+//  575 	}
+//  576 	else
+//  577 	{
+//  578 		KeyCount = constantKeyCount;
+//  579 		constantKeyCount = 0;
+//  580 		return;
+//  581 	}
+//  582 #endif
+//  583   }
+//  584 
+//  585 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  586 functionSolve:
+//  587 #endif
+//  588   /* Invoke Callback if new keys were depressed */
+//  589   if (keys && (pHalKeyProcessFunction))
+        MOV     A,R6
+        JZ      ??HalKeyPoll_3
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_22:
+        JZ      ??HalKeyPoll_3
+//  590   {
+//  591     (pHalKeyProcessFunction) (keys, HAL_KEY_STATE_NORMAL);
+        ; Setup parameters for indirect call
+        MOV     R1,#0x0
+        MOV     A,R6
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R0
+        LCALL   ?CALL_IND
+??HalKeyPoll_3:
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+//  592   }
+??HalKeyPoll_1:
+        MOV     A,R6
+        JZ      ??HalKeyPoll_3
+        MOV     DPTR,#constantKeyCount
+        MOVX    A,@DPTR
+        JNZ     ??HalKeyPoll_4
+        ; Setup parameters for call to function osal_GetSystemClock
+        LCALL   ??osal_GetSystemClock?relay
+        MOV     DPTR,#preKeyClock
+        LCALL   ?XSTORE_R2345
+??HalKeyPoll_4:
+        ; Setup parameters for call to function osal_GetSystemClock
+        LCALL   ??osal_GetSystemClock?relay
+        MOV     DPTR,#currentKeyClock
+        LCALL   ?XSTORE_R2345
+        MOV     DPTR,#countEnd
+        CLR     A
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function osal_stop_timerEx
+        MOV     R2,#0x10
+        MOV     R3,A
+        LCALL   ??Subroutine7_0 & 0xFFFF
+??CrossCallReturnLabel_13:
+        ; Setup parameters for call to function osal_stop_timerEx
+        MOV     R2,#0x20
+        LCALL   ?Subroutine5 & 0xFFFF
+??CrossCallReturnLabel_12:
+        MOV     DPTR,#currentKeyClock
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#preKeyClock
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_SUB_X
+        MOV     DPTR,#__Constant_384
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        MOV     DPTR,#constantKeyCount
+        MOVX    A,@DPTR
+        JC      ??HalKeyPoll_5
+        INC     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#currentKeyClock
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#preKeyClock
+        LCALL   ?XSTORE_R2345
+        MOV     DPTR,#mKeys
+        MOV     A,R6
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function set_keys_id
+        MOV     A,R6
+        MOV     R2,A
+        MOV     R3,#0x0
+        LCALL   ??set_keys_id?relay
+        ; Setup parameters for call to function osal_start_timerEx
+        MOV     R4,#-0x7c
+        MOV     R5,#0x3
+        MOV     R2,#0x10
+        LCALL   ?Subroutine6 & 0xFFFF
+??CrossCallReturnLabel_14:
+        SJMP    ??HalKeyPoll_3
+??HalKeyPoll_5:
+        LCALL   ?Subroutine4 & 0xFFFF
+??CrossCallReturnLabel_17:
+        SJMP    ??HalKeyPoll_3
+        CFI EndBlock cfiBlock10
+        REQUIRE _A_P0
+//  593 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine6:
+        CFI Block cfiCond11 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_14
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond12 Using cfiCommon0
+        CFI (cfiCond12) NoFunction
+        CFI (cfiCond12) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond12) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond12) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond12) CFA_SP SP+-5
+        CFI Block cfiPicker13 Using cfiCommon1
+        CFI (cfiPicker13) NoFunction
+        CFI (cfiPicker13) Picker
+        MOV     R3,#0x0
+        CFI EndBlock cfiCond11
+        CFI EndBlock cfiCond12
+        CFI EndBlock cfiPicker13
+        REQUIRE ??Subroutine8_0
+        ; // Fall through to label ??Subroutine8_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine8_0:
+        CFI Block cfiCond14 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_16
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond15 Using cfiCommon0
+        CFI (cfiCond15) NoFunction
+        CFI (cfiCond15) Conditional ??CrossCallReturnLabel_14
+        CFI (cfiCond15) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond15) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond15) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond15) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond15) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond15) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond15) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond15) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond15) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond15) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond15) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond15) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond15) CFA_SP SP+0
+        CFI (cfiCond15) CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond16 Using cfiCommon0
+        CFI (cfiCond16) NoFunction
+        CFI (cfiCond16) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond16) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond16) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond16) CFA_SP SP+-5
+        CFI Block cfiPicker17 Using cfiCommon1
+        CFI (cfiPicker17) NoFunction
+        CFI (cfiPicker17) Picker
+        MOV     DPTR,#Hal_TaskID
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   ??osal_start_timerEx?relay
+        RET
+        CFI EndBlock cfiCond14
+        CFI EndBlock cfiCond15
+        CFI EndBlock cfiCond16
+        CFI EndBlock cfiPicker17
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine4:
+        CFI Block cfiCond18 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_17
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond19 Using cfiCommon0
+        CFI (cfiCond19) NoFunction
+        CFI (cfiCond19) Conditional ??CrossCallReturnLabel_18
+        CFI (cfiCond19) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond19) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond19) CFA_SP SP+-5
+        CFI Block cfiPicker20 Using cfiCommon1
+        CFI (cfiPicker20) NoFunction
+        CFI (cfiPicker20) Picker
+        MOV     DPTR,#KeyCount
+        CFI EndBlock cfiCond18
+        CFI EndBlock cfiCond19
+        CFI EndBlock cfiPicker20
+        REQUIRE ??Subroutine9_0
+        ; // Fall through to label ??Subroutine9_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine9_0:
+        CFI Block cfiCond21 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_19
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond22 Using cfiCommon0
+        CFI (cfiCond22) NoFunction
+        CFI (cfiCond22) Conditional ??CrossCallReturnLabel_17
+        CFI (cfiCond22) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond22) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond22) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond22) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond22) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond22) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond22) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond22) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond22) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond22) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond22) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond22) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond22) CFA_SP SP+0
+        CFI (cfiCond22) CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond23 Using cfiCommon0
+        CFI (cfiCond23) NoFunction
+        CFI (cfiCond23) Conditional ??CrossCallReturnLabel_18
+        CFI (cfiCond23) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond23) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond23) CFA_SP SP+-5
+        CFI Block cfiPicker24 Using cfiCommon1
+        CFI (cfiPicker24) NoFunction
+        CFI (cfiPicker24) Picker
+        MOVX    @DPTR,A
+        MOV     DPTR,#constantKeyCount
+        CLR     A
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond21
+        CFI EndBlock cfiCond22
+        CFI EndBlock cfiCond23
+        CFI EndBlock cfiPicker24
+//  594 
+//  595 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  596 uint8 HalKeyGetEdge(uint8 port)
+//  597 {
+//  598   if (port == 0)
+//  599   {
+//  600 	  return (PICTL & HAL_KEY_SW_6_EDGEBIT);
+//  601   }
+//  602   else if (port == 1)
+//  603   {
+//  604 	  return (PICTL & 0x06);
+//  605   }
+//  606 
+//  607   return 0;
+//  608 }
+//  609 
+//  610 
+//  611 uint32 HalKeyEdgeChanged(uint8 port)
+//  612 {
+//  613   static uint32 highClock, lowClock;
+//  614   
+//  615   if (port == 0)
+//  616   {
+//  617     if (PUSH1_SBIT)
+//  618     {
+//  619 	  PICTL |= HAL_KEY_SW_6_EDGEBIT;
+//  620 	  //HalLedSet(HAL_LED_1, HAL_LED_MODE_OFF);
+//  621 	  highClock = osal_GetSystemClock();
+//  622 	}
+//  623 	else
+//  624 	{
+//  625 	  PICTL &= ~HAL_KEY_SW_6_EDGEBIT;
+//  626 	  //HalLedSet(HAL_LED_1, HAL_LED_MODE_ON);
+//  627 	  lowClock = osal_GetSystemClock();
+//  628 	}
+//  629 
+//  630 	if(!HAL_PUSH_BUTTON1())
+//  631 	{
+//  632 	  if(PUSH1_POLARITY(0))
+//  633 	  {
+//  634 		return highClock-lowClock;
+//  635 	  }
+//  636 	  else
+//  637 	  {
+//  638 	  	return lowClock-highClock;
+//  639 	  }
+//  640 	}
+//  641 	else
+//  642 	{
+//  643 		return 0;
+//  644 	}
+//  645   }
+//  646 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  647   else if (port == 1)
+//  648   {
+//  649 	if((!!HAL_KEY_PUSH_PORT_1_BUTTON()) ^ (PUSH_PORT_1_POLARITY(0) & 0x01))
+//  650     {
+//  651 	  PICTL |= 0x06;
+//  652 	  //HalLedSet(HAL_LED_1, HAL_LED_MODE_OFF);
+//  653 	  highClock = osal_GetSystemClock();
+//  654 	}
+//  655 	else
+//  656 	{
+//  657 	  PICTL &= ~0x06;
+//  658 	  //HalLedSet(HAL_LED_1, HAL_LED_MODE_ON);
+//  659 	  lowClock = osal_GetSystemClock();
+//  660 	}
+//  661 
+//  662 	if(!HAL_KEY_PUSH_PORT_1_BUTTON())
+//  663 	{
+//  664 	  if(PUSH_PORT_1_POLARITY(0) & 0x01)
+//  665 	  {
+//  666 		return highClock-lowClock;
+//  667 	  }
+//  668 	  else
+//  669 	  {
+//  670 	  	return lowClock-highClock;
+//  671 	  }
+//  672 	}
+//  673 	else
+//  674 	{
+//  675 		return 0;
+//  676 	}
+//  677   }
+//  678 #endif
+//  679 
+//  680   return 0;
+//  681 }
+//  682 #endif
+//  683 
+//  684 
+//  685 #ifdef HAL_KEY_COMBINE_INT_METHOD
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  686 static bool countDown = FALSE;
+countDown:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  687 void HalKeyCountPoll (void)
+HalKeyCountPoll:
+        CFI Block cfiBlock25 Using cfiCommon0
+        CFI Function HalKeyCountPoll
+        CODE
+//  688 {
+        FUNCALL HalKeyCountPoll, osal_start_timerEx
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyCountPoll, osal_GetSystemClock
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyCountPoll, osal_start_timerEx
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalKeyCountPoll, osal_start_timerEx
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  689   // 长按事件检测
+//  690   if(HAL_PUSH_BUTTON1() || countDown
+//  691 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  692   		|| HAL_KEY_PUSH_PORT_1_BUTTON()
+//  693 #endif
+//  694   )
+        MOV     C,0x80.5
+        JNC     ??HalKeyCountPoll_0
+        MOV     DPTR,#countDown
+        MOVX    A,@DPTR
+        JZ      ??HalKeyCountPoll_1
+//  695   {	
+//  696 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  697   	if(constantKeyCount == 1)
+??HalKeyCountPoll_0:
+        MOV     DPTR,#constantKeyCount
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??HalKeyCountPoll_2
+//  698   	{
+//  699 	  countDown = FALSE;
+        MOV     DPTR,#countDown
+        CLR     A
+        MOVX    @DPTR,A
+//  700 	  KeyCount = constantKeyCount;
+        MOV     DPTR,#KeyCount
+        INC     A
+        LCALL   ??Subroutine9_0 & 0xFFFF
+//  701   	  constantKeyCount = 0;
+//  702 	  osal_start_timerEx( Hal_TaskID, 
+//  703 			HAL_LONG_KEY_EVENT, HAL_LONG_KEY_TIMEOUT);
+??CrossCallReturnLabel_19:
+        ; Setup parameters for call to function osal_start_timerEx
+        MOV     R4,#0x4
+        MOV     R5,#0x10
+        MOV     R2,#0x20
+        MOV     R3,A
+??HalKeyCountPoll_3:
+        LCALL   ??Subroutine8_0 & 0xFFFF
+//  704 	  return;
+??CrossCallReturnLabel_16:
+        SJMP    ??HalKeyCountPoll_4
+//  705 	}
+//  706 #endif
+//  707 
+//  708   	preKeyClock = osal_GetSystemClock();
+??HalKeyCountPoll_2:
+        ; Setup parameters for call to function osal_GetSystemClock
+        LCALL   ??osal_GetSystemClock?relay
+        MOV     DPTR,#preKeyClock
+        LCALL   ?XSTORE_R2345
+//  709 	
+//  710   	if(HAL_PUSH_BUTTON1()
+//  711 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  712   		|| HAL_KEY_PUSH_PORT_1_BUTTON()
+//  713 #endif
+//  714 	)
+        MOV     C,0x80.5
+        MOV     DPTR,#countDown
+        JC      ??HalKeyCountPoll_5
+//  715   	{
+//  716 	  countDown = TRUE;
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  717   	}
+//  718 	else
+//  719 	{
+//  720 	  countDown = FALSE;
+//  721 	  countEnd = TRUE;
+//  722 	  osal_start_timerEx( Hal_TaskID, 
+//  723 			HAL_KEY_COUNT_EVENT, HAL_INTERVAL_KEY_CLOCK_THRESHOLD);
+//  724 	  return;
+//  725 	}
+//  726 
+//  727 	osal_start_timerEx( Hal_TaskID, HAL_KEY_COUNT_EVENT, 25);
+        ; Setup parameters for call to function osal_start_timerEx
+        MOV     R4,#0x19
+        MOV     R5,#0x0
+??HalKeyCountPoll_6:
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        SJMP    ??HalKeyCountPoll_3
+??HalKeyCountPoll_5:
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#countEnd
+        INC     A
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function osal_start_timerEx
+        MOV     R4,#-0x7c
+        MOV     R5,#0x3
+        SJMP    ??HalKeyCountPoll_6
+//  728 	return;
+//  729   }
+//  730   else if(countEnd)
+??HalKeyCountPoll_1:
+        MOV     DPTR,#countEnd
+        MOVX    A,@DPTR
+        JZ      ??HalKeyCountPoll_7
+//  731   {
+//  732   	KeyCount = 0;
+        MOV     DPTR,#KeyCount
+        CLR     A
+        MOVX    @DPTR,A
+//  733     constantKeyCount = 0;
+        MOV     DPTR,#constantKeyCount
+        MOVX    @DPTR,A
+//  734   	countEnd = FALSE;
+        MOV     DPTR,#countEnd
+        MOVX    @DPTR,A
+//  735 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  736 	return;
+        SJMP    ??HalKeyCountPoll_4
+//  737 #endif
+//  738   }
+//  739 
+//  740   //组合按键事件处理
+//  741   KeyCount = constantKeyCount;
+??HalKeyCountPoll_7:
+        MOV     DPTR,#constantKeyCount
+        MOVX    A,@DPTR
+        LCALL   ?Subroutine4 & 0xFFFF
+//  742   constantKeyCount = 0;
+//  743   if (mKeys&& (pHalKeyProcessFunction))
+??CrossCallReturnLabel_18:
+        MOV     DPTR,#mKeys
+        LCALL   ??Subroutine10_0 & 0xFFFF
+??CrossCallReturnLabel_20:
+        JZ      ??HalKeyCountPoll_4
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_23:
+        JZ      ??HalKeyCountPoll_4
+//  744   {
+//  745     (pHalKeyProcessFunction) (mKeys, HAL_KEY_STATE_NORMAL);
+        ; Setup parameters for indirect call
+        MOV     R1,#0x0
+        LCALL   ?Subroutine3 & 0xFFFF
+//  746   }
+??CrossCallReturnLabel_9:
+        LCALL   ?CALL_IND
+??HalKeyCountPoll_4:
+        SJMP    ??Subroutine11_0
+        CFI EndBlock cfiBlock25
+        REQUIRE _A_P0
+//  747 }
+//  748 
+//  749 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  750 void HalLongKeyListener(void)
+HalLongKeyListener:
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI Function HalLongKeyListener
+        CODE
+//  751 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  752 	if((HAL_PUSH_BUTTON1() 
+//  753 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  754   		|| HAL_KEY_PUSH_PORT_1_BUTTON()
+//  755 #endif
+//  756 		)&& KeyCount == 1)
+        MOV     C,0x80.5
+        JC      ??HalLongKeyListener_0
+        MOV     DPTR,#KeyCount
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??HalLongKeyListener_0
+//  757   	{
+//  758 		if (mKeys && (pHalKeyProcessFunction))
+        MOV     DPTR,#mKeys
+        LCALL   ??Subroutine10_0 & 0xFFFF
+??CrossCallReturnLabel_21:
+        JZ      ??HalLongKeyListener_0
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_24:
+        JZ      ??HalLongKeyListener_0
+//  759 	  	{
+//  760 			KeyCount = 0;
+        MOV     DPTR,#KeyCount
+        CLR     A
+        MOVX    @DPTR,A
+//  761     		(pHalKeyProcessFunction) (mKeys, HAL_KEY_STATE_NORMAL);
+        ; Setup parameters for indirect call
+        MOV     R1,A
+        LCALL   ?Subroutine3 & 0xFFFF
+//  762   		}
+//  763 	}
+??CrossCallReturnLabel_10:
+        LCALL   ?CALL_IND
+//  764 }
+??HalLongKeyListener_0:
+        SJMP    ??Subroutine11_0
+        CFI EndBlock cfiBlock26
+        REQUIRE _A_P0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiCond27 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_9
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond28 Using cfiCommon0
+        CFI (cfiCond28) NoFunction
+        CFI (cfiCond28) Conditional ??CrossCallReturnLabel_10
+        CFI (cfiCond28) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond28) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond28) CFA_SP SP+-5
+        CFI Block cfiPicker29 Using cfiCommon1
+        CFI (cfiPicker29) NoFunction
+        CFI (cfiPicker29) Picker
+        MOV     DPTR,#mKeys
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        MOV     DPTR,#pHalKeyProcessFunction + 1
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R0
+        RET
+        CFI EndBlock cfiCond27
+        CFI EndBlock cfiCond28
+        CFI EndBlock cfiPicker29
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiCond30 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_22
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond31 Using cfiCommon0
+        CFI (cfiCond31) NoFunction
+        CFI (cfiCond31) Conditional ??CrossCallReturnLabel_23
+        CFI (cfiCond31) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond31) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond31) CFA_SP SP+-5
+        CFI Block cfiCond32 Using cfiCommon0
+        CFI (cfiCond32) NoFunction
+        CFI (cfiCond32) Conditional ??CrossCallReturnLabel_24
+        CFI (cfiCond32) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond32) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond32) CFA_SP SP+-5
+        CFI Block cfiPicker33 Using cfiCommon1
+        CFI (cfiPicker33) NoFunction
+        CFI (cfiPicker33) Picker
+        MOV     DPTR,#pHalKeyProcessFunction
+        CFI EndBlock cfiCond30
+        CFI EndBlock cfiCond31
+        CFI EndBlock cfiCond32
+        CFI EndBlock cfiPicker33
+        REQUIRE ??Subroutine10_0
+        ; // Fall through to label ??Subroutine10_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine10_0:
+        CFI Block cfiCond34 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_20
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond35 Using cfiCommon0
+        CFI (cfiCond35) NoFunction
+        CFI (cfiCond35) Conditional ??CrossCallReturnLabel_21
+        CFI (cfiCond35) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond35) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond35) CFA_SP SP+-5
+        CFI Block cfiCond36 Using cfiCommon0
+        CFI (cfiCond36) NoFunction
+        CFI (cfiCond36) Conditional ??CrossCallReturnLabel_22
+        CFI (cfiCond36) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond36) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond36) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond36) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond36) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond36) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond36) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond36) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond36) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond36) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond36) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond36) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond36) CFA_SP SP+0
+        CFI (cfiCond36) CFA_XSP16 add(XSP16, 12)
+        CFI Block cfiCond37 Using cfiCommon0
+        CFI (cfiCond37) NoFunction
+        CFI (cfiCond37) Conditional ??CrossCallReturnLabel_23
+        CFI (cfiCond37) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond37) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond37) CFA_SP SP+-5
+        CFI Block cfiCond38 Using cfiCommon0
+        CFI (cfiCond38) NoFunction
+        CFI (cfiCond38) Conditional ??CrossCallReturnLabel_24
+        CFI (cfiCond38) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond38) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond38) CFA_SP SP+-5
+        CFI Block cfiPicker39 Using cfiCommon1
+        CFI (cfiPicker39) NoFunction
+        CFI (cfiPicker39) Picker
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        RET
+        CFI EndBlock cfiCond34
+        CFI EndBlock cfiCond35
+        CFI EndBlock cfiCond36
+        CFI EndBlock cfiCond37
+        CFI EndBlock cfiCond38
+        CFI EndBlock cfiPicker39
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock40 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        MOVX    @DPTR,A
+        CFI EndBlock cfiBlock40
+        REQUIRE ??Subroutine11_0
+        ; // Fall through to label ??Subroutine11_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine11_0:
+        CFI Block cfiBlock41 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock41
+//  765 #endif
+//  766 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  767 uint8 halGetKeyCount(void)
+halGetKeyCount:
+        CFI Block cfiBlock42 Using cfiCommon0
+        CFI Function halGetKeyCount
+        CODE
+//  768 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  769 	uint8 mCount = KeyCount;
+        MOV     DPTR,#KeyCount
+        MOVX    A,@DPTR
+        MOV     R1,A
+//  770 	KeyCount = 0;
+        CLR     A
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock42
+//  771 	
+//  772 	return mCount;
+//  773 }
+//  774 
+//  775 
+//  776 #ifdef HAL_KEY_MATCH_ID
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  777 void set_keys_id(uint16 keys)
+set_keys_id:
+        CFI Block cfiBlock43 Using cfiCommon0
+        CFI Function set_keys_id
+        CODE
+//  778 {
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+//  779 	switch(keys)
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     R0,#?V0 + 0
+        LCALL   ?US_SWITCH_SPARSE
+`?<Jumptable for set_keys_id>_0`:
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        0
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        9
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        32
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_0
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        256
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_1
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        512
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_2
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        1024
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_3
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        2048
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_4
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        4096
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_5
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        8192
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_6
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        16384
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_7
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        32768
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_8
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??set_keys_id_9
+        CODE
+//  780 	{
+//  781 	case HAL_KEY_SW_6: 
+//  782 		keyID[constantKeyCount-1] = keylist[0];
+??set_keys_id_0:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_0:
+        MOV     A,#0x61
+        SJMP    ??set_keys_id_10
+//  783 		break;
+//  784 		
+//  785 	case HAL_KEY_PORT_1_SWITCH_1: 
+//  786 		keyID[constantKeyCount-1] = keylist[1];
+??set_keys_id_1:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_1:
+        MOV     A,#0x31
+        SJMP    ??set_keys_id_10
+//  787 		break;
+//  788 		
+//  789 	case HAL_KEY_PORT_1_SWITCH_2: 
+//  790 		keyID[constantKeyCount-1] = keylist[2];
+??set_keys_id_2:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_2:
+        MOV     A,#0x32
+        SJMP    ??set_keys_id_10
+//  791 		break;
+//  792 		
+//  793 	case HAL_KEY_PORT_1_SWITCH_3: 
+//  794 		keyID[constantKeyCount-1] = keylist[3];
+??set_keys_id_3:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_3:
+        MOV     A,#0x33
+        SJMP    ??set_keys_id_10
+//  795 		break;
+//  796 		
+//  797 	case HAL_KEY_PORT_1_SWITCH_4: 
+//  798 		keyID[constantKeyCount-1] = keylist[4];
+??set_keys_id_4:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_4:
+        MOV     A,#0x34
+        SJMP    ??set_keys_id_10
+//  799 		break;
+//  800 		
+//  801 	case HAL_KEY_PORT_1_SWITCH_5: 
+//  802 		keyID[constantKeyCount-1] = keylist[5];
+??set_keys_id_5:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_5:
+        MOV     A,#0x35
+        SJMP    ??set_keys_id_10
+//  803 		break;
+//  804 		
+//  805 	case HAL_KEY_PORT_1_SWITCH_6: 
+//  806 		keyID[constantKeyCount-1] = keylist[6];
+??set_keys_id_6:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_6:
+        MOV     A,#0x36
+        SJMP    ??set_keys_id_10
+//  807 		break;
+//  808 		
+//  809 	case HAL_KEY_PORT_1_SWITCH_7: 
+//  810 		keyID[constantKeyCount-1] = keylist[7];
+??set_keys_id_7:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_7:
+        MOV     A,#0x37
+        SJMP    ??set_keys_id_10
+//  811 		break;
+//  812 		
+//  813 	case HAL_KEY_PORT_1_SWITCH_8: 
+//  814 		keyID[constantKeyCount-1] = keylist[8];
+??set_keys_id_8:
+        LCALL   ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_8:
+        MOV     A,#0x38
+??set_keys_id_10:
+        MOVX    @DPTR,A
+//  815 		break;
+//  816 		
+//  817 	default: break;
+//  818 	}
+//  819 
+//  820 }
+??set_keys_id_9:
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock43
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiCond44 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond45 Using cfiCommon0
+        CFI (cfiCond45) NoFunction
+        CFI (cfiCond45) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond45) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond45) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond45) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond45) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond45) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond45) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond45) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond45) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond45) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond45) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond45) CFA_SP SP+0
+        CFI (cfiCond45) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond46 Using cfiCommon0
+        CFI (cfiCond46) NoFunction
+        CFI (cfiCond46) Conditional ??CrossCallReturnLabel_2
+        CFI (cfiCond46) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond46) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond46) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond46) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond46) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond46) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond46) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond46) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond46) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond46) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond46) CFA_SP SP+0
+        CFI (cfiCond46) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond47 Using cfiCommon0
+        CFI (cfiCond47) NoFunction
+        CFI (cfiCond47) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond47) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond47) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond47) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond47) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond47) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond47) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond47) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond47) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond47) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond47) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond47) CFA_SP SP+0
+        CFI (cfiCond47) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond48 Using cfiCommon0
+        CFI (cfiCond48) NoFunction
+        CFI (cfiCond48) Conditional ??CrossCallReturnLabel_4
+        CFI (cfiCond48) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond48) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond48) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond48) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond48) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond48) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond48) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond48) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond48) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond48) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond48) CFA_SP SP+0
+        CFI (cfiCond48) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond49 Using cfiCommon0
+        CFI (cfiCond49) NoFunction
+        CFI (cfiCond49) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond49) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond49) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond49) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond49) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond49) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond49) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond49) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond49) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond49) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond49) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond49) CFA_SP SP+0
+        CFI (cfiCond49) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond50 Using cfiCommon0
+        CFI (cfiCond50) NoFunction
+        CFI (cfiCond50) Conditional ??CrossCallReturnLabel_6
+        CFI (cfiCond50) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond50) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond50) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond50) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond50) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond50) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond50) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond50) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond50) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond50) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond50) CFA_SP SP+0
+        CFI (cfiCond50) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond51 Using cfiCommon0
+        CFI (cfiCond51) NoFunction
+        CFI (cfiCond51) Conditional ??CrossCallReturnLabel_7
+        CFI (cfiCond51) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond51) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond51) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond51) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond51) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond51) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond51) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond51) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond51) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond51) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond51) CFA_SP SP+0
+        CFI (cfiCond51) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond52 Using cfiCommon0
+        CFI (cfiCond52) NoFunction
+        CFI (cfiCond52) Conditional ??CrossCallReturnLabel_8
+        CFI (cfiCond52) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond52) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond52) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond52) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond52) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond52) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond52) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond52) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond52) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond52) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond52) CFA_SP SP+0
+        CFI (cfiCond52) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker53 Using cfiCommon1
+        CFI (cfiPicker53) NoFunction
+        CFI (cfiPicker53) Picker
+        MOV     DPTR,#constantKeyCount
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#(keyID + 255) & 0xff
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,#((keyID - 1) >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     DPH,A
+        RET
+        CFI EndBlock cfiCond44
+        CFI EndBlock cfiCond45
+        CFI EndBlock cfiCond46
+        CFI EndBlock cfiCond47
+        CFI EndBlock cfiCond48
+        CFI EndBlock cfiCond49
+        CFI EndBlock cfiCond50
+        CFI EndBlock cfiCond51
+        CFI EndBlock cfiCond52
+        CFI EndBlock cfiPicker53
+//  821 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  822 uint8 *get_keys_id(void)
+get_keys_id:
+        CFI Block cfiBlock54 Using cfiCommon0
+        CFI Function get_keys_id
+        CODE
+//  823 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  824 	return keyID;
+        MOV     R2,#keyID & 0xff
+        MOV     R3,#(keyID >> 8) & 0xff
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock54
+//  825 }
+//  826 #endif
+//  827 
+//  828 #ifdef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  829 void set_keys_push(uint8 keyPush)
+//  830 {
+//  831 	keysPush[constantKeyCount-1] = keyPush;
+//  832 }
+//  833 
+//  834 uint8 *get_keys_push(void)
+//  835 {
+//  836 	return keysPush;
+//  837 }
+//  838 #endif
+//  839 
+//  840 #else
+//  841 uint8 halGetKeyCount(void)
+//  842 {	
+//  843 	return 0;
+//  844 }
+//  845 #endif
+//  846 
+//  847 /**************************************************************************************************
+//  848  * @fn      halGetJoyKeyInput
+//  849  *
+//  850  * @brief   Map the ADC value to its corresponding key.
+//  851  *
+//  852  * @param   None
+//  853  *
+//  854  * @return  keys - current joy key status
+//  855  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  856 uint8 halGetJoyKeyInput(void)
+halGetJoyKeyInput:
+        CFI Block cfiBlock55 Using cfiCommon0
+        CFI Function halGetJoyKeyInput
+        CODE
+//  857 {
+        FUNCALL halGetJoyKeyInput, HalAdcRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//  858   /* The joystick control is encoded as an analog voltage.
+//  859    * Read the JOY_LEVEL analog value and map it to joy movement.
+//  860    */
+//  861   uint8 adc;
+//  862   uint8 ksave0 = 0;
+        MOV     R6,#0x0
+//  863   uint8 ksave1;
+//  864 
+//  865   /* Keep on reading the ADC until two consecutive key decisions are the same. */
+//  866   do
+//  867   {
+//  868     ksave1 = ksave0;    /* save previouse key reading */
+??halGetJoyKeyInput_0:
+        MOV     A,R6
+        MOV     R7,A
+//  869 
+//  870     adc = HalAdcRead (HAL_KEY_JOY_CHN, HAL_ADC_RESOLUTION_8);
+        ; Setup parameters for call to function HalAdcRead
+        MOV     R2,#0x1
+        MOV     R1,#0x6
+        LCALL   ??HalAdcRead?relay
+        MOV     A,R2
+        MOV     R0,A
+//  871 
+//  872     if ((adc >= 2) && (adc <= 38))
+        MOV     A,#-0x2
+        ADD     A,R0
+        CLR     C
+        SUBB    A,#0x25
+        JNC     ??halGetJoyKeyInput_1
+//  873     {
+//  874        ksave0 |= HAL_KEY_UP;
+        MOV     A,R6
+        SETB    0xE0 /* A   */.0
+        SJMP    ??halGetJoyKeyInput_2
+//  875     }
+//  876     else if ((adc >= 74) && (adc <= 88))
+??halGetJoyKeyInput_1:
+        MOV     A,#-0x4a
+        ADD     A,R0
+        CLR     C
+        SUBB    A,#0xf
+        JNC     ??halGetJoyKeyInput_3
+//  877     {
+//  878       ksave0 |= HAL_KEY_RIGHT;
+        MOV     A,R6
+        SETB    0xE0 /* A   */.1
+        SJMP    ??halGetJoyKeyInput_2
+//  879     }
+//  880     else if ((adc >= 60) && (adc <= 73))
+??halGetJoyKeyInput_3:
+        MOV     A,#-0x3c
+        ADD     A,R0
+        CLR     C
+        SUBB    A,#0xe
+        JNC     ??halGetJoyKeyInput_4
+//  881     {
+//  882       ksave0 |= HAL_KEY_LEFT;
+        MOV     A,R6
+        SETB    0xE0 /* A   */.3
+        SJMP    ??halGetJoyKeyInput_2
+//  883     }
+//  884     else if ((adc >= 39) && (adc <= 59))
+??halGetJoyKeyInput_4:
+        MOV     A,#-0x27
+        ADD     A,R0
+        CLR     C
+        SUBB    A,#0x15
+        JNC     ??halGetJoyKeyInput_5
+//  885     {
+//  886       ksave0 |= HAL_KEY_DOWN;
+        MOV     A,R6
+        SETB    0xE0 /* A   */.4
+        SJMP    ??halGetJoyKeyInput_2
+//  887     }
+//  888     else if ((adc >= 89) && (adc <= 100))
+??halGetJoyKeyInput_5:
+        MOV     A,#-0x59
+        ADD     A,R0
+        CLR     C
+        SUBB    A,#0xc
+        JNC     ??halGetJoyKeyInput_6
+//  889     {
+//  890       ksave0 |= HAL_KEY_CENTER;
+        MOV     A,R6
+        SETB    0xE0 /* A   */.2
+??halGetJoyKeyInput_2:
+        MOV     R6,A
+//  891     }
+//  892   } while (ksave0 != ksave1);
+??halGetJoyKeyInput_6:
+        MOV     A,R7
+        XRL     A,R6
+        JNZ     ??halGetJoyKeyInput_0
+//  893 
+//  894   return ksave0;
+        MOV     A,R6
+        MOV     R1,A
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock55
+//  895 }
+//  896 
+//  897 
+//  898 
+//  899 
+//  900 
+//  901 /**************************************************************************************************
+//  902  * @fn      halProcessKeyInterrupt
+//  903  *
+//  904  * @brief   Checks to see if it's a valid key interrupt, saves interrupt driven key states for
+//  905  *          processing by HalKeyRead(), and debounces keys by scheduling HalKeyRead() 25ms later.
+//  906  *
+//  907  * @param
+//  908  *
+//  909  * @return
+//  910  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  911 void halProcessKeyInterrupt (void)
+halProcessKeyInterrupt:
+        CFI Block cfiBlock56 Using cfiCommon0
+        CFI Function halProcessKeyInterrupt
+        CODE
+//  912 {
+        FUNCALL halProcessKeyInterrupt, osal_start_timerEx
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  913   bool valid=FALSE;
+//  914 
+//  915   if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)  /* Interrupt Flag has been set */
+        MOV     A,0x89
+        MOV     C,0xE0 /* A   */.5
+        JNC     ??CrossCallReturnLabel_15
+//  916   {
+//  917     HAL_KEY_SW_6_PXIFG = ~(HAL_KEY_SW_6_BIT); /* Clear Interrupt Flag */
+        MOV     0x89,#-0x21
+//  918 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  919     valid = TRUE;
+//  920 #else
+//  921     if (HalKeyGetEdge(0) ^ PUSH1_SBIT)
+//  922     {
+//  923 	  valid = TRUE;
+//  924 	}
+//  925 #endif
+//  926   }
+//  927 
+//  928 #ifndef KEY_PUSH_PORT_0_BUTTON
+//  929   if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)  /* Interrupt Flag has been set */
+//  930   {
+//  931     HAL_KEY_JOY_MOVE_PXIFG = ~(HAL_KEY_JOY_MOVE_BIT); /* Clear Interrupt Flag */
+//  932     valid = TRUE;
+//  933   }
+//  934 #endif
+//  935 
+//  936 #ifdef KEY_PUSH_PORT_1_BUTTON
+//  937   if(HAL_KEY_PORT_1_PXIFG & HAL_KEY_PORT_1_BITS)
+//  938   {
+//  939     HAL_KEY_PORT_1_PXIFG &= ~HAL_KEY_PORT_1_BITS;
+//  940 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+//  941     valid = TRUE;
+//  942 #else
+//  943     if ((!!HalKeyGetEdge(1)) ^ (!HAL_KEY_PUSH_PORT_1_BUTTON()))
+//  944     {
+//  945       valid = TRUE;
+//  946     }
+//  947 #endif
+//  948   }
+//  949 #endif
+//  950 
+//  951   if (valid)
+//  952   {
+//  953     osal_start_timerEx (Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE);
+        ; Setup parameters for call to function osal_start_timerEx
+        MOV     R4,#0x19
+        MOV     R5,#0x0
+        MOV     R2,#0x1
+        LCALL   ?Subroutine6 & 0xFFFF
+//  954   }
+//  955 }
+??CrossCallReturnLabel_15:
+        LJMP    ??Subroutine11_0 & 0xFFFF
+        CFI EndBlock cfiBlock56
+        REQUIRE P0IFG
+//  956 
+//  957 /**************************************************************************************************
+//  958  * @fn      HalKeyEnterSleep
+//  959  *
+//  960  * @brief  - Get called to enter sleep mode
+//  961  *
+//  962  * @param
+//  963  *
+//  964  * @return
+//  965  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  966 void HalKeyEnterSleep ( void )
+HalKeyEnterSleep:
+        CFI Block cfiBlock57 Using cfiCommon0
+        CFI Function HalKeyEnterSleep
+        CODE
+//  967 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  968 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock57
+//  969 
+//  970 /**************************************************************************************************
+//  971  * @fn      HalKeyExitSleep
+//  972  *
+//  973  * @brief   - Get called when sleep is over
+//  974  *
+//  975  * @param
+//  976  *
+//  977  * @return  - return saved keys
+//  978  **************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  979 uint8 HalKeyExitSleep ( void )
+HalKeyExitSleep:
+        CFI Block cfiBlock58 Using cfiCommon0
+        CFI Function HalKeyExitSleep
+        CODE
+//  980 {
+        FUNCALL HalKeyExitSleep, HalKeyRead
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  981   /* Wake up and read keys */
+//  982   return ( HalKeyRead () );
+        ; Setup parameters for call to function HalKeyRead
+        LCALL   ??HalKeyRead?relay
+        LJMP    ??Subroutine11_0 & 0xFFFF
+        CFI EndBlock cfiBlock58
+//  983 }
+//  984 
+//  985 /***************************************************************************************************
+//  986  *                                    INTERRUPT SERVICE ROUTINE
+//  987  ***************************************************************************************************/
+//  988 
+//  989 /**************************************************************************************************
+//  990  * @fn      halKeyPort0Isr
+//  991  *
+//  992  * @brief   Port0 ISR
+//  993  *
+//  994  * @param
+//  995  *
+//  996  * @return
+//  997  **************************************************************************************************/
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  998 HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
+halKeyPort0Isr:
+        CFI Block cfiBlock59 Using cfiCommon1
+        CFI Function halKeyPort0Isr
+        CODE
+//  999 {
+        FUNCALL halKeyPort0Isr, halProcessKeyInterrupt
+        LOCFRAME ISTACK, 15, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 15, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    A
+        CFI A Frame(CFA_SP, 3)
+        CFI CFA_SP SP+-3
+        MOV     A,#-0xe
+        LCALL   ?INTERRUPT_ENTER_XSP
+        CFI B load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI PSW load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 15
+        ; Auto size: 0
+// 1000   HAL_ENTER_ISR();
+        MOV     C,0xa8.7
+        CLR     A
+        RLC     A
+        MOV     R6,A
+        SETB    0xa8.7
+// 1001 
+// 1002   if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)
+        MOV     A,0x89
+        MOV     C,0xE0 /* A   */.5
+        JNC     ??halKeyPort0Isr_0
+// 1003   {
+// 1004     halProcessKeyInterrupt();
+        ; Setup parameters for call to function halProcessKeyInterrupt
+        LCALL   ??halProcessKeyInterrupt?relay
+// 1005   }
+// 1006 
+// 1007   /*
+// 1008     Clear the CPU interrupt flag for Port_0
+// 1009     PxIFG has to be cleared before PxIF
+// 1010   */
+// 1011   HAL_KEY_SW_6_PXIFG = 0;
+??halKeyPort0Isr_0:
+        MOV     0x89,#0x0
+// 1012   HAL_KEY_CPU_PORT_0_IF = 0;
+        CLR     0xc0.5
+// 1013   
+// 1014   CLEAR_SLEEP_MODE();
+// 1015   HAL_EXIT_ISR();
+        MOV     A,R6
+        MOV     C,0xE0 /* A   */.0
+        MOV     0xa8.7,C
+// 1016 }
+        MOV     R7,#0x1
+        LJMP    ?INTERRUPT_LEAVE_XSP
+        CFI EndBlock cfiBlock59
+        REQUIRE _A_IEN0
+        REQUIRE P0IFG
+        REQUIRE _A_IRCON
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 107
+`??halKeyPort0Isr??INTVEC 107`:
+        LJMP       (halKeyPort0Isr)
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_0:
+        DD 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_384:
+        DD 900
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyConfig?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyConfig
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyRead?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyRead
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyPoll?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyPoll
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyCountPoll?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyCountPoll
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalLongKeyListener?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalLongKeyListener
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halGetKeyCount?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halGetKeyCount
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??set_keys_id?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    set_keys_id
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??get_keys_id?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    get_keys_id
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halGetJoyKeyInput?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halGetJoyKeyInput
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halProcessKeyInterrupt?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halProcessKeyInterrupt
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyEnterSleep?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyEnterSleep
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalKeyExitSleep?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalKeyExitSleep
+
+        END
+// 1017 
+// 1018 #ifdef KEY_PUSH_PORT_1_BUTTON
+// 1019 /**************************************************************************************************
+// 1020  * @fn      halKeyPort1Isr
+// 1021  *
+// 1022  * @brief   Port1 ISR
+// 1023  *
+// 1024  * @param
+// 1025  *
+// 1026  * @return
+// 1027  **************************************************************************************************/
+// 1028 HAL_ISR_FUNCTION( halKeyPort1Isr, P1INT_VECTOR )
+// 1029 {
+// 1030   HAL_ENTER_ISR();
+// 1031 
+// 1032   if (HAL_KEY_PORT_1_PXIFG & HAL_KEY_PORT_1_BITS)
+// 1033   {
+// 1034     halProcessKeyInterrupt();
+// 1035   }
+// 1036 
+// 1037   /*
+// 1038     Clear the CPU interrupt flag for Port_1
+// 1039     PxIFG has to be cleared before PxIF
+// 1040   */
+// 1041   HAL_KEY_PORT_1_PXIFG = 0;
+// 1042   HAL_KEY_CPU_PORT_1_IF = 0;
+// 1043   
+// 1044   CLEAR_SLEEP_MODE();
+// 1045   HAL_EXIT_ISR();
+// 1046 }
+// 1047 #endif
+// 1048 
+// 1049 #ifndef KEY_PUSH_PORT_0_BUTTON
+// 1050 /**************************************************************************************************
+// 1051  * @fn      halKeyPort2Isr
+// 1052  *
+// 1053  * @brief   Port2 ISR
+// 1054  *
+// 1055  * @param
+// 1056  *
+// 1057  * @return
+// 1058  **************************************************************************************************/
+// 1059 HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
+// 1060 {
+// 1061   HAL_ENTER_ISR();
+// 1062   
+// 1063   if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)
+// 1064   {
+// 1065     halProcessKeyInterrupt();
+// 1066   }
+// 1067 
+// 1068   /*
+// 1069     Clear the CPU interrupt flag for Port_2
+// 1070     PxIFG has to be cleared before PxIF
+// 1071     Notes: P2_1 and P2_2 are debug lines.
+// 1072   */
+// 1073   HAL_KEY_JOY_MOVE_PXIFG = 0;
+// 1074   HAL_KEY_CPU_PORT_2_IF = 0;
+// 1075 
+// 1076   CLEAR_SLEEP_MODE();
+// 1077   HAL_EXIT_ISR();
+// 1078 }
+// 1079 #endif
+// 1080 
+// 1081 #else
+// 1082 
+// 1083 
+// 1084 void HalKeyInit(void){}
+// 1085 void HalKeyConfig(bool interruptEnable, halKeyCBack_t cback){}
+// 1086 uint8 HalKeyRead(void){ return 0;}
+// 1087 void HalKeyPoll(void){}
+// 1088 
+// 1089 #endif /* HAL_KEY */
+// 1090 
+// 1091 
+// 1092 
+// 1093 
+// 1094 
+// 1095 /**************************************************************************************************
+// 1096 **************************************************************************************************/
+// 1097 
+// 1098 
+// 1099 
+// 
+// 882 bytes in segment BANKED_CODE
+//  78 bytes in segment BANK_RELAYS
+//   3 bytes in segment INTVEC
+//  38 bytes in segment NEAR_CODE
+//   9 bytes in segment SFR_AN
+//   8 bytes in segment XDATA_ROM_C
+//  52 bytes in segment XDATA_Z
+// 
+// 998 bytes of CODE  memory (+ 3 bytes shared)
+//   0 bytes of CONST memory (+ 8 bytes shared)
+//   0 bytes of DATA  memory (+ 9 bytes shared)
+//  52 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

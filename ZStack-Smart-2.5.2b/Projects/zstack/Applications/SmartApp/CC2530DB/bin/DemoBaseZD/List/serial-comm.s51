@@ -1,0 +1,1038 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  13:24:53 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\Source\Manage\serial-comm /
+//                          .c                                                /
+//    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\..\.. /
+//                          \..\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ    /
+//                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3        /
+//                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3             /
+//                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1   /
+//                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800         /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DLINK_STATUS_JITTER_MASK=0x007F                  /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
+//                          __code" -DGENERIC=__generic                       /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
+//                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Projects\zstack\Applications\SmartApp\So /
+//                          urce\Manage\serial-comm.c -D SECURE=1 -D          /
+//                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                /
+//                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     /
+//                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D          /
+//                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D       /
+//                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC          /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Proje /
+//                          cts\zstack\Applications\SmartApp\CC2530DB\bin\Dem /
+//                          oBaseZD\List\ --diag_suppress Pe001,Pa010 -o      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\O /
+//                          bj\ -e --debug --core=plain --dptr=16,1           /
+//                          --data_model=large --code_model=banked            /
+//                          --calling_convention=xdata_reentrant              /
+//                          --place_constants=data_rom --nr_virtual_regs 16   /
+//                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Connector\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\Source\Board\ -I                  /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Manage\Callbacks\ -I         /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart /
+//                          -2.5.2b\Projects\zstack\Applications\SmartApp\CC2 /
+//                          530DB\Devices\..\..\Source\Manage\HeartBeat\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\incode\ -I E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC /
+//                          2530DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\target\CC2530EB\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\high_level\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\single_c /
+//                          hip\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projec /
+//                          ts\zstack\Applications\SmartApp\CC2530DB\Devices\ /
+//                          ..\..\..\..\..\..\Components\mt\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\osal\include\ -I             /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\saddr\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\sdata\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\af\ -I                 /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\nwk\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sapi\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sec\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sys\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\zdo\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\ -I                     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\f8w\ -Oh                /
+//                          --require_prototypes                              /
+//    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\serial-comm.s51                               /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME `serial-comm`
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?CALL_IND
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?MOVE_LONG8_XDATA_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??Data_TxHandler?relay
+        FUNCTION ??Data_TxHandler?relay,0203H
+        FUNCTION ??SerialTx_CallBack?relay,0203H
+        PUBLIC ??SerialTx_Handler?relay
+        FUNCTION ??SerialTx_Handler?relay,0203H
+        PUBLIC ??Serial_Init?relay
+        FUNCTION ??Serial_Init?relay,0203H
+        PUBLIC Data_TxHandler
+        FUNCTION Data_TxHandler,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        FUNCTION SerialTx_CallBack,021603H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME XSTACK, 77, STACK
+        PUBLIC SerialTx_Handler
+        FUNCTION SerialTx_Handler,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC Serial_Init
+        FUNCTION Serial_Init,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME XSTACK, 29, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+HalUARTOpen         SYMBOL "HalUARTOpen"
+HalUARTRead         SYMBOL "HalUARTRead"
+memcpy              SYMBOL "memcpy"
+memset              SYMBOL "memset"
+HalLedSet           SYMBOL "HalLedSet"
+HalUARTWrite        SYMBOL "HalUARTWrite"
+??HalLedSet?relay   SYMBOL "?relay", HalLedSet
+??HalUARTOpen?relay SYMBOL "?relay", HalUARTOpen
+??HalUARTRead?relay SYMBOL "?relay", HalUARTRead
+??HalUARTWrite?relay SYMBOL "?relay", HalUARTWrite
+??memcpy?relay      SYMBOL "?relay", memcpy
+??memset?relay      SYMBOL "?relay", memset
+Data_TxHandler      SYMBOL "Data_TxHandler"
+??Data_TxHandler?relay SYMBOL "?relay", Data_TxHandler
+SerialTx_Handler    SYMBOL "SerialTx_Handler"
+??SerialTx_Handler?relay SYMBOL "?relay", SerialTx_Handler
+Serial_Init         SYMBOL "Serial_Init"
+??Serial_Init?relay SYMBOL "?relay", Serial_Init
+
+        EXTERN HalUARTOpen
+        FUNCTION HalUARTOpen,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 29, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalUARTRead
+        FUNCTION HalUARTRead,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 75, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memcpy
+        FUNCTION memcpy,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 77, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memset
+        FUNCTION memset,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 77, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalLedSet
+        FUNCTION HalLedSet,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 75, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalUARTWrite
+        FUNCTION HalUARTWrite,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??HalLedSet?relay
+        FUNCTION ??HalLedSet?relay,00H
+        EXTERN ??HalUARTOpen?relay
+        FUNCTION ??HalUARTOpen?relay,00H
+        EXTERN ??HalUARTRead?relay
+        FUNCTION ??HalUARTRead?relay,00H
+        EXTERN ??HalUARTWrite?relay
+        FUNCTION ??HalUARTWrite?relay,00H
+        EXTERN ??memcpy?relay
+        FUNCTION ??memcpy?relay,00H
+        EXTERN ??memset?relay
+        FUNCTION ??memset?relay,00H
+
+// E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\serial-comm.c
+//    1 /**************************************************************************************************
+//    2   Filename:       serial-comm.c
+//    3   Revised:        $Date: 2014-04-25 17:25:52 -0800 (Wed, 25 Apr 2014) $
+//    4   Revision:       $Revision: 29217 $
+//    5 
+//    6   Description:    Analysis frame format.
+//    7 **************************************************************************************************/
+//    8 
+//    9 /**************************************************************************************************
+//   10 Modify by Sam_Chen
+//   11 Date:2015-07-31
+//   12 **************************************************************************************************/
+//   13 
+//   14 
+//   15 /*********************************************************************
+//   16  * INCLUDES
+//   17  */
+//   18 #include "serial-comm.h"
+//   19 #include "hal_led.h"
+//   20 
+//   21 /*********************************************************************
+//   22  * MACROS
+//   23  */
+//   24 
+//   25 /*********************************************************************
+//   26  * CONSTANTS
+//   27  */
+//   28 
+//   29 /*********************************************************************
+//   30  * TYPEDEFS
+//   31  */
+//   32 
+//   33 /*********************************************************************
+//   34  * GLOBAL VARIABLES
+//   35  */
+//   36 
+//   37 /*********************************************************************
+//   38  * EXTERNAL VARIABLES
+//   39  */
+//   40 
+//   41 /*********************************************************************
+//   42  * EXTERNAL FUNCTIONS
+//   43  */
+//   44 
+//   45 /*********************************************************************
+//   46  * LOCAL VARIABLES
+//   47  */
+//   48 /*´®¿Ú»º³åÇø*/
+//   49 #if(HAL_UART==TRUE)
+//   50 //static uint8 Serial_TxSeq;
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   51 static uint8 Serial_TxBuf[SERIAL_COM_TX_MAX];
+Serial_TxBuf:
+        DS 80
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   52 static uint8 Serial_TxLen;
+Serial_TxLen:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   53 
+//   54 #ifndef HAL_UART01_BOTH
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   55 static UART_TxHandler mData_TxHandler;
+mData_TxHandler:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   56 #else
+//   57 static UART_TxHandler mData0_TxHandler;
+//   58 static UART_TxHandler mData1_TxHandler;
+//   59 #endif
+//   60 
+//   61 /*********************************************************************
+//   62  * LOCAL FUNCTIONS
+//   63  */
+//   64 static void SerialTx_CallBack(uint8 port, uint8 event);
+//   65 static void SerialTx_DataCB( uint8 port, uint8 txBuf[] , uint8 txLen);
+//   66 
+//   67 /*********************************************************************
+//   68  * NETWORK LAYER CALLBACKS
+//   69  */
+//   70 
+//   71 /*********************************************************************
+//   72  * PUBLIC FUNCTIONS
+//   73  */
+//   74 
+//   75 #ifndef HAL_UART01_BOTH
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   76 void Serial_Init(UART_TxHandler txHandler)
+Serial_Init:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function Serial_Init
+        CODE
+//   77 {
+        FUNCALL Serial_Init, HalUARTOpen
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 29, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 29, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 29
+        MOV     A,#-0x1d
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 29)
+//   78 	halUARTCfg_t uartConfig;
+//   79 
+//   80 	mData_TxHandler = txHandler;
+        MOV     DPTR,#mData_TxHandler
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//   81 	Serial_TxLen = 0;
+        MOV     DPTR,#Serial_TxLen
+        CLR     A
+        MOVX    @DPTR,A
+//   82 
+//   83 	uartConfig.configured           = TRUE;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        INC     A
+        MOVX    @DPTR,A
+//   84 	uartConfig.baudRate             = SERIAL_COM_BAUD;
+        LCALL   ?XSTACK_DISP0_8
+        CLR     A
+        MOVX    @DPTR,A
+//   85 	uartConfig.flowControl          = HAL_UART_FLOW_OFF;
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        CLR     A
+        MOVX    @DPTR,A
+//   86 	uartConfig.flowControlThreshold = SERIAL_COM_THRESH;
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x40
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//   87 	uartConfig.rx.maxBufSize        = SERIAL_COM_RX_SZ;
+        MOV     A,#0xa
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//   88 	uartConfig.tx.maxBufSize        = SERIAL_COM_TX_SZ;
+        MOV     A,#0x12
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//   89 	uartConfig.idleTimeout          = SERIAL_COM_IDLE;
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x6
+        MOVX    @DPTR,A
+//   90 	uartConfig.intEnable            = TRUE;
+        MOV     A,#0x16
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//   91 	uartConfig.callBackFunc         = SerialTx_CallBack;
+        MOV     A,#0x1b
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#??SerialTx_CallBack?relay & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#(??SerialTx_CallBack?relay >> 8) & 0xff
+        MOVX    @DPTR,A
+//   92 	
+//   93 	HalUARTOpen (SERIAL_COM_PORT, &uartConfig);
+        ; Setup parameters for call to function HalUARTOpen
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R2,DPL
+        MOV     R3,DPH
+        MOV     R1,#0x0
+        LCALL   ??HalUARTOpen?relay
+//   94 }
+        MOV     A,#0x1d
+        LCALL   ?DEALLOC_XSTACK8
+        CFI EndBlock cfiBlock0
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock1
+//   95 #else
+//   96 void Serial_Init(UART_TxHandler tx0Handler, UART_TxHandler tx1Handler)
+//   97 {
+//   98 	halUARTCfg_t uartConfig0, uartConfig1;
+//   99 	
+//  100 	mData0_TxHandler = tx0Handler;
+//  101 	mData1_TxHandler = tx1Handler;
+//  102 	Serial_TxLen = 0;
+//  103 
+//  104 	uartConfig0.configured           = TRUE;
+//  105 	uartConfig0.baudRate             = SERIAL_COM_BAUD0;
+//  106 	uartConfig0.flowControl          = HAL_UART_FLOW_OFF;
+//  107 	uartConfig0.flowControlThreshold = SERIAL_COM_THRESH;
+//  108 	uartConfig0.rx.maxBufSize        = SERIAL_COM_RX_SZ;
+//  109 	uartConfig0.tx.maxBufSize        = SERIAL_COM_TX_SZ;
+//  110 	uartConfig0.idleTimeout          = SERIAL_COM_IDLE;
+//  111 	uartConfig0.intEnable            = TRUE;
+//  112 	uartConfig0.callBackFunc         = SerialTx_CallBack;
+//  113 
+//  114 	uartConfig1.configured           = TRUE;
+//  115 	uartConfig1.baudRate             = SERIAL_COM_BAUD1;
+//  116 	uartConfig1.flowControl          = HAL_UART_FLOW_OFF;
+//  117 	uartConfig1.flowControlThreshold = SERIAL_COM_THRESH;
+//  118 	uartConfig1.rx.maxBufSize        = SERIAL_COM_RX_SZ;
+//  119 	uartConfig1.tx.maxBufSize        = SERIAL_COM_TX_SZ;
+//  120 	uartConfig1.idleTimeout          = SERIAL_COM_IDLE;
+//  121 	uartConfig1.intEnable            = TRUE;
+//  122 	uartConfig1.callBackFunc         = SerialTx_CallBack;
+//  123 	
+//  124 	HalUARTOpen (SERIAL_COM_PORT0, &uartConfig0);
+//  125 	HalUARTOpen (SERIAL_COM_PORT1, &uartConfig1);
+//  126 }
+//  127 #endif
+//  128 
+//  129 /*********************************************************************
+//  130  * @fn      SerialTx_CallBack()
+//  131  *
+//  132  * @brief   receive data from serial port
+//  133  *
+//  134  * @param   serial receive port, event
+//  135  *
+//  136  * @return  none
+//  137  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  138 void SerialTx_CallBack(uint8 port, uint8 event)
+SerialTx_CallBack:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function SerialTx_CallBack
+        CODE
+//  139 {
+        FUNCALL SerialTx_CallBack, HalUARTRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 75, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 75, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL SerialTx_CallBack, memcpy
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 77, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 77, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL SerialTx_CallBack, memset
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 77, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 77, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL SerialTx_CallBack, HalLedSet
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 75, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 75, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xb
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        ; Saved register size: 11
+        ; Auto size: 64
+        MOV     A,#-0x40
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 75)
+        MOV     A,R2
+        MOV     R7,A
+//  140   uint8 data_TxLen = 0;
+//  141   uint8 data_TxBuf[FRAME_DATA_LENGTH] = {0};
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     DPH,#(`?<Constant {0}>` >> 8) & 0xff
+        MOV     DPL,#`?<Constant {0}>` & 0xff
+        MOV     A,#0x40
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//  142 
+//  143   if ((event & (HAL_UART_RX_FULL | HAL_UART_RX_ABOUT_FULL 
+//  144   			| HAL_UART_RX_TIMEOUT)) && !Serial_TxLen)
+        MOV     A,#0x7
+        ANL     A,R7
+        JNZ     $+5
+        LJMP    ??SerialTx_CallBack_0 & 0xFFFF
+        MOV     DPTR,#Serial_TxLen
+        MOVX    A,@DPTR
+        JNZ     ??SerialTx_CallBack_0
+//  145   {
+//  146     if (Serial_TxLen < SERIAL_COM_TX_MAX)
+//  147     {
+//  148       Serial_TxLen = HalUARTRead( port, Serial_TxBuf, SERIAL_COM_TX_MAX);
+        ; Setup parameters for call to function HalUARTRead
+        MOV     R4,#0x50
+        MOV     R5,#0x0
+        MOV     R2,#Serial_TxBuf & 0xff
+        MOV     R3,#(Serial_TxBuf >> 8) & 0xff
+        LCALL   ??HalUARTRead?relay
+        MOV     A,R2
+        MOV     DPTR,#Serial_TxLen
+        MOVX    @DPTR,A
+//  149     }
+//  150 
+//  151     if(Serial_TxLen)
+        JZ      ??SerialTx_CallBack_0
+//  152     {  
+//  153 	  if(Serial_TxLen<FRAME_DATA_LENGTH)
+        CLR     C
+        SUBB    A,#0x40
+        JNC     ??SerialTx_CallBack_1
+//  154         data_TxLen = Serial_TxLen;
+        MOVX    A,@DPTR
+        MOV     ?V0 + 2,A
+        SJMP    ??SerialTx_CallBack_2
+//  155 	  else
+//  156 	  	data_TxLen = FRAME_DATA_LENGTH;
+??SerialTx_CallBack_1:
+        MOV     ?V0 + 2,#0x40
+//  157 	  
+//  158       memcpy(data_TxBuf, Serial_TxBuf, data_TxLen);
+??SerialTx_CallBack_2:
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,?V0 + 2
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 77)
+        MOV     R4,#Serial_TxBuf & 0xff
+        MOV     R5,#(Serial_TxBuf >> 8) & 0xff
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??memcpy?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 75)
+//  159 
+//  160       memset(Serial_TxBuf, 0, SERIAL_COM_TX_MAX);
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x50
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 77)
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#Serial_TxBuf & 0xff
+        MOV     R3,#(Serial_TxBuf >> 8) & 0xff
+        LCALL   ??memset?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 75)
+//  161       Serial_TxLen = 0;
+        MOV     DPTR,#Serial_TxLen
+        CLR     A
+        MOVX    @DPTR,A
+//  162 
+//  163   	  SerialTx_DataCB(port, data_TxBuf, data_TxLen);
+        ; Setup parameters for call to function HalLedSet
+        MOV     R2,#0x2
+        MOV     R1,#0x2
+        LCALL   ??HalLedSet?relay
+        ; Setup parameters for indirect call
+        MOV     R1,?V0 + 2
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R2,DPL
+        MOV     R3,DPH
+        MOV     DPTR,#mData_TxHandler
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R0
+        LCALL   ?CALL_IND
+//  164 	}
+//  165   }
+//  166 }
+??SerialTx_CallBack_0:
+        MOV     A,#0x40
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 11)
+        MOV     R7,#0x3
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock2
+//  167 
+//  168 
+//  169 /*********************************************************************
+//  170  * @fn      SerialTx_DataCB()
+//  171  *
+//  172  * @brief   deal with serial receice data
+//  173  *
+//  174  * @param   none
+//  175  *
+//  176  * @return  none
+//  177  */
+//  178 void SerialTx_DataCB( uint8 port, uint8 txBuf[] , uint8 txLen)
+//  179 {
+//  180   HalLedSet(HAL_LED_2, HAL_LED_MODE_BLINK);
+//  181 #ifndef HAL_UART01_BOTH
+//  182   mData_TxHandler(txBuf, txLen);
+//  183 #else
+//  184   
+//  185   if(port == SERIAL_COM_PORT0)
+//  186   {
+//  187 	mData0_TxHandler(txBuf, txLen);
+//  188   }
+//  189   else if(port == SERIAL_COM_PORT1)
+//  190   {
+//  191 	mData1_TxHandler(txBuf, txLen);
+//  192   }
+//  193 #endif
+//  194 }
+//  195 
+//  196 
+//  197 /*********************************************************************
+//  198  * @fn      SerialTx_Handler
+//  199  *
+//  200  * @brief   update user uart receive handler
+//  201  *
+//  202  * @param   uart receive handler
+//  203  *
+//  204  * @return  none
+//  205  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  206 void SerialTx_Handler(int port, UART_TxHandler txHandler)
+SerialTx_Handler:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function SerialTx_Handler
+        CODE
+//  207 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  208 #if(HAL_UART==TRUE)
+//  209   if(txHandler != NULL)
+        MOV     A,R4
+        ORL     A,R5
+        JZ      ??SerialTx_Handler_0
+//  210   {
+//  211 #ifndef HAL_UART01_BOTH
+//  212   	mData_TxHandler = txHandler;
+        MOV     DPTR,#mData_TxHandler
+        MOV     A,R4
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R5
+        MOVX    @DPTR,A
+//  213 #else
+//  214 	if(port == SERIAL_COM_PORT0)
+//  215 	{
+//  216 	  mData0_TxHandler = txHandler;
+//  217 	}
+//  218 	else if(port == SERIAL_COM_PORT1)
+//  219 	{
+//  220 	  mData1_TxHandler = txHandler;
+//  221 	}
+//  222 #endif
+//  223   }
+//  224 #endif
+//  225 }
+??SerialTx_Handler_0:
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock3
+//  226 
+//  227 
+//  228 #ifndef HAL_UART01_BOTH
+//  229 /*********************************************************************
+//  230  * @fn      Data_TxHandler()
+//  231  *
+//  232  * @brief   deault function to deal with serial receice data
+//  233  *
+//  234  * @param   point to data, data length
+//  235  *
+//  236  * @return  none
+//  237  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  238 void Data_TxHandler(uint8 txBuf[], uint8 txLen)
+Data_TxHandler:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function Data_TxHandler
+        CODE
+//  239 {
+        FUNCALL Data_TxHandler, HalUARTWrite
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R1
+//  240   HalUARTWrite(SERIAL_COM_PORT, txBuf, txLen);
+        ; Setup parameters for call to function HalUARTWrite
+        MOV     R4,A
+        MOV     R5,#0x0
+        MOV     R1,#0x0
+        LCALL   ??HalUARTWrite?relay
+//  241 }
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock4
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Serial_Init?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Serial_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??SerialTx_CallBack?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    SerialTx_CallBack
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??SerialTx_Handler?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    SerialTx_Handler
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Data_TxHandler?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Data_TxHandler
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0}>`:
+        DB 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0, 0
+        DB 0, 0, 0, 0, 0, 0, 0
+
+        END
+//  242 #else
+//  243 void Data0_TxHandler(uint8 txBuf[], uint8 txLen)
+//  244 {
+//  245   HalUARTWrite(SERIAL_COM_PORT1, txBuf, txLen);
+//  246 }
+//  247 
+//  248 void Data1_TxHandler(uint8 txBuf[], uint8 txLen)
+//  249 {
+//  250   HalUARTWrite(SERIAL_COM_PORT0, txBuf, txLen);
+//  251 }
+//  252 #endif
+//  253 #endif
+// 
+// 350 bytes in segment BANKED_CODE
+//  24 bytes in segment BANK_RELAYS
+//  64 bytes in segment XDATA_ROM_C
+//  83 bytes in segment XDATA_Z
+// 
+// 374 bytes of CODE  memory
+//  64 bytes of CONST memory
+//  83 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

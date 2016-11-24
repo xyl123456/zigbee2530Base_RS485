@@ -1,0 +1,707 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  13:24:47 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Components\hal\ #
+#                          common\hal_drivers.c                               #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3              #
+#                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5. #
+#                          2b\Projects\zstack\Applications\SmartApp\CC2530DB\ #
+#                          Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg   #
+#                          (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1      #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Components\hal\common\hal_drivers.c -D     #
+#                          SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D     #
+#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZD\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\hal_drivers.lst                                  #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \hal_drivers.r51                                   #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Components\hal\common\hal_drivers.c
+      1          /**************************************************************************************************
+      2            Filename:       hal_drivers.c
+      3            Revised:        $Date: 2007-07-06 10:42:24 -0700 (Fri, 06 Jul 2007) $
+      4            Revision:       $Revision: 13579 $
+      5          
+      6            Description:    This file contains the interface to the Drivers Service.
+      7          
+      8          
+      9            Copyright 2005-2010 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /**************************************************************************************************
+     41          Modify by Sam_Chen
+     42          Date:2015-08-27
+     43          **************************************************************************************************/
+     44          
+     45          /**************************************************************************************************
+     46           *                                            INCLUDES
+     47           **************************************************************************************************/
+     48          #include "hal_types.h"
+     49          #include "OSAL.h"
+     50          #include "hal_drivers.h"
+     51          #include "hal_adc.h"
+     52          #if (defined HAL_DMA) && (HAL_DMA == TRUE)
+     53            #include "hal_dma.h"
+     54          #endif
+     55          #include "hal_key.h"
+     56          #include "hal_lcd.h"
+     57          #include "hal_led.h"
+     58          #include "hal_timer.h"
+     59          #include "hal_uart.h"
+     60          #include "hal_sleep.h"
+     61          #if (defined HAL_AES) && (HAL_AES == TRUE)
+     62            #include "hal_aes.h"
+     63          #endif
+     64          
+     65          #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+     66            #include "hal_spi.h"
+     67          #endif
+     68          #if (defined HAL_HID) && (HAL_HID == TRUE)
+     69            #include "usb_hid.h"
+     70          #endif
+     71          
+     72          #ifdef CC2591_COMPRESSION_WORKAROUND
+     73            #include "mac_rx.h"
+     74          #endif
+     75          
+     76          /**************************************************************************************************
+     77           *                                            MACROS
+     78           **************************************************************************************************/
+     79          
+     80          
+     81          
+     82          /**************************************************************************************************
+     83           *                                          CONSTANTS
+     84           **************************************************************************************************/
+     85          
+     86          
+     87          /**************************************************************************************************
+     88           *                                          TYPEDEFS
+     89           **************************************************************************************************/
+     90          
+     91          
+     92          /**************************************************************************************************
+     93           *                                      GLOBAL VARIABLES
+     94           **************************************************************************************************/
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     95          uint8 Hal_TaskID;
+   \                     Hal_TaskID:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     96          
+     97          extern void HalLedUpdate( void ); /* Notes: This for internal only so it shouldn't be in hal_led.h */
+     98          
+     99          /**************************************************************************************************
+    100           *                                      FUNCTIONS - API
+    101           **************************************************************************************************/
+    102          
+    103          /**************************************************************************************************
+    104           * @fn      Hal_Init
+    105           *
+    106           * @brief   Hal Initialization function.
+    107           *
+    108           * @param   task_id - Hal TaskId
+    109           *
+    110           * @return  None
+    111           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    112          void Hal_Init( uint8 task_id )
+   \                     Hal_Init:
+    113          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    114            /* Register task ID */
+    115            Hal_TaskID = task_id;
+   \   000004   E9           MOV     A,R1
+   \   000005   90....       MOV     DPTR,#Hal_TaskID
+   \   000008   F0           MOVX    @DPTR,A
+    116            
+    117          #ifdef CC2591_COMPRESSION_WORKAROUND  
+    118            osal_start_reload_timer( Hal_TaskID, PERIOD_RSSI_RESET_EVT, PERIOD_RSSI_RESET_TIMEOUT );
+    119          #endif  
+    120          }
+   \   000009                REQUIRE ?Subroutine0
+   \   000009                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+    121          
+    122          /**************************************************************************************************
+    123           * @fn      Hal_DriverInit
+    124           *
+    125           * @brief   Initialize HW - These need to be initialized before anyone.
+    126           *
+    127           * @param   task_id - Hal TaskId
+    128           *
+    129           * @return  None
+    130           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    131          void HalDriverInit (void)
+   \                     HalDriverInit:
+    132          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    133            /* TIMER */
+    134          #if (defined HAL_TIMER) && (HAL_TIMER == TRUE)
+    135            #error "The hal timer driver module is removed."
+    136          #endif
+    137          
+    138            /* ADC */
+    139          #if (defined HAL_ADC) && (HAL_ADC == TRUE)
+    140            HalAdcInit();
+    141          #endif
+    142          
+    143            /* DMA */
+    144          #if (defined HAL_DMA) && (HAL_DMA == TRUE)
+    145            // Must be called before the init call to any module that uses DMA.
+    146            HalDmaInit();
+   \   000004                ; Setup parameters for call to function HalDmaInit
+   \   000004   12....       LCALL   ??HalDmaInit?relay
+    147          #endif
+    148          
+    149            /* AES */
+    150          #if (defined HAL_AES) && (HAL_AES == TRUE)
+    151            HalAesInit();
+   \   000007                ; Setup parameters for call to function HalAesInit
+   \   000007   12....       LCALL   ??HalAesInit?relay
+    152          #endif
+    153          
+    154            /* LCD */
+    155          #if (defined HAL_LCD) && (HAL_LCD == TRUE)
+    156            HalLcdInit();
+    157          #endif
+    158          
+    159            /* LED */
+    160          #if (defined HAL_LED) && (HAL_LED == TRUE)
+    161            HalLedInit();
+   \   00000A                ; Setup parameters for call to function HalLedInit
+   \   00000A   12....       LCALL   ??HalLedInit?relay
+    162          #endif
+    163          
+    164            /* UART */
+    165          #if (defined HAL_UART) && (HAL_UART == TRUE)
+    166            HalUARTInit();
+   \   00000D                ; Setup parameters for call to function HalUARTInit
+   \   00000D   12....       LCALL   ??HalUARTInit?relay
+    167          #endif
+    168          
+    169            /* KEY */
+    170          #if (defined HAL_KEY) && (HAL_KEY == TRUE)
+    171            HalKeyInit();
+   \   000010                ; Setup parameters for call to function HalKeyInit
+   \   000010   12....       LCALL   ??HalKeyInit?relay
+    172          #endif
+    173          
+    174            /* SPI */
+    175          #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+    176            HalSpiInit();
+    177          #endif
+    178          
+    179            /* HID */
+    180          #if (defined HAL_HID) && (HAL_HID == TRUE)
+    181            usbHidInit();
+    182          #endif
+    183            /*GPIO*/
+    184            GPIOInit();
+   \   000013                ; Setup parameters for call to function GPIOInit
+   \   000013   12....       LCALL   ??GPIOInit?relay
+    185          }
+   \   000016   80..         SJMP    ?Subroutine0
+    186          
+    187          
+    188          /**************************************************************************************************
+    189           * @fn      Hal_ProcessEvent
+    190           *
+    191           * @brief   Hal Process Event
+    192           *
+    193           * @param   task_id - Hal TaskId
+    194           *          events - events
+    195           *
+    196           * @return  None
+    197           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    198          uint16 Hal_ProcessEvent( uint8 task_id, uint16 events )
+   \                     Hal_ProcessEvent:
+    199          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    200            uint8 *msgPtr;
+    201            
+    202            (void)task_id;  // Intentionally unreferenced parameter
+    203          
+    204            if ( events & SYS_EVENT_MSG )
+   \   000009   5480         ANL     A,#0x80
+   \   00000B   6023         JZ      ??Hal_ProcessEvent_0
+    205            {
+    206              msgPtr = osal_msg_receive(Hal_TaskID);
+   \   00000D                ; Setup parameters for call to function osal_msg_receive
+   \   00000D   90....       MOV     DPTR,#Hal_TaskID
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F9           MOV     R1,A
+   \   000012   12....       LCALL   ??osal_msg_receive?relay
+    207          
+    208              while (msgPtr)
+   \   000015   EA           MOV     A,R2
+   \   000016   4B           ORL     A,R3
+   \   000017   600F         JZ      ??Hal_ProcessEvent_1
+    209              {
+    210                /* Do something here - for now, just deallocate the msg and move on */
+    211          
+    212                /* De-allocate */
+    213                osal_msg_deallocate( msgPtr );
+   \                     ??Hal_ProcessEvent_2:
+   \   000019                ; Setup parameters for call to function osal_msg_deallocate
+   \   000019   12....       LCALL   ??osal_msg_deallocate?relay
+    214                /* Next */
+    215                msgPtr = osal_msg_receive( Hal_TaskID );
+   \   00001C                ; Setup parameters for call to function osal_msg_receive
+   \   00001C   90....       MOV     DPTR,#Hal_TaskID
+   \   00001F   E0           MOVX    A,@DPTR
+   \   000020   F9           MOV     R1,A
+   \   000021   12....       LCALL   ??osal_msg_receive?relay
+   \   000024   EA           MOV     A,R2
+   \   000025   4B           ORL     A,R3
+   \   000026   70F1         JNZ     ??Hal_ProcessEvent_2
+    216              }
+    217              return events ^ SYS_EVENT_MSG;
+   \                     ??Hal_ProcessEvent_1:
+   \   000028   EE           MOV     A,R6
+   \   000029   FA           MOV     R2,A
+   \   00002A   EF           MOV     A,R7
+   \   00002B   6480         XRL     A,#0x80
+   \                     ??Hal_ProcessEvent_3:
+   \   00002D   FB           MOV     R3,A
+   \   00002E   804F         SJMP    ??Hal_ProcessEvent_4
+    218            }
+    219          
+    220            if ( events & HAL_LED_BLINK_EVENT )
+   \                     ??Hal_ProcessEvent_0:
+   \   000030   EE           MOV     A,R6
+   \   000031   5402         ANL     A,#0x2
+   \   000033   600A         JZ      ??Hal_ProcessEvent_5
+    221            {
+    222          #if (defined (BLINK_LEDS)) && (HAL_LED == TRUE)
+    223              HalLedUpdate();
+   \   000035                ; Setup parameters for call to function HalLedUpdate
+   \   000035   12....       LCALL   ??HalLedUpdate?relay
+    224          #endif /* BLINK_LEDS && HAL_LED */
+    225              return events ^ HAL_LED_BLINK_EVENT;
+   \   000038   EE           MOV     A,R6
+   \   000039   6402         XRL     A,#0x2
+   \                     ??Hal_ProcessEvent_6:
+   \   00003B   FA           MOV     R2,A
+   \   00003C   EF           MOV     A,R7
+   \   00003D   80EE         SJMP    ??Hal_ProcessEvent_3
+    226            }
+    227          
+    228            if (events & HAL_KEY_EVENT)
+   \                     ??Hal_ProcessEvent_5:
+   \   00003F   EE           MOV     A,R6
+   \   000040   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000042   501E         JNC     ??Hal_ProcessEvent_7
+    229            {
+    230          
+    231          #if (defined HAL_KEY) && (HAL_KEY == TRUE)
+    232              /* Check for keys */
+    233              HalKeyPoll();
+   \   000044                ; Setup parameters for call to function HalKeyPoll
+   \   000044   12....       LCALL   ??HalKeyPoll?relay
+    234          
+    235              /* if interrupt disabled, do next polling */
+    236              if (!Hal_KeyIntEnable)
+   \   000047   90....       MOV     DPTR,#Hal_KeyIntEnable
+   \   00004A   E0           MOVX    A,@DPTR
+   \   00004B   7010         JNZ     ??Hal_ProcessEvent_8
+    237              {
+    238                osal_start_timerEx( Hal_TaskID, HAL_KEY_EVENT, 100);
+   \   00004D                ; Setup parameters for call to function osal_start_timerEx
+   \   00004D   7C64         MOV     R4,#0x64
+   \   00004F   7D00         MOV     R5,#0x0
+   \   000051   7A01         MOV     R2,#0x1
+   \   000053   7B00         MOV     R3,#0x0
+   \   000055   90....       MOV     DPTR,#Hal_TaskID
+   \   000058   E0           MOVX    A,@DPTR
+   \   000059   F9           MOV     R1,A
+   \   00005A   12....       LCALL   ??osal_start_timerEx?relay
+    239              }
+    240          #endif // HAL_KEY
+    241          
+    242              return events ^ HAL_KEY_EVENT;
+   \                     ??Hal_ProcessEvent_8:
+   \   00005D   EE           MOV     A,R6
+   \   00005E   6401         XRL     A,#0x1
+   \   000060   80D9         SJMP    ??Hal_ProcessEvent_6
+    243            }
+    244          
+    245          #ifdef HAL_KEY_COMBINE_INT_METHOD
+    246            if (events & HAL_KEY_COUNT_EVENT)
+   \                     ??Hal_ProcessEvent_7:
+   \   000062   5410         ANL     A,#0x10
+   \   000064   6008         JZ      ??Hal_ProcessEvent_9
+    247            {
+    248            	HalKeyCountPoll();
+   \   000066                ; Setup parameters for call to function HalKeyCountPoll
+   \   000066   12....       LCALL   ??HalKeyCountPoll?relay
+    249          	return events ^ HAL_KEY_COUNT_EVENT;
+   \   000069   EE           MOV     A,R6
+   \   00006A   6410         XRL     A,#0x10
+   \   00006C   80CD         SJMP    ??Hal_ProcessEvent_6
+    250            }
+    251          
+    252          #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
+    253            if (events & HAL_LONG_KEY_EVENT)
+   \                     ??Hal_ProcessEvent_9:
+   \   00006E   EE           MOV     A,R6
+   \   00006F   5420         ANL     A,#0x20
+   \   000071   6008         JZ      ??Hal_ProcessEvent_10
+    254            {
+    255            	HalLongKeyListener();
+   \   000073                ; Setup parameters for call to function HalLongKeyListener
+   \   000073   12....       LCALL   ??HalLongKeyListener?relay
+    256          	return events ^ HAL_LONG_KEY_EVENT;
+   \   000076   EE           MOV     A,R6
+   \   000077   6420         XRL     A,#0x20
+   \   000079   80C0         SJMP    ??Hal_ProcessEvent_6
+    257            }
+    258          #endif
+    259          #endif
+    260          
+    261          #ifdef POWER_SAVING
+    262            if ( events & HAL_SLEEP_TIMER_EVENT )
+    263            {
+    264              halRestoreSleepLevel();
+    265              return events ^ HAL_SLEEP_TIMER_EVENT;
+    266            }
+    267          #endif
+    268          
+    269          #ifdef CC2591_COMPRESSION_WORKAROUND
+    270            if ( events & PERIOD_RSSI_RESET_EVT )
+    271            {
+    272              macRxResetRssi();
+    273              return (events ^ PERIOD_RSSI_RESET_EVT);
+    274            }
+    275          #endif  
+    276            
+    277            /* Nothing interested, discard the message */
+    278            return 0;
+   \                     ??Hal_ProcessEvent_10:
+   \   00007B   7A00         MOV     R2,#0x0
+   \   00007D   7B00         MOV     R3,#0x0
+   \                     ??Hal_ProcessEvent_4:
+   \   00007F   7F02         MOV     R7,#0x2
+   \   000081   02....       LJMP    ?BANKED_LEAVE_XDATA
+    279          
+    280          }
+    281          
+    282          /**************************************************************************************************
+    283           * @fn      Hal_ProcessPoll
+    284           *
+    285           * @brief   This routine will be called by OSAL to poll UART, TIMER...
+    286           *
+    287           * @param   task_id - Hal TaskId
+    288           *
+    289           * @return  None
+    290           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    291          void Hal_ProcessPoll ()
+   \                     Hal_ProcessPoll:
+    292          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    293          
+    294            /* Timer Poll */
+    295          #if (defined HAL_TIMER) && (HAL_TIMER == TRUE)
+    296            #error "The hal timer driver module is removed."
+    297          #endif
+    298          
+    299            /* UART Poll */
+    300          #if (defined HAL_UART) && (HAL_UART == TRUE)
+    301            HalUARTPoll();
+   \   000004                ; Setup parameters for call to function HalUARTPoll
+   \   000004   12....       LCALL   ??HalUARTPoll?relay
+    302          #endif  
+    303          
+    304            /* SPI Poll */
+    305          #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+    306            HalSpiPoll();
+    307          #endif
+    308          
+    309            /* HID poll */
+    310          #if (defined HAL_HID) && (HAL_HID == TRUE)
+    311            usbHidProcessEvents();
+    312          #endif
+    313            
+    314          #if defined( POWER_SAVING )
+    315            /* Allow sleep before the next OSAL event loop */
+    316            ALLOW_SLEEP_MODE();
+    317          #endif
+    318          
+    319          }
+   \   000007   02....       LJMP    ?Subroutine0 & 0xFFFF
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Hal_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Hal_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??HalDriverInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalDriverInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Hal_ProcessEvent?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Hal_ProcessEvent
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Hal_ProcessPoll?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Hal_ProcessPoll
+    320          
+    321          
+    322          #if !defined(DEVICE_TYPE_ID) && defined(SSA_ENDNODE)
+    323          void HalDeviceInit(void)
+    324          {}
+    325          
+    326          void HalStatesInit(devStates_t status)
+    327          {}
+    328          #endif
+    329          
+    330          /**************************************************************************************************
+    331          **************************************************************************************************/
+    332          
+
+   Maximum stack usage in bytes:
+
+     Function                 ISTACK PSTACK XSTACK
+     --------                 ------ ------ ------
+     HalDriverInit                2      0      0
+       -> HalDmaInit              4      0      0
+       -> HalAesInit              4      0      0
+       -> HalLedInit              4      0      0
+       -> HalUARTInit             4      0      0
+       -> HalKeyInit              4      0      0
+       -> GPIOInit                4      0      0
+     Hal_Init                     2      0      0
+     Hal_ProcessEvent             0      0     10
+       -> osal_msg_receive        0      0     20
+       -> osal_msg_deallocate     0      0     20
+       -> osal_msg_receive        0      0     20
+       -> HalLedUpdate            0      0     20
+       -> HalKeyPoll              0      0     20
+       -> osal_start_timerEx      0      0     20
+       -> HalKeyCountPoll         0      0     20
+       -> HalLongKeyListener      0      0     20
+     Hal_ProcessPoll              2      0      0
+       -> HalUARTPoll             4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label           Bytes
+     --------------           -----
+     Hal_TaskID                  1
+     Hal_Init                    9
+     ?Subroutine0                7
+     HalDriverInit              24
+     Hal_ProcessEvent          132
+     Hal_ProcessPoll            10
+     ??Hal_Init?relay            6
+     ??HalDriverInit?relay       6
+     ??Hal_ProcessEvent?relay    6
+     ??Hal_ProcessPoll?relay     6
+
+ 
+ 182 bytes in segment BANKED_CODE
+  24 bytes in segment BANK_RELAYS
+   1 byte  in segment XDATA_Z
+ 
+ 206 bytes of CODE  memory
+   1 byte  of XDATA memory
+
+Errors: none
+Warnings: none

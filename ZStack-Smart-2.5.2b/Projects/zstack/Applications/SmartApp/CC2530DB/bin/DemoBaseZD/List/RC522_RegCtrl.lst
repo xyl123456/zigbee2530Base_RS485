@@ -1,0 +1,412 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         21/Nov/2016  19:31:15 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Manage\rfid\RC522_Re #
+#                          gCtrl.c                                            #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3              #
+#                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5. #
+#                          2b\Projects\zstack\Applications\SmartApp\CC2530DB\ #
+#                          Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg   #
+#                          (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1      #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Manage\rfid\RC522_RegCtrl.c -D SECURE=1 -D      #
+#                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                 #
+#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZD\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\RC522_RegCtrl.lst                                #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \RC522_RegCtrl.r51                                 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\rfid\RC522_RegCtrl.c
+      1          //////////////////////////////////////////////////////////////////////////////
+      2          //
+      3          //                  ELEKTOR RFID READER for MIFARE and ISO14443-A
+      4          //
+      5          //                      Copyright (c) 2006 Gerhard H. Schalk
+      6          //
+      7          //////////////////////////////////////////////////////////////////////////////
+      8          //#include <REG936.H> 
+      9          #include "RC522_ErrCode.h"
+     10          #include "I2C.h"
+     11          #include "RC522_RegCtrl.h"
+     12          
+     13          /*************************************************
+     14          Function:       RcSetReg
+     15          Description:
+     16               Write data to register of RC522
+     17          Parameter:
+     18               RegAddr       The address of the regitster
+     19               RegVal        The value to be writen
+     20          Return:
+     21               None
+     22          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     23          void RcSetReg(unsigned char RegAddr, unsigned char RegVal)
+   \                     RcSetReg:
+     24          {    
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+   \   000007   EA           MOV     A,R2
+   \   000008   FE           MOV     R6,A
+     25              i2c_Start();                                   
+   \   000009                ; Setup parameters for call to function i2c_Start
+   \   000009   12....       LCALL   ?Subroutine1 & 0xFFFF
+     26              i2c_MasterTransmit(MFRC522_I2C_WRAdr); 
+     27              i2c_MasterTransmit(RegAddr & 0x3F);   
+     28              i2c_MasterTransmit(RegVal);
+   \                     ??CrossCallReturnLabel_0:
+   \   00000C                ; Setup parameters for call to function i2c_MasterTransmit
+   \   00000C   EE           MOV     A,R6
+   \   00000D   F9           MOV     R1,A
+   \   00000E   12....       LCALL   ??i2c_MasterTransmit?relay
+     29              i2c_Stop();   
+   \   000011                ; Setup parameters for call to function i2c_Stop
+   \   000011   12....       LCALL   ??i2c_Stop?relay
+     30          }
+   \   000014                REQUIRE ?Subroutine0
+   \   000014                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   12....       LCALL   ??i2c_Start?relay
+   \   000003                ; Setup parameters for call to function i2c_MasterTransmit
+   \   000003                ; Setup parameters for call to function i2c_MasterTransmit
+   \   000003   7952         MOV     R1,#0x52
+   \   000005   12....       LCALL   ??i2c_MasterTransmit?relay
+   \   000008                ; Setup parameters for call to function i2c_MasterTransmit
+   \   000008                ; Setup parameters for call to function i2c_MasterTransmit
+   \   000008   743F         MOV     A,#0x3f
+   \   00000A   5F           ANL     A,R7
+   \   00000B   F9           MOV     R1,A
+   \   00000C   12....       LCALL   ??i2c_MasterTransmit?relay
+   \   00000F   22           RET
+     31          
+     32          /*************************************************
+     33          Function:       qRcGetReg
+     34          Description:
+     35               Write data to register of RC522
+     36          Parameter:
+     37               RegAddr       The address of the regitster to be readed
+     38          Return:
+     39               The value of the specify register
+     40          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     41          unsigned char RcGetReg(unsigned char RegAddr)
+   \                     RcGetReg:
+     42          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+     43              unsigned char RegVal;
+     44          
+     45              unsigned char ackValueRD;
+     46              
+     47              i2c_Start();                                       
+   \   000007                ; Setup parameters for call to function i2c_Start
+   \   000007   12....       LCALL   ?Subroutine1 & 0xFFFF
+     48              ackValueRD = i2c_MasterTransmit(MFRC522_I2C_WRAdr);
+     49              ackValueRD = i2c_MasterTransmit(RegAddr & 0x3F);    
+     50              if(ackValueRD)          
+   \                     ??CrossCallReturnLabel_1:
+   \   00000A   E9           MOV     A,R1
+   \   00000B   6003         JZ      ??RcGetReg_0
+     51              i2c_Stop();                                         
+   \   00000D                ; Setup parameters for call to function i2c_Stop
+   \   00000D   12....       LCALL   ??i2c_Stop?relay
+     52              
+     53              i2c_Start();                                       
+   \                     ??RcGetReg_0:
+   \   000010                ; Setup parameters for call to function i2c_Start
+   \   000010   12....       LCALL   ??i2c_Start?relay
+     54              ackValueRD = i2c_MasterTransmit(MFRC522_I2C_RDAdr); 
+   \   000013                ; Setup parameters for call to function i2c_MasterTransmit
+   \   000013   7953         MOV     R1,#0x53
+   \   000015   12....       LCALL   ??i2c_MasterTransmit?relay
+     55              RegVal = i2c_MasterReceive (NACK);                    
+   \   000018                ; Setup parameters for call to function i2c_MasterReceive
+   \   000018   7901         MOV     R1,#0x1
+   \   00001A   12....       LCALL   ??i2c_MasterReceive?relay
+   \   00001D   E9           MOV     A,R1
+   \   00001E   FE           MOV     R6,A
+     56              i2c_Stop();                                         
+   \   00001F                ; Setup parameters for call to function i2c_Stop
+   \   00001F   12....       LCALL   ??i2c_Stop?relay
+     57          
+     58              return RegVal;   
+   \   000022   EE           MOV     A,R6
+   \   000023   F9           MOV     R1,A
+   \   000024   80..         SJMP    ?Subroutine0
+     59          
+     60          }
+     61          
+     62          /*************************************************
+     63          Function:       RcModifyReg
+     64          Description:
+     65               Change some bits of the register
+     66          Parameter:
+     67               RegAddr       The address of the regitster
+     68               ModifyVal        The value to change to, set or clr?
+     69               MaskByte      Only the corresponding bit '1' is valid,
+     70          Return:
+     71               None
+     72          **************************************************/
+     73          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     74          void RcModifyReg(unsigned char RegAddr, unsigned char ModifyVal, unsigned char MaskByte)
+   \                     RcModifyReg:
+     75          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FE           MOV     R6,A
+   \   000007   EA           MOV     A,R2
+   \   000008   FF           MOV     R7,A
+   \   000009   8B..         MOV     ?V0 + 0,R3
+     76              unsigned char RegVal;
+     77              RegVal = RcGetReg(RegAddr);
+   \   00000B                ; Setup parameters for call to function RcGetReg
+   \   00000B   12....       LCALL   ??RcGetReg?relay
+   \   00000E   E9           MOV     A,R1
+   \   00000F   FA           MOV     R2,A
+     78              if(ModifyVal)
+   \   000010   EF           MOV     A,R7
+   \   000011   6006         JZ      ??RcModifyReg_0
+     79              {
+     80                  RegVal |= MaskByte;
+   \   000013   E5..         MOV     A,?V0 + 0
+   \   000015   CA           XCH     A,R2
+   \   000016   4A           ORL     A,R2
+   \   000017   8005         SJMP    ??RcModifyReg_1
+     81              }
+     82              else
+     83              {
+     84                  RegVal &= (~MaskByte);
+   \                     ??RcModifyReg_0:
+   \   000019   E5..         MOV     A,?V0 + 0
+   \   00001B   F4           CPL     A
+   \   00001C   CA           XCH     A,R2
+   \   00001D   5A           ANL     A,R2
+   \                     ??RcModifyReg_1:
+   \   00001E   FA           MOV     R2,A
+     85              }
+     86              RcSetReg(RegAddr, RegVal);
+   \   00001F                ; Setup parameters for call to function RcSetReg
+   \   00001F   EE           MOV     A,R6
+   \   000020   F9           MOV     R1,A
+   \   000021   12....       LCALL   ??RcSetReg?relay
+     87          }
+   \   000024   80..         SJMP    ?Subroutine0
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RcSetReg?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RcSetReg
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RcGetReg?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RcGetReg
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RcModifyReg?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RcModifyReg
+
+   Maximum stack usage in bytes:
+
+     Function                ISTACK PSTACK XSTACK
+     --------                ------ ------ ------
+     RcGetReg                    0      0     18
+       -> i2c_Start              0      0     18
+       -> i2c_MasterTransmit     0      0     18
+       -> i2c_MasterTransmit     0      0     18
+       -> i2c_Stop               0      0     18
+       -> i2c_Start              0      0     18
+       -> i2c_MasterTransmit     0      0     18
+       -> i2c_MasterReceive      0      0     18
+       -> i2c_Stop               0      0     18
+     RcModifyReg                 0      0      9
+       -> RcGetReg               0      0     18
+       -> RcSetReg               0      0     18
+     RcSetReg                    0      0     18
+       -> i2c_Start              0      0     18
+       -> i2c_MasterTransmit     0      0     18
+       -> i2c_MasterTransmit     0      0     18
+       -> i2c_MasterTransmit     0      0     18
+       -> i2c_Stop               0      0     18
+
+
+   Segment part sizes:
+
+     Function/Label      Bytes
+     --------------      -----
+     RcSetReg              20
+     ?Subroutine0           5
+     ?Subroutine1          16
+     RcGetReg              38
+     RcModifyReg           38
+     ??RcSetReg?relay       6
+     ??RcGetReg?relay       6
+     ??RcModifyReg?relay    6
+
+ 
+ 117 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+ 
+ 135 bytes of CODE memory
+
+Errors: none
+Warnings: none

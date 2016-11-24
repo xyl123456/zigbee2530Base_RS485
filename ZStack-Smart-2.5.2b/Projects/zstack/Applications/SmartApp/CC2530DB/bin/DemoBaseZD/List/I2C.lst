@@ -1,0 +1,601 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         21/Nov/2016  19:31:09 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Manage\rfid\I2C.c    #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3              #
+#                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5. #
+#                          2b\Projects\zstack\Applications\SmartApp\CC2530DB\ #
+#                          Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg   #
+#                          (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1      #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Manage\rfid\I2C.c -D SECURE=1 -D ZTOOL_P1 -D    #
+#                          DEVICE_TYPE_ID=0xFE -D SIGNAL_AMPLIFIER_SETTING    #
+#                          -D xNWK_AUTO_POLL -D xHAL_UART_DMA=2 -D            #
+#                          xHAL_UART_DMA_ALT1 -D xJIAJU_BUILDIN -D MT_TASK    #
+#                          -D MT_SYS_FUNC -D MT_ZDO_FUNC -D NV_INIT -D        #
+#                          NV_RESTORE -lC E:\work\zigbee\ZStack-Smart-2.5.2b\ #
+#                          Projects\zstack\Applications\SmartApp\CC2530DB\bin #
+#                          \DemoBaseZD\List\ -lA E:\work\zigbee\ZStack-Smart- #
+#                          2.5.2b\Projects\zstack\Applications\SmartApp\CC253 #
+#                          0DB\bin\DemoBaseZD\List\ --diag_suppress           #
+#                          Pe001,Pa010 -o E:\work\zigbee\ZStack-Smart-2.5.2b\ #
+#                          Projects\zstack\Applications\SmartApp\CC2530DB\bin #
+#                          \DemoBaseZD\Obj\ -e --debug --core=plain           #
+#                          --dptr=16,1 --data_model=large                     #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I E:\work\zigbee\ZStack-Smar #
+#                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC2 #
+#                          530DB\Devices\ -I E:\work\zigbee\ZStack-Smart-2.5. #
+#                          2b\Projects\zstack\Applications\SmartApp\CC2530DB\ #
+#                          Devices\..\..\Source\Common\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Connector\ -I E:\work\zigbee\ZStack-Smart-2.5.2 #
+#                          b\Projects\zstack\Applications\SmartApp\CC2530DB\D #
+#                          evices\..\..\Source\\EndNode\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Board\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Pr #
+#                          ojects\zstack\Applications\SmartApp\CC2530DB\Devic #
+#                          es\..\..\Source\Manage\ -I                         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\Callbacks\ -I E:\work\zigbee\ZStack-Smar #
+#                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC2 #
+#                          530DB\Devices\..\..\Source\Manage\debug\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\HeartBeat\ -I E:\work\zigbee\ZStack-Smar #
+#                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC2 #
+#                          530DB\Devices\..\..\Source\Manage\incode\ -I       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\ZMain\TI2530DB\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\..\..\Components\hal\includ #
+#                          e\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\ #
+#                          zstack\Applications\SmartApp\CC2530DB\Devices\..\. #
+#                          .\..\..\..\..\Components\hal\target\CC2530EB\ -I   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\I2C.lst                                          #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \I2C.r51                                           #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\rfid\I2C.c
+      1          //////////////////////////////////////////////////////////////////////////////
+      2          //
+      3          //                  ELEKTOR RFID READER for MIFARE and ISO14443-A
+      4          //
+      5          //                      Copyright (c) 2006 Gerhard H. Schalk
+      6          //
+      7          //////////////////////////////////////////////////////////////////////////////
+      8          //#include <REG936.H> 
+      9          //#include <intrins.h> 
+     10          #include <iocc2530.h>
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+     11          #include "I2C.h"
+     12          
+     13          //------------------------------------------------------------------------
+     14          // Function: i2c_Start
+     15          //------------------------------------------------------------------------
+     16          // Description:
+     17          // Generates a I2C start condition
+     18          //------------------------------------------------------------------------
+     19          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     20          void Delay(unsigned int n)
+   \                     Delay:
+     21          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     22            unsigned int i,tt;
+     23            for(i = 0;i < n;i++)
+   \   000000   EA           MOV     A,R2
+   \   000001   4B           ORL     A,R3
+   \   000002   6016         JZ      ??Delay_0
+   \   000004   EA           MOV     A,R2
+   \   000005   F8           MOV     R0,A
+   \   000006   EB           MOV     A,R3
+   \   000007   F9           MOV     R1,A
+     24              for(tt = 0;tt < 5;tt++)
+   \                     ??Delay_1:
+   \   000008   7405         MOV     A,#0x5
+     25                asm("NOP");
+   \                     ??Delay_2:
+   \   00000A   00           NOP
+   \   00000B   14           DEC     A
+   \   00000C   70FC         JNZ     ??Delay_2
+   \   00000E   E8           MOV     A,R0
+   \   00000F   24FF         ADD     A,#-0x1
+   \   000011   18           DEC     R0
+   \   000012   E9           MOV     A,R1
+   \   000013   34FF         ADDC    A,#-0x1
+   \   000015   F9           MOV     R1,A
+   \   000016   E8           MOV     A,R0
+   \   000017   49           ORL     A,R1
+   \   000018   70EE         JNZ     ??Delay_1
+     26          }
+   \                     ??Delay_0:
+   \   00001A   02....       LJMP    ?BRET
+     27          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     28          void i2c_Start (void)
+   \                     i2c_Start:
+     29          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     30              // Set SDA and SCL to HIGH (I2C Bus not busy)
+     31              SDA = HIGH;
+   \   000004   D286         SETB    0x80.6
+     32              SCL = HIGH;	
+   \   000006   D287         SETB    0x80.7
+     33              Delay(30);
+   \   000008                ; Setup parameters for call to function Delay
+   \   000008   7A1E         MOV     R2,#0x1e
+   \   00000A   7B00         MOV     R3,#0x0
+   \   00000C   12....       LCALL   ??Delay?relay
+     34              // Start Condition
+     35              SDA = LOW;
+   \   00000F   C286         CLR     0x80.6
+     36              Delay(30);
+   \   000011                ; Setup parameters for call to function Delay
+   \   000011   7A1E         MOV     R2,#0x1e
+   \   000013   7B00         MOV     R3,#0x0
+   \   000015   12....       LCALL   ??Delay?relay
+     37              SCL = LOW;
+   \   000018   C287         CLR     0x80.7
+     38              Delay(30);
+   \   00001A                ; Setup parameters for call to function Delay
+   \   00001A                REQUIRE ?Subroutine0
+   \   00001A                REQUIRE _A_P0
+   \   00001A                ; // Fall through to label ?Subroutine0
+     39          
+     40          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7A1E         MOV     R2,#0x1e
+   \   000002   7B00         MOV     R3,#0x0
+   \   000004   12....       LCALL   ??Delay?relay
+   \   000007   D083         POP     DPH
+   \   000009   D082         POP     DPL
+   \   00000B   02....       LJMP    ?BRET
+     41          
+     42          //------------------------------------------------------------------------
+     43          // Function: i2c_Stop
+     44          //------------------------------------------------------------------------
+     45          // Description:
+     46          // Generates a I2C stop condition
+     47          //------------------------------------------------------------------------
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     48          void i2c_Stop (void)
+   \                     i2c_Stop:
+     49          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     50              SCL = LOW;
+   \   000004   C287         CLR     0x80.7
+     51              SDA = LOW;
+   \   000006   C286         CLR     0x80.6
+     52          
+     53              // Stop Condition
+     54              //_nop_();
+     55              //_nop_();
+     56              Delay(30);
+   \   000008                ; Setup parameters for call to function Delay
+   \   000008   12....       LCALL   ?Subroutine1 & 0xFFFF
+     57              SCL = HIGH;
+     58             // _nop_();
+     59             //_nop_();
+     60              Delay(30);
+     61              SDA = HIGH;
+   \                     ??CrossCallReturnLabel_0:
+   \   00000B   D286         SETB    0x80.6
+     62              //_nop_();
+     63              //_nop_();
+     64              Delay(30);
+   \   00000D                ; Setup parameters for call to function Delay
+   \   00000D   80..         SJMP    ?Subroutine0
+   \   00000F                REQUIRE _A_P0
+     65          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7A1E         MOV     R2,#0x1e
+   \   000002   7B00         MOV     R3,#0x0
+   \   000004   12....       LCALL   ??Delay?relay
+   \   000007   D287         SETB    0x80.7
+   \   000009                ; Setup parameters for call to function Delay
+   \   000009                ; Setup parameters for call to function Delay
+   \   000009   7A1E         MOV     R2,#0x1e
+   \   00000B   7B00         MOV     R3,#0x0
+   \   00000D   12....       LCALL   ??Delay?relay
+   \   000010   22           RET
+     66          
+     67          //-------------------------------------------------------------------------
+     68          //  Funktion: char i2c_MasterTransmit (unsigned char output_data)
+     69          //  Input:    I2C Output Data
+     70          //  Return:   0..ACK / 1..NACK .. vom Slave
+     71          //  Schreibt Daten in einen I2C Slave
+     72          //-------------------------------------------------------------------------
+     73          
+     74          
+     75          //------------------------------------------------------------------------
+     76          // Function: i2c_MasterTransmit
+     77          //------------------------------------------------------------------------
+     78          // Description:
+     79          // Transmits a byte (slave address or data byte) from the I2C master 
+     80          // to the I2C Slave.
+     81          //------------------------------------------------------------------------
+     82          // Parameters:
+     83          // IN output_data:  Data byte to transmit.
+     84          // Return:   0..Slave ACK / 1.. Slave NACK
+     85          //------------------------------------------------------------------------
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     86          unsigned char i2c_MasterTransmit (unsigned char output_data)
+   \                     i2c_MasterTransmit:
+     87          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+     88              unsigned char i, ack_Status;
+     89              unsigned char mask = 0x80;
+   \   000007   75..80       MOV     ?V0 + 0,#-0x80
+     90          
+     91              // Sends 8 Data Bit via I2C (MSB first)
+     92              for(i = 0; i < 8; i++) 
+   \   00000A   7E08         MOV     R6,#0x8
+     93              {
+     94                  SDA = (output_data & mask) ? 1 : 0;  // SDA = Data Bit
+   \                     ??i2c_MasterTransmit_0:
+   \   00000C   EF           MOV     A,R7
+   \   00000D   55..         ANL     A,?V0 + 0
+   \   00000F   6004         JZ      ??i2c_MasterTransmit_1
+   \   000011   7401         MOV     A,#0x1
+   \   000013   8001         SJMP    ??i2c_MasterTransmit_2
+   \                     ??i2c_MasterTransmit_1:
+   \   000015   E4           CLR     A
+   \                     ??i2c_MasterTransmit_2:
+   \   000016   C4           SWAP    A
+   \   000017   33           RLC     A
+   \   000018   33           RLC     A
+   \   000019   54C0         ANL     A,#0xc0
+   \   00001B   F8           MOV     R0,A
+   \   00001C   E580         MOV     A,0x80
+   \   00001E   54BF         ANL     A,#0xbf
+   \   000020   48           ORL     A,R0
+   \   000021   F580         MOV     0x80,A
+     95                  mask  >>= 1;                                   // Shift Data Byte
+   \   000023   E5..         MOV     A,?V0 + 0
+   \   000025   C3           CLR     C
+   \   000026   13           RRC     A
+   \   000027   F5..         MOV     ?V0 + 0,A
+     96                  //_nop_();
+     97                  //_nop_();
+     98                  Delay(30);
+   \   000029                ; Setup parameters for call to function Delay
+   \   000029   12....       LCALL   ?Subroutine1 & 0xFFFF
+     99                  SCL = HIGH;                                    // Generate I2C clock
+    100                  //_nop_();
+    101                 // _nop_();
+    102                  Delay(30);
+    103                  SCL = LOW;
+   \                     ??CrossCallReturnLabel_1:
+   \   00002C   C287         CLR     0x80.7
+    104              }
+   \   00002E   1E           DEC     R6
+   \   00002F   EE           MOV     A,R6
+   \   000030   70DA         JNZ     ??i2c_MasterTransmit_0
+    105              
+    106              // Read Acknowledge from I2C Slave
+    107              SDA =   HIGH;           // SDA in Input Mode 
+   \   000032   D286         SETB    0x80.6
+    108              //_nop_();
+    109              //_nop_();
+    110              Delay(30);
+   \   000034                ; Setup parameters for call to function Delay
+   \   000034   7A1E         MOV     R2,#0x1e
+   \   000036   7B00         MOV     R3,#0x0
+   \   000038   12....       LCALL   ??Delay?relay
+    111              SCL = HIGH;             // Generate I2C clock
+   \   00003B   D287         SETB    0x80.7
+    112              ack_Status =   SDA;     // Read Slave ACK/NACK
+   \   00003D   E580         MOV     A,0x80
+   \   00003F   FE           MOV     R6,A
+    113              //_nop_();
+    114              //_nop_();
+    115              Delay(30);
+   \   000040                ; Setup parameters for call to function Delay
+   \   000040   7A1E         MOV     R2,#0x1e
+   \   000042   7B00         MOV     R3,#0x0
+   \   000044   12....       LCALL   ??Delay?relay
+    116              SCL = LOW;
+   \   000047   C287         CLR     0x80.7
+    117              //_nop_();
+    118              //_nop_();
+    119              Delay(30);
+   \   000049                ; Setup parameters for call to function Delay
+   \   000049   7A1E         MOV     R2,#0x1e
+   \   00004B   7B00         MOV     R3,#0x0
+   \   00004D   12....       LCALL   ??Delay?relay
+    120              return ack_Status; // Return Acknowledge Status 0..ACK (OK), 1..NAK
+   \   000050   EE           MOV     A,R6
+   \   000051   A2E6         MOV     C,0xE0 /* A   */.6
+   \   000053   E4           CLR     A
+   \   000054   33           RLC     A
+   \   000055   F9           MOV     R1,A
+   \   000056   7F01         MOV     R7,#0x1
+   \   000058   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00005B                REQUIRE _A_P0
+    121          }
+    122          
+    123          //------------------------------------------------------------------------
+    124          // Function: i2c_MasterTransmit
+    125          //------------------------------------------------------------------------
+    126          // Description:
+    127          // The I2C Master receives a data byte from the I2C Slave.
+    128          //------------------------------------------------------------------------
+    129          // Parameters:
+    130          // IN output_data:  I2C ACK=1 or NACK=0 Byte 
+    131          //                  NACK .. last byte to receive
+    132          // Return:          Slave Data Byte
+    133          //------------------------------------------------------------------------
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    134          unsigned char i2c_MasterReceive (unsigned char ACKValue)
+   \                     i2c_MasterReceive:
+    135          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+    136              unsigned char i;
+    137              unsigned char input_data = 0;
+   \   000007   75..00       MOV     ?V0 + 0,#0x0
+    138              unsigned char mask = 0x80;
+   \   00000A   75..80       MOV     ?V0 + 1,#-0x80
+    139              
+    140              // Reads 8 Data Bit via I2C (MSB first)
+    141              for(i = 0; i < 8; i++)
+   \   00000D   7E08         MOV     R6,#0x8
+    142              {
+    143                  SCL = HIGH;           
+   \                     ??i2c_MasterReceive_0:
+   \   00000F   D287         SETB    0x80.7
+    144                  if(SDA==HIGH)           // Read and store Data Bit 
+   \   000011   A286         MOV     C,0x80.6
+   \   000013   5004         JNC     ??i2c_MasterReceive_1
+    145                      input_data |= mask;
+   \   000015   E5..         MOV     A,?V0 + 1
+   \   000017   42..         ORL     ?V0 + 0,A
+    146                  mask >>= 1;
+   \                     ??i2c_MasterReceive_1:
+   \   000019   E5..         MOV     A,?V0 + 1
+   \   00001B   C3           CLR     C
+   \   00001C   13           RRC     A
+   \   00001D   F5..         MOV     ?V0 + 1,A
+    147                  SCL = LOW;            
+   \   00001F   C287         CLR     0x80.7
+    148                  Delay(30);
+   \   000021                ; Setup parameters for call to function Delay
+   \   000021   7A1E         MOV     R2,#0x1e
+   \   000023   7B00         MOV     R3,#0x0
+   \   000025   12....       LCALL   ??Delay?relay
+    149              }
+   \   000028   1E           DEC     R6
+   \   000029   EE           MOV     A,R6
+   \   00002A   70E3         JNZ     ??i2c_MasterReceive_0
+    150          
+    151              // Send Acknowledge to I2C Slave
+    152              SDA = ACKValue;          // Send ACK
+   \   00002C   EF           MOV     A,R7
+   \   00002D   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00002F   9286         MOV     0x80.6,C
+    153              SCL = HIGH;              
+   \   000031   D287         SETB    0x80.7
+    154              Delay(30);
+   \   000033                ; Setup parameters for call to function Delay
+   \   000033   7A1E         MOV     R2,#0x1e
+   \   000035   7B00         MOV     R3,#0x0
+   \   000037   12....       LCALL   ??Delay?relay
+    155              SCL = LOW;               
+   \   00003A   C287         CLR     0x80.7
+    156              SDA = HIGH;              // SDA in Input Mode 
+   \   00003C   D286         SETB    0x80.6
+    157              Delay(30);
+   \   00003E                ; Setup parameters for call to function Delay
+   \   00003E   7A1E         MOV     R2,#0x1e
+   \   000040   7B00         MOV     R3,#0x0
+   \   000042   12....       LCALL   ??Delay?relay
+    158              return input_data;
+   \   000045   A9..         MOV     R1,?V0 + 0
+   \   000047   7F02         MOV     R7,#0x2
+   \   000049   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00004C                REQUIRE _A_P0
+    159          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Delay?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Delay
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??i2c_Start?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    i2c_Start
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??i2c_Stop?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    i2c_Stop
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??i2c_MasterTransmit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    i2c_MasterTransmit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??i2c_MasterReceive?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    i2c_MasterReceive
+
+   Maximum stack usage in bytes:
+
+     Function           ISTACK PSTACK XSTACK
+     --------           ------ ------ ------
+     Delay                  0      0     10
+     i2c_MasterReceive      0      0     10
+       -> Delay             0      0     20
+       -> Delay             0      0     20
+       -> Delay             0      0     20
+     i2c_MasterTransmit     0      0      9
+       -> Delay             0      0     18
+       -> Delay             0      0     18
+       -> Delay             0      0     18
+       -> Delay             0      0     18
+       -> Delay             0      0     18
+     i2c_Start              2      0      0
+       -> Delay             4      0      0
+       -> Delay             4      0      0
+       -> Delay             4      0      0
+     i2c_Stop               2      0      0
+       -> Delay             4      0      0
+       -> Delay             4      0      0
+       -> Delay             4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label             Bytes
+     --------------             -----
+     _A_P0                         1
+     Delay                        29
+     i2c_Start                    26
+     ?Subroutine0                 14
+     i2c_Stop                     15
+     ?Subroutine1                 17
+     i2c_MasterTransmit           91
+     i2c_MasterReceive            76
+     ??Delay?relay                 6
+     ??i2c_Start?relay             6
+     ??i2c_Stop?relay              6
+     ??i2c_MasterTransmit?relay    6
+     ??i2c_MasterReceive?relay     6
+
+ 
+ 268 bytes in segment BANKED_CODE
+  30 bytes in segment BANK_RELAYS
+   1 byte  in segment SFR_AN
+ 
+ 298 bytes of CODE memory
+   0 bytes of DATA memory (+ 1 byte shared)
+
+Errors: none
+Warnings: none

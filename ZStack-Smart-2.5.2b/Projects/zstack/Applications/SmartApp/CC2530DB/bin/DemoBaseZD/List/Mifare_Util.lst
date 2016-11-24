@@ -1,0 +1,507 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         21/Nov/2016  19:31:12 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Manage\rfid\Mifare_U #
+#                          til.c                                              #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3              #
+#                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5. #
+#                          2b\Projects\zstack\Applications\SmartApp\CC2530DB\ #
+#                          Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg   #
+#                          (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1      #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Manage\rfid\Mifare_Util.c -D SECURE=1 -D        #
+#                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                 #
+#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZD\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\Mifare_Util.lst                                  #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \Mifare_Util.r51                                   #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\rfid\Mifare_Util.c
+      1          //////////////////////////////////////////////////////////////////////////////
+      2          //
+      3          //                  ELEKTOR RFID READER for MIFARE and ISO14443-A
+      4          //
+      5          //                      Copyright (c) 2006 Gerhard H. Schalk
+      6          //         
+      7          //////////////////////////////////////////////////////////////////////////////
+      8          #include "stdio.h"
+      9          #include "RC522_ErrCode.h"
+     10          #include "RC522_Mifare.h"
+     11          #include "Mifare_Util.h"
+     12          
+     13          //------------------------------------------------------------------------
+     14          // Function: ActivateCard
+     15          //------------------------------------------------------------------------
+     16          // Description:
+     17          // This Function performs a REQA or WUPA, Anticollision, Select sequence
+     18          // to activate a single or double UID card.
+     19          //------------------------------------------------------------------------
+     20          // Parameters:
+     21          // IN:  req_code:  command code(ISO14443_3_REQA or ISO14443_3_WUPA)
+     22          // OUT: *atq:      2 byte buffer to save the card Answer to Request (ATQA)
+     23          // OUT: *uid:      8 byte buffer to save the card UID
+     24          // OUT: *uid_len:  1 byte to save Card UID Length;
+     25          // (uid_len = 4 for Single UID card or uid_len = 8 for Double UID card)
+     26          // OUT: *sak:      1 byte to save the card Select Acknowledge (SAK) info
+     27          // Return:         Error Code (RC522_ErrCode.H)
+     28          //------------------------------------------------------------------------
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     29          short ActivateCard(unsigned char req_code, unsigned char *atq, 
+   \                     ActivateCard:
+     30                             unsigned char *uid, unsigned char *uid_len, 
+     31                             unsigned char *sak )
+     32          {
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 0
+   \   000005   EC           MOV     A,R4
+   \   000006   FE           MOV     R6,A
+   \   000007   ED           MOV     A,R5
+   \   000008   FF           MOV     R7,A
+   \   000009   7410         MOV     A,#0x10
+   \   00000B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F5..         MOV     ?V0 + 4,A
+   \   000011   A3           INC     DPTR
+   \   000012   E0           MOVX    A,@DPTR
+   \   000013   F5..         MOV     ?V0 + 5,A
+   \   000015   7412         MOV     A,#0x12
+   \   000017   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   F5..         MOV     ?V0 + 0,A
+   \   00001D   A3           INC     DPTR
+   \   00001E   E0           MOVX    A,@DPTR
+   \   00001F   F5..         MOV     ?V0 + 1,A
+     33              short status;
+     34          
+     35              status = Request(req_code, atq);
+   \   000021                ; Setup parameters for call to function Request
+   \   000021   12....       LCALL   ??Request?relay
+     36              if(status != STATUS_SUCCESS)
+   \   000024   EA           MOV     A,R2
+   \   000025   4B           ORL     A,R3
+   \   000026   706A         JNZ     ??ActivateCard_0
+     37                  return status;
+     38          
+     39              status = CascAnticoll(0x93,0,&uid[0]);
+   \   000028                ; Setup parameters for call to function CascAnticoll
+   \   000028   EE           MOV     A,R6
+   \   000029   FC           MOV     R4,A
+   \   00002A   EF           MOV     A,R7
+   \   00002B   FD           MOV     R5,A
+   \   00002C   7A00         MOV     R2,#0x0
+   \   00002E   7993         MOV     R1,#-0x6d
+   \   000030   12....       LCALL   ??CascAnticoll?relay
+     40              if(status != STATUS_SUCCESS)
+   \   000033   EA           MOV     A,R2
+   \   000034   4B           ORL     A,R3
+   \   000035   705B         JNZ     ??ActivateCard_0
+     41                  return status;   
+     42              
+     43              status = Select(0x93, &uid[0], sak);           
+   \   000037                ; Setup parameters for call to function Select
+   \   000037   AC..         MOV     R4,?V0 + 0
+   \   000039   AD..         MOV     R5,?V0 + 1
+   \   00003B   EE           MOV     A,R6
+   \   00003C   FA           MOV     R2,A
+   \   00003D   EF           MOV     A,R7
+   \   00003E   FB           MOV     R3,A
+   \   00003F   7993         MOV     R1,#-0x6d
+   \   000041   12....       LCALL   ??Select?relay
+     44              if(status != STATUS_SUCCESS)
+   \   000044   EA           MOV     A,R2
+   \   000045   4B           ORL     A,R3
+   \   000046   704A         JNZ     ??ActivateCard_0
+     45                  return status;
+     46              
+     47              // Check if UID is complete
+     48              if((*sak & 0x04) == 0x04)
+   \   000048   85..82       MOV     DPL,?V0 + 0
+   \   00004B   85..83       MOV     DPH,?V0 + 1
+   \   00004E   E0           MOVX    A,@DPTR
+   \   00004F   A2E2         MOV     C,0xE0 /* A   */.2
+   \   000051   5032         JNC     ??ActivateCard_1
+     49              {   
+     50                  // UID not complete
+     51                  status = CascAnticoll(0x95,0,&uid[4]);
+   \   000053   EE           MOV     A,R6
+   \   000054   2404         ADD     A,#0x4
+   \   000056   FE           MOV     R6,A
+   \   000057   EF           MOV     A,R7
+   \   000058   3400         ADDC    A,#0x0
+   \   00005A   FF           MOV     R7,A
+   \   00005B                ; Setup parameters for call to function CascAnticoll
+   \   00005B   EE           MOV     A,R6
+   \   00005C   FC           MOV     R4,A
+   \   00005D   EF           MOV     A,R7
+   \   00005E   FD           MOV     R5,A
+   \   00005F   7A00         MOV     R2,#0x0
+   \   000061   7995         MOV     R1,#-0x6b
+   \   000063   12....       LCALL   ??CascAnticoll?relay
+     52                  if(status != STATUS_SUCCESS)
+   \   000066   EA           MOV     A,R2
+   \   000067   4B           ORL     A,R3
+   \   000068   7028         JNZ     ??ActivateCard_0
+     53                  return status;
+     54          
+     55                  status = Select(0x95, &uid[4], sak);
+   \   00006A                ; Setup parameters for call to function Select
+   \   00006A   AC..         MOV     R4,?V0 + 0
+   \   00006C   AD..         MOV     R5,?V0 + 1
+   \   00006E   EE           MOV     A,R6
+   \   00006F   FA           MOV     R2,A
+   \   000070   EF           MOV     A,R7
+   \   000071   FB           MOV     R3,A
+   \   000072   7995         MOV     R1,#-0x6b
+   \   000074   12....       LCALL   ??Select?relay
+     56                  if(status != STATUS_SUCCESS)
+   \   000077   EA           MOV     A,R2
+   \   000078   4B           ORL     A,R3
+   \   000079   7017         JNZ     ??ActivateCard_0
+     57                      return status;
+     58          
+     59                  *uid_len = 8;
+   \   00007B   85..82       MOV     DPL,?V0 + 4
+   \   00007E   85..83       MOV     DPH,?V0 + 5
+   \   000081   7408         MOV     A,#0x8
+   \   000083   8008         SJMP    ??ActivateCard_2
+     60                  return STATUS_SUCCESS;   
+     61              }
+     62              else 
+     63              {
+     64                  *uid_len = 4;
+   \                     ??ActivateCard_1:
+   \   000085   85..82       MOV     DPL,?V0 + 4
+   \   000088   85..83       MOV     DPH,?V0 + 5
+   \   00008B   7404         MOV     A,#0x4
+   \                     ??ActivateCard_2:
+   \   00008D   F0           MOVX    @DPTR,A
+     65                  return STATUS_SUCCESS;
+   \   00008E   7A00         MOV     R2,#0x0
+   \   000090   7B00         MOV     R3,#0x0
+   \                     ??ActivateCard_0:
+   \   000092   7F08         MOV     R7,#0x8
+   \   000094   02....       LJMP    ?BANKED_LEAVE_XDATA
+     66              }
+     67          }
+     68          
+     69          //------------------------------------------------------------------------
+     70          // Function: MIFARE_TypeIdentification
+     71          //------------------------------------------------------------------------
+     72          // Description:
+     73          // This function delivers the chip type information for all 
+     74          // Philips MIFARE ICs 
+     75          //------------------------------------------------------------------------
+     76          // Parameters:
+     77          // IN: *baATQ: 2 byte buffer; Card Answer to Request (ATQA)  
+     78          // IN: *sak:   1 byte; Card Select Acknowledge (SAK) 
+     79          // Return: Mifare Card type (Unknown, Mifare_UL, Mifare_1K, Mifare_4K or
+     80          //                           Mifare_DesFire)
+     81          //------------------------------------------------------------------------
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     82          enum MifareICType MIFARE_TypeIdentification(unsigned char *baATQ, unsigned char bSAK)
+   \                     MIFARE_TypeIdentification:
+     83          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+   \   000004   E9           MOV     A,R1
+   \   000005   FC           MOV     R4,A
+     84              unsigned int iATQA;
+     85              
+     86              iATQA = baATQ[0] *256 + baATQ[1];
+   \   000006   8A82         MOV     DPL,R2
+   \   000008   8B83         MOV     DPH,R3
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   F9           MOV     R1,A
+   \   00000C   A3           INC     DPTR
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   F8           MOV     R0,A
+     87              
+     88              if((iATQA == ATQA_Philips_Mifare_UL) && (bSAK == SAK_Philips_Mifare_UL))
+   \   00000F   7003         JNZ     ??MIFARE_TypeIdentification_0
+   \   000011   7444         MOV     A,#0x44
+   \   000013   69           XRL     A,R1
+   \                     ??MIFARE_TypeIdentification_0:
+   \   000014   7007         JNZ     ??MIFARE_TypeIdentification_1
+   \   000016   EC           MOV     A,R4
+   \   000017   7039         JNZ     ??MIFARE_TypeIdentification_2
+     89                  return Mifare_UL;
+   \   000019   7901         MOV     R1,#0x1
+   \   00001B   8037         SJMP    ??MIFARE_TypeIdentification_3
+     90              else if((iATQA == ATQA_Philips_Mifare_1K) && (bSAK == SAK_Philips_Mifare_1K))
+   \                     ??MIFARE_TypeIdentification_1:
+   \   00001D   E8           MOV     A,R0
+   \   00001E   7003         JNZ     ??MIFARE_TypeIdentification_4
+   \   000020   7404         MOV     A,#0x4
+   \   000022   69           XRL     A,R1
+   \                     ??MIFARE_TypeIdentification_4:
+   \   000023   7009         JNZ     ??MIFARE_TypeIdentification_5
+   \   000025   7408         MOV     A,#0x8
+   \   000027   6C           XRL     A,R4
+   \   000028   7028         JNZ     ??MIFARE_TypeIdentification_2
+     91                  return Mifare_1K;
+   \   00002A   7902         MOV     R1,#0x2
+   \   00002C   8026         SJMP    ??MIFARE_TypeIdentification_3
+     92              else if((iATQA == ATQA_Philips_Mifare_4K) && (bSAK == SAK_Philips_Mifare_4K))
+   \                     ??MIFARE_TypeIdentification_5:
+   \   00002E   E8           MOV     A,R0
+   \   00002F   7003         JNZ     ??MIFARE_TypeIdentification_6
+   \   000031   7402         MOV     A,#0x2
+   \   000033   69           XRL     A,R1
+   \                     ??MIFARE_TypeIdentification_6:
+   \   000034   7009         JNZ     ??MIFARE_TypeIdentification_7
+   \   000036   7418         MOV     A,#0x18
+   \   000038   6C           XRL     A,R4
+   \   000039   7017         JNZ     ??MIFARE_TypeIdentification_2
+     93                  return Mifare_4K;
+   \   00003B   7903         MOV     R1,#0x3
+   \   00003D   8015         SJMP    ??MIFARE_TypeIdentification_3
+     94              else if((iATQA == ATQA_Philips_DesFire) && (bSAK == SAK_Philips_DesFire))
+   \                     ??MIFARE_TypeIdentification_7:
+   \   00003F   7403         MOV     A,#0x3
+   \   000041   68           XRL     A,R0
+   \   000042   7003         JNZ     ??MIFARE_TypeIdentification_8
+   \   000044   7444         MOV     A,#0x44
+   \   000046   69           XRL     A,R1
+   \                     ??MIFARE_TypeIdentification_8:
+   \   000047   7009         JNZ     ??MIFARE_TypeIdentification_2
+   \   000049   7420         MOV     A,#0x20
+   \   00004B   6C           XRL     A,R4
+   \   00004C   7004         JNZ     ??MIFARE_TypeIdentification_2
+     95                  return Mifare_DesFire;	
+   \   00004E   7904         MOV     R1,#0x4
+   \   000050   8002         SJMP    ??MIFARE_TypeIdentification_3
+     96              else 
+     97                  return Unknown;
+   \                     ??MIFARE_TypeIdentification_2:
+   \   000052   7900         MOV     R1,#0x0
+   \                     ??MIFARE_TypeIdentification_3:
+   \   000054   D083         POP     DPH
+   \   000056   D082         POP     DPL
+   \   000058   02....       LJMP    ?BRET
+     98          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ActivateCard?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ActivateCard
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MIFARE_TypeIdentification?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MIFARE_TypeIdentification
+     99          
+    100          //------------------------------------------------------------------------
+    101          // Function: PrintMifareULPage
+    102          //------------------------------------------------------------------------
+    103          // Description:
+    104          // This function formats 4 Data Bytes of the Mifare Ultra Light and sends
+    105          // the information via RS232/USB with the help of the printf function.
+    106          //------------------------------------------------------------------------
+    107          // Parameters:
+    108          // IN: *DataBuffer: 4 Byte DataBuffer 
+    109          //------------------------------------------------------------------------
+    110          /*
+    111          void PrintMifareULPage(unsigned char *DataBuffer)
+    112          {
+    113              unsigned char i;
+    114              char ASCIIOutput[4];
+    115          
+    116              // Print 4 Byte HEX Values
+    117              printf("0x%b02X %b02X %b02X %b02X",DataBuffer[0],DataBuffer[1],DataBuffer[2],DataBuffer[3]);
+    118          
+    119              for(i=0; i<4; i++)
+    120              {
+    121                  if(DataBuffer[i] < 32)
+    122                      ASCIIOutput[i] = '.';
+    123                  else
+    124                      ASCIIOutput[i] = DataBuffer[i]; 
+    125              }
+    126              
+    127              // Print 4 Byte ASCII Values
+    128              printf("    %c%c%c%c\r\n",ASCIIOutput[0],ASCIIOutput[1],ASCIIOutput[2],ASCIIOutput[3]);
+    129          }
+    130          */
+    131          
+    132          
+    133          
+    134          
+    135          
+    136          
+    137          
+    138          
+    139          
+    140          
+
+   Maximum stack usage in bytes:
+
+     Function                  ISTACK PSTACK XSTACK
+     --------                  ------ ------ ------
+     ActivateCard                  0      0     20
+       -> Request                  0      0     32
+       -> CascAnticoll             0      0     32
+       -> Select                   0      0     32
+       -> CascAnticoll             0      0     32
+       -> Select                   0      0     32
+     MIFARE_TypeIdentification     2      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                    Bytes
+     --------------                    -----
+     ActivateCard                       151
+     MIFARE_TypeIdentification           91
+     ??ActivateCard?relay                 6
+     ??MIFARE_TypeIdentification?relay    6
+
+ 
+ 242 bytes in segment BANKED_CODE
+  12 bytes in segment BANK_RELAYS
+ 
+ 254 bytes of CODE memory
+
+Errors: none
+Warnings: none

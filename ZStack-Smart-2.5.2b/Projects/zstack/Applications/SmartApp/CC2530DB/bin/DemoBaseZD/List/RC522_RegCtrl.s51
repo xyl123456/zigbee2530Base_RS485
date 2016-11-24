@@ -1,0 +1,888 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        21/Nov/2016  19:31:15 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\Source\Manage\rfid\RC522_ /
+//                          RegCtrl.c                                         /
+//    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\..\.. /
+//                          \..\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ    /
+//                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3        /
+//                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3             /
+//                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1   /
+//                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800         /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DLINK_STATUS_JITTER_MASK=0x007F                  /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
+//                          __code" -DGENERIC=__generic                       /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
+//                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Projects\zstack\Applications\SmartApp\So /
+//                          urce\Manage\rfid\RC522_RegCtrl.c -D SECURE=1 -D   /
+//                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                /
+//                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     /
+//                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D          /
+//                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D       /
+//                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC          /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Proje /
+//                          cts\zstack\Applications\SmartApp\CC2530DB\bin\Dem /
+//                          oBaseZD\List\ --diag_suppress Pe001,Pa010 -o      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\O /
+//                          bj\ -e --debug --core=plain --dptr=16,1           /
+//                          --data_model=large --code_model=banked            /
+//                          --calling_convention=xdata_reentrant              /
+//                          --place_constants=data_rom --nr_virtual_regs 16   /
+//                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Connector\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\Source\Board\ -I                  /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Manage\Callbacks\ -I         /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart /
+//                          -2.5.2b\Projects\zstack\Applications\SmartApp\CC2 /
+//                          530DB\Devices\..\..\Source\Manage\HeartBeat\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\incode\ -I E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC /
+//                          2530DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\target\CC2530EB\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\high_level\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\single_c /
+//                          hip\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projec /
+//                          ts\zstack\Applications\SmartApp\CC2530DB\Devices\ /
+//                          ..\..\..\..\..\..\Components\mt\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\osal\include\ -I             /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\saddr\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\sdata\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\af\ -I                 /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\nwk\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sapi\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sec\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sys\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\zdo\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\ -I                     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\f8w\ -Oh                /
+//                          --require_prototypes                              /
+//    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\RC522_RegCtrl.s51                             /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME RC522_RegCtrl
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?V0
+
+        PUBLIC ??RcGetReg?relay
+        FUNCTION ??RcGetReg?relay,0203H
+        PUBLIC ??RcModifyReg?relay
+        FUNCTION ??RcModifyReg?relay,0203H
+        PUBLIC ??RcSetReg?relay
+        FUNCTION ??RcSetReg?relay,0203H
+        PUBLIC RcGetReg
+        FUNCTION RcGetReg,021203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC RcModifyReg
+        FUNCTION RcModifyReg,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC RcSetReg
+        FUNCTION RcSetReg,021203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+i2c_Start           SYMBOL "i2c_Start"
+i2c_MasterTransmit  SYMBOL "i2c_MasterTransmit"
+i2c_Stop            SYMBOL "i2c_Stop"
+i2c_MasterReceive   SYMBOL "i2c_MasterReceive"
+??i2c_MasterReceive?relay SYMBOL "?relay", i2c_MasterReceive
+??i2c_MasterTransmit?relay SYMBOL "?relay", i2c_MasterTransmit
+??i2c_Start?relay   SYMBOL "?relay", i2c_Start
+??i2c_Stop?relay    SYMBOL "?relay", i2c_Stop
+RcGetReg            SYMBOL "RcGetReg"
+??RcGetReg?relay    SYMBOL "?relay", RcGetReg
+RcModifyReg         SYMBOL "RcModifyReg"
+??RcModifyReg?relay SYMBOL "?relay", RcModifyReg
+RcSetReg            SYMBOL "RcSetReg"
+??RcSetReg?relay    SYMBOL "?relay", RcSetReg
+
+        EXTERN i2c_Start
+        FUNCTION i2c_Start,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN i2c_MasterTransmit
+        FUNCTION i2c_MasterTransmit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN i2c_Stop
+        FUNCTION i2c_Stop,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN i2c_MasterReceive
+        FUNCTION i2c_MasterReceive,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??i2c_MasterReceive?relay
+        FUNCTION ??i2c_MasterReceive?relay,00H
+        EXTERN ??i2c_MasterTransmit?relay
+        FUNCTION ??i2c_MasterTransmit?relay,00H
+        EXTERN ??i2c_Start?relay
+        FUNCTION ??i2c_Start?relay,00H
+        EXTERN ??i2c_Stop?relay
+        FUNCTION ??i2c_Stop?relay,00H
+
+// E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\rfid\RC522_RegCtrl.c
+//    1 //////////////////////////////////////////////////////////////////////////////
+//    2 //
+//    3 //                  ELEKTOR RFID READER for MIFARE and ISO14443-A
+//    4 //
+//    5 //                      Copyright (c) 2006 Gerhard H. Schalk
+//    6 //
+//    7 //////////////////////////////////////////////////////////////////////////////
+//    8 //#include <REG936.H> 
+//    9 #include "RC522_ErrCode.h"
+//   10 #include "I2C.h"
+//   11 #include "RC522_RegCtrl.h"
+//   12 
+//   13 /*************************************************
+//   14 Function:       RcSetReg
+//   15 Description:
+//   16      Write data to register of RC522
+//   17 Parameter:
+//   18      RegAddr       The address of the regitster
+//   19      RegVal        The value to be writen
+//   20 Return:
+//   21      None
+//   22 **************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   23 void RcSetReg(unsigned char RegAddr, unsigned char RegVal)
+RcSetReg:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function RcSetReg
+        CODE
+//   24 {    
+        FUNCALL RcSetReg, i2c_Start
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcSetReg, i2c_MasterTransmit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcSetReg, i2c_MasterTransmit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcSetReg, i2c_MasterTransmit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcSetReg, i2c_Stop
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R7,A
+        MOV     A,R2
+        MOV     R6,A
+//   25     i2c_Start();                                   
+        ; Setup parameters for call to function i2c_Start
+        LCALL   ?Subroutine1 & 0xFFFF
+//   26     i2c_MasterTransmit(MFRC522_I2C_WRAdr); 
+//   27     i2c_MasterTransmit(RegAddr & 0x3F);   
+//   28     i2c_MasterTransmit(RegVal);
+??CrossCallReturnLabel_0:
+        ; Setup parameters for call to function i2c_MasterTransmit
+        MOV     A,R6
+        MOV     R1,A
+        LCALL   ??i2c_MasterTransmit?relay
+//   29     i2c_Stop();   
+        ; Setup parameters for call to function i2c_Stop
+        LCALL   ??i2c_Stop?relay
+        CFI EndBlock cfiBlock0
+//   30 }
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock1
+//   31 
+//   32 /*************************************************
+//   33 Function:       qRcGetReg
+//   34 Description:
+//   35      Write data to register of RC522
+//   36 Parameter:
+//   37      RegAddr       The address of the regitster to be readed
+//   38 Return:
+//   39      The value of the specify register
+//   40 **************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   41 unsigned char RcGetReg(unsigned char RegAddr)
+RcGetReg:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function RcGetReg
+        CODE
+//   42 {
+        FUNCALL RcGetReg, i2c_Start
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_MasterTransmit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_MasterTransmit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_Stop
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_Start
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_MasterTransmit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_MasterReceive
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcGetReg, i2c_Stop
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R7,A
+//   43     unsigned char RegVal;
+//   44 
+//   45     unsigned char ackValueRD;
+//   46     
+//   47     i2c_Start();                                       
+        ; Setup parameters for call to function i2c_Start
+        LCALL   ?Subroutine1 & 0xFFFF
+//   48     ackValueRD = i2c_MasterTransmit(MFRC522_I2C_WRAdr);
+//   49     ackValueRD = i2c_MasterTransmit(RegAddr & 0x3F);    
+//   50     if(ackValueRD)          
+??CrossCallReturnLabel_1:
+        MOV     A,R1
+        JZ      ??RcGetReg_0
+//   51     i2c_Stop();                                         
+        ; Setup parameters for call to function i2c_Stop
+        LCALL   ??i2c_Stop?relay
+//   52     
+//   53     i2c_Start();                                       
+??RcGetReg_0:
+        ; Setup parameters for call to function i2c_Start
+        LCALL   ??i2c_Start?relay
+//   54     ackValueRD = i2c_MasterTransmit(MFRC522_I2C_RDAdr); 
+        ; Setup parameters for call to function i2c_MasterTransmit
+        MOV     R1,#0x53
+        LCALL   ??i2c_MasterTransmit?relay
+//   55     RegVal = i2c_MasterReceive (NACK);                    
+        ; Setup parameters for call to function i2c_MasterReceive
+        MOV     R1,#0x1
+        LCALL   ??i2c_MasterReceive?relay
+        MOV     A,R1
+        MOV     R6,A
+//   56     i2c_Stop();                                         
+        ; Setup parameters for call to function i2c_Stop
+        LCALL   ??i2c_Stop?relay
+//   57 
+//   58     return RegVal;   
+        MOV     A,R6
+        MOV     R1,A
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock2
+//   59 
+//   60 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiCond3 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond4 Using cfiCommon0
+        CFI (cfiCond4) NoFunction
+        CFI (cfiCond4) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond4) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond4) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond4) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond4) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond4) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond4) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond4) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond4) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond4) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond4) CFA_SP SP+0
+        CFI (cfiCond4) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker5 Using cfiCommon1
+        CFI (cfiPicker5) NoFunction
+        CFI (cfiPicker5) Picker
+        LCALL   ??i2c_Start?relay
+        ; Setup parameters for call to function i2c_MasterTransmit
+        ; Setup parameters for call to function i2c_MasterTransmit
+        MOV     R1,#0x52
+        LCALL   ??i2c_MasterTransmit?relay
+        ; Setup parameters for call to function i2c_MasterTransmit
+        ; Setup parameters for call to function i2c_MasterTransmit
+        MOV     A,#0x3f
+        ANL     A,R7
+        MOV     R1,A
+        LCALL   ??i2c_MasterTransmit?relay
+        RET
+        CFI EndBlock cfiCond3
+        CFI EndBlock cfiCond4
+        CFI EndBlock cfiPicker5
+//   61 
+//   62 /*************************************************
+//   63 Function:       RcModifyReg
+//   64 Description:
+//   65      Change some bits of the register
+//   66 Parameter:
+//   67      RegAddr       The address of the regitster
+//   68      ModifyVal        The value to change to, set or clr?
+//   69      MaskByte      Only the corresponding bit '1' is valid,
+//   70 Return:
+//   71      None
+//   72 **************************************************/
+//   73 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   74 void RcModifyReg(unsigned char RegAddr, unsigned char ModifyVal, unsigned char MaskByte)
+RcModifyReg:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function RcModifyReg
+        CODE
+//   75 {
+        FUNCALL RcModifyReg, RcGetReg
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL RcModifyReg, RcSetReg
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+        MOV     A,R2
+        MOV     R7,A
+        MOV     ?V0 + 0,R3
+//   76     unsigned char RegVal;
+//   77     RegVal = RcGetReg(RegAddr);
+        ; Setup parameters for call to function RcGetReg
+        LCALL   ??RcGetReg?relay
+        MOV     A,R1
+        MOV     R2,A
+//   78     if(ModifyVal)
+        MOV     A,R7
+        JZ      ??RcModifyReg_0
+//   79     {
+//   80         RegVal |= MaskByte;
+        MOV     A,?V0 + 0
+        XCH     A,R2
+        ORL     A,R2
+        SJMP    ??RcModifyReg_1
+//   81     }
+//   82     else
+//   83     {
+//   84         RegVal &= (~MaskByte);
+??RcModifyReg_0:
+        MOV     A,?V0 + 0
+        CPL     A
+        XCH     A,R2
+        ANL     A,R2
+??RcModifyReg_1:
+        MOV     R2,A
+//   85     }
+//   86     RcSetReg(RegAddr, RegVal);
+        ; Setup parameters for call to function RcSetReg
+        MOV     A,R6
+        MOV     R1,A
+        LCALL   ??RcSetReg?relay
+//   87 }
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock6
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??RcSetReg?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    RcSetReg
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??RcGetReg?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    RcGetReg
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??RcModifyReg?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    RcModifyReg
+
+        END
+// 
+// 117 bytes in segment BANKED_CODE
+//  18 bytes in segment BANK_RELAYS
+// 
+// 135 bytes of CODE memory
+//
+//Errors: none
+//Warnings: none

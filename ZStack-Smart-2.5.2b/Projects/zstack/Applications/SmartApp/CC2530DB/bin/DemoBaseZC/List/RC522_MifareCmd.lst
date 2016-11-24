@@ -1,0 +1,3402 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         23/Nov/2016  19:49:11 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Manage\rfid\RC522_Mi #
+#                          fareCmd.c                                          #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wCoord.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8       #
+#                          -DMAC_CFG_RX_MAX=5 -DZDO_COORDINATOR -DRTR_NWK     #
+#                          -DSSA_CONNECTOR) -f E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                           (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1     #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Manage\rfid\RC522_MifareCmd.c -D SECURE=1 -D    #
+#                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                 #
+#                          SIGNAL_AMPLIFIER_SETTING -D                        #
+#                          xPOWER_AMPLIFIER_POSITION_1 -D xNWK_AUTO_POLL -D   #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZC\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Lis #
+#                          t\RC522_MifareCmd.lst                              #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Obj #
+#                          \RC522_MifareCmd.r51                               #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\rfid\RC522_MifareCmd.c
+      1          /* /////////////////////////////////////////////////////////////////////////////////////////////////
+      2          //                     Copyright (c) Philips Semiconductors
+      3          //
+      4          //         All rights are reserved. Reproduction in whole or in part is
+      5          //        prohibited without the written consent of the copyright owner.
+      6          //    Philips reserves the right to make changes without notice at any time.
+      7          //   Philips makes no warranty, expressed, implied or statutory, including but
+      8          //   not limited to any implied warranty of merchantability or fitness for any
+      9          //  particular purpose, or that the use will not infringe any third party patent,
+     10          //   copyright or trademark. Philips must not be liable for any loss or damage
+     11          //                            arising from its use.
+     12          ///////////////////////////////////////////////////////////////////////////////////////////////// */
+     13          
+     14          /*! \file Mifare.c
+     15           *
+     16           * Project: Mifare reader with RC522
+     17           *
+     18           * Workfile: Mifare.c
+     19           * $Author: Bob Jiang
+     20           * $Revision: 1.0 $
+     21           * $Date: Wed Aug 17 2005 $
+     22           *
+     23           * Comment:
+     24           *  All the ISO14443-3 protocol and mifare command set are all implemented here.
+     25           *  All the founctions in this file is totally independent of hardware.
+     26           *  The source can be ported to other platforms very easily.
+     27           *
+     28           *  The interrupt pin of the reader IC is not conntected and no interrupt needed.
+     29           *  All protocol relevant timing constraints are generated
+     30           *  by the internal timer of the reader module.
+     31           *
+     32           *  Therefore the function M522PcdCmd is very important for understanding
+     33           *  of the communication between reader and card.
+     34           *
+     35           *
+     36           * History:
+     37           *
+     38           *
+     39          */
+     40          //#include <REG936.H>
+     41          #include <string.h>
+     42          #include "RC522_Reg.h"
+     43          #include "RC522_RegCtrl.h"
+     44          #include "RC522_OpCtrl.h"
+     45          #include "RC522_ErrCode.h"
+     46          #include "RC522_Mifare.h"
+     47          #include "mfrc522.h"
+     48          #include "I2C.h"
+     49          
+     50          #define ResetInfo(info)    \
+     51                      info.cmd            = 0;\
+     52                      info.status         = STATUS_SUCCESS;\
+     53                      info.nBytesSent     = 0;\
+     54                      info.nBytesToSend   = 0;\
+     55                      info.nBytesReceived = 0;\
+     56                      info.nBitsReceived  = 0;\
+     57                      info.collPos        = 0;
+     58          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     59          MfCmdInfo MInfo;
+   \                     MInfo:
+   \   000000                DS 8
+   \   000008                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     60          volatile MfCmdInfo *MpIsrInfo = 0;
+   \                     MpIsrInfo:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     61          unsigned char SerBuffer[64];
+   \                     SerBuffer:
+   \   000000                DS 64
+   \   000040                REQUIRE __INIT_XDATA_Z
+     62          
+     63          
+     64          /*************************************************
+     65          Function:       SetPowerDown
+     66          Description:
+     67               set the rc522 enter or exit power down mode
+     68          Parameter:
+     69               ucFlag     0   --  exit power down mode
+     70                          !0  --  enter power down mode
+     71          Return:
+     72               short      status of implement
+     73          **************************************************/
+     74          #if 0 // This function is currently not used
+     75          void SetPowerDown(unsigned char ucFlag)
+     76          {
+     77              unsigned char RegVal;
+     78          /*
+     79              Note: The bit Power Down can not be set when the SoftReset command has been activated.
+     80          */
+     81              if(ucFlag)
+     82              {
+     83                  RegVal = RcGetReg(RC522_REG_COMMAND);  //enter power down mode
+     84                  RegVal |= 0x10;
+     85                  RcSetReg(RC522_REG_COMMAND, RegVal);
+     86              }
+     87              else
+     88              {
+     89                  RegVal = RcGetReg(RC522_REG_COMMAND);  //disable power down mode
+     90                  RegVal &= (~0x10);
+     91                  RcSetReg(RC522_REG_COMMAND, RegVal);
+     92              }
+     93          }
+     94          #endif
+     95          /*************************************************
+     96          Function:       SetTimeOut
+     97          Description:
+     98               Adjusts the timeout in 100us steps
+     99          Parameter:
+    100               uiMicroSeconds   the time to set the timer(100us as a step)
+    101          Return:
+    102               short      status of implement
+    103          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    104          short SetTimeOut(unsigned int uiMicroSeconds)
+   \                     SetTimeOut:
+    105          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    106              unsigned int RegVal;
+    107              unsigned char TmpVal;
+    108              RegVal = uiMicroSeconds / 100;
+   \   000005   EA           MOV     A,R2
+   \   000006   F8           MOV     R0,A
+   \   000007   EB           MOV     A,R3
+   \   000008   F9           MOV     R1,A
+   \   000009   7A64         MOV     R2,#0x64
+   \   00000B   7B00         MOV     R3,#0x0
+   \   00000D   12....       LCALL   ?US_DIV_MOD
+   \   000010   88..         MOV     ?V0 + 0,R0
+   \   000012   89..         MOV     ?V0 + 1,R1
+   \   000014   AE..         MOV     R6,?V0 + 0
+   \   000016   AF..         MOV     R7,?V0 + 1
+    109          
+    110              /*
+    111              NOTE: The supported hardware range is bigger, since the prescaler here
+    112                    is always set to 100 us.
+    113              */
+    114              if(RegVal >= 0xfff)
+   \   000018   EE           MOV     A,R6
+   \   000019   94FF         SUBB    A,#-0x1
+   \   00001B   EF           MOV     A,R7
+   \   00001C   940F         SUBB    A,#0xf
+   \   00001E   4006         JC      ??SetTimeOut_0
+    115              {
+    116                  return STATUS_INVALID_PARAMETER;
+   \   000020   7A01         MOV     R2,#0x1
+   \   000022   7B01         MOV     R3,#0x1
+   \   000024   802F         SJMP    ??SetTimeOut_1
+    117              }
+    118              RcModifyReg(RC522_REG_TMODE, 1, RC522_BIT_TAUTO);
+   \                     ??SetTimeOut_0:
+   \   000026                ; Setup parameters for call to function RcModifyReg
+   \   000026   7B80         MOV     R3,#-0x80
+   \   000028   7A01         MOV     R2,#0x1
+   \   00002A   792A         MOV     R1,#0x2a
+   \   00002C   12....       LCALL   ??RcModifyReg?relay
+    119          
+    120              RcSetReg(RC522_REG_TPRESCALER, 0xa6);
+   \   00002F                ; Setup parameters for call to function RcSetReg
+   \   00002F   7AA6         MOV     R2,#-0x5a
+   \   000031   792B         MOV     R1,#0x2b
+   \   000033   12....       LCALL   ??RcSetReg?relay
+    121          
+    122              TmpVal = RcGetReg(RC522_REG_TMODE);
+    123              TmpVal &= 0xf0;
+    124              TmpVal |= 0x02;
+    125              RcSetReg(RC522_REG_TMODE, TmpVal);//82
+   \   000036                ; Setup parameters for call to function RcSetReg
+   \   000036                ; Setup parameters for call to function RcGetReg
+   \   000036   792A         MOV     R1,#0x2a
+   \   000038   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_20:
+   \   00003B   54F0         ANL     A,#0xf0
+   \   00003D   4402         ORL     A,#0x2
+   \   00003F   FA           MOV     R2,A
+   \   000040   792A         MOV     R1,#0x2a
+   \   000042   12....       LCALL   ??RcSetReg?relay
+    126          
+    127              RcSetReg(RC522_REG_TRELOADLO, ((unsigned char)(RegVal&0xff)));
+   \   000045                ; Setup parameters for call to function RcSetReg
+   \   000045   EE           MOV     A,R6
+   \   000046   FA           MOV     R2,A
+   \   000047   792D         MOV     R1,#0x2d
+   \   000049   12....       LCALL   ??RcSetReg?relay
+    128              RcSetReg(RC522_REG_TRELOADHI, ((unsigned char)((RegVal>>8)&0xff)));
+   \   00004C                ; Setup parameters for call to function RcSetReg
+   \   00004C   EF           MOV     A,R7
+   \   00004D   FA           MOV     R2,A
+   \   00004E   792C         MOV     R1,#0x2c
+   \   000050   12....       LCALL   ??Subroutine33_0 & 0xFFFF
+    129              return STATUS_SUCCESS;
+   \                     ??CrossCallReturnLabel_55:
+   \   000053   7B00         MOV     R3,#0x0
+   \                     ??SetTimeOut_1:
+   \   000055                REQUIRE ?Subroutine0
+   \   000055                ; // Fall through to label ?Subroutine0
+    130          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine33_0:
+   \   000000   12....       LCALL   ??RcSetReg?relay
+   \   000003                ; Setup parameters for call to function RcSetReg
+   \   000003                ; Setup parameters for call to function RcSetReg
+   \   000003                ; Setup parameters for call to function RcSetReg
+   \   000003                ; Setup parameters for call to function RcSetReg
+   \   000003   7A00         MOV     R2,#0x0
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine14:
+   \   000000   12....       LCALL   ??RcGetReg?relay
+   \   000003   E9           MOV     A,R1
+   \   000004   22           RET
+    131            
+    132          
+    133          
+    134          /*************************************************
+    135          Function:       Rc522Init
+    136          Description:
+    137               initialize rc522 as a mifare reader
+    138          Parameter:
+    139               NONE
+    140          Return:
+    141               NONE
+    142          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    143          void Rc522Init(void)
+   \                     Rc522Init:
+    144          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    145              unsigned char RegVal;
+    146          
+    147              RcSetReg(RC522_REG_COMMAND, 0x0F); /*reset the RC522*/
+   \   000004                ; Setup parameters for call to function RcSetReg
+   \   000004   7A0F         MOV     R2,#0xf
+   \   000006   7901         MOV     R1,#0x1
+   \   000008   12....       LCALL   ??RcSetReg?relay
+    148          
+    149              RcSetReg(RC522_REG_TXASK, 0x40); /*force to 100% ASK*/
+   \   00000B                ; Setup parameters for call to function RcSetReg
+   \   00000B   7A40         MOV     R2,#0x40
+   \   00000D   7915         MOV     R1,#0x15
+   \   00000F   12....       LCALL   ??RcSetReg?relay
+    150          
+    151              /* disable Crypto1 bit*/
+    152              RcModifyReg(RC522_REG_STATUS2, 0, RC522_BIT_CRYPTO1ON);
+   \   000012                ; Setup parameters for call to function RcModifyReg
+   \   000012   7B08         MOV     R3,#0x8
+   \   000014   7A00         MOV     R2,#0x0
+   \   000016   7908         MOV     R1,#0x8
+   \   000018   12....       LCALL   ??RcModifyReg?relay
+    153          
+    154              /* do not touch bits: InvMod in register TxMode */
+    155              RegVal = RcGetReg(RC522_REG_TXMODE);
+    156              RegVal = (unsigned char)(RegVal & RC522_BIT_INVMOD);
+    157              RegVal = (unsigned char)(RegVal | RC522_BIT_CRCEN | (RCO_VAL_RF106K << RC522_SPEED_SHL_VALUE));
+    158              /* TxCRCEn = 1; TxSpeed = x; InvMod, TXMix = 0; TxFraming = 0 */
+    159              RcSetReg(RC522_REG_TXMODE, RegVal);
+   \   00001B                ; Setup parameters for call to function RcSetReg
+   \   00001B                ; Setup parameters for call to function RcGetReg
+   \   00001B   7912         MOV     R1,#0x12
+   \   00001D   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   000020   7912         MOV     R1,#0x12
+   \   000022   12....       LCALL   ??RcSetReg?relay
+    160          
+    161              /* do not touch bits: RxNoErr in register RxMode */
+    162              RegVal = RcGetReg(RC522_REG_RXMODE);
+    163              RegVal = (unsigned char)(RegVal & RC522_BIT_RXNOERR);
+    164              RegVal = (unsigned char)(RegVal | RC522_BIT_CRCEN | (RCO_VAL_RF106K << RC522_SPEED_SHL_VALUE));
+    165               /* RxCRCEn = 1; RxSpeed = x; RxNoErr, RxMultiple = 0; TxFraming = 0 */
+    166              RcSetReg(RC522_REG_RXMODE, RegVal);
+   \   000025                ; Setup parameters for call to function RcSetReg
+   \   000025                ; Setup parameters for call to function RcGetReg
+   \   000025   7913         MOV     R1,#0x13
+   \   000027   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_19:
+   \   00002A   7913         MOV     R1,#0x13
+   \   00002C   12....       LCALL   ??RcSetReg?relay
+    167          
+    168              /* ADDIQ = 10b; FixIQ = 1; RFU = 0; TauRcv = 11b; TauSync = 01b */
+    169              RcSetReg(RC522_REG_DEMOD, 0x6D);
+   \   00002F                ; Setup parameters for call to function RcSetReg
+   \   00002F   7A6D         MOV     R2,#0x6d
+   \   000031   7919         MOV     R1,#0x19
+   \   000033   12....       LCALL   ??RcSetReg?relay
+    170              //RegVal = RcGetReg(RC522_REG_DEMOD);
+    171          
+    172              /* RxGain = 4*/
+    173              RcSetReg(RC522_REG_RFCFG, 0x48);
+   \   000036                ; Setup parameters for call to function RcSetReg
+   \   000036   7A48         MOV     R2,#0x48
+   \   000038   7926         MOV     R1,#0x26
+   \   00003A   12....       LCALL   ??RcSetReg?relay
+    174              //RegVal = RcGetReg(RC522_REG_RFCFG);///test88888
+    175          
+    176              /* do settings common for all functions */
+    177              RcSetReg(RC522_REG_RXTRESHOLD, 0x55);    /* MinLevel = 5; CollLevel = 5 */
+   \   00003D                ; Setup parameters for call to function RcSetReg
+   \   00003D   7A55         MOV     R2,#0x55
+   \   00003F   7918         MOV     R1,#0x18
+   \   000041   12....       LCALL   ??RcSetReg?relay
+    178             
+    179              
+    180              RcSetReg(RC522_REG_MODWIDTH, 0x26);      /* Modwidth = 0x26 */
+   \   000044                ; Setup parameters for call to function RcSetReg
+   \   000044   7A26         MOV     R2,#0x26
+   \   000046   7924         MOV     R1,#0x24
+   \   000048   12....       LCALL   ??RcSetReg?relay
+    181              RcSetReg(RC522_REG_GSN, 0xF0 | 0x04);     /* CWGsN = 0xF; ModGsN = 0x4 */
+   \   00004B                ; Setup parameters for call to function RcSetReg
+   \   00004B   7AF4         MOV     R2,#-0xc
+   \   00004D   7927         MOV     R1,#0x27
+   \   00004F   12....       LCALL   ?Subroutine12 & 0xFFFF
+    182          
+    183              /* Set the timer to auto mode, 5ms using operation control commands before HF is switched on to
+    184               * guarantee Iso14443-3 compliance of Polling procedure
+    185               */
+    186              SetTimeOut(5000);
+    187          
+    188              /* Activate the field  */
+    189              RcModifyReg(RC522_REG_TXCONTROL, 1, RC522_BIT_TX2RFEN | RC522_BIT_TX1RFEN);
+   \                     ??CrossCallReturnLabel_16:
+   \   000052                ; Setup parameters for call to function RcModifyReg
+   \   000052   7B03         MOV     R3,#0x3
+   \   000054   7A01         MOV     R2,#0x1
+   \   000056   7914         MOV     R1,#0x14
+   \   000058   12....       LCALL   ??RcModifyReg?relay
+    190          
+    191              /* start timer manually to check the initial waiting time */
+    192              RcModifyReg(RC522_REG_CONTROL, 1, RC522_BIT_TSTARTNOW);
+   \   00005B                ; Setup parameters for call to function RcModifyReg
+   \   00005B   7B40         MOV     R3,#0x40
+   \   00005D   7A01         MOV     R2,#0x1
+   \   00005F   790C         MOV     R1,#0xc
+   \   000061   12....       LCALL   ??RcModifyReg?relay
+    193          
+    194              /*
+    195               * After switching on the timer wait until the timer interrupt occures, so that
+    196               * the field is on and the 5ms delay have been passed.
+    197               */
+    198              do {
+    199                  RegVal = RcGetReg(RC522_REG_COMMIRQ);
+   \                     ??Rc522Init_0:
+   \   000064                ; Setup parameters for call to function RcGetReg
+   \   000064   7904         MOV     R1,#0x4
+   \   000066   12....       LCALL   ?Subroutine14 & 0xFFFF
+    200              }
+    201              while(!(RegVal & RC522_BIT_TIMERI));
+   \                     ??CrossCallReturnLabel_21:
+   \   000069   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00006B   50F7         JNC     ??Rc522Init_0
+    202          
+    203          
+    204              /* Clear the status flag afterwards */
+    205              RcSetReg(RC522_REG_COMMIRQ, RC522_BIT_TIMERI);
+   \   00006D                ; Setup parameters for call to function RcSetReg
+   \   00006D   7A01         MOV     R2,#0x1
+   \   00006F   7904         MOV     R1,#0x4
+   \   000071   12....       LCALL   ?Subroutine12 & 0xFFFF
+    206          
+    207              /*
+    208               * Reset timer 1 ms using operation control commands (AutoMode and Prescaler are the same)
+    209               * set reload value
+    210               */
+    211              SetTimeOut(5000);
+    212          
+    213              RcSetReg(RC522_REG_WATERLEVEL, 0x1A);
+   \                     ??CrossCallReturnLabel_17:
+   \   000074                ; Setup parameters for call to function RcSetReg
+   \   000074   7A1A         MOV     R2,#0x1a
+   \   000076   790B         MOV     R1,#0xb
+   \   000078   12....       LCALL   ??RcSetReg?relay
+    214              RcSetReg(RC522_REG_TXSEL, 0x10);
+   \   00007B                ; Setup parameters for call to function RcSetReg
+   \   00007B   7A10         MOV     R2,#0x10
+   \   00007D   7916         MOV     R1,#0x16
+   \   00007F   12....       LCALL   ??RcSetReg?relay
+    215              
+    216              RcSetReg(RC522_REG_RXSEL, 0x87);        /* Default 0x84  7..Rx Waite (7 x 9,4us) */
+   \   000082                ; Setup parameters for call to function RcSetReg
+   \   000082   7A87         MOV     R2,#-0x79
+   \   000084   7917         MOV     R1,#0x17
+   \   000086   12....       LCALL   ??Subroutine33_0 & 0xFFFF
+    217          
+    218              /* Activate receiver for communication
+    219                 The RcvOff bit and the PowerDown bit are cleared, the command is not changed. */
+    220              RcSetReg(RC522_REG_COMMAND, RC522_CMD_IDLE);
+   \                     ??CrossCallReturnLabel_56:
+   \   000089   7901         MOV     R1,#0x1
+   \   00008B   12....       LCALL   ??RcSetReg?relay
+    221          
+    222              /* Set timeout for REQA, ANTICOLL, SELECT to 200us */
+    223              SetTimeOut(2000);
+   \   00008E                ; Setup parameters for call to function SetTimeOut
+   \   00008E   7AD0         MOV     R2,#-0x30
+   \   000090   7B07         MOV     R3,#0x7
+   \   000092   12....       LCALL   ??SetTimeOut?relay
+    224              RcSetReg(RC522_REG_ANALOGTEST,0xCD);
+   \   000095                ; Setup parameters for call to function RcSetReg
+   \   000095   7ACD         MOV     R2,#-0x33
+   \   000097   7938         MOV     R1,#0x38
+   \   000099   12....       LCALL   ??RcSetReg?relay
+    225          
+    226          } 
+   \   00009C                REQUIRE ?Subroutine1
+   \   00009C                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine13:
+   \   000000   12....       LCALL   ??RcGetReg?relay
+   \   000003   E9           MOV     A,R1
+   \   000004   5408         ANL     A,#0x8
+   \   000006   4480         ORL     A,#0x80
+   \   000008   FA           MOV     R2,A
+   \   000009   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine12:
+   \   000000   12....       LCALL   ??RcSetReg?relay
+   \   000003                ; Setup parameters for call to function SetTimeOut
+   \   000003                ; Setup parameters for call to function SetTimeOut
+   \   000003   7A88         MOV     R2,#-0x78
+   \   000005   7B13         MOV     R3,#0x13
+   \   000007   12....       LCALL   ??SetTimeOut?relay
+   \   00000A   22           RET
+    227          
+    228          
+    229          /*************************************************
+    230          Function:       RF Reset
+    231          Description:
+    232               halt the current selected card
+    233          Parameter:
+    234               NONE
+    235          Return:
+    236               NONE
+    237          **************************************************/
+    238          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    239          void Rc522RFReset(unsigned char ms)
+   \                     Rc522RFReset:
+    240          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    241            //unsigned int j;
+    242            //RcSetReg(RC522_REG_COMMAND, 0x0f); // RC522 Soft Reset
+    243          	//Timer1_Delay_ms(ms);
+    244            //      for (j=0;j<(100*ms);j++)
+    245            //         Delay(200);
+    246          	Rc522Init();
+   \   000004                ; Setup parameters for call to function Rc522Init
+   \   000004   12....       LCALL   ??Rc522Init?relay
+    247          }
+   \   000007   80..         SJMP    ?Subroutine1
+    248          
+    249          
+    250          /*************************************************
+    251          Function:       M522PcdCmd
+    252          Description:
+    253               implement a command
+    254          Parameter:
+    255               cmd            command code
+    256               ExchangeBuf    saved the data will be send to card and the data responed from the card
+    257               info           some information for the command
+    258          Return:
+    259               short      status of implement
+    260          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    261          short  M522PcdCmd(unsigned char cmd, unsigned char *ExchangeBuf, MfCmdInfo  *info)
+   \                     M522PcdCmd:
+    262          {
+   \   000000   74EF         MOV     A,#-0x11
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 17
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 2,R1
+   \   000007   8A..         MOV     ?V0 + 6,R2
+   \   000009   8B..         MOV     ?V0 + 7,R3
+   \   00000B   8C..         MOV     ?V0 + 0,R4
+   \   00000D   8D..         MOV     ?V0 + 1,R5
+    263              short          status    = STATUS_SUCCESS;
+   \   00000F   7E00         MOV     R6,#0x0
+   \   000011   7F00         MOV     R7,#0x0
+    264          
+    265              unsigned char  commIrqEn   = 0;
+   \   000013   8E..         MOV     ?V0 + 5,R6
+    266              unsigned char  divIrqEn    = 0;
+    267              unsigned char  waitForComm = RC522_BIT_ERRI | RC522_BIT_TXI;
+   \   000015   75..42       MOV     ?V0 + 3,#0x42
+    268              unsigned char  waitForDiv  = 0;
+    269              unsigned char  doReceive   = 0;
+   \   000018   8E..         MOV     ?V0 + 4,R6
+    270              unsigned char  i;
+    271              unsigned char  getRegVal,setRegVal;
+    272          
+    273              //unsigned char  nbytes, nbits;
+    274              unsigned int counter;
+    275          
+    276              /*remove all Interrupt request flags that are used during function,
+    277              keep all other like they are*/
+    278              RcSetReg(RC522_REG_COMMIRQ, waitForComm);
+   \   00001A                ; Setup parameters for call to function RcSetReg
+   \   00001A   7A42         MOV     R2,#0x42
+   \   00001C   12....       LCALL   ?Subroutine8 & 0xFFFF
+    279              RcSetReg(RC522_REG_DIVIRQ, waitForDiv);
+    280              RcSetReg(RC522_REG_FIFOLEVEL, RC522_BIT_FLUSHBUFFER);
+    281          
+    282              /*disable command or set to transceive*/
+    283              getRegVal = RcGetReg(RC522_REG_COMMAND);
+   \                     ??CrossCallReturnLabel_6:
+   \   00001F                ; Setup parameters for call to function RcGetReg
+   \   00001F   7901         MOV     R1,#0x1
+   \   000021   12....       LCALL   ?Subroutine11 & 0xFFFF
+    284              if(cmd == RC522_CMD_TRANSCEIVE)
+   \                     ??CrossCallReturnLabel_12:
+   \   000024   74F0         MOV     A,#-0x10
+   \   000026   55..         ANL     A,?V0 + 8
+   \   000028   FA           MOV     R2,A
+   \   000029   740C         MOV     A,#0xc
+   \   00002B   65..         XRL     A,?V0 + 2
+   \   00002D   7004         JNZ     ??M522PcdCmd_0
+    285              {
+    286                  /*re-init the transceive command*/
+    287                  setRegVal = (getRegVal & ~RC522_MASK_COMMAND) | RC522_CMD_TRANSCEIVE;
+    288                  RcSetReg(RC522_REG_COMMAND, setRegVal);
+   \   00002F                ; Setup parameters for call to function RcSetReg
+   \   00002F   740C         MOV     A,#0xc
+   \   000031   4A           ORL     A,R2
+   \   000032   FA           MOV     R2,A
+    289              }
+    290              else
+    291              {
+    292                  /*clear current command*/
+    293                  setRegVal = (getRegVal & ~RC522_MASK_COMMAND);
+    294                  RcSetReg(RC522_REG_COMMAND, setRegVal);
+   \                     ??M522PcdCmd_0:
+   \   000033                ; Setup parameters for call to function RcSetReg
+   \   000033   7901         MOV     R1,#0x1
+   \   000035   12....       LCALL   ??RcSetReg?relay
+    295              }
+    296              MpIsrInfo = info;
+   \   000038   90....       MOV     DPTR,#MpIsrInfo
+   \   00003B   E5..         MOV     A,?V0 + 0
+   \   00003D   F0           MOVX    @DPTR,A
+   \   00003E   A3           INC     DPTR
+   \   00003F   E5..         MOV     A,?V0 + 1
+   \   000041   F0           MOVX    @DPTR,A
+    297              switch(cmd)
+   \   000042   E5..         MOV     A,?V0 + 2
+   \   000044   6016         JZ      ??M522PcdCmd_1
+   \   000046   24FD         ADD     A,#-0x3
+   \   000048   6012         JZ      ??M522PcdCmd_1
+   \   00004A   14           DEC     A
+   \   00004B   602D         JZ      ??M522PcdCmd_2
+   \   00004D   24FC         ADD     A,#-0x4
+   \   00004F   6031         JZ      ??M522PcdCmd_3
+   \   000051   24FC         ADD     A,#-0x4
+   \   000053   602D         JZ      ??M522PcdCmd_3
+   \   000055   24FE         ADD     A,#-0x2
+   \   000057   6034         JZ      ??M522PcdCmd_4
+   \   000059   14           DEC     A
+   \   00005A   7039         JNZ     ??M522PcdCmd_5
+    298              {
+    299                 case RC522_CMD_IDLE:         /* values are 00, so return immediately after all bytes written to FIFO */
+    300                      waitForComm = 0;
+   \                     ??M522PcdCmd_1:
+   \   00005C   8E..         MOV     ?V0 + 3,R6
+    301                      waitForDiv  = 0;
+    302                      break;
+    303                  case RC522_CMD_CALCCRC:      /* values are 00, so return immediately after all bytes written to FIFO */
+    304                      waitForComm = 0;
+    305                      waitForDiv  = 0;
+    306                      break;
+    307                  case RC522_CMD_TRANSMIT:
+    308                      commIrqEn = RC522_BIT_TXI | RC522_BIT_TIMERI;
+    309                      waitForComm = RC522_BIT_TXI;
+    310                      break;
+    311                  case RC522_CMD_RECEIVE:
+    312                      commIrqEn = RC522_BIT_RXI | RC522_BIT_TIMERI | RC522_BIT_ERRI;
+    313                      waitForComm = RC522_BIT_RXI | RC522_BIT_TIMERI | RC522_BIT_ERRI;
+    314                      doReceive = 1;
+    315                      break;
+    316                  case RC522_CMD_TRANSCEIVE:
+    317                      commIrqEn = RC522_BIT_RXI | RC522_BIT_TIMERI | RC522_BIT_ERRI;
+    318                      waitForComm = RC522_BIT_RXI | RC522_BIT_TIMERI | RC522_BIT_ERRI;
+    319                      doReceive = 1;
+    320                      break;
+    321                  case RC522_CMD_AUTHENT:
+    322                      commIrqEn = RC522_BIT_IDLEI | RC522_BIT_TIMERI | RC522_BIT_ERRI;
+    323                      waitForComm = RC522_BIT_IDLEI | RC522_BIT_TIMERI | RC522_BIT_ERRI;
+    324                      break;
+    325                  case RC522_CMD_SOFTRESET:    /* values are 0x00 for IrqEn and for waitFor, nothing to do */
+    326                      waitForComm = 0;
+    327                      waitForDiv  = 0;
+    328                      break;
+    329                  default:
+    330                      status = STATUS_UNSUPPORTED_COMMAND;
+    331              }
+    332              if(status == STATUS_SUCCESS)
+    333              {
+    334                  /* activate necessary communication Irq's */
+    335                  getRegVal = RcGetReg(RC522_REG_COMMIEN);
+    336                  RcSetReg(RC522_REG_COMMIEN, getRegVal | commIrqEn);
+   \                     ??M522PcdCmd_6:
+   \   00005E                ; Setup parameters for call to function RcSetReg
+   \   00005E                ; Setup parameters for call to function RcGetReg
+   \   00005E   7902         MOV     R1,#0x2
+   \   000060   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_22:
+   \   000063   45..         ORL     A,?V0 + 5
+   \   000065   FA           MOV     R2,A
+   \   000066   7902         MOV     R1,#0x2
+   \   000068   12....       LCALL   ??RcSetReg?relay
+    337          
+    338                  /* activate necessary other Irq's */
+    339                  getRegVal = RcGetReg(RC522_REG_DIVIEN);
+    340                  RcSetReg(RC522_REG_DIVIEN, getRegVal | divIrqEn);
+   \   00006B                ; Setup parameters for call to function RcSetReg
+   \   00006B                ; Setup parameters for call to function RcGetReg
+   \   00006B   7903         MOV     R1,#0x3
+   \   00006D   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_23:
+   \   000070   FA           MOV     R2,A
+   \   000071   7903         MOV     R1,#0x3
+   \   000073   12....       LCALL   ??RcSetReg?relay
+    341          
+    342                  /*write data to FIFO*/
+    343                  for(i=0; i<MpIsrInfo->nBytesToSend; i++)
+   \   000076   8E..         MOV     ?V0 + 8,R6
+   \   000078   802D         SJMP    ??M522PcdCmd_7
+   \                     ??M522PcdCmd_2:
+   \   00007A   75..41       MOV     ?V0 + 5,#0x41
+   \   00007D   75..40       MOV     ?V0 + 3,#0x40
+   \   000080   80DC         SJMP    ??M522PcdCmd_6
+   \                     ??M522PcdCmd_3:
+   \   000082   75..23       MOV     ?V0 + 5,#0x23
+   \   000085   75..23       MOV     ?V0 + 3,#0x23
+   \   000088   75..01       MOV     ?V0 + 4,#0x1
+   \   00008B   80D1         SJMP    ??M522PcdCmd_6
+   \                     ??M522PcdCmd_4:
+   \   00008D   75..13       MOV     ?V0 + 5,#0x13
+   \   000090   75..13       MOV     ?V0 + 3,#0x13
+   \   000093   80C9         SJMP    ??M522PcdCmd_6
+   \                     ??M522PcdCmd_5:
+   \   000095   0E           INC     R6
+   \   000096   0E           INC     R6
+   \   000097   0E           INC     R6
+   \   000098   0F           INC     R7
+   \   000099   8071         SJMP    ??M522PcdCmd_8
+    344                  {
+    345                      RcSetReg(RC522_REG_FIFODATA, ExchangeBuf[i]);
+   \                     ??M522PcdCmd_9:
+   \   00009B                ; Setup parameters for call to function RcSetReg
+   \   00009B   12....       LCALL   ?Subroutine22 & 0xFFFF
+    346                  }
+   \                     ??CrossCallReturnLabel_39:
+   \   00009E   E0           MOVX    A,@DPTR
+   \   00009F   FA           MOV     R2,A
+   \   0000A0   7909         MOV     R1,#0x9
+   \   0000A2   12....       LCALL   ??RcSetReg?relay
+   \   0000A5   05..         INC     ?V0 + 8
+   \                     ??M522PcdCmd_7:
+   \   0000A7   12....       LCALL   ?Subroutine31 & 0xFFFF
+   \                     ??CrossCallReturnLabel_51:
+   \   0000AA   E0           MOVX    A,@DPTR
+   \   0000AB   F8           MOV     R0,A
+   \   0000AC   E5..         MOV     A,?V0 + 8
+   \   0000AE   C3           CLR     C
+   \   0000AF   98           SUBB    A,R0
+   \   0000B0   40E9         JC      ??M522PcdCmd_9
+    347          
+    348                  /*do seperate action if command to be executed is transceive*/
+    349                  if(cmd == RC522_CMD_TRANSCEIVE)
+   \   0000B2   740C         MOV     A,#0xc
+   \   0000B4   65..         XRL     A,?V0 + 2
+   \   0000B6   700B         JNZ     ??M522PcdCmd_10
+    350                  {
+    351                      /*TRx is always an endless loop, Initiator and Target must set STARTSEND.*/
+    352                      RcModifyReg(RC522_REG_BITFRAMING, 1, RC522_BIT_STARTSEND);
+   \   0000B8                ; Setup parameters for call to function RcModifyReg
+   \   0000B8   7B80         MOV     R3,#-0x80
+   \   0000BA   7A01         MOV     R2,#0x1
+   \   0000BC   790D         MOV     R1,#0xd
+   \   0000BE   12....       LCALL   ??RcModifyReg?relay
+   \   0000C1   800F         SJMP    ??M522PcdCmd_11
+    353                  }
+    354                  else
+    355                  {
+    356                      getRegVal = RcGetReg(RC522_REG_COMMAND);
+    357                      RcSetReg(RC522_REG_COMMAND, (getRegVal & ~RC522_MASK_COMMAND) | cmd);
+   \                     ??M522PcdCmd_10:
+   \   0000C3                ; Setup parameters for call to function RcSetReg
+   \   0000C3                ; Setup parameters for call to function RcGetReg
+   \   0000C3   7901         MOV     R1,#0x1
+   \   0000C5   12....       LCALL   ?Subroutine14 & 0xFFFF
+    358                  }
+   \                     ??CrossCallReturnLabel_24:
+   \   0000C8   54F0         ANL     A,#0xf0
+   \   0000CA   45..         ORL     A,?V0 + 2
+   \   0000CC   FA           MOV     R2,A
+   \   0000CD   7901         MOV     R1,#0x1
+   \   0000CF   12....       LCALL   ??RcSetReg?relay
+    359          
+    360                  /*polling mode*/
+    361                  getRegVal = 0;
+    362                  setRegVal = 0;
+   \                     ??M522PcdCmd_11:
+   \   0000D2   8E..         MOV     ?V0 + 8,R6
+    363                  counter = 0; /*Just for debug*/
+   \   0000D4   8E..         MOV     ?V0 + 0,R6
+   \   0000D6   8E..         MOV     ?V0 + 1,R6
+    364                  while(!(waitForComm ? (waitForComm & setRegVal) : 1) ||
+    365                        !(waitForDiv ? (waitForDiv & getRegVal) :1))
+   \   0000D8   E5..         MOV     A,?V0 + 3
+   \   0000DA   6027         JZ      ??M522PcdCmd_12
+   \                     ??M522PcdCmd_13:
+   \   0000DC   E5..         MOV     A,?V0 + 3
+   \   0000DE   55..         ANL     A,?V0 + 8
+   \   0000E0   7021         JNZ     ??M522PcdCmd_12
+    366                  {
+    367                      setRegVal = RcGetReg(RC522_REG_COMMIRQ);
+   \   0000E2                ; Setup parameters for call to function RcGetReg
+   \   0000E2   7904         MOV     R1,#0x4
+   \   0000E4   12....       LCALL   ?Subroutine11 & 0xFFFF
+    368                      getRegVal = RcGetReg(RC522_REG_DIVIRQ);
+   \                     ??CrossCallReturnLabel_13:
+   \   0000E7                ; Setup parameters for call to function RcGetReg
+   \   0000E7   7905         MOV     R1,#0x5
+   \   0000E9   12....       LCALL   ??RcGetReg?relay
+    369                      counter ++;
+   \   0000EC   E5..         MOV     A,?V0 + 0
+   \   0000EE   2401         ADD     A,#0x1
+   \   0000F0   F5..         MOV     ?V0 + 0,A
+   \   0000F2   E5..         MOV     A,?V0 + 1
+   \   0000F4   3400         ADDC    A,#0x0
+   \   0000F6   F5..         MOV     ?V0 + 1,A
+    370                      if(counter > 0x0100)
+   \   0000F8   C3           CLR     C
+   \   0000F9   E5..         MOV     A,?V0 + 0
+   \   0000FB   9401         SUBB    A,#0x1
+   \   0000FD   E5..         MOV     A,?V0 + 1
+   \   0000FF   9401         SUBB    A,#0x1
+   \   000101   40D9         JC      ??M522PcdCmd_13
+    371                          break;
+    372                  }
+    373                  /*store IRQ bits for clearance afterwards*/
+    374                  waitForComm = (unsigned char)(waitForComm & setRegVal);
+   \                     ??M522PcdCmd_12:
+   \   000103   E5..         MOV     A,?V0 + 8
+   \   000105   52..         ANL     ?V0 + 3,A
+    375                  waitForDiv  = (unsigned char)(waitForDiv & getRegVal);
+    376          
+    377                  /*set status to Timer Interrupt occurence*/
+    378                  if (setRegVal & RC522_BIT_TIMERI)
+   \   000107   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000109   5001         JNC     ??M522PcdCmd_8
+    379                  {
+    380                      status = STATUS_IO_TIMEOUT;
+   \   00010B   0E           INC     R6
+    381                  }
+    382              }
+    383          
+    384              /*disable all interrupt sources*/
+    385              RcModifyReg(RC522_REG_COMMIEN, 0, commIrqEn);
+   \                     ??M522PcdCmd_8:
+   \   00010C                ; Setup parameters for call to function RcModifyReg
+   \   00010C   AB..         MOV     R3,?V0 + 5
+   \   00010E   7A00         MOV     R2,#0x0
+   \   000110   7902         MOV     R1,#0x2
+   \   000112   12....       LCALL   ??RcModifyReg?relay
+    386          
+    387              RcModifyReg(RC522_REG_DIVIEN, 0, divIrqEn);
+   \   000115                ; Setup parameters for call to function RcModifyReg
+   \   000115   7B00         MOV     R3,#0x0
+   \   000117   7A00         MOV     R2,#0x0
+   \   000119   7903         MOV     R1,#0x3
+   \   00011B   12....       LCALL   ??RcModifyReg?relay
+    388          
+    389              if(doReceive && (status == STATUS_SUCCESS))
+   \   00011E   E5..         MOV     A,?V0 + 4
+   \   000120   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000122   4003         JC      $+5
+   \   000124   02....       LJMP    ??M522PcdCmd_14 & 0xFFFF
+   \   000127   EE           MOV     A,R6
+   \   000128   4F           ORL     A,R7
+   \   000129   6003         JZ      $+5
+   \   00012B   02....       LJMP    ??M522PcdCmd_14 & 0xFFFF
+    390              {
+    391                  /*read number of bytes received (used for error check and correct transaction*/
+    392                  MpIsrInfo->nBytesReceived = RcGetReg(RC522_REG_FIFOLEVEL);
+   \   00012E                ; Setup parameters for call to function RcGetReg
+   \   00012E   790A         MOV     R1,#0xa
+   \   000130   12....       LCALL   ??RcGetReg?relay
+   \   000133   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_35:
+   \   000136   E9           MOV     A,R1
+   \   000137   F0           MOVX    @DPTR,A
+    393                  getRegVal = RcGetReg(RC522_REG_CONTROL);
+   \   000138                ; Setup parameters for call to function RcGetReg
+   \   000138   790C         MOV     R1,#0xc
+   \   00013A   12....       LCALL   ?Subroutine11 & 0xFFFF
+    394                  MpIsrInfo->nBitsReceived = (unsigned char)(getRegVal & 0x07);
+   \                     ??CrossCallReturnLabel_14:
+   \   00013D   7407         MOV     A,#0x7
+   \   00013F   55..         ANL     A,?V0 + 8
+   \   000141   FA           MOV     R2,A
+   \   000142   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_36:
+   \   000145   A3           INC     DPTR
+   \   000146   EA           MOV     A,R2
+   \   000147   F0           MOVX    @DPTR,A
+   \   000148   A3           INC     DPTR
+   \   000149   E4           CLR     A
+   \   00014A   F0           MOVX    @DPTR,A
+    395          
+    396                  getRegVal = RcGetReg(RC522_REG_ERROR);
+   \   00014B                ; Setup parameters for call to function RcGetReg
+   \   00014B   7906         MOV     R1,#0x6
+   \   00014D   12....       LCALL   ?Subroutine11 & 0xFFFF
+    397                  /*set status information if error occured*/
+    398                  if(getRegVal)
+   \                     ??CrossCallReturnLabel_15:
+   \   000150   7003         JNZ     $+5
+   \   000152   02....       LJMP    ??M522PcdCmd_15 & 0xFFFF
+    399                  {
+    400                      if(getRegVal & RC522_BIT_COLLERR)
+   \   000155   A2E3         MOV     C,0xE0 /* A   */.3
+   \   000157   5004         JNC     ??M522PcdCmd_16
+    401                          status = STATUS_COLLISION_ERROR;         /* Collision Error */
+   \   000159   7E06         MOV     R6,#0x6
+   \   00015B   8006         SJMP    ??M522PcdCmd_17
+    402                      else if(getRegVal & RC522_BIT_PARITYERR)
+   \                     ??M522PcdCmd_16:
+   \   00015D   A2E1         MOV     C,0xE0 /* A   */.1
+   \   00015F   5004         JNC     ??M522PcdCmd_18
+    403                          status = STATUS_PARITY_ERROR;            /* Parity Error */
+   \   000161   7E03         MOV     R6,#0x3
+   \                     ??M522PcdCmd_17:
+   \   000163   7F00         MOV     R7,#0x0
+    404          
+    405                      if(getRegVal & RC522_BIT_PROTERR)
+   \                     ??M522PcdCmd_18:
+   \   000165   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000167   5006         JNC     ??M522PcdCmd_19
+    406                          status = STATUS_PROTOCOL_ERROR;          /* Protocoll Error */
+   \   000169   7E0B         MOV     R6,#0xb
+   \                     ??M522PcdCmd_20:
+   \   00016B   7F00         MOV     R7,#0x0
+   \   00016D   8052         SJMP    ??M522PcdCmd_21
+    407                      else if(getRegVal & RC522_BIT_BUFFEROVFL)
+   \                     ??M522PcdCmd_19:
+   \   00016F   A2E4         MOV     C,0xE0 /* A   */.4
+   \   000171   5004         JNC     ??M522PcdCmd_22
+    408                          status = STATUS_BUFFER_OVERFLOW;         /* BufferOverflow Error */
+   \   000173   7E09         MOV     R6,#0x9
+   \   000175   80F4         SJMP    ??M522PcdCmd_20
+    409                      else if(getRegVal & RC522_BIT_CRCERR)
+   \                     ??M522PcdCmd_22:
+   \   000177   A2E2         MOV     C,0xE0 /* A   */.2
+   \   000179   503E         JNC     ??M522PcdCmd_23
+    410                      {   /* CRC Error */
+    411                          if(MpIsrInfo->nBytesReceived == 0x01 &&
+    412                              (MpIsrInfo->nBitsReceived == 0x04 ||
+    413                               MpIsrInfo->nBitsReceived == 0x00))
+   \   00017B   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_37:
+   \   00017E   E0           MOVX    A,@DPTR
+   \   00017F   6401         XRL     A,#0x1
+   \   000181   7032         JNZ     ??M522PcdCmd_24
+   \   000183   90....       MOV     DPTR,#MpIsrInfo
+   \   000186   E0           MOVX    A,@DPTR
+   \   000187   2405         ADD     A,#0x5
+   \   000189   12....       LCALL   ?Subroutine23 & 0xFFFF
+   \                     ??CrossCallReturnLabel_41:
+   \   00018C   6404         XRL     A,#0x4
+   \   00018E   7002         JNZ     ??M522PcdCmd_25
+   \   000190   A3           INC     DPTR
+   \   000191   E0           MOVX    A,@DPTR
+   \                     ??M522PcdCmd_25:
+   \   000192   6009         JZ      ??M522PcdCmd_26
+   \   000194   8882         MOV     DPL,R0
+   \   000196   8983         MOV     DPH,R1
+   \   000198   12....       LCALL   ??Subroutine34_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_57:
+   \   00019B   7018         JNZ     ??M522PcdCmd_24
+    414                          {   /* CRC Error and only one byte received might be a Mifare (N)ACK */
+    415                              ExchangeBuf[0] = RcGetReg(RC522_REG_FIFODATA);
+   \                     ??M522PcdCmd_26:
+   \   00019D                ; Setup parameters for call to function RcGetReg
+   \   00019D   7909         MOV     R1,#0x9
+   \   00019F   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_25:
+   \   0001A2   85..82       MOV     DPL,?V0 + 6
+   \   0001A5   85..83       MOV     DPH,?V0 + 7
+   \   0001A8   F0           MOVX    @DPTR,A
+    416                              MpIsrInfo->nBytesReceived = 1;
+   \   0001A9   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_38:
+   \   0001AC   7401         MOV     A,#0x1
+   \   0001AE   F0           MOVX    @DPTR,A
+    417                              status = STATUS_ACK_SUPPOSED;        /* (N)ACK supposed */
+   \   0001AF   7E02         MOV     R6,#0x2
+   \   0001B1   7F02         MOV     R7,#0x2
+   \   0001B3   800C         SJMP    ??M522PcdCmd_21
+    418                          }
+    419                          else
+    420                              status = STATUS_CRC_ERROR;           /* CRC Error */    ///////////////
+   \                     ??M522PcdCmd_24:
+   \   0001B5   7E02         MOV     R6,#0x2
+   \   0001B7   80B2         SJMP    ??M522PcdCmd_20
+    421                      }
+    422                      else if(getRegVal & RC522_BIT_TEMPERR)
+   \                     ??M522PcdCmd_23:
+   \   0001B9   A2E6         MOV     C,0xE0 /* A   */.6
+   \   0001BB   5004         JNC     ??M522PcdCmd_21
+    423                          status = STATUS_RC522_TEMP_ERROR;       /* Temperature Error */
+   \   0001BD   7E04         MOV     R6,#0x4
+   \   0001BF   7F7E         MOV     R7,#0x7e
+    424                      if(getRegVal & RC522_BIT_WRERR)
+   \                     ??M522PcdCmd_21:
+   \   0001C1   E5..         MOV     A,?V0 + 8
+   \   0001C3   A2E7         MOV     C,0xE0 /* A   */.7
+   \   0001C5   5004         JNC     ??M522PcdCmd_27
+    425                          status = STATUS_FIFO_WRITE_ERROR;        /* Error Writing to FIFO */
+   \   0001C7   7E0D         MOV     R6,#0xd
+   \   0001C9   8006         SJMP    ??M522PcdCmd_28
+    426                      if(status == STATUS_SUCCESS)
+   \                     ??M522PcdCmd_27:
+   \   0001CB   EE           MOV     A,R6
+   \   0001CC   4F           ORL     A,R7
+   \   0001CD   7004         JNZ     ??M522PcdCmd_29
+    427                          status = STATUS_ERROR_NY_IMPLEMENTED;    /* Error not yet implemented, shall never occur! */
+   \   0001CF   7E0C         MOV     R6,#0xc
+   \                     ??M522PcdCmd_28:
+   \   0001D1   7F00         MOV     R7,#0x0
+    428          
+    429                      /* if an error occured, clear error register before IRQ register */
+    430                      RcSetReg(RC522_REG_ERROR, 0);
+   \                     ??M522PcdCmd_29:
+   \   0001D3                ; Setup parameters for call to function RcSetReg
+   \   0001D3   7A00         MOV     R2,#0x0
+   \   0001D5   7906         MOV     R1,#0x6
+   \   0001D7   12....       LCALL   ??RcSetReg?relay
+    431                  }
+    432          
+    433                  /*read data from FIFO and set response parameter*/
+    434                  if(status != STATUS_ACK_SUPPOSED)
+   \   0001DA   7402         MOV     A,#0x2
+   \   0001DC   6E           XRL     A,R6
+   \   0001DD   7003         JNZ     ??M522PcdCmd_30
+   \   0001DF   7402         MOV     A,#0x2
+   \   0001E1   6F           XRL     A,R7
+   \                     ??M522PcdCmd_30:
+   \   0001E2   6044         JZ      ??M522PcdCmd_14
+    435                  {
+    436                      for(i=0; i<MpIsrInfo->nBytesReceived; i++)
+   \                     ??M522PcdCmd_15:
+   \   0001E4   75..00       MOV     ?V0 + 8,#0x0
+   \   0001E7   800C         SJMP    ??M522PcdCmd_31
+    437                      {
+    438                          ExchangeBuf[i] = RcGetReg(RC522_REG_FIFODATA);
+   \                     ??M522PcdCmd_32:
+   \   0001E9                ; Setup parameters for call to function RcGetReg
+   \   0001E9   7909         MOV     R1,#0x9
+   \   0001EB   12....       LCALL   ??RcGetReg?relay
+   \   0001EE   12....       LCALL   ?Subroutine22 & 0xFFFF
+    439                      }
+   \                     ??CrossCallReturnLabel_40:
+   \   0001F1   E9           MOV     A,R1
+   \   0001F2   F0           MOVX    @DPTR,A
+   \   0001F3   05..         INC     ?V0 + 8
+   \                     ??M522PcdCmd_31:
+   \   0001F5   90....       MOV     DPTR,#MpIsrInfo
+   \   0001F8   E0           MOVX    A,@DPTR
+   \   0001F9   2404         ADD     A,#0x4
+   \   0001FB   12....       LCALL   ?Subroutine23 & 0xFFFF
+   \                     ??CrossCallReturnLabel_42:
+   \   0001FE   FA           MOV     R2,A
+   \   0001FF   E5..         MOV     A,?V0 + 8
+   \   000201   C3           CLR     C
+   \   000202   9A           SUBB    A,R2
+   \   000203   40E4         JC      ??M522PcdCmd_32
+    440                      /*in case of incomplete last byte reduce number of complete bytes by 1*/
+    441                      if(MpIsrInfo->nBitsReceived && MpIsrInfo->nBytesReceived)
+   \   000205   90....       MOV     DPTR,#MpIsrInfo
+   \   000208   E0           MOVX    A,@DPTR
+   \   000209   FA           MOV     R2,A
+   \   00020A   A3           INC     DPTR
+   \   00020B   E0           MOVX    A,@DPTR
+   \   00020C   F583         MOV     DPH,A
+   \   00020E   8A82         MOV     DPL,R2
+   \   000210   A3           INC     DPTR
+   \   000211   A3           INC     DPTR
+   \   000212   A3           INC     DPTR
+   \   000213   A3           INC     DPTR
+   \   000214   A3           INC     DPTR
+   \   000215   E0           MOVX    A,@DPTR
+   \   000216   FA           MOV     R2,A
+   \   000217   A3           INC     DPTR
+   \   000218   E0           MOVX    A,@DPTR
+   \   000219   FB           MOV     R3,A
+   \   00021A   EA           MOV     A,R2
+   \   00021B   4B           ORL     A,R3
+   \   00021C   600A         JZ      ??M522PcdCmd_14
+   \   00021E   8882         MOV     DPL,R0
+   \   000220   8983         MOV     DPH,R1
+   \   000222   E0           MOVX    A,@DPTR
+   \   000223   6003         JZ      ??M522PcdCmd_14
+    442                          MpIsrInfo->nBytesReceived --;
+   \   000225   E0           MOVX    A,@DPTR
+   \   000226   14           DEC     A
+   \   000227   F0           MOVX    @DPTR,A
+    443                  }
+    444              }
+    445              RcSetReg(RC522_REG_COMMIRQ, waitForComm);
+   \                     ??M522PcdCmd_14:
+   \   000228                ; Setup parameters for call to function RcSetReg
+   \   000228   AA..         MOV     R2,?V0 + 3
+   \   00022A   12....       LCALL   ?Subroutine8 & 0xFFFF
+    446              RcSetReg(RC522_REG_DIVIRQ, waitForDiv);
+    447              RcSetReg(RC522_REG_FIFOLEVEL, RC522_BIT_FLUSHBUFFER);
+    448              RcSetReg(RC522_REG_COMMIRQ, RC522_BIT_TIMERI);
+   \                     ??CrossCallReturnLabel_7:
+   \   00022D                ; Setup parameters for call to function RcSetReg
+   \   00022D   7A01         MOV     R2,#0x1
+   \   00022F   12....       LCALL   ?Subroutine27 & 0xFFFF
+    449              RcSetReg(RC522_REG_BITFRAMING, 0);
+   \                     ??CrossCallReturnLabel_53:
+   \   000232   790D         MOV     R1,#0xd
+   \   000234   12....       LCALL   ??RcSetReg?relay
+    450              return status;
+   \   000237   EE           MOV     A,R6
+   \   000238   FA           MOV     R2,A
+   \   000239   EF           MOV     A,R7
+   \   00023A   FB           MOV     R3,A
+   \   00023B   7F09         MOV     R7,#0x9
+   \   00023D   02....       LJMP    ?BANKED_LEAVE_XDATA
+    451          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine27:
+   \   000000   7904         MOV     R1,#0x4
+   \   000002                REQUIRE ??Subroutine33_0
+   \   000002                ; // Fall through to label ??Subroutine33_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine23:
+   \   000000   F8           MOV     R0,A
+   \   000001   A3           INC     DPTR
+   \   000002   E0           MOVX    A,@DPTR
+   \   000003   3400         ADDC    A,#0x0
+   \   000005   F9           MOV     R1,A
+   \   000006   8882         MOV     DPL,R0
+   \   000008   8983         MOV     DPH,R1
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine22:
+   \   000000   85....       MOV     ?V0 + 0,?V0 + 8
+   \   000003   E5..         MOV     A,?V0 + 6
+   \   000005   25..         ADD     A,?V0 + 0
+   \   000007   F582         MOV     DPL,A
+   \   000009   E5..         MOV     A,?V0 + 7
+   \   00000B   3400         ADDC    A,#0x0
+   \   00000D   F583         MOV     DPH,A
+   \   00000F   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine20:
+   \   000000   12....       LCALL   ?Subroutine31 & 0xFFFF
+   \                     ??CrossCallReturnLabel_52:
+   \   000003   A3           INC     DPTR
+   \   000004   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine31:
+   \   000000   90....       MOV     DPTR,#MpIsrInfo
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F8           MOV     R0,A
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   F583         MOV     DPH,A
+   \   000009   8882         MOV     DPL,R0
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   A3           INC     DPTR
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   12....       LCALL   ??RcGetReg?relay
+   \   000003   E9           MOV     A,R1
+   \   000004   F5..         MOV     ?V0 + 8,A
+   \   000006   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_54:
+   \   000003   7905         MOV     R1,#0x5
+   \   000005   12....       LCALL   ??RcSetReg?relay
+   \   000008                ; Setup parameters for call to function RcSetReg
+   \   000008                ; Setup parameters for call to function RcSetReg
+   \   000008   7A80         MOV     R2,#-0x80
+   \   00000A   790A         MOV     R1,#0xa
+   \   00000C   12....       LCALL   ??RcSetReg?relay
+   \   00000F   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine34_0:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F8           MOV     R0,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F9           MOV     R1,A
+   \   000005   E8           MOV     A,R0
+   \   000006   49           ORL     A,R1
+   \   000007   22           RET
+    452          
+    453          /*************************************************
+    454          Function:       Request
+    455          Description:
+    456               REQA, request to see if have a ISO14443A card in the field
+    457          Parameter:
+    458               req_code   command code(ISO14443_3_REQALL or ISO14443_3_REQIDL)
+    459               atq        the buffer to save the answer to request from the card
+    460          Return:
+    461               short      status of implement
+    462          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    463          short Request(unsigned char req_code, unsigned char *atq)
+   \                     Request:
+    464          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 2,R1
+   \   000007   EA           MOV     A,R2
+   \   000008   FE           MOV     R6,A
+   \   000009   EB           MOV     A,R3
+   \   00000A   FF           MOV     R7,A
+    465             char  status = STATUS_SUCCESS;
+    466          
+    467             /************* initialize *****************/
+    468             RcModifyReg(RC522_REG_STATUS2, 0, RC522_BIT_CRYPTO1ON);  /* disable Crypto if activated before */
+   \   00000B                ; Setup parameters for call to function RcModifyReg
+   \   00000B   7B08         MOV     R3,#0x8
+   \   00000D   7A00         MOV     R2,#0x0
+   \   00000F   7908         MOV     R1,#0x8
+   \   000011   12....       LCALL   ??RcModifyReg?relay
+    469             RcSetReg(RC522_REG_COLL, RC522_BIT_VALUESAFTERCOLL);  	/* active values after coll */
+   \   000014                ; Setup parameters for call to function RcSetReg
+   \   000014   7A80         MOV     R2,#-0x80
+   \   000016   790E         MOV     R1,#0xe
+   \   000018   12....       LCALL   ??RcSetReg?relay
+    470             RcModifyReg(RC522_REG_TXMODE, 0, RC522_BIT_CRCEN);  		/* disable TxCRC and RxCRC */
+   \   00001B                ; Setup parameters for call to function RcModifyReg
+   \   00001B   7B80         MOV     R3,#-0x80
+   \   00001D   7A00         MOV     R2,#0x0
+   \   00001F   12....       LCALL   ?Subroutine10 & 0xFFFF
+    471             RcModifyReg(RC522_REG_RXMODE, 0, RC522_BIT_CRCEN);
+    472             RcSetReg(RC522_REG_BITFRAMING, REQUEST_BITS);
+   \                     ??CrossCallReturnLabel_10:
+   \   000022                ; Setup parameters for call to function RcSetReg
+   \   000022   7A07         MOV     R2,#0x7
+   \   000024   12....       LCALL   ?Subroutine5 & 0xFFFF
+    473          
+    474             /* set necessary parameters for transmission */
+    475             ResetInfo(MInfo);
+    476             SerBuffer[0] = req_code;
+   \                     ??CrossCallReturnLabel_0:
+   \   000027   E5..         MOV     A,?V0 + 2
+   \   000029   90....       MOV     DPTR,#SerBuffer
+   \   00002C   F0           MOVX    @DPTR,A
+    477             MInfo.nBytesToSend   = 1;
+   \   00002D   90....       MOV     DPTR,#MInfo + 3
+   \   000030   7401         MOV     A,#0x1
+   \   000032   F0           MOVX    @DPTR,A
+    478          
+    479             /* Set timeout for REQA, ANTICOLL, SELECT*/
+    480              SetTimeOut(400);
+   \   000033                ; Setup parameters for call to function SetTimeOut
+   \   000033   7A90         MOV     R2,#-0x70
+   \   000035   FB           MOV     R3,A
+   \   000036   12....       LCALL   ?Subroutine9 & 0xFFFF
+    481          
+    482             status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    483                                SerBuffer,
+    484                                &MInfo);
+   \                     ??CrossCallReturnLabel_8:
+   \   000039   F5..         MOV     ?V0 + 0,A
+    485             if(status == STATUS_SUCCESS || status == STATUS_COLLISION_ERROR)
+   \   00003B   6006         JZ      ??Request_0
+   \   00003D   7406         MOV     A,#0x6
+   \   00003F   65..         XRL     A,?V0 + 0
+   \   000041   702D         JNZ     ??Request_1
+    486             {
+    487                 if(MInfo.nBytesReceived != ATQA_LENGTH || MInfo.nBitsReceived != 0x00)
+   \                     ??Request_0:
+   \   000043   90....       MOV     DPTR,#MInfo + 4
+   \   000046   E0           MOVX    A,@DPTR
+   \   000047   6402         XRL     A,#0x2
+   \   000049   7005         JNZ     ??Request_2
+   \   00004B   12....       LCALL   ?Subroutine21 & 0xFFFF
+   \                     ??CrossCallReturnLabel_58:
+   \   00004E   6005         JZ      ??Request_3
+    488                 {
+    489                     status = STATUS_PROTOCOL_ERROR;
+   \                     ??Request_2:
+   \   000050   75..0B       MOV     ?V0 + 0,#0xb
+   \   000053   8023         SJMP    ??Request_4
+    490                 }
+    491                 else
+    492                 {
+    493                     memcpy(atq,SerBuffer,2);
+   \                     ??Request_3:
+   \   000055                ; Setup parameters for call to function memcpy
+   \   000055   75..02       MOV     ?V0 + 4,#0x2
+   \   000058   75..00       MOV     ?V0 + 5,#0x0
+   \   00005B   78..         MOV     R0,#?V0 + 4
+   \   00005D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000060   7C..         MOV     R4,#SerBuffer & 0xff
+   \   000062   7D..         MOV     R5,#(SerBuffer >> 8) & 0xff
+   \   000064   EE           MOV     A,R6
+   \   000065   FA           MOV     R2,A
+   \   000066   EF           MOV     A,R7
+   \   000067   FB           MOV     R3,A
+   \   000068   12....       LCALL   ??Subroutine36_0 & 0xFFFF
+    494                 }
+    495             }
+   \                     ??CrossCallReturnLabel_65:
+   \   00006B   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00006E   8008         SJMP    ??Request_4
+    496             else
+    497             {   /* reset atqa parameter */
+    498                 atq[0] = 0x00;
+   \                     ??Request_1:
+   \   000070   8E82         MOV     DPL,R6
+   \   000072   8F83         MOV     DPH,R7
+   \   000074   E4           CLR     A
+   \   000075   F0           MOVX    @DPTR,A
+    499                 atq[1] = 0x00;
+   \   000076   A3           INC     DPTR
+   \   000077   F0           MOVX    @DPTR,A
+    500             }
+    501             //RcSetReg(RC522_REG_BITFRAMING, 0);
+    502             return status;
+   \                     ??Request_4:
+   \   000078   AA..         MOV     R2,?V0 + 0
+   \   00007A   7B00         MOV     R3,#0x0
+   \   00007C                REQUIRE ?Subroutine2
+   \   00007C                ; // Fall through to label ?Subroutine2
+    503          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   7F06         MOV     R7,#0x6
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine21:
+   \   000000   A3           INC     DPTR
+   \   000001                REQUIRE ??Subroutine34_0
+   \   000001                ; // Fall through to label ??Subroutine34_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   7912         MOV     R1,#0x12
+   \   000002   12....       LCALL   ??RcModifyReg?relay
+   \   000005                ; Setup parameters for call to function RcModifyReg
+   \   000005                ; Setup parameters for call to function RcModifyReg
+   \   000005   7B80         MOV     R3,#-0x80
+   \   000007   7A00         MOV     R2,#0x0
+   \   000009   7913         MOV     R1,#0x13
+   \   00000B   12....       LCALL   ??RcModifyReg?relay
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   790D         MOV     R1,#0xd
+   \   000002   12....       LCALL   ??RcSetReg?relay
+   \   000005   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_76:
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   12....       LCALL   ?Subroutine26 & 0xFFFF
+   \                     ??CrossCallReturnLabel_71:
+   \   000003   EA           MOV     A,R2
+   \   000004   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine26:
+   \   000000   12....       LCALL   ?Subroutine32 & 0xFFFF
+   \                     ??CrossCallReturnLabel_75:
+   \   000003   790C         MOV     R1,#0xc
+   \   000005   12....       LCALL   ??M522PcdCmd?relay
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine32:
+   \   000000   12....       LCALL   ??SetTimeOut?relay
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003                ; Setup parameters for call to function M522PcdCmd
+   \   000003   7C..         MOV     R4,#MInfo & 0xff
+   \   000005   7D..         MOV     R5,#(MInfo >> 8) & 0xff
+   \   000007   7A..         MOV     R2,#SerBuffer & 0xff
+   \   000009   7B..         MOV     R3,#(SerBuffer >> 8) & 0xff
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine36_0:
+   \   000000   12....       LCALL   ??memcpy?relay
+   \   000003   7402         MOV     A,#0x2
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine28:
+   \   000000   90....       MOV     DPTR,#MInfo
+   \   000003   E4           CLR     A
+   \   000004                REQUIRE ??Subroutine38_0
+   \   000004                ; // Fall through to label ??Subroutine38_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine38_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   A3           INC     DPTR
+   \   000002   F0           MOVX    @DPTR,A
+   \   000003   A3           INC     DPTR
+   \   000004   F0           MOVX    @DPTR,A
+   \   000005   A3           INC     DPTR
+   \   000006   F0           MOVX    @DPTR,A
+   \   000007   A3           INC     DPTR
+   \   000008   F0           MOVX    @DPTR,A
+   \   000009   A3           INC     DPTR
+   \   00000A   F0           MOVX    @DPTR,A
+   \   00000B   A3           INC     DPTR
+   \   00000C   F0           MOVX    @DPTR,A
+   \   00000D   A3           INC     DPTR
+   \   00000E   F0           MOVX    @DPTR,A
+   \   00000F   22           RET
+    504          
+    505          /*************************************************
+    506          Function:       CascAnticoll
+    507          Description:
+    508               Functions to split anticollission and select internally.
+    509               NOTE: this founction is used internal only, and cannot call by application program
+    510          Parameter:
+    511               sel_code   command code
+    512               bitcount   the bit counter of known UID
+    513               snr        the UID have known
+    514          Return:
+    515               short      status of implement
+    516          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    517          short CascAnticoll(unsigned char sel_code,
+   \                     CascAnticoll:
+    518                             unsigned char bitcount,
+    519                             unsigned char *snr)
+    520          {
+   \   000000   74ED         MOV     A,#-0x13
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 19
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 10,R1
+   \   000007   8A..         MOV     ?V0 + 2,R2
+   \   000009   EC           MOV     A,R4
+   \   00000A   FE           MOV     R6,A
+   \   00000B   ED           MOV     A,R5
+   \   00000C   FF           MOV     R7,A
+    521              short status = STATUS_SUCCESS;
+    522          
+    523              unsigned char  i;
+    524              unsigned char  complete = 0; /* signs end of anticollission loop */
+    525              unsigned char  rbits    = 0; /* number of total received bits */
+    526              unsigned char  nbits    = 0; /* */
+    527              unsigned char  nbytes   = 0; /* */
+    528              unsigned char  byteOffset;   /* stores offset for ID copy if uncomplete last byte was sent */
+    529          
+    530              /* initialise relvant bytes in internal buffer */
+    531              for(i=2;i<7;i++)
+    532                  SerBuffer[i] = 0x00;
+   \   00000D   E4           CLR     A
+   \   00000E   90....       MOV     DPTR,#SerBuffer + 2
+   \   000011   7805         MOV     R0,#0x5
+   \                     ??CascAnticoll_0:
+   \   000013   F0           MOVX    @DPTR,A
+   \   000014   A3           INC     DPTR
+   \   000015   D8FC         DJNZ    R0,??CascAnticoll_0
+    533          
+    534              /* disable TxCRC and RxCRC */
+    535              RcModifyReg(RC522_REG_TXMODE, 0, RC522_BIT_CRCEN);
+   \   000017                ; Setup parameters for call to function RcModifyReg
+   \   000017   7B80         MOV     R3,#-0x80
+   \   000019   FA           MOV     R2,A
+   \   00001A   12....       LCALL   ?Subroutine10 & 0xFFFF
+    536              RcModifyReg(RC522_REG_RXMODE, 0, RC522_BIT_CRCEN);
+    537          
+    538              /* activate deletion of bits after coll */
+    539              RcSetReg(RC522_REG_COLL, 0);
+   \                     ??CrossCallReturnLabel_11:
+   \   00001D                ; Setup parameters for call to function RcSetReg
+   \   00001D   7A00         MOV     R2,#0x0
+   \   00001F   790E         MOV     R1,#0xe
+   \   000021   12....       LCALL   ??RcSetReg?relay
+   \   000024   8005         SJMP    ??CascAnticoll_1
+    540          
+    541              /* init parameters for anticollision */
+    542              while(!complete && (status == STATUS_SUCCESS))
+    543              {
+    544                   /* if there is a communication problem on the RF interface, bcnt
+    545                      could be larger than 32 - folowing loops will be defective. */
+    546                  if(bitcount > SINGLE_UID_LENGTH)
+    547                  {
+    548                      status = STATUS_INVALID_PARAMETER;
+    549                      continue;
+    550                  }
+    551          
+    552                  /* prepare data length */
+    553                  nbits = (unsigned char)(bitcount % BITS_PER_BYTE);
+    554                  nbytes = (unsigned char)(bitcount / BITS_PER_BYTE);
+    555                  if(nbits)
+    556                      nbytes++;
+    557          
+    558                  /* prepare data buffer */
+    559                  SerBuffer[0] = sel_code;
+    560                  SerBuffer[1] = (unsigned char)(NVB_MIN_PARAMETER + ((bitcount / BITS_PER_BYTE) << UPPER_NIBBLE_SHIFT) + nbits);
+    561                  for(i=0;i<nbytes;i++)
+    562                      SerBuffer[2+i] = snr[i];   /* copy serial number to tranmit buffer */
+    563          
+    564                  /* set TxLastBits and RxAlign to number of bits sent */
+    565                  RcSetReg(RC522_REG_BITFRAMING, (unsigned char)((nbits << UPPER_NIBBLE_SHIFT) | nbits));
+    566          
+    567                  /* prepare data for common transceive */
+    568                  ResetInfo(MInfo);
+    569                  MInfo.nBytesToSend   = (unsigned char)(nbytes + 2);
+    570                  SetTimeOut(1000);
+    571                  //SetTimeOut(10000);
+    572                  status = M522PcdCmd(RC522_CMD_TRANSCEIVE, SerBuffer, &MInfo);
+    573          
+    574                  if(status == STATUS_COLLISION_ERROR || status == STATUS_SUCCESS)
+    575                  {
+    576                      /* store number of received data bits and bytes internaly */
+    577                      rbits = (unsigned char)(MInfo.nBitsReceived + (MInfo.nBytesReceived << 3) - nbits);
+    578          
+    579                      if((rbits + bitcount) > COMPLETE_UID_BITS)
+    580                      {
+    581                          status = STATUS_BITCOUNT_ERROR;
+    582                          continue;
+    583                      }
+    584          
+    585                      /* increment number of bytes received if also some bits received */
+    586                      if(MInfo.nBitsReceived)
+    587                          MInfo.nBytesReceived++;
+    588          
+    589                      /* reset offset for data copying */
+    590                      byteOffset = 0;
+    591                      /* if number of bits sent are not 0, write first received byte in last of sent */
+    592                      if(nbits)
+    593                      {   /* last byte transmitted and first byte received are the same */
+    594                          snr[nbytes - 1] |= SerBuffer[0];
+    595                          byteOffset++;
+    596                      }
+    597          
+    598                      for(i=0;i<(4-nbytes);i++)
+    599                          snr[nbytes + i] = SerBuffer[i + byteOffset];
+    600          
+    601                      if(status == STATUS_COLLISION_ERROR)
+    602                      {
+    603                          /* calculate new bitcount value */
+    604                          bitcount = (unsigned char)(bitcount + rbits);
+   \                     ??CascAnticoll_2:
+   \   000026   EC           MOV     A,R4
+   \   000027   25..         ADD     A,?V0 + 2
+   \   000029   F5..         MOV     ?V0 + 2,A
+    605                          status = STATUS_SUCCESS;
+    606                      } else
+   \                     ??CascAnticoll_1:
+   \   00002B   E5..         MOV     A,?V0 + 2
+   \   00002D   C3           CLR     C
+   \   00002E   9421         SUBB    A,#0x21
+   \   000030   4009         JC      ??CascAnticoll_3
+   \   000032   75..01       MOV     ?V0 + 0,#0x1
+   \   000035   75..01       MOV     ?V0 + 1,#0x1
+   \   000038   02....       LJMP    ??CascAnticoll_4 & 0xFFFF
+   \                     ??CascAnticoll_3:
+   \   00003B   7407         MOV     A,#0x7
+   \   00003D   55..         ANL     A,?V0 + 2
+   \   00003F   F5..         MOV     ?V0 + 5,A
+   \   000041   E5..         MOV     A,?V0 + 2
+   \   000043   13           RRC     A
+   \   000044   13           RRC     A
+   \   000045   13           RRC     A
+   \   000046   541F         ANL     A,#0x1f
+   \   000048   F5..         MOV     ?V0 + 4,A
+   \   00004A   E5..         MOV     A,?V0 + 5
+   \   00004C   6002         JZ      ??CascAnticoll_5
+   \   00004E   05..         INC     ?V0 + 4
+   \                     ??CascAnticoll_5:
+   \   000050   E5..         MOV     A,?V0 + 10
+   \   000052   90....       MOV     DPTR,#SerBuffer
+   \   000055   F0           MOVX    @DPTR,A
+   \   000056   E5..         MOV     A,?V0 + 2
+   \   000058   C3           CLR     C
+   \   000059   33           RLC     A
+   \   00005A   54F0         ANL     A,#0xf0
+   \   00005C   25..         ADD     A,?V0 + 5
+   \   00005E   2420         ADD     A,#0x20
+   \   000060   A3           INC     DPTR
+   \   000061   F0           MOVX    @DPTR,A
+   \   000062   E5..         MOV     A,?V0 + 4
+   \   000064   6026         JZ      ??CascAnticoll_6
+   \   000066   7A..         MOV     R2,#(SerBuffer + 2) & 0xff
+   \   000068   7B..         MOV     R3,#((SerBuffer + 2) >> 8) & 0xff
+   \   00006A   EE           MOV     A,R6
+   \   00006B   F8           MOV     R0,A
+   \   00006C   EF           MOV     A,R7
+   \   00006D   F9           MOV     R1,A
+   \   00006E   85....       MOV     ?V0 + 3,?V0 + 4
+   \                     ??CascAnticoll_7:
+   \   000071   8882         MOV     DPL,R0
+   \   000073   8983         MOV     DPH,R1
+   \   000075   E0           MOVX    A,@DPTR
+   \   000076   8A82         MOV     DPL,R2
+   \   000078   8B83         MOV     DPH,R3
+   \   00007A   12....       LCALL   ?Subroutine19 & 0xFFFF
+   \                     ??CrossCallReturnLabel_33:
+   \   00007D   8A82         MOV     DPL,R2
+   \   00007F   8B83         MOV     DPH,R3
+   \   000081   A3           INC     DPTR
+   \   000082   AA82         MOV     R2,DPL
+   \   000084   AB83         MOV     R3,DPH
+   \   000086   15..         DEC     ?V0 + 3
+   \   000088   E5..         MOV     A,?V0 + 3
+   \   00008A   70E5         JNZ     ??CascAnticoll_7
+   \                     ??CascAnticoll_6:
+   \   00008C                ; Setup parameters for call to function RcSetReg
+   \   00008C   E5..         MOV     A,?V0 + 5
+   \   00008E   C4           SWAP    A
+   \   00008F   45..         ORL     A,?V0 + 5
+   \   000091   FA           MOV     R2,A
+   \   000092   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_1:
+   \   000095   7402         MOV     A,#0x2
+   \   000097   25..         ADD     A,?V0 + 4
+   \   000099   90....       MOV     DPTR,#MInfo + 3
+   \   00009C   F0           MOVX    @DPTR,A
+   \   00009D                ; Setup parameters for call to function SetTimeOut
+   \   00009D   7AE8         MOV     R2,#-0x18
+   \   00009F   7B03         MOV     R3,#0x3
+   \   0000A1   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   0000A4   7406         MOV     A,#0x6
+   \   0000A6   65..         XRL     A,?V0 + 0
+   \   0000A8   7001         JNZ     ??CascAnticoll_8
+   \   0000AA   EB           MOV     A,R3
+   \                     ??CascAnticoll_8:
+   \   0000AB   6008         JZ      ??CascAnticoll_9
+   \   0000AD   EA           MOV     A,R2
+   \   0000AE   45..         ORL     A,?V0 + 1
+   \   0000B0   6003         JZ      $+5
+   \   0000B2   02....       LJMP    ??CascAnticoll_4 & 0xFFFF
+   \                     ??CascAnticoll_9:
+   \   0000B5   90....       MOV     DPTR,#MInfo + 5
+   \   0000B8   E0           MOVX    A,@DPTR
+   \   0000B9   F8           MOV     R0,A
+   \   0000BA   A3           INC     DPTR
+   \   0000BB   E0           MOVX    A,@DPTR
+   \   0000BC   F9           MOV     R1,A
+   \   0000BD   90....       MOV     DPTR,#MInfo + 4
+   \   0000C0   E0           MOVX    A,@DPTR
+   \   0000C1   33           RLC     A
+   \   0000C2   33           RLC     A
+   \   0000C3   33           RLC     A
+   \   0000C4   54F8         ANL     A,#0xf8
+   \   0000C6   C0E0         PUSH    A
+   \   0000C8   E8           MOV     A,R0
+   \   0000C9   FA           MOV     R2,A
+   \   0000CA   D0E0         POP     A
+   \   0000CC   2A           ADD     A,R2
+   \   0000CD   C3           CLR     C
+   \   0000CE   95..         SUBB    A,?V0 + 5
+   \   0000D0   FC           MOV     R4,A
+   \   0000D1   85....       MOV     ?V0 + 6,?V0 + 2
+   \   0000D4   25..         ADD     A,?V0 + 6
+   \   0000D6   FA           MOV     R2,A
+   \   0000D7   E4           CLR     A
+   \   0000D8   3400         ADDC    A,#0x0
+   \   0000DA   FB           MOV     R3,A
+   \   0000DB   EA           MOV     A,R2
+   \   0000DC   9429         SUBB    A,#0x29
+   \   0000DE   EB           MOV     A,R3
+   \   0000DF   9400         SUBB    A,#0x0
+   \   0000E1   C3           CLR     C
+   \   0000E2   65D0         XRL     A,PSW
+   \   0000E4   33           RLC     A
+   \   0000E5   4009         JC      ??CascAnticoll_10
+   \   0000E7   75..04       MOV     ?V0 + 0,#0x4
+   \   0000EA   75..00       MOV     ?V0 + 1,#0x0
+   \   0000ED   02....       LJMP    ??CascAnticoll_4 & 0xFFFF
+   \                     ??CascAnticoll_10:
+   \   0000F0   E8           MOV     A,R0
+   \   0000F1   49           ORL     A,R1
+   \   0000F2   6003         JZ      ??CascAnticoll_11
+   \   0000F4   E0           MOVX    A,@DPTR
+   \   0000F5   04           INC     A
+   \   0000F6   F0           MOVX    @DPTR,A
+   \                     ??CascAnticoll_11:
+   \   0000F7   7D00         MOV     R5,#0x0
+   \   0000F9   85..82       MOV     DPL,?V0 + 4
+   \   0000FC   A882         MOV     R0,DPL
+   \   0000FE   E5..         MOV     A,?V0 + 5
+   \   000100   601B         JZ      ??CascAnticoll_12
+   \   000102   90....       MOV     DPTR,#SerBuffer
+   \   000105   E0           MOVX    A,@DPTR
+   \   000106   FD           MOV     R5,A
+   \   000107   EE           MOV     A,R6
+   \   000108   28           ADD     A,R0
+   \   000109   FA           MOV     R2,A
+   \   00010A   EF           MOV     A,R7
+   \   00010B   3400         ADDC    A,#0x0
+   \   00010D   FB           MOV     R3,A
+   \   00010E   EA           MOV     A,R2
+   \   00010F   24FF         ADD     A,#-0x1
+   \   000111   F582         MOV     DPL,A
+   \   000113   EB           MOV     A,R3
+   \   000114   34FF         ADDC    A,#-0x1
+   \   000116   F583         MOV     DPH,A
+   \   000118   E0           MOVX    A,@DPTR
+   \   000119   4D           ORL     A,R5
+   \   00011A   F0           MOVX    @DPTR,A
+   \   00011B   7D01         MOV     R5,#0x1
+   \                     ??CascAnticoll_12:
+   \   00011D   75..00       MOV     ?V0 + 8,#0x0
+   \   000120   7404         MOV     A,#0x4
+   \   000122   C3           CLR     C
+   \   000123   98           SUBB    A,R0
+   \   000124   FA           MOV     R2,A
+   \   000125   95E0         SUBB    A,0xE0 /* A   */
+   \   000127   FB           MOV     R3,A
+   \   000128   C3           CLR     C
+   \   000129   EA           MOV     A,R2
+   \   00012A   9401         SUBB    A,#0x1
+   \   00012C   EB           MOV     A,R3
+   \   00012D   9400         SUBB    A,#0x0
+   \   00012F   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000131   65D0         XRL     A,PSW
+   \   000133   33           RLC     A
+   \   000134   4049         JC      ??CascAnticoll_13
+   \   000136   EE           MOV     A,R6
+   \   000137   28           ADD     A,R0
+   \   000138   F5..         MOV     ?V0 + 6,A
+   \   00013A   EF           MOV     A,R7
+   \   00013B   3400         ADDC    A,#0x0
+   \   00013D   F5..         MOV     ?V0 + 7,A
+   \   00013F   8D..         MOV     ?V0 + 4,R5
+   \   000141   74..         MOV     A,#SerBuffer & 0xff
+   \   000143   25..         ADD     A,?V0 + 4
+   \   000145   F8           MOV     R0,A
+   \   000146   74..         MOV     A,#(SerBuffer >> 8) & 0xff
+   \   000148   3400         ADDC    A,#0x0
+   \   00014A   F9           MOV     R1,A
+   \                     ??CascAnticoll_14:
+   \   00014B   8882         MOV     DPL,R0
+   \   00014D   8983         MOV     DPH,R1
+   \   00014F   E0           MOVX    A,@DPTR
+   \   000150   85..82       MOV     DPL,?V0 + 6
+   \   000153   85..83       MOV     DPH,?V0 + 7
+   \   000156   F0           MOVX    @DPTR,A
+   \   000157   05..         INC     ?V0 + 8
+   \   000159   8882         MOV     DPL,R0
+   \   00015B   8983         MOV     DPH,R1
+   \   00015D   A3           INC     DPTR
+   \   00015E   A882         MOV     R0,DPL
+   \   000160   A983         MOV     R1,DPH
+   \   000162   85..82       MOV     DPL,?V0 + 6
+   \   000165   85..83       MOV     DPH,?V0 + 7
+   \   000168   A3           INC     DPTR
+   \   000169   8582..       MOV     ?V0 + 6,DPL
+   \   00016C   8583..       MOV     ?V0 + 7,DPH
+   \   00016F   85....       MOV     ?V0 + 4,?V0 + 8
+   \   000172   C3           CLR     C
+   \   000173   E5..         MOV     A,?V0 + 4
+   \   000175   9A           SUBB    A,R2
+   \   000176   E4           CLR     A
+   \   000177   9B           SUBB    A,R3
+   \   000178   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   00017A   65D0         XRL     A,PSW
+   \   00017C   33           RLC     A
+   \   00017D   40CC         JC      ??CascAnticoll_14
+   \                     ??CascAnticoll_13:
+   \   00017F   7406         MOV     A,#0x6
+   \   000181   65..         XRL     A,?V0 + 0
+   \   000183   7002         JNZ     ??CascAnticoll_15
+   \   000185   E5..         MOV     A,?V0 + 1
+   \                     ??CascAnticoll_15:
+   \   000187   7003         JNZ     $+5
+   \   000189   02....       LJMP    ??CascAnticoll_2 & 0xFFFF
+    607                      {
+    608                          if((snr[0] ^ snr[1] ^ snr[2] ^ snr[3]) != SerBuffer[i + byteOffset])
+   \   00018C   8E82         MOV     DPL,R6
+   \   00018E   8F83         MOV     DPH,R7
+   \   000190   A3           INC     DPTR
+   \   000191   A3           INC     DPTR
+   \   000192   A3           INC     DPTR
+   \   000193   C082         PUSH    DPL
+   \   000195   C083         PUSH    DPH
+   \   000197   8E82         MOV     DPL,R6
+   \   000199   8F83         MOV     DPH,R7
+   \   00019B   A3           INC     DPTR
+   \   00019C   A3           INC     DPTR
+   \   00019D   C082         PUSH    DPL
+   \   00019F   C083         PUSH    DPH
+   \   0001A1   8E82         MOV     DPL,R6
+   \   0001A3   8F83         MOV     DPH,R7
+   \   0001A5   A3           INC     DPTR
+   \   0001A6   C082         PUSH    DPL
+   \   0001A8   C083         PUSH    DPH
+   \   0001AA   8E82         MOV     DPL,R6
+   \   0001AC   8F83         MOV     DPH,R7
+   \   0001AE   E0           MOVX    A,@DPTR
+   \   0001AF   D083         POP     DPH
+   \   0001B1   D082         POP     DPL
+   \   0001B3   F8           MOV     R0,A
+   \   0001B4   E0           MOVX    A,@DPTR
+   \   0001B5   68           XRL     A,R0
+   \   0001B6   D083         POP     DPH
+   \   0001B8   D082         POP     DPL
+   \   0001BA   F8           MOV     R0,A
+   \   0001BB   E0           MOVX    A,@DPTR
+   \   0001BC   68           XRL     A,R0
+   \   0001BD   D083         POP     DPH
+   \   0001BF   D082         POP     DPL
+   \   0001C1   F8           MOV     R0,A
+   \   0001C2   E0           MOVX    A,@DPTR
+   \   0001C3   68           XRL     A,R0
+   \   0001C4   FA           MOV     R2,A
+   \   0001C5   8D..         MOV     ?V0 + 4,R5
+   \   0001C7   E5..         MOV     A,?V0 + 8
+   \   0001C9   25..         ADD     A,?V0 + 4
+   \   0001CB   F8           MOV     R0,A
+   \   0001CC   E4           CLR     A
+   \   0001CD   3400         ADDC    A,#0x0
+   \   0001CF   F9           MOV     R1,A
+   \   0001D0   74..         MOV     A,#SerBuffer & 0xff
+   \   0001D2   28           ADD     A,R0
+   \   0001D3   F582         MOV     DPL,A
+   \   0001D5   74..         MOV     A,#(SerBuffer >> 8) & 0xff
+   \   0001D7   39           ADDC    A,R1
+   \   0001D8   F583         MOV     DPH,A
+   \   0001DA   E0           MOVX    A,@DPTR
+   \   0001DB   6A           XRL     A,R2
+   \   0001DC   6006         JZ      ??CascAnticoll_4
+    609                          {
+    610                              status = STATUS_WRONG_UID_CHECKBYTE;
+   \   0001DE   75..01       MOV     ?V0 + 0,#0x1
+   \   0001E1   75..05       MOV     ?V0 + 1,#0x5
+    611                              continue;
+    612                          }
+    613                          complete=1;
+    614                      }
+    615                  }
+    616              }
+    617          
+    618              /* clear RxAlign and TxLastbits */
+    619              RcSetReg(RC522_REG_BITFRAMING, 0);
+   \                     ??CascAnticoll_4:
+   \   0001E4                ; Setup parameters for call to function RcSetReg
+   \   0001E4   7A00         MOV     R2,#0x0
+   \   0001E6   790D         MOV     R1,#0xd
+   \   0001E8   12....       LCALL   ??RcSetReg?relay
+    620          
+    621              /* activate values after coll */
+    622              RcSetReg(RC522_REG_COLL, RC522_BIT_VALUESAFTERCOLL);
+   \   0001EB                ; Setup parameters for call to function RcSetReg
+   \   0001EB   7A80         MOV     R2,#-0x80
+   \   0001ED   790E         MOV     R1,#0xe
+   \   0001EF   12....       LCALL   ??RcSetReg?relay
+    623              return status;
+   \   0001F2   AA..         MOV     R2,?V0 + 0
+   \   0001F4   AB..         MOV     R3,?V0 + 1
+   \   0001F6   7F0B         MOV     R7,#0xb
+   \   0001F8   02....       LJMP    ?BANKED_LEAVE_XDATA
+    624          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine19:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8882         MOV     DPL,R0
+   \   000003   8983         MOV     DPH,R1
+   \   000005   A3           INC     DPTR
+   \   000006   A882         MOV     R0,DPL
+   \   000008   A983         MOV     R1,DPH
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   12....       LCALL   ?Subroutine26 & 0xFFFF
+   \                     ??CrossCallReturnLabel_72:
+   \   000003   8A..         MOV     ?V0 + 0,R2
+   \   000005   8B..         MOV     ?V0 + 1,R3
+   \   000007   22           RET
+    625          
+    626          /*************************************************
+    627          Function:       Select
+    628          Description:
+    629               selecte a card to response the following command
+    630               NOTE: this founction is used internal only, and cannot call by application program
+    631          Parameter:
+    632               sel_code   command code
+    633               snr        buffer to store the card UID
+    634               sak        the byte to save the ACK from card
+    635          Return:
+    636               short      status of implement
+    637          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    638          short Select(unsigned char sel_code, unsigned char *snr, unsigned char *sak)
+   \                     Select:
+    639          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 2,R1
+   \   000007   EA           MOV     A,R2
+   \   000008   FE           MOV     R6,A
+   \   000009   EB           MOV     A,R3
+   \   00000A   FF           MOV     R7,A
+   \   00000B   8C..         MOV     ?V0 + 0,R4
+   \   00000D   8D..         MOV     ?V0 + 1,R5
+    640              short status = STATUS_SUCCESS;
+    641              /* define local variables */
+    642              unsigned char i;
+    643              /* activate CRC */
+    644              RcModifyReg(RC522_REG_TXMODE, 1, RC522_BIT_CRCEN);
+   \   00000F                ; Setup parameters for call to function RcModifyReg
+   \   00000F   7B80         MOV     R3,#-0x80
+   \   000011   7A01         MOV     R2,#0x1
+   \   000013   7912         MOV     R1,#0x12
+   \   000015   12....       LCALL   ??RcModifyReg?relay
+    645              RcModifyReg(RC522_REG_RXMODE, 1, RC522_BIT_CRCEN);
+   \   000018                ; Setup parameters for call to function RcModifyReg
+   \   000018   7B80         MOV     R3,#-0x80
+   \   00001A   7A01         MOV     R2,#0x1
+   \   00001C   7913         MOV     R1,#0x13
+   \   00001E   12....       LCALL   ??RcModifyReg?relay
+    646          
+    647              /* prepare data stream */
+    648              SerBuffer[0] = sel_code;   /* command code */
+   \   000021   E5..         MOV     A,?V0 + 2
+   \   000023   90....       MOV     DPTR,#SerBuffer
+   \   000026   F0           MOVX    @DPTR,A
+    649              SerBuffer[1] = NVB_MAX_PARAMETER;       /* parameter */
+   \   000027   A3           INC     DPTR
+   \   000028   7470         MOV     A,#0x70
+   \   00002A   F0           MOVX    @DPTR,A
+    650              for(i=0;i<4;i++)
+   \   00002B   7C..         MOV     R4,#(SerBuffer + 2) & 0xff
+   \   00002D   7D..         MOV     R5,#((SerBuffer + 2) >> 8) & 0xff
+   \   00002F   EE           MOV     A,R6
+   \   000030   F8           MOV     R0,A
+   \   000031   EF           MOV     A,R7
+   \   000032   F9           MOV     R1,A
+   \   000033   E8           MOV     A,R0
+   \   000034   2404         ADD     A,#0x4
+   \   000036   FA           MOV     R2,A
+   \   000037   E9           MOV     A,R1
+   \   000038   3400         ADDC    A,#0x0
+   \   00003A   FB           MOV     R3,A
+    651                  SerBuffer[2+i] = snr[i];   /* serial numbner bytes 1 to 4 */
+   \                     ??Select_0:
+   \   00003B   8882         MOV     DPL,R0
+   \   00003D   8983         MOV     DPH,R1
+   \   00003F   E0           MOVX    A,@DPTR
+   \   000040   8C82         MOV     DPL,R4
+   \   000042   8D83         MOV     DPH,R5
+   \   000044   12....       LCALL   ?Subroutine19 & 0xFFFF
+   \                     ??CrossCallReturnLabel_34:
+   \   000047   8C82         MOV     DPL,R4
+   \   000049   8D83         MOV     DPH,R5
+   \   00004B   A3           INC     DPTR
+   \   00004C   AC82         MOV     R4,DPL
+   \   00004E   AD83         MOV     R5,DPH
+   \   000050   EA           MOV     A,R2
+   \   000051   68           XRL     A,R0
+   \   000052   7002         JNZ     ??Select_1
+   \   000054   EB           MOV     A,R3
+   \   000055   69           XRL     A,R1
+   \                     ??Select_1:
+   \   000056   70E3         JNZ     ??Select_0
+    652              SerBuffer[6] = (unsigned char)(snr[0] ^ snr[1] ^ snr[2] ^ snr[3]);   /* serial number check byte */
+   \   000058   8E82         MOV     DPL,R6
+   \   00005A   8F83         MOV     DPH,R7
+   \   00005C   A3           INC     DPTR
+   \   00005D   A3           INC     DPTR
+   \   00005E   A3           INC     DPTR
+   \   00005F   C082         PUSH    DPL
+   \   000061   C083         PUSH    DPH
+   \   000063   8E82         MOV     DPL,R6
+   \   000065   8F83         MOV     DPH,R7
+   \   000067   A3           INC     DPTR
+   \   000068   A3           INC     DPTR
+   \   000069   C082         PUSH    DPL
+   \   00006B   C083         PUSH    DPH
+   \   00006D   8E82         MOV     DPL,R6
+   \   00006F   8F83         MOV     DPH,R7
+   \   000071   A3           INC     DPTR
+   \   000072   C082         PUSH    DPL
+   \   000074   C083         PUSH    DPH
+   \   000076   8E82         MOV     DPL,R6
+   \   000078   8F83         MOV     DPH,R7
+   \   00007A   E0           MOVX    A,@DPTR
+   \   00007B   D083         POP     DPH
+   \   00007D   D082         POP     DPL
+   \   00007F   F8           MOV     R0,A
+   \   000080   E0           MOVX    A,@DPTR
+   \   000081   68           XRL     A,R0
+   \   000082   D083         POP     DPH
+   \   000084   D082         POP     DPL
+   \   000086   F8           MOV     R0,A
+   \   000087   E0           MOVX    A,@DPTR
+   \   000088   68           XRL     A,R0
+   \   000089   D083         POP     DPH
+   \   00008B   D082         POP     DPL
+   \   00008D   F8           MOV     R0,A
+   \   00008E   E0           MOVX    A,@DPTR
+   \   00008F   68           XRL     A,R0
+   \   000090   90....       MOV     DPTR,#SerBuffer + 6
+   \   000093   F0           MOVX    @DPTR,A
+    653          
+    654              /* prepare data for common transceive */
+    655              ResetInfo(MInfo);
+   \   000094   90....       MOV     DPTR,#MInfo
+   \   000097   E4           CLR     A
+   \   000098   12....       LCALL   ?Subroutine17 & 0xFFFF
+    656              MInfo.nBytesToSend   = 0x07;
+   \                     ??CrossCallReturnLabel_29:
+   \   00009B   7407         MOV     A,#0x7
+   \   00009D   F0           MOVX    @DPTR,A
+    657              SetTimeOut(1000);
+   \   00009E                ; Setup parameters for call to function SetTimeOut
+   \   00009E   7AE8         MOV     R2,#-0x18
+   \   0000A0   7B03         MOV     R3,#0x3
+   \   0000A2   12....       LCALL   ?Subroutine9 & 0xFFFF
+    658              //SetTimeOut(2000);
+    659              status = M522PcdCmd(RC522_CMD_TRANSCEIVE, SerBuffer, &MInfo);
+    660          
+    661              if(status == STATUS_SUCCESS)
+   \                     ??CrossCallReturnLabel_9:
+   \   0000A5   4B           ORL     A,R3
+   \   0000A6   701E         JNZ     ??Select_2
+    662              {
+    663                  if(MInfo.nBytesReceived == SAK_LENGTH && MInfo.nBitsReceived == 0)
+   \   0000A8   90....       MOV     DPTR,#MInfo + 4
+   \   0000AB   E0           MOVX    A,@DPTR
+   \   0000AC   6401         XRL     A,#0x1
+   \   0000AE   7012         JNZ     ??Select_3
+   \   0000B0   12....       LCALL   ?Subroutine21 & 0xFFFF
+   \                     ??CrossCallReturnLabel_59:
+   \   0000B3   700D         JNZ     ??Select_3
+    664                      *sak = SerBuffer[0];
+   \   0000B5   90....       MOV     DPTR,#SerBuffer
+   \   0000B8   E0           MOVX    A,@DPTR
+   \   0000B9   85..82       MOV     DPL,?V0 + 0
+   \   0000BC   85..83       MOV     DPH,?V0 + 1
+   \   0000BF   F0           MOVX    @DPTR,A
+   \   0000C0   8004         SJMP    ??Select_2
+    665                  else
+    666                      status = STATUS_BITCOUNT_ERROR;
+   \                     ??Select_3:
+   \   0000C2   7A04         MOV     R2,#0x4
+   \   0000C4   7B00         MOV     R3,#0x0
+    667              }
+    668              return status;
+   \                     ??Select_2:
+   \   0000C6   02....       LJMP    ?Subroutine2 & 0xFFFF
+    669          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine17:
+   \   000000   12....       LCALL   ??Subroutine38_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_80:
+   \   000003   90....       MOV     DPTR,#MInfo + 3
+   \   000006   22           RET
+    670          
+    671          /*************************************************
+    672          Function:       HaltA
+    673          Description:
+    674               halt the current selected card
+    675          Parameter:
+    676               NONE
+    677          Return:
+    678               short      status of implement
+    679          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    680          short HaltA(void)
+   \                     HaltA:
+    681          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    682              short  status = STATUS_SUCCESS;
+    683              /* initialise data buffer */
+    684              SerBuffer[0] = HALTA_CMD;
+   \   000005   90....       MOV     DPTR,#SerBuffer
+   \   000008   7450         MOV     A,#0x50
+   \   00000A   F0           MOVX    @DPTR,A
+    685              SerBuffer[1] = HALTA_PARAM;
+   \   00000B   A3           INC     DPTR
+   \   00000C   E4           CLR     A
+   \   00000D   F0           MOVX    @DPTR,A
+    686          
+    687              ResetInfo(MInfo);
+   \   00000E   90....       MOV     DPTR,#MInfo
+   \   000011   12....       LCALL   ?Subroutine17 & 0xFFFF
+    688              MInfo.nBytesToSend   = HALTA_CMD_LENGTH;
+   \                     ??CrossCallReturnLabel_30:
+   \   000014   7402         MOV     A,#0x2
+   \   000016   F0           MOVX    @DPTR,A
+    689              SetTimeOut(1000);
+   \   000017                ; Setup parameters for call to function SetTimeOut
+   \   000017   7AE8         MOV     R2,#-0x18
+   \   000019   7B03         MOV     R3,#0x3
+   \   00001B   12....       LCALL   ??Subroutine37_0 & 0xFFFF
+    690              status = M522PcdCmd(RC522_CMD_TRANSCEIVE, SerBuffer, &MInfo);
+    691          
+    692              if(status == STATUS_IO_TIMEOUT)
+   \                     ??CrossCallReturnLabel_70:
+   \   00001E   7001         JNZ     ??HaltA_0
+   \   000020   EB           MOV     A,R3
+   \                     ??HaltA_0:
+   \   000021   7004         JNZ     ??HaltA_1
+    693                  status = STATUS_SUCCESS;
+   \   000023   7A00         MOV     R2,#0x0
+   \   000025   7B00         MOV     R3,#0x0
+    694              return status;
+   \                     ??HaltA_1:
+   \   000027   02....       LJMP    ?Subroutine0 & 0xFFFF
+    695          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine37_0:
+   \   000000   12....       LCALL   ?Subroutine26 & 0xFFFF
+   \                     ??CrossCallReturnLabel_73:
+   \   000003   7401         MOV     A,#0x1
+   \   000005   6A           XRL     A,R2
+   \   000006   22           RET
+    696          
+    697          /*************************************************
+    698          Function:       Authentication
+    699          Description:
+    700               authentication the password for a sector of mifare card
+    701          Parameter:
+    702               auth_mode  specify key A or key B -- MIFARE_AUTHENT_A or MIFARE_AUTHENT_A
+    703               key        the buffer stored the key(6 bytes)
+    704               snr        the buffer stored the selected card's UID
+    705               addr       the block address of a sector
+    706          Return:
+    707               short      status of implement
+    708          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    709          short Authentication(unsigned char auth_mode,
+   \                     Authentication:
+    710                               unsigned char *key,
+    711                               unsigned char *snr,
+    712                               unsigned char addr)
+    713          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   EC           MOV     A,R4
+   \   000006   FE           MOV     R6,A
+   \   000007   ED           MOV     A,R5
+   \   000008   FF           MOV     R7,A
+   \   000009   740C         MOV     A,#0xc
+   \   00000B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F8           MOV     R0,A
+    714              short status;
+    715              //unsigned char i = 0;
+    716              unsigned char RegVal;
+    717          
+    718              ResetInfo(MInfo);
+   \   000010   12....       LCALL   ?Subroutine16 & 0xFFFF
+    719          
+    720              SerBuffer[0] = auth_mode;      //key A or key B
+    721              SerBuffer[1] = addr;           //address to authentication
+   \                     ??CrossCallReturnLabel_27:
+   \   000013   E8           MOV     A,R0
+   \   000014   A3           INC     DPTR
+   \   000015   F0           MOVX    @DPTR,A
+    722              memcpy(SerBuffer+2,key,6);     //6 bytes key
+   \   000016                ; Setup parameters for call to function memcpy
+   \   000016   75..06       MOV     ?V0 + 2,#0x6
+   \   000019   75..00       MOV     ?V0 + 3,#0x0
+   \   00001C   78..         MOV     R0,#?V0 + 2
+   \   00001E   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000021   EA           MOV     A,R2
+   \   000022   FC           MOV     R4,A
+   \   000023   EB           MOV     A,R3
+   \   000024   FD           MOV     R5,A
+   \   000025   7A..         MOV     R2,#(SerBuffer + 2) & 0xff
+   \   000027   7B..         MOV     R3,#((SerBuffer + 2) >> 8) & 0xff
+   \   000029   12....       LCALL   ??Subroutine36_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_66:
+   \   00002C   12....       LCALL   ?DEALLOC_XSTACK8
+    723              memcpy(SerBuffer+8,snr,4);     //4 bytes UID
+   \   00002F                ; Setup parameters for call to function memcpy
+   \   00002F   75..04       MOV     ?V0 + 2,#0x4
+   \   000032   78..         MOV     R0,#?V0 + 2
+   \   000034   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000037   EE           MOV     A,R6
+   \   000038   FC           MOV     R4,A
+   \   000039   EF           MOV     A,R7
+   \   00003A   FD           MOV     R5,A
+   \   00003B   7A..         MOV     R2,#(SerBuffer + 8) & 0xff
+   \   00003D   7B..         MOV     R3,#((SerBuffer + 8) >> 8) & 0xff
+   \   00003F   12....       LCALL   ??Subroutine36_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_67:
+   \   000042   12....       LCALL   ?DEALLOC_XSTACK8
+    724              MInfo.nBytesToSend = 12;       //length
+   \   000045   90....       MOV     DPTR,#MInfo + 3
+   \   000048   740C         MOV     A,#0xc
+   \   00004A   F0           MOVX    @DPTR,A
+    725              SetTimeOut(10000);
+   \   00004B                ; Setup parameters for call to function SetTimeOut
+   \   00004B   7A10         MOV     R2,#0x10
+   \   00004D   7B27         MOV     R3,#0x27
+   \   00004F   12....       LCALL   ?Subroutine32 & 0xFFFF
+    726              status = M522PcdCmd(RC522_CMD_AUTHENT, SerBuffer, &MInfo);
+   \                     ??CrossCallReturnLabel_74:
+   \   000052   790E         MOV     R1,#0xe
+   \   000054   12....       LCALL   ??M522PcdCmd?relay
+   \   000057   8A..         MOV     ?V0 + 2,R2
+   \   000059   8B..         MOV     ?V0 + 3,R3
+   \   00005B   AE..         MOV     R6,?V0 + 2
+   \   00005D   AF..         MOV     R7,?V0 + 3
+    727              if(status == STATUS_SUCCESS)
+   \   00005F   EE           MOV     A,R6
+   \   000060   4F           ORL     A,R7
+   \   000061   700F         JNZ     ??Authentication_0
+    728              {
+    729                  RegVal = RcGetReg(RC522_REG_STATUS2);
+    730                  if((RegVal & 0x0f) != 0x08)
+   \   000063                ; Setup parameters for call to function RcGetReg
+   \   000063   7908         MOV     R1,#0x8
+   \   000065   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_26:
+   \   000068   540F         ANL     A,#0xf
+   \   00006A   6408         XRL     A,#0x8
+   \   00006C   6004         JZ      ??Authentication_0
+    731                      status = STATUS_AUTHENT_ERROR;
+   \   00006E   7E01         MOV     R6,#0x1
+   \   000070   7F02         MOV     R7,#0x2
+    732              }
+    733              return status;
+   \                     ??Authentication_0:
+   \   000072   EE           MOV     A,R6
+   \   000073   FA           MOV     R2,A
+   \   000074   EF           MOV     A,R7
+   \   000075   FB           MOV     R3,A
+   \   000076                REQUIRE ?Subroutine3
+   \   000076                ; // Fall through to label ?Subroutine3
+    734          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   7F04         MOV     R7,#0x4
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine16:
+   \   000000   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_78:
+   \   000003   E9           MOV     A,R1
+   \   000004   90....       MOV     DPTR,#SerBuffer
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+    735          /*************************************************
+    736          Function:       Read
+    737          Description:
+    738               read 16 bytes data from a block
+    739          Parameter:
+    740               addr       the address of the block
+    741               _data      the buffer to save the 16 bytes data
+    742          Return:
+    743               short      status of implement
+    744          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    745          short Read(unsigned char addr, unsigned char *_data)
+   \                     `Read`:
+    746          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine15 & 0xFFFF
+    747             short status = STATUS_SUCCESS;
+    748             //char tmp    = 0;
+    749          
+    750             ResetInfo(MInfo);
+    751             SerBuffer[0] = MIFARE_READ;
+   \                     ??CrossCallReturnLabel_60:
+   \   000008   7430         MOV     A,#0x30
+   \   00000A   F0           MOVX    @DPTR,A
+    752             SerBuffer[1] = addr;
+   \   00000B   E9           MOV     A,R1
+   \   00000C   12....       LCALL   ?Subroutine30 & 0xFFFF
+    753             MInfo.nBytesToSend   = 2;
+   \                     ??CrossCallReturnLabel_48:
+   \   00000F   F0           MOVX    @DPTR,A
+    754             SetTimeOut(10000);
+   \   000010                ; Setup parameters for call to function SetTimeOut
+   \   000010   7A10         MOV     R2,#0x10
+   \   000012   7B27         MOV     R3,#0x27
+   \   000014   12....       LCALL   ?Subroutine7 & 0xFFFF
+    755             status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    756                                 SerBuffer,
+    757                                 &MInfo);
+    758          
+    759             if (status != STATUS_SUCCESS)
+   \                     ??CrossCallReturnLabel_5:
+   \   000017   EA           MOV     A,R2
+   \   000018   45..         ORL     A,?V0 + 1
+   \   00001A   6040         JZ      ??Read_0
+    760             {
+    761                if (status != STATUS_IO_TIMEOUT )     // no timeout occured
+   \   00001C   7401         MOV     A,#0x1
+   \   00001E   65..         XRL     A,?V0 + 0
+   \   000020   7001         JNZ     ??Read_1
+   \   000022   EB           MOV     A,R3
+   \                     ??Read_1:
+   \   000023   601F         JZ      ??Read_2
+    762                {
+    763                   if (MInfo.nBitsReceived == 4)
+   \   000025   90....       MOV     DPTR,#MInfo + 5
+   \   000028   E0           MOVX    A,@DPTR
+   \   000029   6404         XRL     A,#0x4
+   \   00002B   7002         JNZ     ??Read_3
+   \   00002D   A3           INC     DPTR
+   \   00002E   E0           MOVX    A,@DPTR
+   \                     ??Read_3:
+   \   00002F   7013         JNZ     ??Read_2
+    764                   {
+    765                       SerBuffer[0] &= 0x0f;
+   \   000031   12....       LCALL   ?Subroutine24 & 0xFFFF
+    766                       if ((SerBuffer[0] & 0x0a) == 0)
+   \                     ??CrossCallReturnLabel_43:
+   \   000034   7008         JNZ     ??Read_4
+    767                       {
+    768                          status = STATUS_AUTHENT_ERROR;
+   \   000036   75..01       MOV     ?V0 + 0,#0x1
+   \   000039   75..02       MOV     ?V0 + 1,#0x2
+   \   00003C   8006         SJMP    ??Read_2
+    769                       }
+    770                       else
+    771                       {
+    772                          status = STATUS_INVALID_FORMAT;
+   \                     ??Read_4:
+   \   00003E   75..05       MOV     ?V0 + 0,#0x5
+   \   000041   75..01       MOV     ?V0 + 1,#0x1
+    773                       }
+    774                    }
+    775                }
+    776                memset(_data,0,16);
+   \                     ??Read_2:
+   \   000044                ; Setup parameters for call to function memset
+   \   000044   75..10       MOV     ?V0 + 4,#0x10
+   \   000047   75..00       MOV     ?V0 + 5,#0x0
+   \   00004A   78..         MOV     R0,#?V0 + 4
+   \   00004C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00004F   7C00         MOV     R4,#0x0
+   \   000051   7D00         MOV     R5,#0x0
+   \   000053   EE           MOV     A,R6
+   \   000054   FA           MOV     R2,A
+   \   000055   EF           MOV     A,R7
+   \   000056   FB           MOV     R3,A
+   \   000057   12....       LCALL   ??memset?relay
+   \   00005A   8026         SJMP    ??Read_5
+    777             }
+    778             else   // Response Processing
+    779             {
+    780                if (MInfo.nBytesReceived != 16)
+   \                     ??Read_0:
+   \   00005C   90....       MOV     DPTR,#MInfo + 4
+   \   00005F   E0           MOVX    A,@DPTR
+   \   000060   6410         XRL     A,#0x10
+   \   000062   6008         JZ      ??Read_6
+    781                {
+    782                   status = STATUS_ACCESS_DENIED;
+   \   000064   75..08       MOV     ?V0 + 0,#0x8
+   \   000067   75..00       MOV     ?V0 + 1,#0x0
+    783                   memset(_data,0,16);
+   \   00006A                ; Setup parameters for call to function memset
+   \   00006A   80D8         SJMP    ??Read_2
+    784                }
+    785                else
+    786                {
+    787                   memcpy(_data,SerBuffer,16);
+   \                     ??Read_6:
+   \   00006C                ; Setup parameters for call to function memcpy
+   \   00006C   75..10       MOV     ?V0 + 4,#0x10
+   \   00006F   75..00       MOV     ?V0 + 5,#0x0
+   \   000072   78..         MOV     R0,#?V0 + 4
+   \   000074   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000077   7C..         MOV     R4,#SerBuffer & 0xff
+   \   000079   7D..         MOV     R5,#(SerBuffer >> 8) & 0xff
+   \   00007B   EE           MOV     A,R6
+   \   00007C   FA           MOV     R2,A
+   \   00007D   EF           MOV     A,R7
+   \   00007E   FB           MOV     R3,A
+   \   00007F   12....       LCALL   ??memcpy?relay
+   \                     ??Read_5:
+   \   000082   7402         MOV     A,#0x2
+   \   000084   12....       LCALL   ?DEALLOC_XSTACK8
+    788                }
+    789             }
+    790             return status;
+   \   000087   AA..         MOV     R2,?V0 + 0
+   \   000089   AB..         MOV     R3,?V0 + 1
+   \   00008B   02....       LJMP    ?Subroutine2 & 0xFFFF
+    791          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine15:
+   \   000000   EA           MOV     A,R2
+   \   000001   FE           MOV     R6,A
+   \   000002   EB           MOV     A,R3
+   \   000003   FF           MOV     R7,A
+   \   000004                REQUIRE ??Subroutine35_0
+   \   000004                ; // Fall through to label ??Subroutine35_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine35_0:
+   \   000000   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_77:
+   \   000003   90....       MOV     DPTR,#SerBuffer
+   \   000006   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine24:
+   \   000000   90....       MOV     DPTR,#SerBuffer
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   540F         ANL     A,#0xf
+   \   000006   F0           MOVX    @DPTR,A
+   \   000007   540A         ANL     A,#0xa
+   \   000009   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine30:
+   \   000000   A3           INC     DPTR
+   \   000001   F0           MOVX    @DPTR,A
+   \   000002   90....       MOV     DPTR,#MInfo + 3
+   \   000005   7402         MOV     A,#0x2
+   \   000007   22           RET
+    792          
+    793          /*************************************************
+    794          Function:       Write
+    795          Description:
+    796               write 16 bytes data to a block
+    797          Parameter:
+    798               addr       the address of the block
+    799               _data      the data to write
+    800          Return:
+    801               short      status of implement
+    802          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    803          short Write( unsigned char addr, unsigned char *_data)
+   \                     `Write`:
+    804          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine15 & 0xFFFF
+    805              short status = STATUS_SUCCESS;
+    806              ResetInfo(MInfo);
+    807              SerBuffer[0] = MIFARE_WRITE;
+   \                     ??CrossCallReturnLabel_61:
+   \   000008   74A0         MOV     A,#-0x60
+   \   00000A   F0           MOVX    @DPTR,A
+    808              SerBuffer[1] = addr;
+   \   00000B   E9           MOV     A,R1
+   \   00000C   12....       LCALL   ?Subroutine4 & 0xFFFF
+    809              MInfo.nBytesToSend   = 2;
+    810              SetTimeOut(20000);
+    811              status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    812                                  SerBuffer,
+    813                                  &MInfo);
+    814          
+    815              if (status != STATUS_IO_TIMEOUT)
+   \                     ??CrossCallReturnLabel_68:
+   \   00000F   7001         JNZ     ??Write_0
+   \   000011   EB           MOV     A,R3
+   \                     ??Write_0:
+   \   000012   606B         JZ      ??Write_1
+    816              {
+    817                 if (MInfo.nBitsReceived != 4)
+   \   000014   90....       MOV     DPTR,#MInfo + 5
+   \   000017   E0           MOVX    A,@DPTR
+   \   000018   6404         XRL     A,#0x4
+   \   00001A   7002         JNZ     ??Write_2
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \                     ??Write_2:
+   \   00001E   6004         JZ      ??Write_3
+    818                 {
+    819                    status = STATUS_BITCOUNT_ERROR;
+   \                     ??Write_4:
+   \   000020   7A04         MOV     R2,#0x4
+   \   000022   8059         SJMP    ??Write_5
+    820                 }
+    821                 else
+    822                 {
+    823                    SerBuffer[0] &= 0x0f;
+   \                     ??Write_3:
+   \   000024   12....       LCALL   ?Subroutine24 & 0xFFFF
+    824                    if ((SerBuffer[0] & 0x0a) == 0)
+   \                     ??CrossCallReturnLabel_44:
+   \   000027   7006         JNZ     ??Write_6
+    825                    {
+    826                       status = STATUS_AUTHENT_ERROR;
+   \   000029   7A01         MOV     R2,#0x1
+   \   00002B   7B02         MOV     R3,#0x2
+   \   00002D   8050         SJMP    ??Write_1
+    827                    }
+    828                    else
+    829                    {
+    830                       if (SerBuffer[0] == 0x0a)
+   \                     ??Write_6:
+   \   00002F   E0           MOVX    A,@DPTR
+   \   000030   640A         XRL     A,#0xa
+   \   000032   7038         JNZ     ??Write_7
+    831                       {
+    832                          status = STATUS_SUCCESS;
+    833                       }
+    834                       else
+    835                       {
+    836                          status = STATUS_INVALID_FORMAT;
+    837                       }
+    838                    }
+    839                 }
+    840              }
+    841          
+    842              if ( status == STATUS_SUCCESS)
+    843              {
+    844          
+    845                 SetTimeOut(60000);
+   \   000034                ; Setup parameters for call to function SetTimeOut
+   \   000034   7A60         MOV     R2,#0x60
+   \   000036   7BEA         MOV     R3,#-0x16
+   \   000038   12....       LCALL   ?Subroutine6 & 0xFFFF
+    846          
+    847                 ResetInfo(MInfo);
+    848                 memcpy(SerBuffer,_data,16);
+   \                     ??CrossCallReturnLabel_2:
+   \   00003B                ; Setup parameters for call to function memcpy
+   \   00003B   75..10       MOV     ?V0 + 2,#0x10
+   \   00003E   F5..         MOV     ?V0 + 3,A
+   \   000040   78..         MOV     R0,#?V0 + 2
+   \   000042   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000045   12....       LCALL   ?Subroutine25 & 0xFFFF
+   \                     ??CrossCallReturnLabel_63:
+   \   000048   12....       LCALL   ?DEALLOC_XSTACK8
+    849                 MInfo.nBytesToSend   = 16;
+   \   00004B   90....       MOV     DPTR,#MInfo + 3
+   \   00004E   7410         MOV     A,#0x10
+   \   000050   12....       LCALL   ?Subroutine18 & 0xFFFF
+    850                 status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    851                                     SerBuffer,
+    852                                     &MInfo);
+    853          
+    854                 if (status & 0x80)
+   \                     ??CrossCallReturnLabel_31:
+   \   000053   5480         ANL     A,#0x80
+   \   000055   701B         JNZ     ??Write_8
+    855                 {
+    856                    status = STATUS_IO_TIMEOUT;
+    857                 }
+    858                 else
+    859                 {
+    860                    if (MInfo.nBitsReceived != 4)
+   \   000057   90....       MOV     DPTR,#MInfo + 5
+   \   00005A   E0           MOVX    A,@DPTR
+   \   00005B   6404         XRL     A,#0x4
+   \   00005D   7002         JNZ     ??Write_9
+   \   00005F   A3           INC     DPTR
+   \   000060   E0           MOVX    A,@DPTR
+   \                     ??Write_9:
+   \   000061   70BD         JNZ     ??Write_4
+    861                    {
+    862                       status = STATUS_BITCOUNT_ERROR;
+    863                    }
+    864                    else
+    865                    {
+    866                       SerBuffer[0] &= 0x0f;
+   \   000063   12....       LCALL   ?Subroutine24 & 0xFFFF
+    867                       if ((SerBuffer[0] & 0x0a) == 0)
+   \                     ??CrossCallReturnLabel_45:
+   \   000066   700E         JNZ     ??Write_10
+    868                       {
+    869                          status = STATUS_ACCESS_DENIED;
+   \   000068   7A08         MOV     R2,#0x8
+   \   00006A   8011         SJMP    ??Write_5
+    870                       }
+   \                     ??Write_7:
+   \   00006C   7A05         MOV     R2,#0x5
+   \   00006E   7B01         MOV     R3,#0x1
+   \   000070   800D         SJMP    ??Write_1
+   \                     ??Write_8:
+   \   000072   7A01         MOV     R2,#0x1
+   \   000074   8007         SJMP    ??Write_5
+    871                       else
+    872                       {
+    873                          if (SerBuffer[0] == 0x0a)
+   \                     ??Write_10:
+   \   000076   E0           MOVX    A,@DPTR
+   \   000077   640A         XRL     A,#0xa
+   \   000079   70F1         JNZ     ??Write_7
+    874                          {
+    875                             status = STATUS_SUCCESS;
+   \   00007B   7A00         MOV     R2,#0x0
+   \                     ??Write_5:
+   \   00007D   7B00         MOV     R3,#0x0
+    876                          }
+    877                          else
+    878                          {
+    879                             status = STATUS_INVALID_FORMAT;
+    880                          }
+    881                       }
+    882                    }
+    883                 }
+    884              }
+    885            return status;
+   \                     ??Write_1:
+   \   00007F   02....       LJMP    ?Subroutine3 & 0xFFFF
+    886          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine25:
+   \   000000   EE           MOV     A,R6
+   \   000001   FC           MOV     R4,A
+   \   000002   EF           MOV     A,R7
+   \   000003   FD           MOV     R5,A
+   \   000004   7A..         MOV     R2,#SerBuffer & 0xff
+   \   000006   7B..         MOV     R3,#(SerBuffer >> 8) & 0xff
+   \   000008                REQUIRE ??Subroutine36_0
+   \   000008                ; // Fall through to label ??Subroutine36_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_49:
+   \   000003   F0           MOVX    @DPTR,A
+   \   000004                ; Setup parameters for call to function SetTimeOut
+   \   000004                ; Setup parameters for call to function SetTimeOut
+   \   000004   7A20         MOV     R2,#0x20
+   \   000006   7B4E         MOV     R3,#0x4e
+   \   000008                REQUIRE ??Subroutine37_0
+   \   000008                ; // Fall through to label ??Subroutine37_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine18:
+   \   000000   12....       LCALL   ?Subroutine29 & 0xFFFF
+   \                     ??CrossCallReturnLabel_47:
+   \   000003   EA           MOV     A,R2
+   \   000004   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine29:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001                ; Setup parameters for call to function M522PcdCmd
+   \   000001                ; Setup parameters for call to function M522PcdCmd
+   \   000001                ; Setup parameters for call to function M522PcdCmd
+   \   000001   7C..         MOV     R4,#MInfo & 0xff
+   \   000003   7D..         MOV     R5,#(MInfo >> 8) & 0xff
+   \   000005   7A..         MOV     R2,#SerBuffer & 0xff
+   \   000007   7B..         MOV     R3,#(SerBuffer >> 8) & 0xff
+   \   000009   790C         MOV     R1,#0xc
+   \   00000B   12....       LCALL   ??M522PcdCmd?relay
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   12....       LCALL   ??SetTimeOut?relay
+   \   000003   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_79:
+   \   000006   22           RET
+    887          
+    888          /*************************************************
+    889          Function:       ValueOper
+    890          Description:
+    891               block value operation function, increment or decrement the block value
+    892               and transfer to a block
+    893          Parameter:
+    894               OperMode   MIFARE_INCREMENT or MIFARE_DECREMENT
+    895               addr       the address of the block
+    896               value      the value to be increment or decrement
+    897               trans_addr the address to save the resulet of increment or decrement
+    898          Return:
+    899               short      status of implement
+    900          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    901          short ValueOper(unsigned char OperMode, 
+   \                     ValueOper:
+    902                              unsigned char addr,
+    903                              unsigned char *value,
+    904                              unsigned char trans_addr)
+    905          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+   \   000007   EC           MOV     A,R4
+   \   000008   FE           MOV     R6,A
+   \   000009   ED           MOV     A,R5
+   \   00000A   FF           MOV     R7,A
+   \   00000B   8B..         MOV     ?V0 + 2,R3
+    906             short status = STATUS_SUCCESS;
+    907             ResetInfo(MInfo);
+   \   00000D   12....       LCALL   ?Subroutine16 & 0xFFFF
+    908             SerBuffer[0] = OperMode;
+    909             SerBuffer[1] = addr;
+   \                     ??CrossCallReturnLabel_28:
+   \   000010   EA           MOV     A,R2
+   \   000011   12....       LCALL   ?Subroutine4 & 0xFFFF
+    910             MInfo.nBytesToSend   = 2;
+    911             SetTimeOut(20000);
+    912             status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    913                                 SerBuffer,
+    914                                 &MInfo);
+    915          
+    916             if (status != STATUS_IO_TIMEOUT)
+   \                     ??CrossCallReturnLabel_69:
+   \   000014   7001         JNZ     ??ValueOper_0
+   \   000016   EB           MOV     A,R3
+   \                     ??ValueOper_0:
+   \   000017   6073         JZ      ??ValueOper_1
+    917             {
+    918                  if (MInfo.nBitsReceived != 4)
+   \   000019   90....       MOV     DPTR,#MInfo + 5
+   \   00001C   E0           MOVX    A,@DPTR
+   \   00001D   6404         XRL     A,#0x4
+   \   00001F   7002         JNZ     ??ValueOper_2
+   \   000021   A3           INC     DPTR
+   \   000022   E0           MOVX    A,@DPTR
+   \                     ??ValueOper_2:
+   \   000023   6004         JZ      ??ValueOper_3
+    919                  {
+    920                     status = STATUS_BITCOUNT_ERROR;
+   \   000025   7A04         MOV     R2,#0x4
+   \   000027   8061         SJMP    ??ValueOper_4
+    921                  }
+    922                  else
+    923                  {
+    924                     SerBuffer[0] &= 0x0f;
+   \                     ??ValueOper_3:
+   \   000029   90....       MOV     DPTR,#SerBuffer
+   \   00002C   E0           MOVX    A,@DPTR
+   \   00002D   540F         ANL     A,#0xf
+   \   00002F   F0           MOVX    @DPTR,A
+    925                     switch(SerBuffer[0])
+   \   000030   6009         JZ      ??ValueOper_5
+   \   000032   14           DEC     A
+   \   000033   605A         JZ      ??ValueOper_6
+   \   000035   24F7         ADD     A,#-0x9
+   \   000037   6008         JZ      ??ValueOper_7
+   \   000039   805A         SJMP    ??ValueOper_8
+    926                     {
+    927                        case 0x00:
+    928                           status = STATUS_AUTHENT_ERROR;
+   \                     ??ValueOper_5:
+   \   00003B   7A01         MOV     R2,#0x1
+   \   00003D   7B02         MOV     R3,#0x2
+    929                           break;
+   \   00003F   804B         SJMP    ??ValueOper_1
+    930                        case 0x0a:
+    931                           status = STATUS_SUCCESS;
+    932                           break;
+    933                        case 0x01:
+    934                           status = STATUS_INVALID_FORMAT;
+    935                           break;
+    936                        default:
+    937                           status = STATUS_OTHER_ERROR;
+    938                           break;
+    939                     }
+    940                  }
+    941               }
+    942          
+    943               if ( status == STATUS_SUCCESS)
+    944               {
+    945                  SetTimeOut(10000);
+   \                     ??ValueOper_7:
+   \   000041                ; Setup parameters for call to function SetTimeOut
+   \   000041   7A10         MOV     R2,#0x10
+   \   000043   7B27         MOV     R3,#0x27
+   \   000045   12....       LCALL   ?Subroutine6 & 0xFFFF
+    946                  ResetInfo(MInfo);
+    947                  memcpy(SerBuffer,value,4);
+   \                     ??CrossCallReturnLabel_3:
+   \   000048                ; Setup parameters for call to function memcpy
+   \   000048   75..04       MOV     ?V0 + 4,#0x4
+   \   00004B   F5..         MOV     ?V0 + 5,A
+   \   00004D   78..         MOV     R0,#?V0 + 4
+   \   00004F   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000052   12....       LCALL   ?Subroutine25 & 0xFFFF
+   \                     ??CrossCallReturnLabel_64:
+   \   000055   12....       LCALL   ?DEALLOC_XSTACK8
+    948                  MInfo.nBytesToSend   = 4;
+   \   000058   90....       MOV     DPTR,#MInfo + 3
+   \   00005B   7404         MOV     A,#0x4
+   \   00005D   12....       LCALL   ?Subroutine29 & 0xFFFF
+    949                  status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    950                                      SerBuffer,
+    951                                      &MInfo);
+    952          
+    953                  if (status == STATUS_IO_TIMEOUT||(status == MIFARE_DECREMENT && OperMode == MIFARE_DECREMENT))
+   \                     ??CrossCallReturnLabel_46:
+   \   000060   7401         MOV     A,#0x1
+   \   000062   6A           XRL     A,R2
+   \   000063   7001         JNZ     ??ValueOper_9
+   \   000065   EB           MOV     A,R3
+   \                     ??ValueOper_9:
+   \   000066   600E         JZ      ??ValueOper_10
+   \   000068   74C0         MOV     A,#-0x40
+   \   00006A   6A           XRL     A,R2
+   \   00006B   7001         JNZ     ??ValueOper_11
+   \   00006D   EB           MOV     A,R3
+   \                     ??ValueOper_11:
+   \   00006E   7025         JNZ     ??ValueOper_8
+   \   000070   74C0         MOV     A,#-0x40
+   \   000072   65..         XRL     A,?V0 + 0
+   \   000074   701F         JNZ     ??ValueOper_8
+    954                  {
+    955                      status = STATUS_SUCCESS;
+    956                  }
+    957                  else
+    958                  {
+    959                      status = STATUS_OTHER_ERROR;
+    960                  }
+    961               }
+    962               if ( status == STATUS_SUCCESS)
+    963               {
+    964                  ResetInfo(MInfo);
+   \                     ??ValueOper_10:
+   \   000076   12....       LCALL   ??Subroutine35_0 & 0xFFFF
+    965                  SerBuffer[0] = MIFARE_TRANSFER;
+   \                     ??CrossCallReturnLabel_62:
+   \   000079   74B0         MOV     A,#-0x50
+   \   00007B   F0           MOVX    @DPTR,A
+    966                  SerBuffer[1] = trans_addr;
+   \   00007C   E5..         MOV     A,?V0 + 2
+   \   00007E   12....       LCALL   ?Subroutine30 & 0xFFFF
+    967                  MInfo.nBytesToSend   = 2;
+   \                     ??CrossCallReturnLabel_50:
+   \   000081   12....       LCALL   ?Subroutine18 & 0xFFFF
+    968                  status = M522PcdCmd(RC522_CMD_TRANSCEIVE,
+    969                                      SerBuffer,
+    970                                      &MInfo);
+    971          
+    972                  if (status & MIFARE_ACK_MASK)
+   \                     ??CrossCallReturnLabel_32:
+   \   000084   540A         ANL     A,#0xa
+   \   000086   600D         JZ      ??ValueOper_8
+    973                  {
+    974                      status = STATUS_SUCCESS;
+   \   000088   7A00         MOV     R2,#0x0
+   \                     ??ValueOper_4:
+   \   00008A   7B00         MOV     R3,#0x0
+    975                  }
+    976                  else
+    977                  {
+    978                      status = STATUS_OTHER_ERROR;
+    979                  }
+    980               }
+    981             return status;
+   \                     ??ValueOper_1:
+   \   00008C   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \                     ??ValueOper_6:
+   \   00008F   7A05         MOV     R2,#0x5
+   \   000091   7B01         MOV     R3,#0x1
+   \   000093   80F7         SJMP    ??ValueOper_1
+   \                     ??ValueOper_8:
+   \   000095   7A01         MOV     R2,#0x1
+   \   000097   7B7E         MOV     R3,#0x7e
+   \   000099   80F1         SJMP    ??ValueOper_1
+    982          }
+    983          
+    984          /*************************************************
+    985          Function:       InitBlock
+    986          Description:
+    987               initialize a block value
+    988          Parameter:
+    989               addr       the address of the block
+    990               value      the value to be initialized, 4 bytes buffer
+    991          Return:
+    992               short      status of implement
+    993          **************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    994          short InitBlock(unsigned char addr,unsigned char *value)
+   \                     InitBlock:
+    995          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 16
+   \   000005   74F0         MOV     A,#-0x10
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   E9           MOV     A,R1
+   \   00000B   FE           MOV     R6,A
+    996              unsigned char tmp[16],i;
+    997              short status = STATUS_SUCCESS;
+    998              for(i=0;i<4;i++)
+   \   00000C   85..82       MOV     DPL,?XSP + 0
+   \   00000F   85..83       MOV     DPH,?XSP + 1
+   \   000012   A882         MOV     R0,DPL
+   \   000014   A983         MOV     R1,DPH
+   \   000016   EA           MOV     A,R2
+   \   000017   2404         ADD     A,#0x4
+   \   000019   FC           MOV     R4,A
+   \   00001A   EB           MOV     A,R3
+   \   00001B   3400         ADDC    A,#0x0
+   \   00001D   FD           MOV     R5,A
+    999              {
+   1000              	tmp[i]=value[i];
+   \                     ??InitBlock_0:
+   \   00001E   8A82         MOV     DPL,R2
+   \   000020   8B83         MOV     DPH,R3
+   \   000022   E0           MOVX    A,@DPTR
+   \   000023   8882         MOV     DPL,R0
+   \   000025   8983         MOV     DPH,R1
+   \   000027   F0           MOVX    @DPTR,A
+   1001              	tmp[i+4]=255-value[i];
+   \   000028   8A82         MOV     DPL,R2
+   \   00002A   8B83         MOV     DPH,R3
+   \   00002C   E0           MOVX    A,@DPTR
+   \   00002D   FF           MOV     R7,A
+   \   00002E   74FF         MOV     A,#-0x1
+   \   000030   C3           CLR     C
+   \   000031   9F           SUBB    A,R7
+   \   000032   8882         MOV     DPL,R0
+   \   000034   8983         MOV     DPH,R1
+   \   000036   A3           INC     DPTR
+   \   000037   A3           INC     DPTR
+   \   000038   A3           INC     DPTR
+   \   000039   A3           INC     DPTR
+   \   00003A   F0           MOVX    @DPTR,A
+   1002              	tmp[i+8]=value[i];
+   \   00003B   8A82         MOV     DPL,R2
+   \   00003D   8B83         MOV     DPH,R3
+   \   00003F   E0           MOVX    A,@DPTR
+   \   000040   8882         MOV     DPL,R0
+   \   000042   8983         MOV     DPH,R1
+   \   000044   A3           INC     DPTR
+   \   000045   A3           INC     DPTR
+   \   000046   A3           INC     DPTR
+   \   000047   A3           INC     DPTR
+   \   000048   A3           INC     DPTR
+   \   000049   A3           INC     DPTR
+   \   00004A   A3           INC     DPTR
+   \   00004B   A3           INC     DPTR
+   \   00004C   F0           MOVX    @DPTR,A
+   1003              }
+   \   00004D   8A82         MOV     DPL,R2
+   \   00004F   8B83         MOV     DPH,R3
+   \   000051   A3           INC     DPTR
+   \   000052   AA82         MOV     R2,DPL
+   \   000054   AB83         MOV     R3,DPH
+   \   000056   8882         MOV     DPL,R0
+   \   000058   8983         MOV     DPH,R1
+   \   00005A   A3           INC     DPTR
+   \   00005B   A882         MOV     R0,DPL
+   \   00005D   A983         MOV     R1,DPH
+   \   00005F   EC           MOV     A,R4
+   \   000060   6A           XRL     A,R2
+   \   000061   7002         JNZ     ??InitBlock_1
+   \   000063   ED           MOV     A,R5
+   \   000064   6B           XRL     A,R3
+   \                     ??InitBlock_1:
+   \   000065   70B7         JNZ     ??InitBlock_0
+   1004              tmp[12]=addr;
+   \   000067   740C         MOV     A,#0xc
+   \   000069   12....       LCALL   ?XSTACK_DISP0_8
+   \   00006C   EE           MOV     A,R6
+   \   00006D   F0           MOVX    @DPTR,A
+   1005              tmp[13]=255-addr;
+   \   00006E   74FF         MOV     A,#-0x1
+   \   000070   C3           CLR     C
+   \   000071   9E           SUBB    A,R6
+   \   000072   F8           MOV     R0,A
+   \   000073   740D         MOV     A,#0xd
+   \   000075   12....       LCALL   ?XSTACK_DISP0_8
+   \   000078   E8           MOV     A,R0
+   \   000079   F0           MOVX    @DPTR,A
+   1006              tmp[14]=tmp[12];
+   \   00007A   740C         MOV     A,#0xc
+   \   00007C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00007F   E0           MOVX    A,@DPTR
+   \   000080   C0E0         PUSH    A
+   \   000082   740E         MOV     A,#0xe
+   \   000084   12....       LCALL   ?XSTACK_DISP0_8
+   \   000087   D0E0         POP     A
+   \   000089   F0           MOVX    @DPTR,A
+   1007              tmp[15]=tmp[13];
+   \   00008A   740F         MOV     A,#0xf
+   \   00008C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00008F   E8           MOV     A,R0
+   \   000090   F0           MOVX    @DPTR,A
+   1008              status=Write(addr,tmp);
+   1009              return status;
+   \   000091                ; Setup parameters for call to function Write
+   \   000091   85..82       MOV     DPL,?XSP + 0
+   \   000094   85..83       MOV     DPH,?XSP + 1
+   \   000097   AA82         MOV     R2,DPL
+   \   000099   AB83         MOV     R3,DPH
+   \   00009B   EE           MOV     A,R6
+   \   00009C   F9           MOV     R1,A
+   \   00009D   12....       LCALL   ??Write?relay
+   \   0000A0   7410         MOV     A,#0x10
+   \   0000A2   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000A5   7F01         MOV     R7,#0x1
+   \   0000A7   02....       LJMP    ?BANKED_LEAVE_XDATA
+   1010          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SetTimeOut?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SetTimeOut
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rc522Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rc522Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rc522RFReset?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rc522RFReset
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??M522PcdCmd?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    M522PcdCmd
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Request?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Request
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??CascAnticoll?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    CascAnticoll
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Select?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Select
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??HaltA?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HaltA
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Authentication?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Authentication
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Read?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    `Read`
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Write?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    `Write`
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ValueOper?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ValueOper
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??InitBlock?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    InitBlock
+
+   Maximum stack usage in bytes:
+
+     Function         ISTACK PSTACK XSTACK
+     --------         ------ ------ ------
+     Authentication       0      0     15
+       -> memcpy          0      0     28
+       -> memcpy          0      0     28
+       -> SetTimeOut      0      0     24
+       -> M522PcdCmd      0      0     24
+       -> RcGetReg        0      0     24
+     CascAnticoll         6      0     19
+       -> RcModifyReg     0      0     38
+       -> RcModifyReg     0      0     38
+       -> RcSetReg        0      0     38
+       -> RcSetReg        0      0     38
+       -> SetTimeOut      0      0     38
+       -> M522PcdCmd      0      0     38
+       -> RcSetReg        0      0     38
+       -> RcSetReg        0      0     38
+     HaltA                0      0     10
+       -> SetTimeOut      0      0     20
+       -> M522PcdCmd      0      0     20
+     InitBlock            1      0     25
+       -> Write           0      0     50
+     M522PcdCmd           1      0     36
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcModifyReg     0      0     34
+       -> RcGetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcModifyReg     0      0     34
+       -> RcModifyReg     0      0     34
+       -> RcGetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcGetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+       -> RcSetReg        0      0     34
+     Rc522Init            2      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcModifyReg     4      0      0
+       -> RcGetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcGetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> SetTimeOut      4      0      0
+       -> RcModifyReg     4      0      0
+       -> RcModifyReg     4      0      0
+       -> RcGetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> SetTimeOut      4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> RcSetReg        4      0      0
+       -> SetTimeOut      4      0      0
+       -> RcSetReg        4      0      0
+     Rc522RFReset         2      0      0
+       -> Rc522Init       4      0      0
+     Read                 0      0     16
+       -> SetTimeOut      0      0     28
+       -> M522PcdCmd      0      0     28
+       -> memset          0      0     32
+       -> memset          0      0     32
+       -> memcpy          0      0     32
+     Request              0      0     16
+       -> RcModifyReg     0      0     28
+       -> RcSetReg        0      0     28
+       -> RcModifyReg     0      0     28
+       -> RcModifyReg     0      0     28
+       -> RcSetReg        0      0     28
+       -> SetTimeOut      0      0     28
+       -> M522PcdCmd      0      0     28
+       -> memcpy          0      0     32
+     Select               6      0     14
+       -> RcModifyReg     0      0     28
+       -> RcModifyReg     0      0     28
+       -> SetTimeOut      0      0     28
+       -> M522PcdCmd      0      0     28
+     SetTimeOut           0      0     29
+       -> RcModifyReg     0      0     20
+       -> RcSetReg        0      0     20
+       -> RcGetReg        0      0     20
+       -> RcSetReg        0      0     20
+       -> RcSetReg        0      0     20
+       -> RcSetReg        0      0     20
+     ValueOper            0      0     16
+       -> SetTimeOut      0      0     28
+       -> M522PcdCmd      0      0     28
+       -> SetTimeOut      0      0     28
+       -> memcpy          0      0     32
+       -> M522PcdCmd      0      0     28
+       -> M522PcdCmd      0      0     28
+     Write                0      0     39
+       -> SetTimeOut      0      0     24
+       -> M522PcdCmd      0      0     24
+       -> SetTimeOut      0      0     24
+       -> memcpy          0      0     28
+       -> M522PcdCmd      0      0     24
+
+
+   Segment part sizes:
+
+     Function/Label         Bytes
+     --------------         -----
+     MInfo                     8
+     MpIsrInfo                 2
+     SerBuffer                64
+     SetTimeOut               85
+     ?Subroutine0              5
+     ??Subroutine33_0          6
+     ?Subroutine14             5
+     Rc522Init               156
+     ?Subroutine1              7
+     ?Subroutine13            10
+     ?Subroutine12            11
+     Rc522RFReset              9
+     M522PcdCmd              576
+     ?Subroutine27             2
+     ?Subroutine23            12
+     ?Subroutine22            16
+     ?Subroutine20             5
+     ?Subroutine31            15
+     ?Subroutine11             7
+     ?Subroutine8             16
+     ??Subroutine34_0          8
+     Request                 124
+     ?Subroutine2              5
+     ?Subroutine21             1
+     ?Subroutine10            15
+     ?Subroutine5              9
+     ?Subroutine9              5
+     ?Subroutine26             9
+     ?Subroutine32            12
+     ??Subroutine36_0          6
+     ?Subroutine28             4
+     ??Subroutine38_0         16
+     CascAnticoll            507
+     ?Subroutine19            11
+     ?Subroutine7              8
+     Select                  201
+     ?Subroutine17             7
+     HaltA                    42
+     ??Subroutine37_0          7
+     Authentication          118
+     ?Subroutine3              5
+     ?Subroutine16             9
+     Read                    142
+     ?Subroutine15             4
+     ??Subroutine35_0          7
+     ?Subroutine24            10
+     ?Subroutine30             8
+     Write                   130
+     ?Subroutine25             8
+     ?Subroutine4              8
+     ?Subroutine18             5
+     ?Subroutine29            15
+     ?Subroutine6              7
+     ValueOper               155
+     InitBlock               170
+     ??SetTimeOut?relay        6
+     ??Rc522Init?relay         6
+     ??Rc522RFReset?relay      6
+     ??M522PcdCmd?relay        6
+     ??Request?relay           6
+     ??CascAnticoll?relay      6
+     ??Select?relay            6
+     ??HaltA?relay             6
+     ??Authentication?relay    6
+     ??Read?relay              6
+     ??Write?relay             6
+     ??ValueOper?relay         6
+     ??InitBlock?relay         6
+
+ 
+ 2 741 bytes in segment BANKED_CODE
+    78 bytes in segment BANK_RELAYS
+    74 bytes in segment XDATA_Z
+ 
+ 2 819 bytes of CODE  memory
+    74 bytes of XDATA memory
+
+Errors: none
+Warnings: none

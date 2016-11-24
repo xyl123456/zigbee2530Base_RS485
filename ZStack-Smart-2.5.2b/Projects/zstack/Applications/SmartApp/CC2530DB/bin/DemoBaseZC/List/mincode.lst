@@ -1,0 +1,997 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         23/Nov/2016  19:49:25 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Manage\incode\mincod #
+#                          e.c                                                #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wCoord.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8       #
+#                          -DMAC_CFG_RX_MAX=5 -DZDO_COORDINATOR -DRTR_NWK     #
+#                          -DSSA_CONNECTOR) -f E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                           (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1     #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Manage\incode\mincode.c -D SECURE=1 -D          #
+#                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                 #
+#                          SIGNAL_AMPLIFIER_SETTING -D                        #
+#                          xPOWER_AMPLIFIER_POSITION_1 -D xNWK_AUTO_POLL -D   #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZC\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Lis #
+#                          t\mincode.lst                                      #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Obj #
+#                          \mincode.r51                                       #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\incode\mincode.c
+      1          /*
+      2           * incode.c
+      3           *
+      4           * Copyright (C) 2013 loongsky development.
+      5           *
+      6           * Sam Chen <xuejian1354@163.com>
+      7           *
+      8           * This software is licensed under the terms of the GNU General Public
+      9           * License version 2, as published by the Free Software Foundation, and
+     10           * may be copied, distributed, and modified under those terms.
+     11           *
+     12           * This program is distributed in the hope that it will be useful,
+     13           * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     14           * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     15           * GNU General Public License for more details.
+     16           */
+     17          #include "mincode.h"
+     18          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     19          uint8 incode_ctox(uint8 src)
+   \                     incode_ctox:
+     20          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+   \   000000   E9           MOV     A,R1
+   \   000001   F8           MOV     R0,A
+     21          	char temp = 0;
+   \   000002   7900         MOV     R1,#0x0
+     22          
+     23          	if(src>='0' && src<='9')
+   \   000004   74D0         MOV     A,#-0x30
+   \   000006   28           ADD     A,R0
+   \   000007   FA           MOV     R2,A
+   \   000008   C3           CLR     C
+   \   000009   940A         SUBB    A,#0xa
+   \   00000B   5003         JNC     ??incode_ctox_0
+     24          		temp = src-'0';
+   \   00000D   EA           MOV     A,R2
+   \   00000E   8017         SJMP    ??incode_ctox_1
+     25          	else if(src>='a' && src<='f')
+   \                     ??incode_ctox_0:
+   \   000010   749F         MOV     A,#-0x61
+   \   000012   28           ADD     A,R0
+   \   000013   C3           CLR     C
+   \   000014   9406         SUBB    A,#0x6
+   \   000016   5004         JNC     ??incode_ctox_2
+     26          		temp = src-'a'+10;
+   \   000018   74A9         MOV     A,#-0x57
+   \   00001A   800A         SJMP    ??incode_ctox_3
+     27          	else if(src>='A' && src<='F')
+   \                     ??incode_ctox_2:
+   \   00001C   74BF         MOV     A,#-0x41
+   \   00001E   28           ADD     A,R0
+   \   00001F   C3           CLR     C
+   \   000020   9406         SUBB    A,#0x6
+   \   000022   5004         JNC     ??incode_ctox_4
+     28          		temp = src-'A'+10;
+   \   000024   74C9         MOV     A,#-0x37
+   \                     ??incode_ctox_3:
+   \   000026   28           ADD     A,R0
+   \                     ??incode_ctox_1:
+   \   000027   F9           MOV     R1,A
+     29          
+     30          	return temp;
+   \                     ??incode_ctox_4:
+   \   000028   02....       LJMP    ?BRET
+     31          }
+     32          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     33          uint8 incode_atox(uint8 *src, int len)
+   \                     incode_atox:
+     34          {
+   \   000000   74F3         MOV     A,#-0xd
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 13
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     35          	char temp=0, i=0, length;
+   \   000009   7900         MOV     R1,#0x0
+   \   00000B   89..         MOV     ?V0 + 2,R1
+     36          	length = len;
+   \   00000D   EC           MOV     A,R4
+   \   00000E   F5..         MOV     ?V0 + 4,A
+   \   000010   6021         JZ      ??incode_atox_0
+     37          
+     38          	while(length--)
+     39          	{
+     40          		temp = incode_ctox(*(src+i)) + (temp<<4);
+   \                     ??incode_atox_1:
+   \   000012   E9           MOV     A,R1
+   \   000013   C4           SWAP    A
+   \   000014   54F0         ANL     A,#0xf0
+   \   000016   F5..         MOV     ?V0 + 3,A
+   \   000018                ; Setup parameters for call to function incode_ctox
+   \   000018   85....       MOV     ?V0 + 0,?V0 + 2
+   \   00001B   EE           MOV     A,R6
+   \   00001C   25..         ADD     A,?V0 + 0
+   \   00001E   F582         MOV     DPL,A
+   \   000020   EF           MOV     A,R7
+   \   000021   3400         ADDC    A,#0x0
+   \   000023   F583         MOV     DPH,A
+   \   000025   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   000028   25..         ADD     A,?V0 + 3
+   \   00002A   F9           MOV     R1,A
+     41          		i++;
+   \   00002B   05..         INC     ?V0 + 2
+   \   00002D   15..         DEC     ?V0 + 4
+   \   00002F   E5..         MOV     A,?V0 + 4
+   \   000031   70DF         JNZ     ??incode_atox_1
+     42          	}
+     43          
+     44          	return temp;
+   \                     ??incode_atox_0:
+   \   000033   7F05         MOV     R7,#0x5
+   \   000035   02....       LJMP    ?BANKED_LEAVE_XDATA
+     45          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F9           MOV     R1,A
+   \   000002   12....       LCALL   ??incode_ctox?relay
+   \   000005   E9           MOV     A,R1
+   \   000006   22           RET
+     46           
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     47          void incode_ctoxs(uint8 *dest ,uint8 *src, int len)
+   \                     incode_ctoxs:
+     48          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   740E         MOV     A,#0xe
+   \   000007   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   F5..         MOV     ?V0 + 0,A
+   \   00000D   A3           INC     DPTR
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F5..         MOV     ?V0 + 1,A
+     49          	int i, temp;
+     50          	if(len<2 || dest==NULL || src==NULL)
+   \   000011   C3           CLR     C
+   \   000012   E5..         MOV     A,?V0 + 0
+   \   000014   9402         SUBB    A,#0x2
+   \   000016   E5..         MOV     A,?V0 + 1
+   \   000018   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_0:
+   \   00001B   4079         JC      ??incode_ctoxs_0
+   \   00001D   EA           MOV     A,R2
+   \   00001E   4B           ORL     A,R3
+   \   00001F   6075         JZ      ??incode_ctoxs_0
+   \   000021   EC           MOV     A,R4
+   \   000022   4D           ORL     A,R5
+   \   000023   6071         JZ      ??incode_ctoxs_0
+     51          	{
+     52          		return;
+     53          	}
+     54          
+     55          	for(i=0; i<(len>>1); i++)
+   \   000025   7401         MOV     A,#0x1
+   \   000027   78..         MOV     R0,#?V0 + 0
+   \   000029   12....       LCALL   ?SS_SHR
+   \   00002C   85....       MOV     ?V0 + 4,?V0 + 0
+   \   00002F   85....       MOV     ?V0 + 5,?V0 + 1
+   \   000032   C3           CLR     C
+   \   000033   E5..         MOV     A,?V0 + 4
+   \   000035   9401         SUBB    A,#0x1
+   \   000037   E5..         MOV     A,?V0 + 5
+   \   000039   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_1:
+   \   00003C   4058         JC      ??incode_ctoxs_0
+   \   00003E   EA           MOV     A,R2
+   \   00003F   FE           MOV     R6,A
+   \   000040   EB           MOV     A,R3
+   \   000041   FF           MOV     R7,A
+   \   000042   EC           MOV     A,R4
+   \   000043   F8           MOV     R0,A
+   \   000044   ED           MOV     A,R5
+   \   000045   F9           MOV     R1,A
+   \   000046   88..         MOV     ?V0 + 0,R0
+   \   000048   89..         MOV     ?V0 + 1,R1
+   \   00004A   85....       MOV     ?V0 + 2,?V0 + 4
+   \   00004D   85....       MOV     ?V0 + 3,?V0 + 5
+     56          	{
+     57          		temp = *(src+(i<<1));
+     58          		dest[i] = (incode_ctox(temp)<<4);
+   \                     ??incode_ctoxs_1:
+   \   000050                ; Setup parameters for call to function incode_ctox
+   \   000050   85..82       MOV     DPL,?V0 + 0
+   \   000053   85..83       MOV     DPH,?V0 + 1
+   \   000056   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   000059   C4           SWAP    A
+   \   00005A   54F0         ANL     A,#0xf0
+   \   00005C   8E82         MOV     DPL,R6
+   \   00005E   8F83         MOV     DPH,R7
+   \   000060   F0           MOVX    @DPTR,A
+     59          		
+     60          		temp = *(src+(i<<1)+1);
+     61          		dest[i] += incode_ctox(temp);
+   \   000061                ; Setup parameters for call to function incode_ctox
+   \   000061   85..82       MOV     DPL,?V0 + 0
+   \   000064   85..83       MOV     DPH,?V0 + 1
+   \   000067   A3           INC     DPTR
+   \   000068   12....       LCALL   ?Subroutine3 & 0xFFFF
+     62          	}
+   \                     ??CrossCallReturnLabel_6:
+   \   00006B   F8           MOV     R0,A
+   \   00006C   8E82         MOV     DPL,R6
+   \   00006E   8F83         MOV     DPH,R7
+   \   000070   E0           MOVX    A,@DPTR
+   \   000071   28           ADD     A,R0
+   \   000072   F0           MOVX    @DPTR,A
+   \   000073   E5..         MOV     A,?V0 + 0
+   \   000075   2402         ADD     A,#0x2
+   \   000077   F5..         MOV     ?V0 + 0,A
+   \   000079   E5..         MOV     A,?V0 + 1
+   \   00007B   3400         ADDC    A,#0x0
+   \   00007D   F5..         MOV     ?V0 + 1,A
+   \   00007F   A3           INC     DPTR
+   \   000080   AE82         MOV     R6,DPL
+   \   000082   AF83         MOV     R7,DPH
+   \   000084   E5..         MOV     A,?V0 + 2
+   \   000086   24FF         ADD     A,#-0x1
+   \   000088   F5..         MOV     ?V0 + 2,A
+   \   00008A   E5..         MOV     A,?V0 + 3
+   \   00008C   34FF         ADDC    A,#-0x1
+   \   00008E   F5..         MOV     ?V0 + 3,A
+   \   000090   E5..         MOV     A,?V0 + 2
+   \   000092   45..         ORL     A,?V0 + 3
+   \   000094   70BA         JNZ     ??incode_ctoxs_1
+   \                     ??incode_ctoxs_0:
+   \   000096   7F06         MOV     R7,#0x6
+   \   000098   02....       LJMP    ?BANKED_LEAVE_XDATA
+     63          	 
+     64          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   9400         SUBB    A,#0x0
+   \   000002   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000004   65D0         XRL     A,PSW
+   \   000006   33           RLC     A
+   \   000007   22           RET
+     65          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     66          void incode_xtocs(uint8 *dest , uint8 *src, int len)
+   \                     incode_xtocs:
+     67          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   F8           MOV     R0,A
+   \   000007   EB           MOV     A,R3
+   \   000008   F9           MOV     R1,A
+   \   000009   740A         MOV     A,#0xa
+   \   00000B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   FE           MOV     R6,A
+   \   000010   A3           INC     DPTR
+   \   000011   E0           MOVX    A,@DPTR
+   \   000012   FF           MOV     R7,A
+     68              int i, temp;
+     69          	if(len<1 || dest==NULL || src==NULL)
+   \   000013   C3           CLR     C
+   \   000014   EE           MOV     A,R6
+   \   000015   9401         SUBB    A,#0x1
+   \   000017   EF           MOV     A,R7
+   \   000018   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   00001B   405D         JC      ??incode_xtocs_0
+   \   00001D   E8           MOV     A,R0
+   \   00001E   49           ORL     A,R1
+   \   00001F   6059         JZ      ??incode_xtocs_0
+   \   000021   EC           MOV     A,R4
+   \   000022   4D           ORL     A,R5
+   \   000023   6055         JZ      ??incode_xtocs_0
+   \   000025   8E..         MOV     ?V0 + 0,R6
+   \   000027   8F..         MOV     ?V0 + 1,R7
+     70          	{
+     71          		return;
+     72          	}
+     73          
+     74          	for(i=0; i<len; i++)
+     75          	{
+     76          		temp = (*(src+i)>>4);
+   \                     ??incode_xtocs_1:
+   \   000029   8C82         MOV     DPL,R4
+   \   00002B   8D83         MOV     DPH,R5
+   \   00002D   E0           MOVX    A,@DPTR
+   \   00002E   C4           SWAP    A
+   \   00002F   540F         ANL     A,#0xf
+   \   000031   F8           MOV     R0,A
+     77          		if(temp < 0xA)
+   \   000032   C3           CLR     C
+   \   000033   940A         SUBB    A,#0xa
+   \   000035   E8           MOV     A,R0
+   \   000036   5004         JNC     ??incode_xtocs_2
+     78          		{
+     79          			dest[(i<<1)] = temp + '0';	
+   \   000038   2430         ADD     A,#0x30
+   \   00003A   8002         SJMP    ??incode_xtocs_3
+     80          		}
+     81          		else
+     82          		{
+     83          			dest[(i<<1)] = temp - 0xA + 'A';	
+   \                     ??incode_xtocs_2:
+   \   00003C   2437         ADD     A,#0x37
+   \                     ??incode_xtocs_3:
+   \   00003E   8A82         MOV     DPL,R2
+   \   000040   8B83         MOV     DPH,R3
+   \   000042   F0           MOVX    @DPTR,A
+     84          		}
+     85          		
+     86          		temp = (*(src+i)&0x0F);
+   \   000043   8C82         MOV     DPL,R4
+   \   000045   8D83         MOV     DPH,R5
+   \   000047   E0           MOVX    A,@DPTR
+   \   000048   540F         ANL     A,#0xf
+   \   00004A   F8           MOV     R0,A
+     87          		if(temp < 0xA)
+   \   00004B   8A82         MOV     DPL,R2
+   \   00004D   8B83         MOV     DPH,R3
+   \   00004F   A3           INC     DPTR
+   \   000050   940A         SUBB    A,#0xa
+   \   000052   E8           MOV     A,R0
+   \   000053   5004         JNC     ??incode_xtocs_4
+     88          		{
+     89          			dest[(i<<1)+1] = temp + '0';	
+   \   000055   2430         ADD     A,#0x30
+   \   000057   8002         SJMP    ??incode_xtocs_5
+     90          		}
+     91          		else
+     92          		{
+     93          			dest[(i<<1)+1] = temp - 0xA + 'A';	
+   \                     ??incode_xtocs_4:
+   \   000059   2437         ADD     A,#0x37
+   \                     ??incode_xtocs_5:
+   \   00005B   F0           MOVX    @DPTR,A
+     94          		}
+     95          	}
+   \   00005C   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   00005F   8C82         MOV     DPL,R4
+   \   000061   8D83         MOV     DPH,R5
+   \   000063   A3           INC     DPTR
+   \   000064   AC82         MOV     R4,DPL
+   \   000066   AD83         MOV     R5,DPH
+   \   000068   E5..         MOV     A,?V0 + 0
+   \   00006A   24FF         ADD     A,#-0x1
+   \   00006C   F5..         MOV     ?V0 + 0,A
+   \   00006E   E5..         MOV     A,?V0 + 1
+   \   000070   34FF         ADDC    A,#-0x1
+   \   000072   F5..         MOV     ?V0 + 1,A
+   \   000074   E5..         MOV     A,?V0 + 0
+   \   000076   45..         ORL     A,?V0 + 1
+   \   000078   70AF         JNZ     ??incode_xtocs_1
+   \                     ??incode_xtocs_0:
+   \   00007A   80..         SJMP    ??Subroutine5_0
+     96          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine5_0:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   EA           MOV     A,R2
+   \   000001   2402         ADD     A,#0x2
+   \   000003   0A           INC     R2
+   \   000004   0A           INC     R2
+   \   000005   EB           MOV     A,R3
+   \   000006   3400         ADDC    A,#0x0
+   \   000008   FB           MOV     R3,A
+   \   000009   22           RET
+     97          
+     98          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     99          void incode_ctox16(uint16 *dest, uint8 *src)
+   \                     incode_ctox16:
+    100          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    101          	unsigned char dsts[2];
+    102          	incode_ctoxs(dsts, src, 4);
+   \   00000E                ; Setup parameters for call to function incode_ctoxs
+   \   00000E   75..04       MOV     ?V0 + 0,#0x4
+   \   000011   75..00       MOV     ?V0 + 1,#0x0
+   \   000014   78..         MOV     R0,#?V0 + 0
+   \   000016   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000019   7402         MOV     A,#0x2
+   \   00001B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001E   AA82         MOV     R2,DPL
+   \   000020   AB83         MOV     R3,DPH
+   \   000022   12....       LCALL   ??incode_ctoxs?relay
+   \   000025   7402         MOV     A,#0x2
+   \   000027   12....       LCALL   ?DEALLOC_XSTACK8
+    103          	*dest = dsts[0]<<8;
+   \   00002A   85..82       MOV     DPL,?XSP + 0
+   \   00002D   85..83       MOV     DPH,?XSP + 1
+   \   000030   E0           MOVX    A,@DPTR
+   \   000031   F9           MOV     R1,A
+   \   000032   8E82         MOV     DPL,R6
+   \   000034   8F83         MOV     DPH,R7
+   \   000036   E4           CLR     A
+   \   000037   F0           MOVX    @DPTR,A
+   \   000038   A3           INC     DPTR
+   \   000039   E9           MOV     A,R1
+   \   00003A   F0           MOVX    @DPTR,A
+    104          	*dest += dsts[1];
+   \   00003B   7401         MOV     A,#0x1
+   \   00003D   12....       LCALL   ?XSTACK_DISP0_8
+   \   000040   E0           MOVX    A,@DPTR
+   \   000041   F8           MOV     R0,A
+   \   000042   8E82         MOV     DPL,R6
+   \   000044   8F83         MOV     DPH,R7
+   \   000046   E0           MOVX    A,@DPTR
+   \   000047   28           ADD     A,R0
+   \   000048   F0           MOVX    @DPTR,A
+   \   000049   A3           INC     DPTR
+   \   00004A   E0           MOVX    A,@DPTR
+   \   00004B   3400         ADDC    A,#0x0
+   \   00004D   F0           MOVX    @DPTR,A
+    105          }
+   \   00004E                REQUIRE ?Subroutine0
+   \   00004E                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7402         MOV     A,#0x2
+   \   000002   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000005                REQUIRE ??Subroutine5_0
+   \   000005                ; // Fall through to label ??Subroutine5_0
+    106          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    107          void incode_xtoc16(uint8 *dest, uint16 src)
+   \                     incode_xtoc16:
+    108          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    109          	unsigned char val[2];
+    110          	val[0] = (src>>8);
+   \   00000A   ED           MOV     A,R5
+   \   00000B   85..82       MOV     DPL,?XSP + 0
+   \   00000E   85..83       MOV     DPH,?XSP + 1
+   \   000011   F0           MOVX    @DPTR,A
+    111          	val[1] = (src&0xFF);
+   \   000012   7401         MOV     A,#0x1
+   \   000014   12....       LCALL   ?XSTACK_DISP0_8
+   \   000017   EC           MOV     A,R4
+   \   000018   F0           MOVX    @DPTR,A
+    112          	incode_xtocs(dest, val, 2);
+   \   000019                ; Setup parameters for call to function incode_xtocs
+   \   000019   75..02       MOV     ?V0 + 0,#0x2
+   \   00001C   75..00       MOV     ?V0 + 1,#0x0
+   \   00001F   78..         MOV     R0,#?V0 + 0
+   \   000021   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000024   7402         MOV     A,#0x2
+   \   000026   12....       LCALL   ?XSTACK_DISP0_8
+   \   000029   AC82         MOV     R4,DPL
+   \   00002B   AD83         MOV     R5,DPH
+   \   00002D   12....       LCALL   ??incode_xtocs?relay
+   \   000030   7402         MOV     A,#0x2
+   \   000032   12....       LCALL   ?DEALLOC_XSTACK8
+    113          }
+   \   000035   80..         SJMP    ?Subroutine0
+    114          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    115          void incode_ctox32(uint32 *dest, uint8 *src)
+   \                     incode_ctox32:
+    116          {
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 4
+   \   000005   74FC         MOV     A,#-0x4
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    117          	int i;
+    118          	uint8 dsts[4];
+    119          	incode_ctoxs(dsts, src, 8);
+   \   00000E                ; Setup parameters for call to function incode_ctoxs
+   \   00000E   75..08       MOV     ?V0 + 0,#0x8
+   \   000011   75..00       MOV     ?V0 + 1,#0x0
+   \   000014   78..         MOV     R0,#?V0 + 0
+   \   000016   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000019   7402         MOV     A,#0x2
+   \   00001B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001E   AA82         MOV     R2,DPL
+   \   000020   AB83         MOV     R3,DPH
+   \   000022   12....       LCALL   ??incode_ctoxs?relay
+   \   000025   7402         MOV     A,#0x2
+   \   000027   12....       LCALL   ?DEALLOC_XSTACK8
+    120          
+    121          	*dest = 0;
+   \   00002A   90....       MOV     DPTR,#__Constant_0
+   \   00002D   12....       LCALL   ?XLOAD_R2345
+   \   000030   8E82         MOV     DPL,R6
+   \   000032   8F83         MOV     DPH,R7
+   \   000034   12....       LCALL   ?XSTORE_R2345
+    122          	for(i=0; i<4; i++)
+   \   000037   85..82       MOV     DPL,?XSP + 0
+   \   00003A   85..83       MOV     DPH,?XSP + 1
+   \   00003D   AA82         MOV     R2,DPL
+   \   00003F   AB83         MOV     R3,DPH
+    123          	{
+    124          		*dest += ((*dest)<<8)+dsts[i];
+   \                     ??incode_ctox32_0:
+   \   000041   8E82         MOV     DPL,R6
+   \   000043   8F83         MOV     DPH,R7
+   \   000045   78..         MOV     R0,#?V0 + 4
+   \   000047   12....       LCALL   ?L_MOV_X
+   \   00004A   90....       MOV     DPTR,#__Constant_101
+   \   00004D   78..         MOV     R0,#?V0 + 0
+   \   00004F   12....       LCALL   ?L_MOV_X
+   \   000052   78..         MOV     R0,#?V0 + 4
+   \   000054   79..         MOV     R1,#?V0 + 0
+   \   000056   12....       LCALL   ?L_MUL
+   \   000059   8A82         MOV     DPL,R2
+   \   00005B   8B83         MOV     DPH,R3
+   \   00005D   E0           MOVX    A,@DPTR
+   \   00005E   F5..         MOV     ?V0 + 0,A
+   \   000060   E4           CLR     A
+   \   000061   F5..         MOV     ?V0 + 1,A
+   \   000063   F5..         MOV     ?V0 + 2,A
+   \   000065   F5..         MOV     ?V0 + 3,A
+   \   000067   78..         MOV     R0,#?V0 + 4
+   \   000069   79..         MOV     R1,#?V0 + 0
+   \   00006B   12....       LCALL   ?L_ADD
+   \   00006E   8E82         MOV     DPL,R6
+   \   000070   8F83         MOV     DPH,R7
+   \   000072   78..         MOV     R0,#?V0 + 4
+   \   000074   12....       LCALL   ?L_MOV_TO_X
+    125          	}
+   \   000077   8A82         MOV     DPL,R2
+   \   000079   8B83         MOV     DPH,R3
+   \   00007B   A3           INC     DPTR
+   \   00007C   AA82         MOV     R2,DPL
+   \   00007E   AB83         MOV     R3,DPH
+   \   000080   7404         MOV     A,#0x4
+   \   000082   12....       LCALL   ?XSTACK_DISP0_8
+   \   000085   E582         MOV     A,DPL
+   \   000087   6A           XRL     A,R2
+   \   000088   7003         JNZ     ??incode_ctox32_1
+   \   00008A   E583         MOV     A,DPH
+   \   00008C   6B           XRL     A,R3
+   \                     ??incode_ctox32_1:
+   \   00008D   70B2         JNZ     ??incode_ctox32_0
+    126          }
+   \   00008F                REQUIRE ?Subroutine1
+   \   00008F                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7404         MOV     A,#0x4
+   \   000002   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000005   7F08         MOV     R7,#0x8
+   \   000007   02....       LJMP    ?BANKED_LEAVE_XDATA
+    127          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    128          void incode_xtoc32(uint8 *dest, uint32 src)
+   \                     incode_xtoc32:
+    129          {
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 4
+   \   000005   74FC         MOV     A,#-0x4
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   7414         MOV     A,#0x14
+   \   00000C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000F   78..         MOV     R0,#?V0 + 4
+   \   000011   12....       LCALL   ?L_MOV_X
+    130          	unsigned char val[4];
+    131          	val[0] = ((src>>24)&0xFF);
+   \   000014   85....       MOV     ?V0 + 0,?V0 + 4
+   \   000017   85....       MOV     ?V0 + 1,?V0 + 5
+   \   00001A   85....       MOV     ?V0 + 2,?V0 + 6
+   \   00001D   85....       MOV     ?V0 + 3,?V0 + 7
+   \   000020   7418         MOV     A,#0x18
+   \   000022   78..         MOV     R0,#?V0 + 0
+   \   000024   12....       LCALL   ?UL_SHR
+   \   000027   85..82       MOV     DPL,?XSP + 0
+   \   00002A   85..83       MOV     DPH,?XSP + 1
+   \   00002D   E5..         MOV     A,?V0 + 0
+   \   00002F   F0           MOVX    @DPTR,A
+    132          	val[1] = ((src>>16)&0xFF);
+   \   000030   85....       MOV     ?V0 + 0,?V0 + 4
+   \   000033   85....       MOV     ?V0 + 1,?V0 + 5
+   \   000036   85....       MOV     ?V0 + 2,?V0 + 6
+   \   000039   F5..         MOV     ?V0 + 3,A
+   \   00003B   7410         MOV     A,#0x10
+   \   00003D   78..         MOV     R0,#?V0 + 0
+   \   00003F   12....       LCALL   ?UL_SHR
+   \   000042   04           INC     A
+   \   000043   12....       LCALL   ?XSTACK_DISP0_8
+   \   000046   E5..         MOV     A,?V0 + 0
+   \   000048   F0           MOVX    @DPTR,A
+    133          	val[2] = ((src>>8)&0xFF);
+   \   000049   85....       MOV     ?V0 + 1,?V0 + 5
+   \   00004C   E5..         MOV     A,?V0 + 1
+   \   00004E   F5..         MOV     ?V0 + 0,A
+   \   000050   7402         MOV     A,#0x2
+   \   000052   12....       LCALL   ?XSTACK_DISP0_8
+   \   000055   E5..         MOV     A,?V0 + 0
+   \   000057   F0           MOVX    @DPTR,A
+    134          	val[3] = (src&0xFF);
+   \   000058   7403         MOV     A,#0x3
+   \   00005A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00005D   E5..         MOV     A,?V0 + 4
+   \   00005F   F0           MOVX    @DPTR,A
+    135          	
+    136          	incode_xtocs(dest, val, 4);
+   \   000060                ; Setup parameters for call to function incode_xtocs
+   \   000060   75..04       MOV     ?V0 + 0,#0x4
+   \   000063   75..00       MOV     ?V0 + 1,#0x0
+   \   000066   78..         MOV     R0,#?V0 + 0
+   \   000068   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00006B   7402         MOV     A,#0x2
+   \   00006D   12....       LCALL   ?XSTACK_DISP0_8
+   \   000070   AC82         MOV     R4,DPL
+   \   000072   AD83         MOV     R5,DPH
+   \   000074   12....       LCALL   ??incode_xtocs?relay
+   \   000077   7402         MOV     A,#0x2
+   \   000079   12....       LCALL   ?DEALLOC_XSTACK8
+    137          }
+   \   00007C   02....       LJMP    ?Subroutine1 & 0xFFFF
+    138          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    139          uint32 gen_rand(uint8 *seed)
+   \                     gen_rand:
+    140          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+    141          	int i;
+    142          	unsigned int ra = 0;
+   \   000005   75..00       MOV     ?V0 + 0,#0x0
+   \   000008   75..00       MOV     ?V0 + 1,#0x0
+    143          	for(i=0; i<8; i+=2)
+   \   00000B   7C00         MOV     R4,#0x0
+   \   00000D   7D00         MOV     R5,#0x0
+    144          	{
+    145          		ra += seed[i]<<(i<<2);
+   \                     ??gen_rand_0:
+   \   00000F   8A82         MOV     DPL,R2
+   \   000011   8B83         MOV     DPH,R3
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   F5..         MOV     ?V0 + 2,A
+   \   000016   75..00       MOV     ?V0 + 3,#0x0
+   \   000019   EC           MOV     A,R4
+   \   00001A   33           RLC     A
+   \   00001B   33           RLC     A
+   \   00001C   54FC         ANL     A,#0xfc
+   \   00001E   78..         MOV     R0,#?V0 + 2
+   \   000020   12....       LCALL   ?S_SHL
+   \   000023   E5..         MOV     A,?V0 + 0
+   \   000025   25..         ADD     A,?V0 + 2
+   \   000027   F5..         MOV     ?V0 + 0,A
+   \   000029   E5..         MOV     A,?V0 + 1
+   \   00002B   35..         ADDC    A,?V0 + 3
+   \   00002D   F5..         MOV     ?V0 + 1,A
+    146          	}
+   \   00002F   EC           MOV     A,R4
+   \   000030   2402         ADD     A,#0x2
+   \   000032   0C           INC     R4
+   \   000033   0C           INC     R4
+   \   000034   ED           MOV     A,R5
+   \   000035   3400         ADDC    A,#0x0
+   \   000037   FD           MOV     R5,A
+   \   000038   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   00003B   C3           CLR     C
+   \   00003C   EC           MOV     A,R4
+   \   00003D   9408         SUBB    A,#0x8
+   \   00003F   ED           MOV     A,R5
+   \   000040   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   000043   40CA         JC      ??gen_rand_0
+    147          
+    148          	return ra;
+   \   000045   AA..         MOV     R2,?V0 + 0
+   \   000047   AB..         MOV     R3,?V0 + 1
+   \   000049   E4           CLR     A
+   \   00004A   FC           MOV     R4,A
+   \   00004B   FD           MOV     R5,A
+   \   00004C   7F04         MOV     R7,#0x4
+   \   00004E   02....       LJMP    ?BANKED_LEAVE_XDATA
+    149          }
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_0:
+   \   000000   00000000     DD 0
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_101:
+   \   000000   01010000     DD 257
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_ctox?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_ctox
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_atox?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_atox
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_ctoxs?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_ctoxs
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_xtocs?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_xtocs
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_ctox16?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_ctox16
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_xtoc16?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_xtoc16
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_ctox32?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_ctox32
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??incode_xtoc32?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    incode_xtoc32
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??gen_rand?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    gen_rand
+
+   Maximum stack usage in bytes:
+
+     Function          ISTACK PSTACK XSTACK
+     --------          ------ ------ ------
+     gen_rand              0      0     12
+     incode_atox           0      0     13
+       -> incode_ctox      0      0     26
+     incode_ctox           0      0     14
+     incode_ctox16         0      0     14
+       -> incode_ctoxs     0      0     28
+     incode_ctox32         0      0     22
+       -> incode_ctoxs     0      0     44
+     incode_ctoxs          1      0     36
+       -> incode_ctox      0      0     28
+       -> incode_ctox      0      0     28
+     incode_xtoc16         1      0     14
+       -> incode_xtocs     0      0     28
+     incode_xtoc32         1      0     26
+       -> incode_xtocs     0      0     44
+     incode_xtocs          1      0     32
+
+
+   Segment part sizes:
+
+     Function/Label        Bytes
+     --------------        -----
+     incode_ctox             43
+     incode_atox             56
+     ?Subroutine3             7
+     incode_ctoxs           155
+     ?Subroutine2             8
+     incode_xtocs           124
+     ??Subroutine5_0          5
+     ?Subroutine4            10
+     incode_ctox16           78
+     ?Subroutine0             5
+     incode_xtoc16           55
+     incode_ctox32          143
+     ?Subroutine1            10
+     incode_xtoc32          127
+     gen_rand                81
+     __Constant_0             4
+     __Constant_101           4
+     ??incode_ctox?relay      6
+     ??incode_atox?relay      6
+     ??incode_ctoxs?relay     6
+     ??incode_xtocs?relay     6
+     ??incode_ctox16?relay    6
+     ??incode_xtoc16?relay    6
+     ??incode_ctox32?relay    6
+     ??incode_xtoc32?relay    6
+     ??gen_rand?relay         6
+
+ 
+ 907 bytes in segment BANKED_CODE
+  54 bytes in segment BANK_RELAYS
+   8 bytes in segment XDATA_ROM_C
+ 
+ 961 bytes of CODE  memory
+   0 bytes of CONST memory (+ 8 bytes shared)
+
+Errors: none
+Warnings: none

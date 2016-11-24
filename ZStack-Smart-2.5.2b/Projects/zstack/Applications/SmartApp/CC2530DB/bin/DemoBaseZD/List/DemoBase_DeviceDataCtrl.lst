@@ -1,0 +1,3620 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  13:24:35 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Device\DemoBase_Devi #
+#                          ceDataCtrl.c                                       #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3              #
+#                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5. #
+#                          2b\Projects\zstack\Applications\SmartApp\CC2530DB\ #
+#                          Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg   #
+#                          (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1      #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Device\DemoBase_DeviceDataCtrl.c -D SECURE=1    #
+#                          -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D              #
+#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZD\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Lis #
+#                          t\DemoBase_DeviceDataCtrl.lst                      #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZD\Obj #
+#                          \DemoBase_DeviceDataCtrl.r51                       #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Device\DemoBase_DeviceDataCtrl.c
+      1          /**************************************************************************************************
+      2            Filename:       DemoBase_DeviceDataCtrl.c
+      3            Revised:        $Date: 2014-12-01 14:27:34 -0800 (Thu, 01 dec 2014) $
+      4            Revision:       $Revision: 29218 $
+      5          
+      6            Description:    This file contains interface of demo base device data operations
+      7          **************************************************************************************************/
+      8          
+      9          /**************************************************************************************************
+     10          Modify by Sam_Chen
+     11          Date:2015-07-31
+     12          **************************************************************************************************/
+     13          
+     14          /*********************************************************************
+     15           * INCLUDES
+     16           */
+     17          #include "CommonApp.h"
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xa8
+   \   union <unnamed> volatile __sfr _A_IEN0
+   \                     _A_IEN0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb4
+   \   unsigned char volatile __sfr ADCCON1
+   \                     ADCCON1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb6
+   \   unsigned char volatile __sfr ADCCON3
+   \                     ADCCON3:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb8
+   \   union <unnamed> volatile __sfr _A_IEN1
+   \                     _A_IEN1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xba
+   \   unsigned char volatile __sfr ADCL
+   \                     ADCL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xbb
+   \   unsigned char volatile __sfr ADCH
+   \                     ADCH:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc6
+   \   unsigned char volatile __sfr CLKCONCMD
+   \                     CLKCONCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xda
+   \   unsigned char volatile __sfr T1CC0L
+   \                     T1CC0L:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xdb
+   \   unsigned char volatile __sfr T1CC0H
+   \                     T1CC0H:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xdc
+   \   unsigned char volatile __sfr T1CC1L
+   \                     T1CC1L:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xdd
+   \   unsigned char volatile __sfr T1CC1H
+   \                     T1CC1H:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xe4
+   \   unsigned char volatile __sfr T1CTL
+   \                     T1CTL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xe6
+   \   unsigned char volatile __sfr T1CCTL1
+   \                     T1CCTL1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf1
+   \   unsigned char volatile __sfr PERCFG
+   \                     PERCFG:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+     18          #include "hal_drivers.h" 
+     19          #include "i2c-ctrl.h"
+     20          #include "ht-ctrl.h"
+     21          #include "rfid/RC522_RegCtrl.h"
+     22          #include "rfid/RC522_Mifare.h"
+     23          #include "rfid/RC522_ErrCode.h"
+     24          #include "rfid/Mifare_Util.h"
+     25          #include "mincode.h"
+     26          
+     27          /*********************************************************************
+     28           * MACROS
+     29           */
+     30          #define DEMOBASE_DEVICE_IIC_ADDR     ((1<<8)+1)	//IIC存储ID 地址(可自定义)
+     31          #define DEMOBASE_SETID_HEAD		"SETID"
+     32          #define DEMOBASE_GETID_HEAD		"GETID"
+     33          
+     34          #define LED_DATA_SIZE			4
+     35          #define PLC_DATA_SIZE			6
+     36          #define RFID_DATA_SIZE			19
+     37          #define HUMITURE_DATA_SIZE 		7
+     38          #define LIGHTDETECT_DATA_SIZE 	5
+     39          #define AIRDETECT_DATA_SIZE 	5
+     40          #define LIGHTCTRL_DATA_SIZE		4
+     41          
+     42          #define DEMOBASE_DEVICE_LED				"01"
+     43          #define DEMOBASE_DEVICE_PLC				"02"
+     44          #define DEMOBASE_DEVICE_RFID			"03"
+     45          #define DEMOBASE_DEVICE_HUMITURE		"04"
+     46          #define DEMOBASE_DEVICE_LIGHTDETECT		"05"
+     47          #define DEMOBASE_DEVICE_AIRDETECT		"06"
+     48          #define DEMOBASE_DEVICE_LIGHTCTRL		"07"
+     49          
+     50          #define DEMOBASE_DEVICE_NOTIDENTIFY		"FF"
+     51          
+     52          /*********************************************************************
+     53           * CONSTANTS
+     54           */
+     55          
+     56          /*********************************************************************
+     57           * EXTERNAL VARIABLES
+     58           */
+     59          extern byte CommonApp_TaskID;
+     60          
+     61          extern uint8 *optData;
+     62          extern uint8 optDataLen;
+     63          
+     64          /*********************************************************************
+     65           * EXTERNAL FUNCTIONS
+     66           */
+     67           
+     68          /*********************************************************************
+     69           * GLOBAL VARIABLES
+     70           */
+     71          
+     72          /*********************************************************************
+     73           * LOCAL VARIABLES
+     74           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     75          static uint8 queryStates = 0;
+   \                     queryStates:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     76          static uint8 isBee = 0;
+   \                     isBee:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     77          static uint8 ids[8] = {0};
+   \                     ids:
+   \   000000                DS 8
+   \   000008                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     78          static uint8 idlen = 0;
+   \                     idlen:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     79          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     80          static uint8 temp;
+   \                     temp:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     81          static uint8 humi;
+   \                     humi:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     82          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     83          static uint8 lightGrade = 2;
+   \                     lightGrade:
+   \   000000                DS 1
+   \   000001                REQUIRE `?<Initializer for lightGrade>`
+   \   000001                REQUIRE __INIT_XDATA_I
+     84          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     85          static uint8 airStates = 1;
+   \                     airStates:
+   \   000000                DS 1
+   \   000001                REQUIRE `?<Initializer for airStates>`
+   \   000001                REQUIRE __INIT_XDATA_I
+     86          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     87          static uint8 lightCtrlStates = 0;
+   \                     lightCtrlStates:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     88          
+     89          /*********************************************************************
+     90           * LOCAL FUNCTIONS
+     91           */
+     92          static void led_init(void);
+     93          static void plc_init(void);
+     94          static void rfid_init(void);
+     95          static void humiture_init(void);
+     96          static void lightdetect_init(void);
+     97          static void airdetect_init(void);
+     98          static void lightctrl_init(void);
+     99          
+    100          static int8 set_led_data(uint8 *data, uint8 dataLen);
+    101          static int8 set_plc_data(uint8 *data, uint8 dataLen);
+    102          static int8 set_rfid_data(uint8 *data, uint8 dataLen);
+    103          static int8 set_humiture_data(uint8 *data, uint8 dataLen);
+    104          static int8 set_lightdetect_data(uint8 *data, uint8 dataLen);
+    105          static int8 set_airdetect_data(uint8 *data, uint8 dataLen);
+    106          static int8 set_lightctrl_data(uint8 *data, uint8 dataLen);
+    107          
+    108          static int8 get_led_data(uint8 *data, uint8 *dataLen);
+    109          static int8 get_plc_data(uint8 *data, uint8 *dataLen);
+    110          static int8 get_rfid_data(uint8 *data, uint8 *dataLen);
+    111          static int8 get_humiture_data(uint8 *data, uint8 *dataLen);
+    112          static int8 get_lightdetect_data(uint8 *data, uint8 *dataLen);
+    113          static int8 get_airdetect_data(uint8 *data, uint8 *dataLen);
+    114          static int8 get_lightctrl_data(uint8 *data, uint8 *dataLen);
+    115          
+    116          static void DemoBaseRFID_QueryCB( void *params, uint16 *duration, uint8 *count);
+    117          static void DemoBaseRFID_StopBeeCB( void *params, uint16 *duration, uint8 *count);
+    118          static void DemoBaseHumiture_StatusCB( void *params, uint16 *duration, uint8 *count);
+    119          static void DemoBaseLightDetect_StatusCB( void *params, uint16 *duration, uint8 *count);
+    120          static void DemoBaseAirDetect_StatusCB( void *params, uint16 *duration, uint8 *count);
+    121          static uint16 getAD(void);
+    122          static void InitTimer1(void);
+    123          
+    124          /*********************************************************************
+    125           * PUBLIC FUNCTIONS
+    126           */
+    127          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    128          void HalDeviceInit (void)
+   \                     HalDeviceInit:
+    129          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    130          
+    131          }
+   \   000000   02....       LJMP    ?BRET
+    132          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    133          void HalStatesInit(devStates_t status)
+   \                     HalStatesInit:
+    134          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    135          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    136          	switch(i2cAddr)
+   \   000005                ; Setup parameters for call to function IRecvByte
+   \   000005   7A01         MOV     R2,#0x1
+   \   000007   7B01         MOV     R3,#0x1
+   \   000009   12....       LCALL   ??IRecvByte?relay
+   \   00000C   E9           MOV     A,R1
+   \   00000D   14           DEC     A
+   \   00000E   601E         JZ      ??HalStatesInit_0
+   \   000010   14           DEC     A
+   \   000011   6024         JZ      ??HalStatesInit_1
+   \   000013   14           DEC     A
+   \   000014   6034         JZ      ??HalStatesInit_2
+   \   000016   14           DEC     A
+   \   000017   6063         JZ      ??HalStatesInit_3
+   \   000019   14           DEC     A
+   \   00001A   7003         JNZ     $+5
+   \   00001C   02....       LJMP    ??HalStatesInit_4 & 0xFFFF
+   \   00001F   14           DEC     A
+   \   000020   7003         JNZ     $+5
+   \   000022   02....       LJMP    ??HalStatesInit_5 & 0xFFFF
+   \   000025   14           DEC     A
+   \   000026   7003         JNZ     $+5
+   \   000028   02....       LJMP    ??HalStatesInit_6 & 0xFFFF
+   \   00002B   02....       LJMP    ??HalStatesInit_7 & 0xFFFF
+    137          	{
+    138          	case 1: led_init(); break;
+   \                     ??HalStatesInit_0:
+   \   00002E   75FEFF       MOV     0xfe,#-0x1
+   \   000031   759000       MOV     0x90,#0x0
+   \   000034   02....       LJMP    ??HalStatesInit_7 & 0xFFFF
+    139          	case 2: plc_init(); break;
+   \                     ??HalStatesInit_1:
+   \   000037   53FEFE       ANL     0xfe,#0xfe
+   \   00003A   53FEFD       ANL     0xfe,#0xfd
+   \   00003D   43FE10       ORL     0xfe,#0x10
+   \   000040   D294         SETB    0x90.4
+   \   000042   43FE20       ORL     0xfe,#0x20
+   \   000045   D294         SETB    0x90.4
+   \   000047   02....       LJMP    ??HalStatesInit_7 & 0xFFFF
+    140          	case 3: rfid_init(); break;
+   \                     ??HalStatesInit_2:
+   \   00004A   43FE20       ORL     0xfe,#0x20
+   \   00004D   C295         CLR     0x90.5
+   \   00004F                ; Setup parameters for call to function update_user_event
+   \   00004F   E4           CLR     A
+   \   000050   F5..         MOV     ?V0 + 0,A
+   \   000052   F5..         MOV     ?V0 + 1,A
+   \   000054   78..         MOV     R0,#?V0 + 0
+   \   000056   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000059   75..FF       MOV     ?V0 + 0,#-0x1
+   \   00005C   78..         MOV     R0,#?V0 + 0
+   \   00005E   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   000061   75..F4       MOV     ?V0 + 0,#-0xc
+   \   000064   75..01       MOV     ?V0 + 1,#0x1
+   \   000067   78..         MOV     R0,#?V0 + 0
+   \   000069   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00006C   7C..         MOV     R4,#??DemoBaseRFID_QueryCB?relay & 0xff
+   \   00006E   7D..         MOV     R5,#(??DemoBaseRFID_QueryCB?relay >> 8) & 0xff
+   \   000070   7A10         MOV     R2,#0x10
+   \                     ??HalStatesInit_8:
+   \   000072   7B00         MOV     R3,#0x0
+   \                     ??HalStatesInit_9:
+   \   000074   12....       LCALL   ??Subroutine36_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_63:
+   \   000077   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00007A   807E         SJMP    ??HalStatesInit_7
+    141          	case 4: humiture_init(); break;
+   \                     ??HalStatesInit_3:
+   \   00007C                ; Setup parameters for call to function update_user_event
+   \   00007C   E4           CLR     A
+   \   00007D   F5..         MOV     ?V0 + 0,A
+   \   00007F   F5..         MOV     ?V0 + 1,A
+   \   000081   78..         MOV     R0,#?V0 + 0
+   \   000083   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000086   75..FF       MOV     ?V0 + 0,#-0x1
+   \   000089   78..         MOV     R0,#?V0 + 0
+   \   00008B   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   00008E   75..D0       MOV     ?V0 + 0,#-0x30
+   \   000091   75..07       MOV     ?V0 + 1,#0x7
+   \   000094   78..         MOV     R0,#?V0 + 0
+   \   000096   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000099   7C..         MOV     R4,#??DemoBaseHumiture_StatusCB?relay & 0xff
+   \   00009B   7D..         MOV     R5,#(??DemoBaseHumiture_StatusCB?relay >> 8) & 0xff
+   \   00009D   7A40         MOV     R2,#0x40
+   \   00009F   80D1         SJMP    ??HalStatesInit_8
+    142          	case 5: lightdetect_init(); break;
+   \                     ??HalStatesInit_4:
+   \   0000A1                ; Setup parameters for call to function update_user_event
+   \   0000A1   E4           CLR     A
+   \   0000A2   F5..         MOV     ?V0 + 0,A
+   \   0000A4   F5..         MOV     ?V0 + 1,A
+   \   0000A6   78..         MOV     R0,#?V0 + 0
+   \   0000A8   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000AB   75..FF       MOV     ?V0 + 0,#-0x1
+   \   0000AE   78..         MOV     R0,#?V0 + 0
+   \   0000B0   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   0000B3   75..D0       MOV     ?V0 + 0,#-0x30
+   \   0000B6   75..07       MOV     ?V0 + 1,#0x7
+   \   0000B9   78..         MOV     R0,#?V0 + 0
+   \   0000BB   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000BE   7C..         MOV     R4,#??DemoBaseLightDetect_StatusCB?relay & 0xff
+   \   0000C0   7D..         MOV     R5,#(??DemoBaseLightDetect_StatusCB?relay >> 8) & 0xff
+   \   0000C2   7A80         MOV     R2,#-0x80
+   \   0000C4   12....       LCALL   ?Subroutine18 & 0xFFFF
+   \                     ??CrossCallReturnLabel_61:
+   \   0000C7   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000CA   802E         SJMP    ??HalStatesInit_7
+    143          	case 6: airdetect_init(); break;
+   \                     ??HalStatesInit_5:
+   \   0000CC   53FEFB       ANL     0xfe,#0xfb
+   \   0000CF                ; Setup parameters for call to function update_user_event
+   \   0000CF   E4           CLR     A
+   \   0000D0   F5..         MOV     ?V0 + 0,A
+   \   0000D2   F5..         MOV     ?V0 + 1,A
+   \   0000D4   78..         MOV     R0,#?V0 + 0
+   \   0000D6   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000D9   75..FF       MOV     ?V0 + 0,#-0x1
+   \   0000DC   78..         MOV     R0,#?V0 + 0
+   \   0000DE   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   0000E1   75..D0       MOV     ?V0 + 0,#-0x30
+   \   0000E4   75..07       MOV     ?V0 + 1,#0x7
+   \   0000E7   78..         MOV     R0,#?V0 + 0
+   \   0000E9   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000EC   7C..         MOV     R4,#??DemoBaseAirDetect_StatusCB?relay & 0xff
+   \   0000EE   7D..         MOV     R5,#(??DemoBaseAirDetect_StatusCB?relay >> 8) & 0xff
+   \   0000F0   7A00         MOV     R2,#0x0
+   \   0000F2   7B01         MOV     R3,#0x1
+   \   0000F4   02....       LJMP    ??HalStatesInit_9 & 0xFFFF
+    144          	case 7: lightctrl_init(); break;
+   \                     ??HalStatesInit_6:
+   \   0000F7                ; Setup parameters for call to function lightctrl_init
+   \   0000F7   12....       LCALL   ??lightctrl_init?relay
+    145          	}
+    146          }
+   \                     ??HalStatesInit_7:
+   \   0000FA                REQUIRE ?Subroutine0
+   \   0000FA                REQUIRE P1DIR
+   \   0000FA                REQUIRE _A_P1
+   \   0000FA                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    147          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    148          int8 set_device_data(uint8 const *data, uint8 dataLen)
+   \                     set_device_data:
+    149          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   89..         MOV     ?V0 + 0,R1
+    150          	uint8 i2cAddr;
+    151          	
+    152          	if(dataLen >= 7 && osal_memcmp(optData, DEMOBASE_SETID_HEAD, 5))
+   \   000010   E9           MOV     A,R1
+   \   000011   C3           CLR     C
+   \   000012   9407         SUBB    A,#0x7
+   \   000014   5003         JNC     $+5
+   \   000016   02....       LJMP    ??set_device_data_0 & 0xFFFF
+   \   000019                ; Setup parameters for call to function osal_memcmp
+   \   000019   75....       MOV     ?V0 + 4,#`?<Constant "SETID">` & 0xff
+   \   00001C   75....       MOV     ?V0 + 5,#(`?<Constant "SETID">` >> 8) & 0xff
+   \   00001F   75..00       MOV     ?V0 + 6,#0x0
+   \   000022   78..         MOV     R0,#?V0 + 4
+   \   000024   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000027   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_25:
+   \   00002A   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00002D   E9           MOV     A,R1
+   \   00002E   6076         JZ      ??set_device_data_0
+    153          	{
+    154          		i2cAddr = atox((uint8 *)(data+5), 2);
+   \   000030                ; Setup parameters for call to function atox
+   \   000030   7902         MOV     R1,#0x2
+   \   000032   EE           MOV     A,R6
+   \   000033   2405         ADD     A,#0x5
+   \   000035   FA           MOV     R2,A
+   \   000036   EF           MOV     A,R7
+   \   000037   3400         ADDC    A,#0x0
+   \   000039   FB           MOV     R3,A
+   \   00003A   12....       LCALL   ??atox?relay
+   \   00003D   E9           MOV     A,R1
+   \   00003E   85..82       MOV     DPL,?XSP + 0
+   \   000041   85..83       MOV     DPH,?XSP + 1
+   \   000044   F0           MOVX    @DPTR,A
+    155          		if(ISendByte(DEMOBASE_DEVICE_IIC_ADDR, i2cAddr) > 0)
+   \   000045                ; Setup parameters for call to function ISendByte
+   \   000045   7A01         MOV     R2,#0x1
+   \   000047   7B01         MOV     R3,#0x1
+   \   000049   12....       LCALL   ??ISendByte?relay
+   \   00004C   E9           MOV     A,R1
+   \   00004D   6032         JZ      ??set_device_data_1
+    156          		{
+    157          			osal_memcpy(optData, DEMOBASE_GETID_HEAD, 5);
+   \   00004F                ; Setup parameters for call to function osal_memcpy
+   \   00004F   75....       MOV     ?V0 + 4,#`?<Constant "GETID">` & 0xff
+   \   000052   75....       MOV     ?V0 + 5,#(`?<Constant "GETID">` >> 8) & 0xff
+   \   000055   78..         MOV     R0,#?V0 + 4
+   \   000057   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00005A   7C05         MOV     R4,#0x5
+   \   00005C   12....       LCALL   ??Subroutine41_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_88:
+   \   00005F   12....       LCALL   ?DEALLOC_XSTACK8
+    158          			i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+   \   000062                ; Setup parameters for call to function IRecvByte
+   \   000062   12....       LCALL   ?Subroutine5 & 0xFFFF
+    159          			incode_xtocs(optData+5, &i2cAddr, 1);
+   \                     ??CrossCallReturnLabel_5:
+   \   000065                ; Setup parameters for call to function incode_xtocs
+   \   000065   75..01       MOV     ?V0 + 2,#0x1
+   \   000068   75..00       MOV     ?V0 + 3,#0x0
+   \   00006B   78..         MOV     R0,#?V0 + 2
+   \   00006D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000070   7402         MOV     A,#0x2
+   \   000072   12....       LCALL   ?XSTACK_DISP0_8
+   \   000075   AC82         MOV     R4,DPL
+   \   000077   AD83         MOV     R5,DPH
+   \   000079   12....       LCALL   ??Subroutine37_0 & 0xFFFF
+    160          		}
+   \                     ??CrossCallReturnLabel_66:
+   \   00007C   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00007F   8020         SJMP    ??set_device_data_2
+    161          		else
+    162          		{
+    163          			osal_memcpy(optData+5, "ER", 2);
+   \                     ??set_device_data_1:
+   \   000081                ; Setup parameters for call to function osal_memcpy
+   \   000081   75....       MOV     ?V0 + 4,#`?<Constant "ER">` & 0xff
+   \   000084   75....       MOV     ?V0 + 5,#(`?<Constant "ER">` >> 8) & 0xff
+   \   000087   78..         MOV     R0,#?V0 + 4
+   \   000089   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00008C   7C02         MOV     R4,#0x2
+   \   00008E   7D00         MOV     R5,#0x0
+   \   000090   90....       MOV     DPTR,#optData
+   \   000093   E0           MOVX    A,@DPTR
+   \   000094   2405         ADD     A,#0x5
+   \   000096   FA           MOV     R2,A
+   \   000097   A3           INC     DPTR
+   \   000098   E0           MOVX    A,@DPTR
+   \   000099   3400         ADDC    A,#0x0
+   \   00009B   12....       LCALL   ??Subroutine44_0 & 0xFFFF
+    164          		}
+   \                     ??CrossCallReturnLabel_98:
+   \   00009E   12....       LCALL   ?DEALLOC_XSTACK8
+    165          		
+    166          		return 0;
+   \                     ??set_device_data_2:
+   \   0000A1   7900         MOV     R1,#0x0
+   \   0000A3   02....       LJMP    ??set_device_data_3 & 0xFFFF
+    167          	}
+    168          	
+    169          	i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+   \                     ??set_device_data_0:
+   \   0000A6                ; Setup parameters for call to function IRecvByte
+   \   0000A6   12....       LCALL   ?Subroutine5 & 0xFFFF
+    170          	switch(i2cAddr)
+   \                     ??CrossCallReturnLabel_6:
+   \   0000A9   14           DEC     A
+   \   0000AA   6014         JZ      ??set_device_data_4
+   \   0000AC   14           DEC     A
+   \   0000AD   6024         JZ      ??set_device_data_5
+   \   0000AF   14           DEC     A
+   \   0000B0   6052         JZ      ??set_device_data_6
+   \   0000B2   14           DEC     A
+   \   0000B3   604F         JZ      ??set_device_data_6
+   \   0000B5   14           DEC     A
+   \   0000B6   604C         JZ      ??set_device_data_6
+   \   0000B8   14           DEC     A
+   \   0000B9   6050         JZ      ??set_device_data_7
+   \   0000BB   14           DEC     A
+   \   0000BC   607D         JZ      ??set_device_data_8
+   \   0000BE   80E1         SJMP    ??set_device_data_2
+    171          	{
+    172          	case 1: return set_led_data((uint8 *)data, dataLen);
+   \                     ??set_device_data_4:
+   \   0000C0                ; Setup parameters for call to function IRecvByte
+   \   0000C0   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_1:
+   \   0000C3   70DC         JNZ     ??set_device_data_2
+   \   0000C5   E5..         MOV     A,?V0 + 0
+   \   0000C7   C3           CLR     C
+   \   0000C8   9404         SUBB    A,#0x4
+   \   0000CA   40D5         JC      ??set_device_data_2
+   \   0000CC                ; Setup parameters for call to function incode_atox
+   \   0000CC   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_45:
+   \   0000CF   F590         MOV     0x90,A
+   \   0000D1   80CE         SJMP    ??set_device_data_2
+    173          	case 2: return set_plc_data((uint8 *)data, dataLen);
+   \                     ??set_device_data_5:
+   \   0000D3                ; Setup parameters for call to function IRecvByte
+   \   0000D3   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   0000D6   70C9         JNZ     ??set_device_data_2
+   \   0000D8   E5..         MOV     A,?V0 + 0
+   \   0000DA   C3           CLR     C
+   \   0000DB   9404         SUBB    A,#0x4
+   \   0000DD   40C2         JC      ??set_device_data_2
+   \   0000DF   8E82         MOV     DPL,R6
+   \   0000E1   8F83         MOV     DPH,R7
+   \   0000E3   A3           INC     DPTR
+   \   0000E4   A3           INC     DPTR
+   \   0000E5   E0           MOVX    A,@DPTR
+   \   0000E6   6430         XRL     A,#0x30
+   \   0000E8   7004         JNZ     ??set_device_data_9
+   \   0000EA   D294         SETB    0x90.4
+   \   0000EC   8002         SJMP    ??set_device_data_10
+   \                     ??set_device_data_9:
+   \   0000EE   C294         CLR     0x90.4
+   \                     ??set_device_data_10:
+   \   0000F0   8E82         MOV     DPL,R6
+   \   0000F2   8F83         MOV     DPH,R7
+   \   0000F4   A3           INC     DPTR
+   \   0000F5   A3           INC     DPTR
+   \   0000F6   A3           INC     DPTR
+   \   0000F7   E0           MOVX    A,@DPTR
+   \   0000F8   6430         XRL     A,#0x30
+   \   0000FA   7004         JNZ     ??set_device_data_11
+   \   0000FC   D295         SETB    0x90.5
+   \   0000FE   80A1         SJMP    ??set_device_data_2
+   \                     ??set_device_data_11:
+   \   000100   C295         CLR     0x90.5
+   \   000102   809D         SJMP    ??set_device_data_2
+    174          	case 3: return set_rfid_data((uint8 *)data, dataLen);
+   \                     ??set_device_data_6:
+   \   000104                ; Setup parameters for call to function IRecvByte
+   \   000104   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   000107   7098         JNZ     ??set_device_data_2
+   \   000109   8005         SJMP    ??set_device_data_12
+    175          	case 4: return set_humiture_data((uint8 *)data, dataLen);
+    176          	case 5: return set_lightdetect_data((uint8 *)data, dataLen);
+    177          	case 6: return set_airdetect_data((uint8 *)data, dataLen);
+   \                     ??set_device_data_7:
+   \   00010B                ; Setup parameters for call to function IRecvByte
+   \   00010B   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   00010E   7091         JNZ     ??set_device_data_2
+   \                     ??set_device_data_12:
+   \   000110   E5..         MOV     A,?V0 + 0
+   \   000112   C3           CLR     C
+   \   000113   9403         SUBB    A,#0x3
+   \   000115   408A         JC      ??set_device_data_2
+   \   000117   8E82         MOV     DPL,R6
+   \   000119   8F83         MOV     DPH,R7
+   \   00011B   A3           INC     DPTR
+   \   00011C   A3           INC     DPTR
+   \   00011D   E0           MOVX    A,@DPTR
+   \   00011E   F8           MOV     R0,A
+   \   00011F   7453         MOV     A,#0x53
+   \   000121   68           XRL     A,R0
+   \   000122   7009         JNZ     ??set_device_data_13
+   \   000124   90....       MOV     DPTR,#queryStates
+   \   000127   7401         MOV     A,#0x1
+   \                     ??set_device_data_14:
+   \   000129   F0           MOVX    @DPTR,A
+   \   00012A   02....       LJMP    ??set_device_data_2 & 0xFFFF
+   \                     ??set_device_data_13:
+   \   00012D   7450         MOV     A,#0x50
+   \   00012F   68           XRL     A,R0
+   \   000130   6003         JZ      $+5
+   \   000132   02....       LJMP    ??set_device_data_2 & 0xFFFF
+   \   000135   90....       MOV     DPTR,#queryStates
+   \   000138   E4           CLR     A
+   \   000139   80EE         SJMP    ??set_device_data_14
+    178          	case 7: return set_lightctrl_data((uint8 *)data, dataLen);
+   \                     ??set_device_data_8:
+   \   00013B                ; Setup parameters for call to function set_lightctrl_data
+   \   00013B   A9..         MOV     R1,?V0 + 0
+   \   00013D   EE           MOV     A,R6
+   \   00013E   FA           MOV     R2,A
+   \   00013F   EF           MOV     A,R7
+   \   000140   FB           MOV     R3,A
+   \   000141   12....       LCALL   ??set_lightctrl_data?relay
+    179          	}
+   \                     ??set_device_data_3:
+   \   000144   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000147                REQUIRE _A_P1
+    180          	
+    181          	return 0;
+    182          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   7A01         MOV     R2,#0x1
+   \   000002   7B01         MOV     R3,#0x1
+   \   000004   12....       LCALL   ??IRecvByte?relay
+   \   000007   E9           MOV     A,R1
+   \   000008   85..82       MOV     DPL,?XSP + 0
+   \   00000B   85..83       MOV     DPH,?XSP + 1
+   \   00000E   F0           MOVX    @DPTR,A
+   \   00000F   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine14:
+   \   000000   7C05         MOV     R4,#0x5
+   \   000002   7D00         MOV     R5,#0x0
+   \   000004   12....       LCALL   ?Subroutine35 & 0xFFFF
+   \                     ??CrossCallReturnLabel_59:
+   \   000007   A982         MOV     R1,DPL
+   \   000009   AA83         MOV     R2,DPH
+   \   00000B   7B00         MOV     R3,#0x0
+   \   00000D   12....       LCALL   ??osal_memcmp?relay
+   \   000010   7403         MOV     A,#0x3
+   \   000012   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine37_0:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   2405         ADD     A,#0x5
+   \   000006                REQUIRE ??Subroutine38_0
+   \   000006                ; // Fall through to label ??Subroutine38_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine38_0:
+   \   000000   12....       LCALL   ?Subroutine31 & 0xFFFF
+   \                     ??CrossCallReturnLabel_137:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine35:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F8           MOV     R0,A
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   F583         MOV     DPH,A
+   \   000009   8882         MOV     DPL,R0
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine41_0:
+   \   000000   7D00         MOV     R5,#0x0
+   \   000002   90....       MOV     DPTR,#optData
+   \   000005   E0           MOVX    A,@DPTR
+   \   000006   FA           MOV     R2,A
+   \   000007   A3           INC     DPTR
+   \   000008   E0           MOVX    A,@DPTR
+   \   000009   FB           MOV     R3,A
+   \   00000A   12....       LCALL   ??osal_memcpy?relay
+   \   00000D   7403         MOV     A,#0x3
+   \   00000F   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine28:
+   \   000000   7C02         MOV     R4,#0x2
+   \   000002   7D00         MOV     R5,#0x0
+   \   000004   EE           MOV     A,R6
+   \   000005   2402         ADD     A,#0x2
+   \   000007   FA           MOV     R2,A
+   \   000008   EF           MOV     A,R7
+   \   000009   3400         ADDC    A,#0x0
+   \   00000B   FB           MOV     R3,A
+   \   00000C   12....       LCALL   ??incode_atox?relay
+   \   00000F   E9           MOV     A,R1
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   7A01         MOV     R2,#0x1
+   \   000002   7B01         MOV     R3,#0x1
+   \   000004   12....       LCALL   ??IRecvByte?relay
+   \   000007   E9           MOV     A,R1
+   \   000008   F5..         MOV     ?V0 + 1,A
+   \   00000A                ; Setup parameters for call to function incode_atox
+   \   00000A                ; Setup parameters for call to function incode_atox
+   \   00000A                ; Setup parameters for call to function incode_atox
+   \   00000A                ; Setup parameters for call to function incode_atox
+   \   00000A                ; Setup parameters for call to function incode_atox
+   \   00000A   7C02         MOV     R4,#0x2
+   \   00000C   7D00         MOV     R5,#0x0
+   \   00000E   EE           MOV     A,R6
+   \   00000F   FA           MOV     R2,A
+   \   000010   EF           MOV     A,R7
+   \   000011   FB           MOV     R3,A
+   \   000012   12....       LCALL   ??incode_atox?relay
+   \   000015   E9           MOV     A,R1
+   \   000016   65..         XRL     A,?V0 + 1
+   \   000018   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine44_0:
+   \   000000   FB           MOV     R3,A
+   \   000001                REQUIRE ??Subroutine45_0
+   \   000001                ; // Fall through to label ??Subroutine45_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine45_0:
+   \   000000   12....       LCALL   ??osal_memcpy?relay
+   \   000003   7403         MOV     A,#0x3
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7401         MOV     A,#0x1
+   \   000002   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000005                REQUIRE ??Subroutine47_0
+   \   000005                ; // Fall through to label ??Subroutine47_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine47_0:
+   \   000000   7F07         MOV     R7,#0x7
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine31:
+   \   000000   FA           MOV     R2,A
+   \   000001   A3           INC     DPTR
+   \   000002   E0           MOVX    A,@DPTR
+   \   000003   3400         ADDC    A,#0x0
+   \   000005   FB           MOV     R3,A
+   \   000006   12....       LCALL   ??incode_xtocs?relay
+   \   000009   7402         MOV     A,#0x2
+   \   00000B   22           RET
+    183          
+    184          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    185          int8 get_device_data(uint8 *data, uint8 *dataLen)
+   \                     get_device_data:
+    186          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8A..         MOV     ?V0 + 0,R2
+   \   00000C   8B..         MOV     ?V0 + 1,R3
+   \   00000E   EC           MOV     A,R4
+   \   00000F   FE           MOV     R6,A
+   \   000010   ED           MOV     A,R5
+   \   000011   FF           MOV     R7,A
+    187          	if(osal_memcmp(optData, DEMOBASE_SETID_HEAD, 5)
+    188          		|| osal_memcmp(optData, DEMOBASE_GETID_HEAD, 5))
+   \   000012                ; Setup parameters for call to function osal_memcmp
+   \   000012   75....       MOV     ?V0 + 4,#`?<Constant "SETID">` & 0xff
+   \   000015   75....       MOV     ?V0 + 5,#(`?<Constant "SETID">` >> 8) & 0xff
+   \   000018   75..00       MOV     ?V0 + 6,#0x0
+   \   00001B   78..         MOV     R0,#?V0 + 4
+   \   00001D   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000020   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_26:
+   \   000023   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000026   E9           MOV     A,R1
+   \   000027   7014         JNZ     ??get_device_data_0
+   \   000029                ; Setup parameters for call to function osal_memcmp
+   \   000029   75....       MOV     ?V0 + 4,#`?<Constant "GETID">` & 0xff
+   \   00002C   75....       MOV     ?V0 + 5,#(`?<Constant "GETID">` >> 8) & 0xff
+   \   00002F   78..         MOV     R0,#?V0 + 4
+   \   000031   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000034   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \                     ??CrossCallReturnLabel_27:
+   \   000037   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00003A   E9           MOV     A,R1
+   \   00003B   601D         JZ      ??get_device_data_1
+    189          	{
+    190          		osal_memcpy(data, optData, 7);
+   \                     ??get_device_data_0:
+   \   00003D                ; Setup parameters for call to function osal_memcpy
+   \   00003D   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_122:
+   \   000040   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000043   7C07         MOV     R4,#0x7
+   \   000045   7D00         MOV     R5,#0x0
+   \   000047   AA..         MOV     R2,?V0 + 0
+   \   000049   AB..         MOV     R3,?V0 + 1
+   \   00004B   12....       LCALL   ??Subroutine45_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_99:
+   \   00004E   12....       LCALL   ?DEALLOC_XSTACK8
+    191          		*dataLen = 7;
+   \   000051   8E82         MOV     DPL,R6
+   \   000053   8F83         MOV     DPH,R7
+   \   000055   7407         MOV     A,#0x7
+   \   000057   02....       LJMP    ??get_device_data_2 & 0xFFFF
+    192          		
+    193          		return 0;
+    194          	}
+    195          	
+    196          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    197          	switch(i2cAddr)
+   \                     ??get_device_data_1:
+   \   00005A                ; Setup parameters for call to function IRecvByte
+   \   00005A   7A01         MOV     R2,#0x1
+   \   00005C   7B01         MOV     R3,#0x1
+   \   00005E   12....       LCALL   ??IRecvByte?relay
+   \   000061   E9           MOV     A,R1
+   \   000062   14           DEC     A
+   \   000063   6027         JZ      ??get_device_data_3
+   \   000065   14           DEC     A
+   \   000066   7003         JNZ     $+5
+   \   000068   02....       LJMP    ??get_device_data_4 & 0xFFFF
+   \   00006B   14           DEC     A
+   \   00006C   7003         JNZ     $+5
+   \   00006E   02....       LJMP    ??get_device_data_5 & 0xFFFF
+   \   000071   14           DEC     A
+   \   000072   7003         JNZ     $+5
+   \   000074   02....       LJMP    ??get_device_data_6 & 0xFFFF
+   \   000077   14           DEC     A
+   \   000078   7003         JNZ     $+5
+   \   00007A   02....       LJMP    ??get_device_data_7 & 0xFFFF
+   \   00007D   14           DEC     A
+   \   00007E   7003         JNZ     $+5
+   \   000080   02....       LJMP    ??get_device_data_8 & 0xFFFF
+   \   000083   14           DEC     A
+   \   000084   7003         JNZ     $+5
+   \   000086   02....       LJMP    ??get_device_data_9 & 0xFFFF
+   \   000089   02....       LJMP    ??get_device_data_10 & 0xFFFF
+    198          	{
+    199          	case 1: return get_led_data(data, dataLen);
+   \                     ??get_device_data_3:
+   \   00008C   12....       LCALL   ??Subroutine46_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_107:
+   \   00008F   600C         JZ      ??CrossCallReturnLabel_13
+   \   000091   90....       MOV     DPTR,#optDataLen
+   \   000094   E0           MOVX    A,@DPTR
+   \   000095   C3           CLR     C
+   \   000096   9404         SUBB    A,#0x4
+   \   000098   5006         JNC     ??CrossCallReturnLabel_38
+   \   00009A                ; Setup parameters for call to function osal_mem_free
+   \   00009A   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
+   \   00009D                ; Setup parameters for call to function osal_mem_alloc
+   \   00009D   12....       LCALL   ?Subroutine23 & 0xFFFF
+   \                     ??CrossCallReturnLabel_38:
+   \   0000A0                ; Setup parameters for call to function osal_memcpy
+   \   0000A0   75....       MOV     ?V0 + 4,#`?<Constant "01">` & 0xff
+   \   0000A3   75....       MOV     ?V0 + 5,#(`?<Constant "01">` >> 8) & 0xff
+   \   0000A6   78..         MOV     R0,#?V0 + 4
+   \   0000A8   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   0000AB   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_77:
+   \   0000AE   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000B1   E590         MOV     A,0x90
+   \   0000B3   85..82       MOV     DPL,?XSP + 0
+   \   0000B6   85..83       MOV     DPH,?XSP + 1
+   \   0000B9   12....       LCALL   ??Subroutine48_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_116:
+   \   0000BC   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000BF   7402         MOV     A,#0x2
+   \   0000C1   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000C4   AC82         MOV     R4,DPL
+   \   0000C6   AD83         MOV     R5,DPH
+   \   0000C8   90....       MOV     DPTR,#optData
+   \   0000CB   E0           MOVX    A,@DPTR
+   \   0000CC   2402         ADD     A,#0x2
+   \   0000CE   12....       LCALL   ??Subroutine38_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_67:
+   \   0000D1   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000D4                ; Setup parameters for call to function osal_memcpy
+   \   0000D4   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_123:
+   \   0000D7   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   0000DA   90....       MOV     DPTR,#optDataLen
+   \   0000DD   E0           MOVX    A,@DPTR
+   \   0000DE   FC           MOV     R4,A
+   \   0000DF   7D00         MOV     R5,#0x0
+   \   0000E1   AA..         MOV     R2,?V0 + 0
+   \   0000E3   AB..         MOV     R3,?V0 + 1
+   \   0000E5   12....       LCALL   ??Subroutine45_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_100:
+   \   0000E8   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000EB   90....       MOV     DPTR,#optDataLen
+   \   0000EE   E0           MOVX    A,@DPTR
+   \   0000EF   8E82         MOV     DPL,R6
+   \   0000F1   8F83         MOV     DPH,R7
+   \   0000F3   02....       LJMP    ??get_device_data_2 & 0xFFFF
+    200          	case 2: return get_plc_data(data, dataLen);
+   \                     ??get_device_data_4:
+   \   0000F6                ; Setup parameters for call to function get_plc_data
+   \   0000F6   EE           MOV     A,R6
+   \   0000F7   FC           MOV     R4,A
+   \   0000F8   EF           MOV     A,R7
+   \   0000F9   FD           MOV     R5,A
+   \   0000FA   AA..         MOV     R2,?V0 + 0
+   \   0000FC   AB..         MOV     R3,?V0 + 1
+   \   0000FE   12....       LCALL   ??get_plc_data?relay
+   \   000101   02....       LJMP    ??get_device_data_11 & 0xFFFF
+    201          	case 3: return get_rfid_data(data, dataLen);
+   \                     ??get_device_data_5:
+   \   000104                ; Setup parameters for call to function get_rfid_data
+   \   000104   EE           MOV     A,R6
+   \   000105   FC           MOV     R4,A
+   \   000106   EF           MOV     A,R7
+   \   000107   FD           MOV     R5,A
+   \   000108   AA..         MOV     R2,?V0 + 0
+   \   00010A   AB..         MOV     R3,?V0 + 1
+   \   00010C   12....       LCALL   ??get_rfid_data?relay
+   \   00010F   02....       LJMP    ??get_device_data_11 & 0xFFFF
+    202          	case 4: return get_humiture_data(data, dataLen);
+   \                     ??get_device_data_6:
+   \   000112                ; Setup parameters for call to function get_humiture_data
+   \   000112   EE           MOV     A,R6
+   \   000113   FC           MOV     R4,A
+   \   000114   EF           MOV     A,R7
+   \   000115   FD           MOV     R5,A
+   \   000116   AA..         MOV     R2,?V0 + 0
+   \   000118   AB..         MOV     R3,?V0 + 1
+   \   00011A   12....       LCALL   ??get_humiture_data?relay
+   \   00011D   8077         SJMP    ??get_device_data_11
+    203          	case 5: return get_lightdetect_data(data, dataLen);
+   \                     ??get_device_data_7:
+   \   00011F                ; Setup parameters for call to function get_lightdetect_data
+   \   00011F   EE           MOV     A,R6
+   \   000120   FC           MOV     R4,A
+   \   000121   EF           MOV     A,R7
+   \   000122   FD           MOV     R5,A
+   \   000123   AA..         MOV     R2,?V0 + 0
+   \   000125   AB..         MOV     R3,?V0 + 1
+   \   000127   12....       LCALL   ??get_lightdetect_data?relay
+   \   00012A   806A         SJMP    ??get_device_data_11
+    204          	case 6: return get_airdetect_data(data, dataLen);
+   \                     ??get_device_data_8:
+   \   00012C                ; Setup parameters for call to function get_airdetect_data
+   \   00012C   EE           MOV     A,R6
+   \   00012D   FC           MOV     R4,A
+   \   00012E   EF           MOV     A,R7
+   \   00012F   FD           MOV     R5,A
+   \   000130   AA..         MOV     R2,?V0 + 0
+   \   000132   AB..         MOV     R3,?V0 + 1
+   \   000134   12....       LCALL   ??get_airdetect_data?relay
+   \   000137   805D         SJMP    ??get_device_data_11
+    205          	case 7: return get_lightctrl_data(data, dataLen);
+   \                     ??get_device_data_9:
+   \   000139   12....       LCALL   ??Subroutine46_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_108:
+   \   00013C   600C         JZ      ??CrossCallReturnLabel_14
+   \   00013E   90....       MOV     DPTR,#optDataLen
+   \   000141   E0           MOVX    A,@DPTR
+   \   000142   C3           CLR     C
+   \   000143   9404         SUBB    A,#0x4
+   \   000145   5006         JNC     ??CrossCallReturnLabel_39
+   \   000147                ; Setup parameters for call to function osal_mem_free
+   \   000147   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_14:
+   \   00014A                ; Setup parameters for call to function osal_mem_alloc
+   \   00014A   12....       LCALL   ?Subroutine23 & 0xFFFF
+   \                     ??CrossCallReturnLabel_39:
+   \   00014D                ; Setup parameters for call to function osal_memcpy
+   \   00014D   75....       MOV     ?V0 + 4,#`?<Constant "07">` & 0xff
+   \   000150   75....       MOV     ?V0 + 5,#(`?<Constant "07">` >> 8) & 0xff
+   \   000153   78..         MOV     R0,#?V0 + 4
+   \   000155   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000158   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_78:
+   \   00015B   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00015E                ; Setup parameters for call to function incode_xtocs
+   \   00015E   75..01       MOV     ?V0 + 2,#0x1
+   \   000161   75..00       MOV     ?V0 + 3,#0x0
+   \   000164   78..         MOV     R0,#?V0 + 2
+   \   000166   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000169   7C..         MOV     R4,#lightCtrlStates & 0xff
+   \   00016B   7D..         MOV     R5,#(lightCtrlStates >> 8) & 0xff
+   \   00016D   90....       MOV     DPTR,#optData
+   \   000170   E0           MOVX    A,@DPTR
+   \   000171   2402         ADD     A,#0x2
+   \   000173   12....       LCALL   ??Subroutine38_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_68:
+   \   000176   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000179                ; Setup parameters for call to function osal_memcpy
+   \   000179   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_124:
+   \   00017C   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00017F   7C04         MOV     R4,#0x4
+   \   000181   7D00         MOV     R5,#0x0
+   \   000183   AA..         MOV     R2,?V0 + 0
+   \   000185   AB..         MOV     R3,?V0 + 1
+   \   000187   12....       LCALL   ??Subroutine45_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_101:
+   \   00018A   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00018D   8E82         MOV     DPL,R6
+   \   00018F   8F83         MOV     DPH,R7
+   \   000191   7404         MOV     A,#0x4
+   \                     ??get_device_data_2:
+   \   000193   F0           MOVX    @DPTR,A
+    206          	}
+    207          	
+    208          	return 0;
+   \                     ??get_device_data_10:
+   \   000194   7900         MOV     R1,#0x0
+   \                     ??get_device_data_11:
+   \   000196   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000199                REQUIRE _A_P1
+    209          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine50_0:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F5..         MOV     ?V0 + 4,A
+   \   000006   A3           INC     DPTR
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   F5..         MOV     ?V0 + 5,A
+   \   00000A   78..         MOV     R0,#?V0 + 4
+   \   00000C   22           RET
+    210          
+    211          void led_init(void)
+    212          {
+    213          	HAL_INIT_BASELED();
+    214          }
+    215          
+    216          void plc_init(void)
+    217          {
+    218          	HAL_INIT_PLCIN1();
+    219          	HAL_INIT_PLCIN2();
+    220          	HAL_INIT_PLCOUT1();
+    221          	HAL_INIT_PLCOUT2();
+    222          }
+    223          
+    224          void rfid_init(void)
+    225          {
+    226          	HAL_INIT_RFIDBEE();
+    227          
+    228          	update_user_event(CommonApp_TaskID, 
+    229          							DEMOBASE_RFID_QUERY_EVT, 
+    230          							DemoBaseRFID_QueryCB, 
+    231          	  						500, 
+    232          	  						TIMER_LOOP_EXECUTION|TIMER_EVENT_RESIDENTS, 
+    233          	  						NULL);
+    234          
+    235          }
+    236          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    237          void DemoBaseRFID_QueryCB( void *params, uint16 *duration, uint8 *count)
+   \                     DemoBaseRFID_QueryCB:
+    238          {
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 3
+   \   000005   74FD         MOV     A,#-0x3
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    239          	unsigned char baATQ[2],bSAK;
+    240          	//enum MifareICType eMifareType;
+    241          	short status;
+    242          
+    243          	Rc522RFReset(5);  //RF - Reset 
+   \   00000A                ; Setup parameters for call to function Rc522RFReset
+   \   00000A   7905         MOV     R1,#0x5
+   \   00000C   12....       LCALL   ??Rc522RFReset?relay
+    244          	status = ActivateCard(ISO14443_3_REQA, baATQ, ids, &idlen, &bSAK);
+    245          	if(status !=  STATUS_SUCCESS || idlen > RFID_DATA_SIZE-3)
+   \   00000F                ; Setup parameters for call to function ActivateCard
+   \   00000F   85..82       MOV     DPL,?XSP + 0
+   \   000012   85..83       MOV     DPH,?XSP + 1
+   \   000015   8582..       MOV     ?V0 + 0,DPL
+   \   000018   8583..       MOV     ?V0 + 1,DPH
+   \   00001B   78..         MOV     R0,#?V0 + 0
+   \   00001D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000020   75....       MOV     ?V0 + 0,#idlen & 0xff
+   \   000023   75....       MOV     ?V0 + 1,#(idlen >> 8) & 0xff
+   \   000026   78..         MOV     R0,#?V0 + 0
+   \   000028   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00002B   7C..         MOV     R4,#ids & 0xff
+   \   00002D   7D..         MOV     R5,#(ids >> 8) & 0xff
+   \   00002F   7405         MOV     A,#0x5
+   \   000031   12....       LCALL   ?XSTACK_DISP0_8
+   \   000034   AA82         MOV     R2,DPL
+   \   000036   AB83         MOV     R3,DPH
+   \   000038   7926         MOV     R1,#0x26
+   \   00003A   12....       LCALL   ??ActivateCard?relay
+   \   00003D   7404         MOV     A,#0x4
+   \   00003F   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000042   8B..         MOV     ?V0 + 1,R3
+   \   000044   EA           MOV     A,R2
+   \   000045   45..         ORL     A,?V0 + 1
+   \   000047   7009         JNZ     ??DemoBaseRFID_QueryCB_0
+   \   000049   90....       MOV     DPTR,#idlen
+   \   00004C   E0           MOVX    A,@DPTR
+   \   00004D   C3           CLR     C
+   \   00004E   9411         SUBB    A,#0x11
+   \   000050   400C         JC      ??DemoBaseRFID_QueryCB_1
+    246          	{
+    247          		idlen = 0;
+   \                     ??DemoBaseRFID_QueryCB_0:
+   \   000052   90....       MOV     DPTR,#idlen
+   \   000055   E4           CLR     A
+   \   000056   F0           MOVX    @DPTR,A
+    248          		isBee = 0;
+   \   000057   90....       MOV     DPTR,#isBee
+   \   00005A   F0           MOVX    @DPTR,A
+    249          		return;
+   \   00005B   02....       LJMP    ??DemoBaseRFID_QueryCB_2 & 0xFFFF
+    250          	}
+    251          
+    252          	if(!isBee)
+   \                     ??DemoBaseRFID_QueryCB_1:
+   \   00005E   90....       MOV     DPTR,#isBee
+   \   000061   E0           MOVX    A,@DPTR
+   \   000062   707D         JNZ     ??DemoBaseRFID_QueryCB_2
+    253          	{
+    254          		isBee = 1;
+   \   000064   7401         MOV     A,#0x1
+   \   000066   12....       LCALL   ??Subroutine39_0 & 0xFFFF
+    255          
+    256          		if(queryStates)
+   \                     ??CrossCallReturnLabel_71:
+   \   000069   604B         JZ      ??CrossCallReturnLabel_75
+    257          		{
+    258          			if(optData != NULL && optDataLen < RFID_DATA_SIZE)
+   \   00006B   12....       LCALL   ??Subroutine46_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_109:
+   \   00006E   600C         JZ      ??CrossCallReturnLabel_15
+   \   000070   90....       MOV     DPTR,#optDataLen
+   \   000073   E0           MOVX    A,@DPTR
+   \   000074   C3           CLR     C
+   \   000075   9413         SUBB    A,#0x13
+   \   000077   5006         JNC     ??CrossCallReturnLabel_40
+    259          			{
+    260          				osal_mem_free(optData);
+   \   000079                ; Setup parameters for call to function osal_mem_free
+   \   000079   12....       LCALL   ?Subroutine10 & 0xFFFF
+    261          				optData = NULL;
+    262          			}
+    263          
+    264          			if(optData == NULL)
+    265          			{
+    266          				optData = osal_mem_alloc(RFID_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_15:
+   \   00007C                ; Setup parameters for call to function osal_mem_alloc
+   \   00007C   12....       LCALL   ?Subroutine24 & 0xFFFF
+    267          				optDataLen = RFID_DATA_SIZE;
+    268          			}
+    269          
+    270          			osal_memcpy(optData, DEMOBASE_DEVICE_RFID, 2);
+   \                     ??CrossCallReturnLabel_40:
+   \   00007F                ; Setup parameters for call to function osal_memcpy
+   \   00007F   75....       MOV     ?V0 + 0,#`?<Constant "03">` & 0xff
+   \   000082   75....       MOV     ?V0 + 1,#(`?<Constant "03">` >> 8) & 0xff
+   \   000085   75..00       MOV     ?V0 + 2,#0x0
+   \   000088   78..         MOV     R0,#?V0 + 0
+   \   00008A   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00008D   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_79:
+   \   000090   12....       LCALL   ?DEALLOC_XSTACK8
+    271          			optData[2] = 'S';
+   \   000093   12....       LCALL   ?Subroutine33 & 0xFFFF
+    272          			incode_xtocs(optData+3, ids, idlen);
+   \                     ??CrossCallReturnLabel_55:
+   \   000096                ; Setup parameters for call to function incode_xtocs
+   \   000096   90....       MOV     DPTR,#idlen
+   \   000099   E0           MOVX    A,@DPTR
+   \   00009A   F5..         MOV     ?V0 + 0,A
+   \   00009C   75..00       MOV     ?V0 + 1,#0x0
+   \   00009F   78..         MOV     R0,#?V0 + 0
+   \   0000A1   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000A4   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_129:
+   \   0000A7   12....       LCALL   ?DEALLOC_XSTACK8
+    273          			
+    274          			Update_Refresh(optData, (idlen*2)+3);
+   \   0000AA                ; Setup parameters for call to function Update_Refresh
+   \   0000AA   90....       MOV     DPTR,#idlen
+   \   0000AD   E0           MOVX    A,@DPTR
+   \   0000AE   C3           CLR     C
+   \   0000AF   33           RLC     A
+   \   0000B0   2403         ADD     A,#0x3
+   \   0000B2   F9           MOV     R1,A
+   \   0000B3   12....       LCALL   ??Subroutine40_0 & 0xFFFF
+    275          		}
+    276          		
+    277          		HAL_TURN_ON_RFIDBEE();
+   \                     ??CrossCallReturnLabel_75:
+   \   0000B6   D295         SETB    0x90.5
+    278          		update_user_event(CommonApp_TaskID, 
+    279          								DEMOBASE_RFID_BEE_EVT, 
+    280          								DemoBaseRFID_StopBeeCB, 
+    281          	  							500, 
+    282          	  							TIMER_ONE_EXECUTION|TIMER_EVENT_RESIDENTS, 
+    283          	  							NULL);
+   \   0000B8                ; Setup parameters for call to function update_user_event
+   \   0000B8   E4           CLR     A
+   \   0000B9   F5..         MOV     ?V0 + 0,A
+   \   0000BB   F5..         MOV     ?V0 + 1,A
+   \   0000BD   78..         MOV     R0,#?V0 + 0
+   \   0000BF   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000C2   75..81       MOV     ?V0 + 0,#-0x7f
+   \   0000C5   78..         MOV     R0,#?V0 + 0
+   \   0000C7   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   0000CA   75..F4       MOV     ?V0 + 0,#-0xc
+   \   0000CD   75..01       MOV     ?V0 + 1,#0x1
+   \   0000D0   78..         MOV     R0,#?V0 + 0
+   \   0000D2   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000D5   7C..         MOV     R4,#??DemoBaseRFID_StopBeeCB?relay & 0xff
+   \   0000D7   7D..         MOV     R5,#(??DemoBaseRFID_StopBeeCB?relay >> 8) & 0xff
+   \   0000D9   7A20         MOV     R2,#0x20
+   \   0000DB   12....       LCALL   ?Subroutine18 & 0xFFFF
+    284          	}
+   \                     ??CrossCallReturnLabel_62:
+   \   0000DE   12....       LCALL   ?DEALLOC_XSTACK8
+   \                     ??DemoBaseRFID_QueryCB_2:
+   \   0000E1   7403         MOV     A,#0x3
+   \   0000E3   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000E6                REQUIRE ?Subroutine2
+   \   0000E6                REQUIRE _A_P1
+   \   0000E6                ; // Fall through to label ?Subroutine2
+    285          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   7F03         MOV     R7,#0x3
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine18:
+   \   000000   7B00         MOV     R3,#0x0
+   \   000002                REQUIRE ??Subroutine36_0
+   \   000002                ; // Fall through to label ??Subroutine36_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine36_0:
+   \   000000   90....       MOV     DPTR,#CommonApp_TaskID
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F9           MOV     R1,A
+   \   000005   12....       LCALL   ??update_user_event?relay
+   \   000008   7405         MOV     A,#0x5
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine39_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   90....       MOV     DPTR,#queryStates
+   \   000004   E0           MOVX    A,@DPTR
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine40_0:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   FA           MOV     R2,A
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   FB           MOV     R3,A
+   \   000008   12....       LCALL   ??Update_Refresh?relay
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine33:
+   \   000000   12....       LCALL   ?Subroutine35 & 0xFFFF
+   \                     ??CrossCallReturnLabel_60:
+   \   000003   A3           INC     DPTR
+   \   000004   A3           INC     DPTR
+   \   000005   7453         MOV     A,#0x53
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   7C02         MOV     R4,#0x2
+   \   000002                REQUIRE ??Subroutine41_0
+   \   000002                ; // Fall through to label ??Subroutine41_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine46_0:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F8           MOV     R0,A
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   F9           MOV     R1,A
+   \   000008   E8           MOV     A,R0
+   \   000009   49           ORL     A,R1
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   12....       LCALL   ?Subroutine32 & 0xFFFF
+   \                     ??CrossCallReturnLabel_53:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine32:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   FA           MOV     R2,A
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   FB           MOV     R3,A
+   \   000008   12....       LCALL   ??osal_mem_free?relay
+   \   00000B   90....       MOV     DPTR,#optData
+   \   00000E   E4           CLR     A
+   \   00000F   F0           MOVX    @DPTR,A
+   \   000010   A3           INC     DPTR
+   \   000011   F0           MOVX    @DPTR,A
+   \   000012   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine24:
+   \   000000   7A13         MOV     R2,#0x13
+   \   000002   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_50:
+   \   000005   7413         MOV     A,#0x13
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine30:
+   \   000000   7B00         MOV     R3,#0x0
+   \   000002   12....       LCALL   ??osal_mem_alloc?relay
+   \   000005   90....       MOV     DPTR,#optData
+   \   000008   EA           MOV     A,R2
+   \   000009   F0           MOVX    @DPTR,A
+   \   00000A   A3           INC     DPTR
+   \   00000B   EB           MOV     A,R3
+   \   00000C   F0           MOVX    @DPTR,A
+   \   00000D   90....       MOV     DPTR,#optDataLen
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   7C..         MOV     R4,#ids & 0xff
+   \   000002   7D..         MOV     R5,#(ids >> 8) & 0xff
+   \   000004                REQUIRE ??Subroutine51_0
+   \   000004                ; // Fall through to label ??Subroutine51_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine51_0:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   2403         ADD     A,#0x3
+   \   000006   12....       LCALL   ?Subroutine31 & 0xFFFF
+   \                     ??CrossCallReturnLabel_138:
+   \   000009   22           RET
+    286          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    287          void DemoBaseRFID_StopBeeCB( void *params, uint16 *duration, uint8 *count)
+   \                     DemoBaseRFID_StopBeeCB:
+    288          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    289          	HAL_TURN_OFF_RFIDBEE();
+   \   000000   C295         CLR     0x90.5
+    290          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P1
+    291          
+    292          void humiture_init(void)
+    293          {
+    294          	update_user_event(CommonApp_TaskID, 
+    295            					DEMOBASE_HUMITURE_EVT, 
+    296            					DemoBaseHumiture_StatusCB, 
+    297            					2000, 
+    298            					TIMER_LOOP_EXECUTION|TIMER_EVENT_RESIDENTS, 
+    299            					NULL);
+    300          }
+    301          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    302          void DemoBaseHumiture_StatusCB( void *params, uint16 *duration, uint8 *count)
+   \                     DemoBaseHumiture_StatusCB:
+    303          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 9
+   \   000005   74F7         MOV     A,#-0x9
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    304          	HTValue humi_val, temp_val;
+    305          	uint8 error, checksum;
+    306          
+    307          	s_connectionreset();
+   \   00000A                ; Setup parameters for call to function s_connectionreset
+   \   00000A   12....       LCALL   ??s_connectionreset?relay
+    308          
+    309          	error = 0;
+    310          	error += s_measure((uint8*) &humi_val.i, &checksum, HUMI);  //measure humidity
+   \   00000D                ; Setup parameters for call to function s_measure
+   \   00000D   7901         MOV     R1,#0x1
+   \   00000F   85..82       MOV     DPL,?XSP + 0
+   \   000012   85..83       MOV     DPH,?XSP + 1
+   \   000015   AC82         MOV     R4,DPL
+   \   000017   AD83         MOV     R5,DPH
+   \   000019   7405         MOV     A,#0x5
+   \   00001B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001E   AA82         MOV     R2,DPL
+   \   000020   AB83         MOV     R3,DPH
+   \   000022   12....       LCALL   ??s_measure?relay
+   \   000025   E9           MOV     A,R1
+   \   000026   FE           MOV     R6,A
+    311          	error += s_measure((uint8*) &temp_val.i, &checksum, TEMP);  //measure temperature
+    312          	if(error != 0) 
+   \   000027                ; Setup parameters for call to function s_measure
+   \   000027   7900         MOV     R1,#0x0
+   \   000029   85..82       MOV     DPL,?XSP + 0
+   \   00002C   85..83       MOV     DPH,?XSP + 1
+   \   00002F   AC82         MOV     R4,DPL
+   \   000031   AD83         MOV     R5,DPH
+   \   000033   7401         MOV     A,#0x1
+   \   000035   12....       LCALL   ?XSTACK_DISP0_8
+   \   000038   AA82         MOV     R2,DPL
+   \   00003A   AB83         MOV     R3,DPH
+   \   00003C   12....       LCALL   ??s_measure?relay
+   \   00003F   E9           MOV     A,R1
+   \   000040   2E           ADD     A,R6
+   \   000041   6006         JZ      ??DemoBaseHumiture_StatusCB_0
+    313          	{	
+    314          		s_connectionreset();                 //in case of an error: connection reset
+   \   000043                ; Setup parameters for call to function s_connectionreset
+   \   000043   12....       LCALL   ??s_connectionreset?relay
+    315          		return;
+   \   000046   02....       LJMP    ??CrossCallReturnLabel_76 & 0xFFFF
+    316          	}
+    317          
+    318          	humi_val.f = (float)humi_val.i;                   //converts integer to float
+   \                     ??DemoBaseHumiture_StatusCB_0:
+   \   000049   7405         MOV     A,#0x5
+   \   00004B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00004E   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_28:
+   \   000051   12....       LCALL   ?UL_TO_FLT
+   \   000054   7405         MOV     A,#0x5
+   \   000056   12....       LCALL   ?XSTACK_DISP0_8
+   \   000059   78..         MOV     R0,#?V0 + 0
+   \   00005B   12....       LCALL   ?L_MOV_TO_X
+    319          	temp_val.f = (float)temp_val.i;                   //converts integer to float
+   \   00005E   7401         MOV     A,#0x1
+   \   000060   12....       LCALL   ?XSTACK_DISP0_8
+   \   000063   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_29:
+   \   000066   12....       LCALL   ?UL_TO_FLT
+   \   000069   7401         MOV     A,#0x1
+   \   00006B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00006E   78..         MOV     R0,#?V0 + 0
+   \   000070   12....       LCALL   ?L_MOV_TO_X
+    320          	calc_sht11(&humi_val.f, &temp_val.f);            //calculate humidity, temperature
+   \   000073                ; Setup parameters for call to function calc_sht11
+   \   000073   7401         MOV     A,#0x1
+   \   000075   12....       LCALL   ?XSTACK_DISP0_8
+   \   000078   AC82         MOV     R4,DPL
+   \   00007A   AD83         MOV     R5,DPH
+   \   00007C   7405         MOV     A,#0x5
+   \   00007E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000081   AA82         MOV     R2,DPL
+   \   000083   AB83         MOV     R3,DPH
+   \   000085   12....       LCALL   ??calc_sht11?relay
+    321          
+    322          	if(temp != (uint8)temp_val.f 
+    323          		|| humi != (uint8)humi_val.f)
+   \   000088   7405         MOV     A,#0x5
+   \   00008A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00008D   12....       LCALL   ?XLOAD_R2345
+   \   000090   12....       LCALL   ?R2345_FLT_TO_L
+   \   000093   A9..         MOV     R1,?V0 + 0
+   \   000095   7401         MOV     A,#0x1
+   \   000097   12....       LCALL   ?XSTACK_DISP0_8
+   \   00009A   12....       LCALL   ?XLOAD_R2345
+   \   00009D   12....       LCALL   ?R2345_FLT_TO_L
+   \   0000A0   A8..         MOV     R0,?V0 + 0
+   \   0000A2   90....       MOV     DPTR,#temp
+   \   0000A5   E0           MOVX    A,@DPTR
+   \   0000A6   68           XRL     A,R0
+   \   0000A7   7007         JNZ     ??DemoBaseHumiture_StatusCB_1
+   \   0000A9   90....       MOV     DPTR,#humi
+   \   0000AC   E0           MOVX    A,@DPTR
+   \   0000AD   69           XRL     A,R1
+   \   0000AE   6056         JZ      ??CrossCallReturnLabel_76
+    324          	{
+    325          		temp = (uint8)temp_val.f;
+   \                     ??DemoBaseHumiture_StatusCB_1:
+   \   0000B0   E8           MOV     A,R0
+   \   0000B1   90....       MOV     DPTR,#temp
+   \   0000B4   F0           MOVX    @DPTR,A
+    326          		humi = (uint8)humi_val.f;
+   \   0000B5   E9           MOV     A,R1
+   \   0000B6   90....       MOV     DPTR,#humi
+   \   0000B9   12....       LCALL   ??Subroutine39_0 & 0xFFFF
+    327          		
+    328          		if(queryStates)
+   \                     ??CrossCallReturnLabel_72:
+   \   0000BC   6048         JZ      ??CrossCallReturnLabel_76
+    329          		{
+    330          			if(optData != NULL && optDataLen < HUMITURE_DATA_SIZE)
+   \   0000BE   12....       LCALL   ??Subroutine46_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_110:
+   \   0000C1   600C         JZ      ??CrossCallReturnLabel_7
+   \   0000C3   90....       MOV     DPTR,#optDataLen
+   \   0000C6   E0           MOVX    A,@DPTR
+   \   0000C7   C3           CLR     C
+   \   0000C8   9407         SUBB    A,#0x7
+   \   0000CA   5006         JNC     ??CrossCallReturnLabel_42
+    331          			{
+    332          				osal_mem_free(optData);
+   \   0000CC                ; Setup parameters for call to function osal_mem_free
+   \   0000CC   12....       LCALL   ?Subroutine6 & 0xFFFF
+    333          				optData = NULL;
+    334          				optDataLen = 0;
+    335          			}
+    336          
+    337          			if(optData == NULL)
+    338          			{
+    339          				optData = osal_mem_alloc(HUMITURE_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_7:
+   \   0000CF                ; Setup parameters for call to function osal_mem_alloc
+   \   0000CF   12....       LCALL   ?Subroutine25 & 0xFFFF
+    340          				optDataLen = HUMITURE_DATA_SIZE;
+    341          			}
+    342          
+    343          			osal_memcpy(optData, DEMOBASE_DEVICE_HUMITURE, 2);
+   \                     ??CrossCallReturnLabel_42:
+   \   0000D2                ; Setup parameters for call to function osal_memcpy
+   \   0000D2   75....       MOV     ?V0 + 0,#`?<Constant "04">` & 0xff
+   \   0000D5   75....       MOV     ?V0 + 1,#(`?<Constant "04">` >> 8) & 0xff
+   \   0000D8   75..00       MOV     ?V0 + 2,#0x0
+   \   0000DB   78..         MOV     R0,#?V0 + 0
+   \   0000DD   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   0000E0   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_80:
+   \   0000E3   12....       LCALL   ?DEALLOC_XSTACK8
+    344          			optData[2] = 'S';
+   \   0000E6   12....       LCALL   ?Subroutine13 & 0xFFFF
+    345          			incode_xtocs(optData+3, &temp, 1);
+   \                     ??CrossCallReturnLabel_22:
+   \   0000E9   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000EC   7C..         MOV     R4,#temp & 0xff
+   \   0000EE   7D..         MOV     R5,#(temp >> 8) & 0xff
+   \   0000F0   12....       LCALL   ??Subroutine51_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_131:
+   \   0000F3   12....       LCALL   ?DEALLOC_XSTACK8
+    346          			incode_xtocs(optData+5, &humi, 1);
+   \   0000F6                ; Setup parameters for call to function incode_xtocs
+   \   0000F6   78..         MOV     R0,#?V0 + 0
+   \   0000F8   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000FB   12....       LCALL   ?Subroutine15 & 0xFFFF
+   \                     ??CrossCallReturnLabel_64:
+   \   0000FE   12....       LCALL   ?DEALLOC_XSTACK8
+    347          			
+    348          			Update_Refresh(optData, HUMITURE_DATA_SIZE);
+   \   000101                ; Setup parameters for call to function Update_Refresh
+   \   000101   7907         MOV     R1,#0x7
+   \   000103   12....       LCALL   ??Subroutine40_0 & 0xFFFF
+    349          		}
+    350          	}
+   \                     ??CrossCallReturnLabel_76:
+   \   000106   7409         MOV     A,#0x9
+   \   000108   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00010B   7F04         MOV     R7,#0x4
+   \   00010D   02....       LJMP    ?BANKED_LEAVE_XDATA
+    351          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine17:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F5..         MOV     ?V0 + 0,A
+   \   000003   A3           INC     DPTR
+   \   000004   E0           MOVX    A,@DPTR
+   \   000005   F5..         MOV     ?V0 + 1,A
+   \   000007   E4           CLR     A
+   \   000008   F5..         MOV     ?V0 + 2,A
+   \   00000A   F5..         MOV     ?V0 + 3,A
+   \   00000C   78..         MOV     R0,#?V0 + 0
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine15:
+   \   000000   7C..         MOV     R4,#humi & 0xff
+   \   000002   7D..         MOV     R5,#(humi >> 8) & 0xff
+   \   000004                REQUIRE ??Subroutine37_0
+   \   000004                ; // Fall through to label ??Subroutine37_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine13:
+   \   000000   12....       LCALL   ?Subroutine33 & 0xFFFF
+   \                     ??CrossCallReturnLabel_56:
+   \   000003                ; Setup parameters for call to function incode_xtocs
+   \   000003                ; Setup parameters for call to function incode_xtocs
+   \   000003                ; Setup parameters for call to function incode_xtocs
+   \   000003   75..01       MOV     ?V0 + 0,#0x1
+   \   000006   75..00       MOV     ?V0 + 1,#0x0
+   \   000009   78..         MOV     R0,#?V0 + 0
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine25:
+   \   000000   7A07         MOV     R2,#0x7
+   \   000002   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_51:
+   \   000005   7407         MOV     A,#0x7
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   12....       LCALL   ?Subroutine32 & 0xFFFF
+   \                     ??CrossCallReturnLabel_54:
+   \   000003   90....       MOV     DPTR,#optDataLen
+   \   000006   F0           MOVX    @DPTR,A
+   \   000007   22           RET
+    352          
+    353          void lightdetect_init(void)
+    354          {
+    355          	update_user_event(CommonApp_TaskID, 
+    356            					DEMOBASE_LIGHTDETECT_EVT, 
+    357            					DemoBaseLightDetect_StatusCB, 
+    358            					2000, 
+    359            					TIMER_LOOP_EXECUTION|TIMER_EVENT_RESIDENTS, 
+    360            					NULL);
+    361          }
+    362          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    363          void DemoBaseLightDetect_StatusCB( void *params, uint16 *duration, uint8 *count)
+   \                     DemoBaseLightDetect_StatusCB:
+    364          {
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 0
+    365          	uint16 avgAD, i;
+    366          	uint8 currentGrade;
+    367          	
+    368          	for(i=0; i<64; i++)
+   \   000005   7E40         MOV     R6,#0x40
+    369          	{
+    370          		avgAD += getAD();
+    371          		avgAD = avgAD/2;
+   \                     ??DemoBaseLightDetect_StatusCB_0:
+   \   000007   75B6B1       MOV     0xb6,#-0x4f
+   \                     ??DemoBaseLightDetect_StatusCB_1:
+   \   00000A   E5B4         MOV     A,0xb4
+   \   00000C   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00000E   50FA         JNC     ??DemoBaseLightDetect_StatusCB_1
+   \   000010   E5BA         MOV     A,0xba
+   \   000012   C4           SWAP    A
+   \   000013   540F         ANL     A,#0xf
+   \   000015   FC           MOV     R4,A
+   \   000016   85BB..       MOV     ?V0 + 0,0xbb
+   \   000019   75..00       MOV     ?V0 + 1,#0x0
+   \   00001C   7404         MOV     A,#0x4
+   \   00001E   78..         MOV     R0,#?V0 + 0
+   \   000020   12....       LCALL   ?S_SHL
+   \   000023   EC           MOV     A,R4
+   \   000024   45..         ORL     A,?V0 + 0
+   \   000026   F8           MOV     R0,A
+   \   000027   A9..         MOV     R1,?V0 + 1
+   \   000029   EA           MOV     A,R2
+   \   00002A   28           ADD     A,R0
+   \   00002B   FA           MOV     R2,A
+   \   00002C   EB           MOV     A,R3
+   \   00002D   39           ADDC    A,R1
+   \   00002E   C3           CLR     C
+   \   00002F   13           RRC     A
+   \   000030   FB           MOV     R3,A
+   \   000031   EA           MOV     A,R2
+   \   000032   13           RRC     A
+   \   000033   FA           MOV     R2,A
+    372          	}
+   \   000034   1E           DEC     R6
+   \   000035   EE           MOV     A,R6
+   \   000036   70CF         JNZ     ??DemoBaseLightDetect_StatusCB_0
+    373          	avgAD &= 0x0FFF;
+   \   000038   740F         MOV     A,#0xf
+   \   00003A   5B           ANL     A,R3
+   \   00003B   FB           MOV     R3,A
+    374          
+    375          	if(avgAD > 962)	/* 弱光 */
+   \   00003C   C3           CLR     C
+   \   00003D   EA           MOV     A,R2
+   \   00003E   94C3         SUBB    A,#-0x3d
+   \   000040   EB           MOV     A,R3
+   \   000041   9403         SUBB    A,#0x3
+   \   000043   4004         JC      ??DemoBaseLightDetect_StatusCB_2
+    376          	{
+    377          		currentGrade = 1;
+   \   000045   7801         MOV     R0,#0x1
+   \   000047   800F         SJMP    ??DemoBaseLightDetect_StatusCB_3
+    378          	}
+    379          	else if(avgAD > 200) /* 正常*/
+   \                     ??DemoBaseLightDetect_StatusCB_2:
+   \   000049   C3           CLR     C
+   \   00004A   EA           MOV     A,R2
+   \   00004B   94C9         SUBB    A,#-0x37
+   \   00004D   EB           MOV     A,R3
+   \   00004E   9400         SUBB    A,#0x0
+   \   000050   4004         JC      ??DemoBaseLightDetect_StatusCB_4
+    380          	{
+    381          		currentGrade = 2;
+   \   000052   7802         MOV     R0,#0x2
+   \   000054   8002         SJMP    ??DemoBaseLightDetect_StatusCB_3
+    382          	}
+    383          	else /* 强光*/
+    384          	{
+    385          		currentGrade = 3;
+   \                     ??DemoBaseLightDetect_StatusCB_4:
+   \   000056   7803         MOV     R0,#0x3
+    386          	}
+    387          	
+    388          	if( lightGrade != currentGrade )
+   \                     ??DemoBaseLightDetect_StatusCB_3:
+   \   000058   90....       MOV     DPTR,#lightGrade
+   \   00005B   E0           MOVX    A,@DPTR
+   \   00005C   68           XRL     A,R0
+   \   00005D   6040         JZ      ??CrossCallReturnLabel_73
+    389          	{
+    390          		lightGrade = currentGrade;
+   \   00005F   12....       LCALL   ?Subroutine26 & 0xFFFF
+    391          		
+    392          		if(queryStates)
+   \                     ??CrossCallReturnLabel_69:
+   \   000062   603B         JZ      ??CrossCallReturnLabel_73
+    393          		{
+    394          			if(optData != NULL && optDataLen < LIGHTDETECT_DATA_SIZE)
+   \   000064   12....       LCALL   ??Subroutine46_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_111:
+   \   000067   600C         JZ      ??CrossCallReturnLabel_8
+   \   000069   90....       MOV     DPTR,#optDataLen
+   \   00006C   E0           MOVX    A,@DPTR
+   \   00006D   C3           CLR     C
+   \   00006E   9405         SUBB    A,#0x5
+   \   000070   5006         JNC     ??CrossCallReturnLabel_34
+    395          			{
+    396          				osal_mem_free(optData);
+   \   000072                ; Setup parameters for call to function osal_mem_free
+   \   000072   12....       LCALL   ?Subroutine6 & 0xFFFF
+    397          				optData = NULL;
+    398          				optDataLen = 0;
+    399          			}
+    400          
+    401          			if(optData == NULL)
+    402          			{
+    403          				optData = osal_mem_alloc(LIGHTDETECT_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_8:
+   \   000075                ; Setup parameters for call to function osal_mem_alloc
+   \   000075   12....       LCALL   ?Subroutine21 & 0xFFFF
+    404          				optDataLen = LIGHTDETECT_DATA_SIZE;
+    405          			}
+    406          
+    407          			osal_memcpy(optData, DEMOBASE_DEVICE_LIGHTDETECT, 2);
+   \                     ??CrossCallReturnLabel_34:
+   \   000078                ; Setup parameters for call to function osal_memcpy
+   \   000078   75....       MOV     ?V0 + 0,#`?<Constant "05">` & 0xff
+   \   00007B   75....       MOV     ?V0 + 1,#(`?<Constant "05">` >> 8) & 0xff
+   \   00007E   75..00       MOV     ?V0 + 2,#0x0
+   \   000081   78..         MOV     R0,#?V0 + 0
+   \   000083   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000086   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_81:
+   \   000089   12....       LCALL   ?DEALLOC_XSTACK8
+    408          			optData[2] = 'S';
+   \   00008C   12....       LCALL   ?Subroutine13 & 0xFFFF
+    409          			incode_xtocs(optData+3, &lightGrade, 1);
+   \                     ??CrossCallReturnLabel_23:
+   \   00008F   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000092   7C..         MOV     R4,#lightGrade & 0xff
+   \   000094   7D..         MOV     R5,#(lightGrade >> 8) & 0xff
+   \   000096   12....       LCALL   ??Subroutine51_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_132:
+   \   000099   12....       LCALL   ?DEALLOC_XSTACK8
+    410          			
+    411          			Update_Refresh(optData, LIGHTDETECT_DATA_SIZE);
+   \   00009C                ; Setup parameters for call to function Update_Refresh
+   \   00009C   12....       LCALL   ?Subroutine16 & 0xFFFF
+    412          		}
+    413          	}
+    414          }
+   \                     ??CrossCallReturnLabel_73:
+   \   00009F   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \   0000A2                REQUIRE ADCCON3
+   \   0000A2                REQUIRE ADCCON1
+   \   0000A2                REQUIRE ADCL
+   \   0000A2                REQUIRE ADCH
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine26:
+   \   000000   E8           MOV     A,R0
+   \   000001                REQUIRE ??Subroutine39_0
+   \   000001                ; // Fall through to label ??Subroutine39_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine16:
+   \   000000   7905         MOV     R1,#0x5
+   \   000002                REQUIRE ??Subroutine40_0
+   \   000002                ; // Fall through to label ??Subroutine40_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine21:
+   \   000000   7A05         MOV     R2,#0x5
+   \   000002   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_52:
+   \   000005   7405         MOV     A,#0x5
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+    415          
+    416          uint16 getAD(void)
+    417          {
+    418            uint16 value;
+    419            ADCCON3 = 0xB1;
+    420            
+    421            while(!(ADCCON1 & 0x80));
+    422            value = ADCL>>4;
+    423            value |= (((uint16)ADCH)<<4);
+    424            
+    425            return value;
+    426          }
+    427          
+    428          void airdetect_init(void)
+    429          {
+    430          	HAL_INIT_AIRDETECT();
+    431          	
+    432          	update_user_event(CommonApp_TaskID, 
+    433            					DEMOBASE_AIRETECT_EVT, 
+    434            					DemoBaseAirDetect_StatusCB, 
+    435            					2000, 
+    436            					TIMER_LOOP_EXECUTION|TIMER_EVENT_RESIDENTS, 
+    437            					NULL);
+    438          }
+    439          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    440          void DemoBaseAirDetect_StatusCB( void *params, uint16 *duration, uint8 *count)
+   \                     DemoBaseAirDetect_StatusCB:
+    441          {
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 0
+    442          	uint8 currentStates = HAL_STATE_AIRDETECT();
+   \   000005   D2F0         SETB    B.0
+   \   000007   A292         MOV     C,0x90.2
+   \   000009   30F001       JNB     B.0,??DemoBaseAirDetect_StatusCB_0
+   \   00000C   B3           CPL     C
+   \                     ??DemoBaseAirDetect_StatusCB_0:
+   \   00000D   E4           CLR     A
+   \   00000E   33           RLC     A
+   \   00000F   F8           MOV     R0,A
+    443          	
+    444          	if( airStates != currentStates )
+   \   000010   90....       MOV     DPTR,#airStates
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   68           XRL     A,R0
+   \   000015   603F         JZ      ??CrossCallReturnLabel_74
+    445          	{
+    446          		airStates = currentStates;
+   \   000017   12....       LCALL   ?Subroutine26 & 0xFFFF
+    447          		
+    448          		if(queryStates)
+   \                     ??CrossCallReturnLabel_70:
+   \   00001A   603A         JZ      ??CrossCallReturnLabel_74
+    449          		{
+    450          			if(optData != NULL && optDataLen < AIRDETECT_DATA_SIZE)
+   \   00001C   12....       LCALL   ??Subroutine46_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_112:
+   \   00001F   600B         JZ      ??CrossCallReturnLabel_9
+   \   000021   90....       MOV     DPTR,#optDataLen
+   \   000024   E0           MOVX    A,@DPTR
+   \   000025   9405         SUBB    A,#0x5
+   \   000027   5006         JNC     ??CrossCallReturnLabel_35
+    451          			{
+    452          				osal_mem_free(optData);
+   \   000029                ; Setup parameters for call to function osal_mem_free
+   \   000029   12....       LCALL   ?Subroutine6 & 0xFFFF
+    453          				optData = NULL;
+    454          				optDataLen = 0;
+    455          			}
+    456          
+    457          			if(optData == NULL)
+    458          			{
+    459          				optData = osal_mem_alloc(AIRDETECT_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_9:
+   \   00002C                ; Setup parameters for call to function osal_mem_alloc
+   \   00002C   12....       LCALL   ?Subroutine21 & 0xFFFF
+    460          				optDataLen = AIRDETECT_DATA_SIZE;
+    461          			}
+    462          
+    463          			osal_memcpy(optData, DEMOBASE_DEVICE_AIRDETECT, 2);
+   \                     ??CrossCallReturnLabel_35:
+   \   00002F                ; Setup parameters for call to function osal_memcpy
+   \   00002F   75....       MOV     ?V0 + 0,#`?<Constant "06">` & 0xff
+   \   000032   75....       MOV     ?V0 + 1,#(`?<Constant "06">` >> 8) & 0xff
+   \   000035   75..00       MOV     ?V0 + 2,#0x0
+   \   000038   78..         MOV     R0,#?V0 + 0
+   \   00003A   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00003D   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_82:
+   \   000040   12....       LCALL   ?DEALLOC_XSTACK8
+    464          			optData[2] = 'S';
+   \   000043   12....       LCALL   ?Subroutine13 & 0xFFFF
+    465          			incode_xtocs(optData+3, &airStates, 1);
+   \                     ??CrossCallReturnLabel_24:
+   \   000046   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000049   7C..         MOV     R4,#airStates & 0xff
+   \   00004B   7D..         MOV     R5,#(airStates >> 8) & 0xff
+   \   00004D   12....       LCALL   ??Subroutine51_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_133:
+   \   000050   12....       LCALL   ?DEALLOC_XSTACK8
+    466          			
+    467          			Update_Refresh(optData, AIRDETECT_DATA_SIZE);
+   \   000053                ; Setup parameters for call to function Update_Refresh
+   \   000053   12....       LCALL   ?Subroutine16 & 0xFFFF
+    468          		}
+    469          	}
+    470          }
+   \                     ??CrossCallReturnLabel_74:
+   \   000056   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \   000059                REQUIRE _A_P1
+    471          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    472          void lightctrl_init(void)
+   \                     lightctrl_init:
+    473          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 2
+   \   000004   74FE         MOV     A,#-0x2
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    474            	volatile int i;
+    475          	InitTimer1();
+   \   000009   12....       LCALL   ?Subroutine29 & 0xFFFF
+    476          	T1CTL = 0x06;
+   \                     ??CrossCallReturnLabel_46:
+   \   00000C   75E406       MOV     0xe4,#0x6
+    477            
+    478              for(i = 32;i > 0;i--)
+   \   00000F   85..82       MOV     DPL,?XSP + 0
+   \   000012   85..83       MOV     DPH,?XSP + 1
+   \   000015   7420         MOV     A,#0x20
+   \   000017   F0           MOVX    @DPTR,A
+   \   000018   A3           INC     DPTR
+   \   000019   E4           CLR     A
+   \   00001A   800F         SJMP    ??lightctrl_init_0
+    479                asm("NOP");
+   \                     ??lightctrl_init_1:
+   \   00001C   00           NOP
+   \   00001D   85..82       MOV     DPL,?XSP + 0
+   \   000020   85..83       MOV     DPH,?XSP + 1
+   \   000023   E0           MOVX    A,@DPTR
+   \   000024   24FF         ADD     A,#-0x1
+   \   000026   F0           MOVX    @DPTR,A
+   \   000027   A3           INC     DPTR
+   \   000028   E0           MOVX    A,@DPTR
+   \   000029   34FF         ADDC    A,#-0x1
+   \                     ??lightctrl_init_0:
+   \   00002B   F0           MOVX    @DPTR,A
+   \   00002C   85..82       MOV     DPL,?XSP + 0
+   \   00002F   85..83       MOV     DPH,?XSP + 1
+   \   000032   C3           CLR     C
+   \   000033   E0           MOVX    A,@DPTR
+   \   000034   9401         SUBB    A,#0x1
+   \   000036   A3           INC     DPTR
+   \   000037   E0           MOVX    A,@DPTR
+   \   000038   9400         SUBB    A,#0x0
+   \   00003A   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   00003C   65D0         XRL     A,PSW
+   \   00003E   33           RLC     A
+   \   00003F   50DB         JNC     ??lightctrl_init_1
+    480          	
+    481          	T1CTL = 0x04;
+   \   000041   75E404       MOV     0xe4,#0x4
+    482          }
+   \   000044   7402         MOV     A,#0x2
+   \   000046   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000049   D083         POP     DPH
+   \   00004B   D082         POP     DPL
+   \   00004D   02....       LJMP    ?BRET
+   \   000050                REQUIRE T1CTL
+   \   000050                REQUIRE P1SEL
+   \   000050                REQUIRE P1DIR
+   \   000050                REQUIRE PERCFG
+   \   000050                REQUIRE CLKCONCMD
+   \   000050                REQUIRE T1CC0H
+   \   000050                REQUIRE T1CC0L
+   \   000050                REQUIRE T1CC1H
+   \   000050                REQUIRE T1CC1L
+   \   000050                REQUIRE T1CCTL1
+   \   000050                REQUIRE _A_IEN1
+   \   000050                REQUIRE _A_IEN0
+    483          
+    484          int8 set_led_data(uint8 *data, uint8 dataLen)
+    485          {
+    486          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    487          
+    488          	if(i2cAddr != incode_atox(data, 2) || dataLen < 4)
+    489          	{
+    490          		return 0;
+    491          	}
+    492          	
+    493          	HAL_SET_BASELED(incode_atox(data+2, 2));
+    494          	return 0;
+    495          }
+    496          
+    497          int8 set_plc_data(uint8 *data, uint8 dataLen)
+    498          {
+    499          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    500          
+    501          	if(i2cAddr != incode_atox(data, 2) || dataLen < 4)
+    502          	{
+    503          		return 0;
+    504          	}
+    505          	
+    506          	if(data[2] == '0')
+    507          	{
+    508          		HAL_TURN_OFF_PLCOUT1();
+    509          	}
+    510          	else
+    511          	{
+    512          		HAL_TURN_ON_PLCOUT1();
+    513          	}
+    514          
+    515          	if(data[3] == '0')
+    516          	{
+    517          		HAL_TURN_OFF_PLCOUT2();
+    518          	}
+    519          	else
+    520          	{
+    521          		HAL_TURN_ON_PLCOUT2();
+    522          	}
+    523          	
+    524          	return 0;
+    525          }
+    526          
+    527          int8 set_rfid_data(uint8 *data, uint8 dataLen)
+    528          {
+    529          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    530          
+    531          	if(i2cAddr != incode_atox(data, 2) || dataLen < 3)
+    532          	{
+    533          		return 0;
+    534          	}
+    535          
+    536          	if(data[2] == 'S')
+    537          	{
+    538          		queryStates = 1;
+    539          	}
+    540          	else if(data[2] == 'P')
+    541          	{
+    542          		queryStates = 0;
+    543          	}
+    544          	
+    545          	return 0;
+    546          }
+    547          
+    548          int8 set_humiture_data(uint8 *data, uint8 dataLen)
+    549          {
+    550          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    551          
+    552          	if(i2cAddr != incode_atox(data, 2) || dataLen < 3)
+    553          	{
+    554          		return 0;
+    555          	}
+    556          
+    557          	if(data[2] == 'S')
+    558          	{
+    559          		queryStates = 1;
+    560          	}
+    561          	else if(data[2] == 'P')
+    562          	{
+    563          		queryStates = 0;
+    564          	}
+    565          	
+    566          	return 0;
+    567          }
+    568          
+    569          int8 set_lightdetect_data(uint8 *data, uint8 dataLen)
+    570          {
+    571          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    572          
+    573          	if(i2cAddr != incode_atox(data, 2) || dataLen < 3)
+    574          	{
+    575          		return 0;
+    576          	}
+    577          
+    578          	if(data[2] == 'S')
+    579          	{
+    580          		queryStates = 1;
+    581          	}
+    582          	else if(data[2] == 'P')
+    583          	{
+    584          		queryStates = 0;
+    585          	}
+    586          	
+    587          	return 0;
+    588          }
+    589          
+    590          int8 set_airdetect_data(uint8 *data, uint8 dataLen)
+    591          {
+    592          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+    593          
+    594          	if(i2cAddr != incode_atox(data, 2) || dataLen < 3)
+    595          	{
+    596          		return 0;
+    597          	}
+    598          
+    599          	if(data[2] == 'S')
+    600          	{
+    601          		queryStates = 1;
+    602          	}
+    603          	else if(data[2] == 'P')
+    604          	{
+    605          		queryStates = 0;
+    606          	}
+    607          	
+    608          	return 0;
+    609          }
+    610          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    611          int8 set_lightctrl_data(uint8 *data, uint8 dataLen)
+   \                     set_lightctrl_data:
+    612          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+   \   000009   89..         MOV     ?V0 + 0,R1
+    613          	uint8 i2cAddr = IRecvByte(DEMOBASE_DEVICE_IIC_ADDR);
+   \   00000B                ; Setup parameters for call to function IRecvByte
+   \   00000B   12....       LCALL   ?Subroutine4 & 0xFFFF
+    614          
+    615          	if(i2cAddr != incode_atox(data, 2) || dataLen < 4)
+   \                     ??CrossCallReturnLabel_0:
+   \   00000E   7007         JNZ     ??set_lightctrl_data_0
+   \   000010   E5..         MOV     A,?V0 + 0
+   \   000012   C3           CLR     C
+   \   000013   9404         SUBB    A,#0x4
+   \   000015   5005         JNC     ??set_lightctrl_data_1
+    616          	{
+    617          		return 0;
+   \                     ??set_lightctrl_data_0:
+   \   000017   7900         MOV     R1,#0x0
+   \   000019   02....       LJMP    ?Subroutine0 & 0xFFFF
+    618          	}
+    619          	
+    620          	lightCtrlStates = incode_atox(data+2, 2);
+   \                     ??set_lightctrl_data_1:
+   \   00001C                ; Setup parameters for call to function incode_atox
+   \   00001C   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_44:
+   \   00001F   90....       MOV     DPTR,#lightCtrlStates
+   \   000022   F0           MOVX    @DPTR,A
+    621          
+    622          	InitTimer1();
+   \   000023   12....       LCALL   ?Subroutine29 & 0xFFFF
+    623          
+    624          	T1CC1L = lightCtrlStates*12+4;
+   \                     ??CrossCallReturnLabel_47:
+   \   000026   75F00C       MOV     B,#0xc
+   \   000029   A4           MUL     AB
+   \   00002A   2404         ADD     A,#0x4
+   \   00002C   F5DC         MOV     0xdc,A
+    625          	T1CC1H = 0;
+   \   00002E   75DD00       MOV     0xdd,#0x0
+    626          	
+    627          	if(lightCtrlStates != 0)
+   \   000031   E0           MOVX    A,@DPTR
+   \   000032   6005         JZ      ??set_lightctrl_data_2
+    628          	{
+    629          		T1CTL = 0x06;
+   \   000034   75E406       MOV     0xe4,#0x6
+   \   000037   80DE         SJMP    ??set_lightctrl_data_0
+    630          	}
+    631          	else
+    632          	{
+    633          		T1CTL = 0x04;
+   \                     ??set_lightctrl_data_2:
+   \   000039   75E404       MOV     0xe4,#0x4
+   \   00003C   80D9         SJMP    ??set_lightctrl_data_0
+   \   00003E                REQUIRE T1CC1L
+   \   00003E                REQUIRE T1CC1H
+   \   00003E                REQUIRE T1CTL
+   \   00003E                REQUIRE P1SEL
+   \   00003E                REQUIRE P1DIR
+   \   00003E                REQUIRE PERCFG
+   \   00003E                REQUIRE CLKCONCMD
+   \   00003E                REQUIRE T1CC0H
+   \   00003E                REQUIRE T1CC0L
+   \   00003E                REQUIRE T1CCTL1
+   \   00003E                REQUIRE _A_IEN1
+   \   00003E                REQUIRE _A_IEN0
+    634          	}
+    635          	
+    636          	return 0;
+    637          }
+    638          
+    639          void InitTimer1(void)
+    640          {
+    641            P1SEL |= 0x02;
+    642            P1DIR |= 0x02;
+    643            PERCFG |= 0x40; //alt2
+    644            CLKCONCMD |= 0x28;  //CLKCONCMD.TICKSPD=110, 1MHz
+    645            /* 设置溢出值 */
+    646            T1CC0H=0x00;
+    647            T1CC0L=0xFF;
+    648            T1CC1H = 0x00;
+    649            T1CC1L = 5;//定时器1通道0捕获/比较值低位
+    650            T1CCTL1 |= 0x1C;//在向上比较清除输出,比较模式 PWM
+    651            //T1CCTL1  = 0x14; // 输出切换 50%占空比
+    652          
+    653            T1CTL    = 0x04 ;//32分频 模模式
+    654            
+    655            T1IE = 0;     //timer1 中断屏蔽
+    656            EA = 1;     //IEN0.EA=1,使能全局中断
+    657          }
+    658          int8 get_led_data(uint8 *data, uint8 *dataLen)
+    659          {
+    660          	if(optData != NULL && optDataLen < LED_DATA_SIZE)
+    661          	{
+    662          		osal_mem_free(optData);
+    663          		optData = NULL;
+    664          	}
+    665          
+    666          	if(optData == NULL)
+    667          	{
+    668          		optData = osal_mem_alloc(LED_DATA_SIZE);
+    669          		optDataLen = LED_DATA_SIZE;
+    670          	}
+    671          
+    672          	osal_memcpy(optData, DEMOBASE_DEVICE_LED, 2);
+    673          	uint8 portVal = P1;
+    674          	incode_xtocs(optData+2, &portVal, 1);
+    675          
+    676          	osal_memcpy(data, optData, optDataLen);
+    677          	*dataLen = optDataLen;
+    678          
+    679          	return 0;
+    680          }
+    681          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    682          int8 get_plc_data(uint8 *data, uint8 *dataLen)
+   \                     get_plc_data:
+    683          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine12 & 0xFFFF
+    684          	if(optData != NULL && optDataLen < PLC_DATA_SIZE)
+   \                     ??CrossCallReturnLabel_102:
+   \   000008   600C         JZ      ??CrossCallReturnLabel_16
+   \   00000A   90....       MOV     DPTR,#optDataLen
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   C3           CLR     C
+   \   00000F   9406         SUBB    A,#0x6
+   \   000011   500B         JNC     ??get_plc_data_0
+    685          	{
+    686          		osal_mem_free(optData);
+   \   000013                ; Setup parameters for call to function osal_mem_free
+   \   000013   12....       LCALL   ?Subroutine10 & 0xFFFF
+    687          		optData = NULL;
+    688          	}
+    689          
+    690          	if(optData == NULL)
+    691          	{
+    692          		optData = osal_mem_alloc(PLC_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_16:
+   \   000016                ; Setup parameters for call to function osal_mem_alloc
+   \   000016   7A06         MOV     R2,#0x6
+   \   000018   12....       LCALL   ?Subroutine30 & 0xFFFF
+    693          		optDataLen = PLC_DATA_SIZE;
+    694          	}
+   \                     ??CrossCallReturnLabel_49:
+   \   00001B   7406         MOV     A,#0x6
+   \   00001D   F0           MOVX    @DPTR,A
+    695          
+    696          	osal_memcpy(optData, DEMOBASE_DEVICE_PLC, 2);
+   \                     ??get_plc_data_0:
+   \   00001E                ; Setup parameters for call to function osal_memcpy
+   \   00001E   75....       MOV     ?V0 + 4,#`?<Constant "02">` & 0xff
+   \   000021   75....       MOV     ?V0 + 5,#(`?<Constant "02">` >> 8) & 0xff
+   \   000024   75..00       MOV     ?V0 + 6,#0x0
+   \   000027   78..         MOV     R0,#?V0 + 4
+   \   000029   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00002C   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_83:
+   \   00002F   12....       LCALL   ?DEALLOC_XSTACK8
+    697          
+    698          	if(HAL_STATE_PLCIN1())
+   \   000032   90....       MOV     DPTR,#optData
+   \   000035   E0           MOVX    A,@DPTR
+   \   000036   2402         ADD     A,#0x2
+   \   000038   12....       LCALL   ?Subroutine19 & 0xFFFF
+   \                     ??CrossCallReturnLabel_30:
+   \   00003B   5004         JNC     ??get_plc_data_1
+    699          	{
+    700          		optData[2] = '1';
+   \   00003D   7431         MOV     A,#0x31
+   \   00003F   8002         SJMP    ??get_plc_data_2
+    701          	}
+    702          	else
+    703          	{
+    704          		optData[2] = '0';
+   \                     ??get_plc_data_1:
+   \   000041   7430         MOV     A,#0x30
+   \                     ??get_plc_data_2:
+   \   000043   F0           MOVX    @DPTR,A
+    705          	}
+    706          
+    707          	if(HAL_STATE_PLCIN2())
+   \   000044   90....       MOV     DPTR,#optData
+   \   000047   E0           MOVX    A,@DPTR
+   \   000048   2403         ADD     A,#0x3
+   \   00004A   12....       LCALL   ?Subroutine19 & 0xFFFF
+   \                     ??CrossCallReturnLabel_31:
+   \   00004D   5004         JNC     ??get_plc_data_3
+    708          	{
+    709          		optData[3] = '1';
+   \   00004F   7431         MOV     A,#0x31
+   \   000051   8002         SJMP    ??get_plc_data_4
+    710          	}
+    711          	else
+    712          	{
+    713          		optData[3] = '0';
+   \                     ??get_plc_data_3:
+   \   000053   7430         MOV     A,#0x30
+   \                     ??get_plc_data_4:
+   \   000055   F0           MOVX    @DPTR,A
+    714          	}
+    715          
+    716          	if(HAL_STATE_PLCOUT1())
+   \   000056   90....       MOV     DPTR,#optData
+   \   000059   E0           MOVX    A,@DPTR
+   \   00005A   2404         ADD     A,#0x4
+   \   00005C   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_32:
+   \   00005F   A294         MOV     C,0x90.4
+   \   000061   4004         JC      ??get_plc_data_5
+    717          	{
+    718          		optData[4] = '1';
+   \   000063   7431         MOV     A,#0x31
+   \   000065   8002         SJMP    ??get_plc_data_6
+    719          	}
+    720          	else
+    721          	{
+    722          		optData[4] = '0';
+   \                     ??get_plc_data_5:
+   \   000067   7430         MOV     A,#0x30
+   \                     ??get_plc_data_6:
+   \   000069   F0           MOVX    @DPTR,A
+    723          	}
+    724          
+    725          	if(HAL_STATE_PLCOUT2())
+   \   00006A   90....       MOV     DPTR,#optData
+   \   00006D   E0           MOVX    A,@DPTR
+   \   00006E   2405         ADD     A,#0x5
+   \   000070   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_33:
+   \   000073   A295         MOV     C,0x90.5
+   \   000075   4004         JC      ??get_plc_data_7
+    726          	{
+    727          		optData[5] = '1';
+   \   000077   7431         MOV     A,#0x31
+   \   000079   8002         SJMP    ??get_plc_data_8
+    728          	}
+    729          	else
+    730          	{
+    731          		optData[5] = '0';
+   \                     ??get_plc_data_7:
+   \   00007B   7430         MOV     A,#0x30
+    732          	}
+   \                     ??get_plc_data_8:
+   \   00007D   12....       LCALL   ??Subroutine49_0 & 0xFFFF
+    733          
+    734          	osal_memcpy(data, optData, optDataLen);
+   \                     ??CrossCallReturnLabel_121:
+   \   000080   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000083   90....       MOV     DPTR,#optDataLen
+   \   000086   E0           MOVX    A,@DPTR
+   \   000087   FC           MOV     R4,A
+   \   000088   12....       LCALL   ??Subroutine42_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_93:
+   \   00008B   12....       LCALL   ?DEALLOC_XSTACK8
+    735          	*dataLen = optDataLen;
+   \   00008E   90....       MOV     DPTR,#optDataLen
+   \   000091   E0           MOVX    A,@DPTR
+   \   000092   85..82       MOV     DPL,?V0 + 0
+   \   000095   85..83       MOV     DPH,?V0 + 1
+   \   000098   02....       LJMP    ?Subroutine3 & 0xFFFF
+   \   00009B                REQUIRE _A_P1
+    736          	
+    737          	return 0;
+    738          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine42_0:
+   \   000000   7D00         MOV     R5,#0x0
+   \   000002                REQUIRE ??Subroutine43_0
+   \   000002                ; // Fall through to label ??Subroutine43_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine43_0:
+   \   000000   EE           MOV     A,R6
+   \   000001   FA           MOV     R2,A
+   \   000002   EF           MOV     A,R7
+   \   000003                REQUIRE ??Subroutine44_0
+   \   000003                ; // Fall through to label ??Subroutine44_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine20:
+   \   000000   12....       LCALL   ?Subroutine34 & 0xFFFF
+   \                     ??CrossCallReturnLabel_58:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine34:
+   \   000000   F8           MOV     R0,A
+   \   000001   A3           INC     DPTR
+   \   000002   E0           MOVX    A,@DPTR
+   \   000003   3400         ADDC    A,#0x0
+   \   000005   F9           MOV     R1,A
+   \   000006   8882         MOV     DPL,R0
+   \   000008   8983         MOV     DPH,R1
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine19:
+   \   000000   12....       LCALL   ?Subroutine34 & 0xFFFF
+   \                     ??CrossCallReturnLabel_57:
+   \   000003   A290         MOV     C,0x90.0
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine12:
+   \   000000   EA           MOV     A,R2
+   \   000001   FE           MOV     R6,A
+   \   000002   EB           MOV     A,R3
+   \   000003   FF           MOV     R7,A
+   \   000004   8C..         MOV     ?V0 + 0,R4
+   \   000006   8D..         MOV     ?V0 + 1,R5
+   \   000008                REQUIRE ??Subroutine46_0
+   \   000008                ; // Fall through to label ??Subroutine46_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   7900         MOV     R1,#0x0
+   \   000003   02....       LJMP    ??Subroutine47_0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine49_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001                ; Setup parameters for call to function osal_memcpy
+   \   000001                ; Setup parameters for call to function osal_memcpy
+   \   000001                ; Setup parameters for call to function osal_memcpy
+   \   000001                ; Setup parameters for call to function osal_memcpy
+   \   000001                ; Setup parameters for call to function osal_memcpy
+   \   000001                REQUIRE ??Subroutine50_0
+   \   000001                ; // Fall through to label ??Subroutine50_0
+    739          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine27:
+   \   000000   7C03         MOV     R4,#0x3
+   \   000002                REQUIRE ??Subroutine42_0
+   \   000002                ; // Fall through to label ??Subroutine42_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    740          int8 get_rfid_data(uint8 *data, uint8 *dataLen)
+   \                     get_rfid_data:
+    741          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine12 & 0xFFFF
+    742          	if(optData != NULL && optDataLen < RFID_DATA_SIZE)
+   \                     ??CrossCallReturnLabel_103:
+   \   000008   600C         JZ      ??CrossCallReturnLabel_17
+   \   00000A   90....       MOV     DPTR,#optDataLen
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   C3           CLR     C
+   \   00000F   9413         SUBB    A,#0x13
+   \   000011   5006         JNC     ??CrossCallReturnLabel_41
+    743          	{
+    744          		osal_mem_free(optData);
+   \   000013                ; Setup parameters for call to function osal_mem_free
+   \   000013   12....       LCALL   ?Subroutine10 & 0xFFFF
+    745          		optData = NULL;
+    746          	}
+    747          
+    748          	if(optData == NULL)
+    749          	{
+    750          		optData = osal_mem_alloc(RFID_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_17:
+   \   000016                ; Setup parameters for call to function osal_mem_alloc
+   \   000016   12....       LCALL   ?Subroutine24 & 0xFFFF
+    751          		optDataLen = RFID_DATA_SIZE;
+    752          	}
+    753          
+    754          	osal_memcpy(optData, DEMOBASE_DEVICE_RFID, 2);
+   \                     ??CrossCallReturnLabel_41:
+   \   000019                ; Setup parameters for call to function osal_memcpy
+   \   000019   75....       MOV     ?V0 + 4,#`?<Constant "03">` & 0xff
+   \   00001C   75....       MOV     ?V0 + 5,#(`?<Constant "03">` >> 8) & 0xff
+   \   00001F   75..00       MOV     ?V0 + 6,#0x0
+   \   000022   78..         MOV     R0,#?V0 + 4
+   \   000024   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000027   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_84:
+   \   00002A   12....       LCALL   ?DEALLOC_XSTACK8
+    755          
+    756          	if(queryStates)
+   \   00002D   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   000030   6045         JZ      ??get_rfid_data_0
+    757          	{
+    758          		optData[2] = 'S';
+   \   000032   7453         MOV     A,#0x53
+   \   000034   F0           MOVX    @DPTR,A
+    759          		incode_xtocs(optData+3, ids, idlen);
+   \   000035                ; Setup parameters for call to function incode_xtocs
+   \   000035   90....       MOV     DPTR,#idlen
+   \   000038   E0           MOVX    A,@DPTR
+   \   000039   F5..         MOV     ?V0 + 2,A
+   \   00003B   75..00       MOV     ?V0 + 3,#0x0
+   \   00003E   78..         MOV     R0,#?V0 + 2
+   \   000040   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000043   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_130:
+   \   000046   12....       LCALL   ?DEALLOC_XSTACK8
+    760          		
+    761          		osal_memcpy(data, optData, (idlen*2)+3);
+   \   000049                ; Setup parameters for call to function osal_memcpy
+   \   000049   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_125:
+   \   00004C   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00004F   90....       MOV     DPTR,#idlen
+   \   000052   E0           MOVX    A,@DPTR
+   \   000053   C3           CLR     C
+   \   000054   33           RLC     A
+   \   000055   F8           MOV     R0,A
+   \   000056   E4           CLR     A
+   \   000057   33           RLC     A
+   \   000058   F9           MOV     R1,A
+   \   000059   E8           MOV     A,R0
+   \   00005A   2403         ADD     A,#0x3
+   \   00005C   FC           MOV     R4,A
+   \   00005D   E9           MOV     A,R1
+   \   00005E   3400         ADDC    A,#0x0
+   \   000060   FD           MOV     R5,A
+   \   000061   12....       LCALL   ??Subroutine43_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_97:
+   \   000064   12....       LCALL   ?DEALLOC_XSTACK8
+    762          		*dataLen = (idlen*2)+3;
+   \   000067   90....       MOV     DPTR,#idlen
+   \   00006A   E0           MOVX    A,@DPTR
+   \   00006B   C3           CLR     C
+   \   00006C   33           RLC     A
+   \   00006D   2403         ADD     A,#0x3
+   \   00006F   85..82       MOV     DPL,?V0 + 0
+   \   000072   85..83       MOV     DPH,?V0 + 1
+   \   000075   8014         SJMP    ??get_rfid_data_1
+    763          	}
+    764          	else
+    765          	{
+    766          		optData[2] = 'P';
+   \                     ??get_rfid_data_0:
+   \   000077   12....       LCALL   ?Subroutine9 & 0xFFFF
+    767          		osal_memcpy(data, optData, 3);
+   \                     ??CrossCallReturnLabel_117:
+   \   00007A   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00007D   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_89:
+   \   000080   12....       LCALL   ?DEALLOC_XSTACK8
+    768          		*dataLen = 3;
+   \   000083   85..82       MOV     DPL,?V0 + 0
+   \   000086   85..83       MOV     DPH,?V0 + 1
+   \   000089   7403         MOV     A,#0x3
+    769          	}
+   \                     ??get_rfid_data_1:
+   \   00008B   02....       LJMP    ?Subroutine3 & 0xFFFF
+    770          
+    771          	return 0;
+    772          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   90....       MOV     DPTR,#optData
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   2402         ADD     A,#0x2
+   \   000006   F8           MOV     R0,A
+   \   000007   A3           INC     DPTR
+   \   000008   E0           MOVX    A,@DPTR
+   \   000009   3400         ADDC    A,#0x0
+   \   00000B   F9           MOV     R1,A
+   \   00000C   90....       MOV     DPTR,#queryStates
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   8882         MOV     DPL,R0
+   \   000012   8983         MOV     DPH,R1
+   \   000014   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   7450         MOV     A,#0x50
+   \   000002                REQUIRE ??Subroutine49_0
+   \   000002                ; // Fall through to label ??Subroutine49_0
+    773          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    774          int8 get_humiture_data(uint8 *data, uint8 *dataLen)
+   \                     get_humiture_data:
+    775          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine12 & 0xFFFF
+    776          	if(optData != NULL && optDataLen < HUMITURE_DATA_SIZE)
+   \                     ??CrossCallReturnLabel_104:
+   \   000008   600C         JZ      ??CrossCallReturnLabel_10
+   \   00000A   90....       MOV     DPTR,#optDataLen
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   C3           CLR     C
+   \   00000F   9407         SUBB    A,#0x7
+   \   000011   5006         JNC     ??CrossCallReturnLabel_43
+    777          	{
+    778          		osal_mem_free(optData);
+   \   000013                ; Setup parameters for call to function osal_mem_free
+   \   000013   12....       LCALL   ?Subroutine6 & 0xFFFF
+    779          		optData = NULL;
+    780          		optDataLen = 0;
+    781          	}
+    782          
+    783          	if(optData == NULL)
+    784          	{
+    785          		optData = osal_mem_alloc(HUMITURE_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_10:
+   \   000016                ; Setup parameters for call to function osal_mem_alloc
+   \   000016   12....       LCALL   ?Subroutine25 & 0xFFFF
+    786          		optDataLen = HUMITURE_DATA_SIZE;
+    787          	}
+    788          
+    789          	osal_memcpy(optData, DEMOBASE_DEVICE_HUMITURE, 2);
+   \                     ??CrossCallReturnLabel_43:
+   \   000019                ; Setup parameters for call to function osal_memcpy
+   \   000019   75....       MOV     ?V0 + 4,#`?<Constant "04">` & 0xff
+   \   00001C   75....       MOV     ?V0 + 5,#(`?<Constant "04">` >> 8) & 0xff
+   \   00001F   75..00       MOV     ?V0 + 6,#0x0
+   \   000022   78..         MOV     R0,#?V0 + 4
+   \   000024   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000027   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_85:
+   \   00002A   12....       LCALL   ?DEALLOC_XSTACK8
+    790          
+    791          	if(queryStates)
+   \   00002D   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_19:
+   \   000030   6033         JZ      ??get_humiture_data_0
+    792          	{
+    793          		optData[2] = 'S';
+   \   000032   12....       LCALL   ?Subroutine22 & 0xFFFF
+    794          		incode_xtocs(optData+3, &temp, 1);
+   \                     ??CrossCallReturnLabel_113:
+   \   000035   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000038   7C..         MOV     R4,#temp & 0xff
+   \   00003A   7D..         MOV     R5,#(temp >> 8) & 0xff
+   \   00003C   12....       LCALL   ??Subroutine51_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_134:
+   \   00003F   12....       LCALL   ?DEALLOC_XSTACK8
+    795          		incode_xtocs(optData+5, &humi, 1);
+   \   000042                ; Setup parameters for call to function incode_xtocs
+   \   000042   78..         MOV     R0,#?V0 + 2
+   \   000044   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000047   12....       LCALL   ?Subroutine15 & 0xFFFF
+   \                     ??CrossCallReturnLabel_65:
+   \   00004A   12....       LCALL   ?DEALLOC_XSTACK8
+    796          
+    797          		osal_memcpy(data, optData, HUMITURE_DATA_SIZE);
+   \   00004D                ; Setup parameters for call to function osal_memcpy
+   \   00004D   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_126:
+   \   000050   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000053   7C07         MOV     R4,#0x7
+   \   000055   12....       LCALL   ??Subroutine42_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_94:
+   \   000058   12....       LCALL   ?DEALLOC_XSTACK8
+    798          		*dataLen = HUMITURE_DATA_SIZE;
+   \   00005B   85..82       MOV     DPL,?V0 + 0
+   \   00005E   85..83       MOV     DPH,?V0 + 1
+   \   000061   7407         MOV     A,#0x7
+   \   000063   8014         SJMP    ??get_humiture_data_1
+    799          	}
+    800          	else
+    801          	{
+    802          		optData[2] = 'P';
+   \                     ??get_humiture_data_0:
+   \   000065   12....       LCALL   ?Subroutine9 & 0xFFFF
+    803          		
+    804          		osal_memcpy(data, optData, 3);
+   \                     ??CrossCallReturnLabel_118:
+   \   000068   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   00006B   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_90:
+   \   00006E   12....       LCALL   ?DEALLOC_XSTACK8
+    805          		*dataLen = 3;
+   \   000071   85..82       MOV     DPL,?V0 + 0
+   \   000074   85..83       MOV     DPH,?V0 + 1
+   \   000077   7403         MOV     A,#0x3
+    806          	}
+   \                     ??get_humiture_data_1:
+   \   000079                REQUIRE ?Subroutine3
+   \   000079                ; // Fall through to label ?Subroutine3
+    807          	
+    808          	return 0;
+    809          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine22:
+   \   000000   7453         MOV     A,#0x53
+   \   000002                REQUIRE ??Subroutine48_0
+   \   000002                ; // Fall through to label ??Subroutine48_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine48_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001                ; Setup parameters for call to function incode_xtocs
+   \   000001                ; Setup parameters for call to function incode_xtocs
+   \   000001                ; Setup parameters for call to function incode_xtocs
+   \   000001                ; Setup parameters for call to function incode_xtocs
+   \   000001   75..01       MOV     ?V0 + 2,#0x1
+   \   000004   75..00       MOV     ?V0 + 3,#0x0
+   \   000007   78..         MOV     R0,#?V0 + 2
+   \   000009   22           RET
+    810          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    811          int8 get_lightdetect_data(uint8 *data, uint8 *dataLen)
+   \                     get_lightdetect_data:
+    812          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine12 & 0xFFFF
+    813          	if(optData != NULL && optDataLen < LIGHTDETECT_DATA_SIZE)
+   \                     ??CrossCallReturnLabel_105:
+   \   000008   600C         JZ      ??CrossCallReturnLabel_11
+   \   00000A   90....       MOV     DPTR,#optDataLen
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   C3           CLR     C
+   \   00000F   9405         SUBB    A,#0x5
+   \   000011   5006         JNC     ??CrossCallReturnLabel_36
+    814          	{
+    815          		osal_mem_free(optData);
+   \   000013                ; Setup parameters for call to function osal_mem_free
+   \   000013   12....       LCALL   ?Subroutine6 & 0xFFFF
+    816          		optData = NULL;
+    817          		optDataLen = 0;
+    818          	}
+    819          
+    820          	if(optData == NULL)
+    821          	{
+    822          		optData = osal_mem_alloc(LIGHTDETECT_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_11:
+   \   000016                ; Setup parameters for call to function osal_mem_alloc
+   \   000016   12....       LCALL   ?Subroutine21 & 0xFFFF
+    823          		optDataLen = LIGHTDETECT_DATA_SIZE;
+    824          	}
+    825          
+    826          	osal_memcpy(optData, DEMOBASE_DEVICE_LIGHTDETECT, 2);
+   \                     ??CrossCallReturnLabel_36:
+   \   000019                ; Setup parameters for call to function osal_memcpy
+   \   000019   75....       MOV     ?V0 + 4,#`?<Constant "05">` & 0xff
+   \   00001C   75....       MOV     ?V0 + 5,#(`?<Constant "05">` >> 8) & 0xff
+   \   00001F   75..00       MOV     ?V0 + 6,#0x0
+   \   000022   78..         MOV     R0,#?V0 + 4
+   \   000024   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000027   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_86:
+   \   00002A   12....       LCALL   ?DEALLOC_XSTACK8
+    827          
+    828          	if(queryStates)
+   \   00002D   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_20:
+   \   000030   6028         JZ      ??get_lightdetect_data_0
+    829          	{
+    830          		optData[2] = 'S';
+   \   000032   12....       LCALL   ?Subroutine22 & 0xFFFF
+    831          		incode_xtocs(optData+3, &lightGrade, 1);
+   \                     ??CrossCallReturnLabel_114:
+   \   000035   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000038   7C..         MOV     R4,#lightGrade & 0xff
+   \   00003A   7D..         MOV     R5,#(lightGrade >> 8) & 0xff
+   \   00003C   12....       LCALL   ??Subroutine51_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_135:
+   \   00003F   12....       LCALL   ?DEALLOC_XSTACK8
+    832          
+    833          		osal_memcpy(data, optData, LIGHTDETECT_DATA_SIZE);
+   \   000042                ; Setup parameters for call to function osal_memcpy
+   \   000042   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_127:
+   \   000045   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000048   7C05         MOV     R4,#0x5
+   \   00004A   12....       LCALL   ??Subroutine42_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_95:
+   \   00004D   12....       LCALL   ?DEALLOC_XSTACK8
+    834          		*dataLen = LIGHTDETECT_DATA_SIZE;
+   \   000050   85..82       MOV     DPL,?V0 + 0
+   \   000053   85..83       MOV     DPH,?V0 + 1
+   \   000056   7405         MOV     A,#0x5
+   \   000058   8014         SJMP    ??get_lightdetect_data_1
+    835          	}
+    836          	else
+    837          	{
+    838          		optData[2] = 'P';
+   \                     ??get_lightdetect_data_0:
+   \   00005A   12....       LCALL   ?Subroutine9 & 0xFFFF
+    839          		
+    840          		osal_memcpy(data, optData, 3);
+   \                     ??CrossCallReturnLabel_119:
+   \   00005D   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000060   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_91:
+   \   000063   12....       LCALL   ?DEALLOC_XSTACK8
+    841          		*dataLen = 3;
+   \   000066   85..82       MOV     DPL,?V0 + 0
+   \   000069   85..83       MOV     DPH,?V0 + 1
+   \   00006C   7403         MOV     A,#0x3
+    842          	}
+   \                     ??get_lightdetect_data_1:
+   \   00006E   02....       LJMP    ?Subroutine3 & 0xFFFF
+    843          	
+    844          	return 0;
+    845          }
+    846          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    847          int8 get_airdetect_data(uint8 *data, uint8 *dataLen)
+   \                     get_airdetect_data:
+    848          {
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   12....       LCALL   ?Subroutine12 & 0xFFFF
+    849          	if(optData != NULL && optDataLen < AIRDETECT_DATA_SIZE)
+   \                     ??CrossCallReturnLabel_106:
+   \   000008   600C         JZ      ??CrossCallReturnLabel_12
+   \   00000A   90....       MOV     DPTR,#optDataLen
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   C3           CLR     C
+   \   00000F   9405         SUBB    A,#0x5
+   \   000011   5006         JNC     ??CrossCallReturnLabel_37
+    850          	{
+    851          		osal_mem_free(optData);
+   \   000013                ; Setup parameters for call to function osal_mem_free
+   \   000013   12....       LCALL   ?Subroutine6 & 0xFFFF
+    852          		optData = NULL;
+    853          		optDataLen = 0;
+    854          	}
+    855          
+    856          	if(optData == NULL)
+    857          	{
+    858          		optData = osal_mem_alloc(AIRDETECT_DATA_SIZE);
+   \                     ??CrossCallReturnLabel_12:
+   \   000016                ; Setup parameters for call to function osal_mem_alloc
+   \   000016   12....       LCALL   ?Subroutine21 & 0xFFFF
+    859          		optDataLen = AIRDETECT_DATA_SIZE;
+    860          	}
+    861          
+    862          	osal_memcpy(optData, DEMOBASE_DEVICE_AIRDETECT, 2);
+   \                     ??CrossCallReturnLabel_37:
+   \   000019                ; Setup parameters for call to function osal_memcpy
+   \   000019   75....       MOV     ?V0 + 4,#`?<Constant "06">` & 0xff
+   \   00001C   75....       MOV     ?V0 + 5,#(`?<Constant "06">` >> 8) & 0xff
+   \   00001F   75..00       MOV     ?V0 + 6,#0x0
+   \   000022   78..         MOV     R0,#?V0 + 4
+   \   000024   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000027   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_87:
+   \   00002A   12....       LCALL   ?DEALLOC_XSTACK8
+    863          
+    864          	if(queryStates)
+   \   00002D   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_21:
+   \   000030   6028         JZ      ??get_airdetect_data_0
+    865          	{
+    866          		optData[2] = 'S';
+   \   000032   12....       LCALL   ?Subroutine22 & 0xFFFF
+    867          		incode_xtocs(optData+3, &airStates, 1);
+   \                     ??CrossCallReturnLabel_115:
+   \   000035   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000038   7C..         MOV     R4,#airStates & 0xff
+   \   00003A   7D..         MOV     R5,#(airStates >> 8) & 0xff
+   \   00003C   12....       LCALL   ??Subroutine51_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_136:
+   \   00003F   12....       LCALL   ?DEALLOC_XSTACK8
+    868          
+    869          		osal_memcpy(data, optData, AIRDETECT_DATA_SIZE);
+   \   000042                ; Setup parameters for call to function osal_memcpy
+   \   000042   12....       LCALL   ??Subroutine50_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_128:
+   \   000045   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000048   7C05         MOV     R4,#0x5
+   \   00004A   12....       LCALL   ??Subroutine42_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_96:
+   \   00004D   12....       LCALL   ?DEALLOC_XSTACK8
+    870          		*dataLen = AIRDETECT_DATA_SIZE;
+   \   000050   85..82       MOV     DPL,?V0 + 0
+   \   000053   85..83       MOV     DPH,?V0 + 1
+   \   000056   7405         MOV     A,#0x5
+   \   000058   8014         SJMP    ??get_airdetect_data_1
+    871          	}
+    872          	else
+    873          	{
+    874          		optData[2] = 'P';
+   \                     ??get_airdetect_data_0:
+   \   00005A   12....       LCALL   ?Subroutine9 & 0xFFFF
+    875          		
+    876          		osal_memcpy(data, optData, 3);
+   \                     ??CrossCallReturnLabel_120:
+   \   00005D   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000060   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_92:
+   \   000063   12....       LCALL   ?DEALLOC_XSTACK8
+    877          		*dataLen = 3;
+   \   000066   85..82       MOV     DPL,?V0 + 0
+   \   000069   85..83       MOV     DPH,?V0 + 1
+   \   00006C   7403         MOV     A,#0x3
+    878          	}
+   \                     ??get_airdetect_data_1:
+   \   00006E   02....       LJMP    ?Subroutine3 & 0xFFFF
+    879          	
+    880          	return 0;
+    881          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine23:
+   \   000000   7A04         MOV     R2,#0x4
+   \   000002   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_48:
+   \   000005   7404         MOV     A,#0x4
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine29:
+   \   000000   43F402       ORL     0xf4,#0x2
+   \   000003   43FE02       ORL     0xfe,#0x2
+   \   000006   43F140       ORL     0xf1,#0x40
+   \   000009   43C628       ORL     0xc6,#0x28
+   \   00000C   75DB00       MOV     0xdb,#0x0
+   \   00000F   75DAFF       MOV     0xda,#-0x1
+   \   000012   75DD00       MOV     0xdd,#0x0
+   \   000015   75DC05       MOV     0xdc,#0x5
+   \   000018   43E61C       ORL     0xe6,#0x1c
+   \   00001B   75E404       MOV     0xe4,#0x4
+   \   00001E   C2B9         CLR     0xb8.1
+   \   000020   D2AF         SETB    0xa8.7
+   \   000022   22           RET
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for lightGrade>`:
+   \   000000   02           DB 2
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for airStates>`:
+   \   000000   01           DB 1
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??HalDeviceInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalDeviceInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??HalStatesInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalStatesInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??set_device_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    set_device_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??get_device_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_device_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DemoBaseRFID_QueryCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DemoBaseRFID_QueryCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DemoBaseRFID_StopBeeCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DemoBaseRFID_StopBeeCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DemoBaseHumiture_StatusCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DemoBaseHumiture_StatusCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DemoBaseLightDetect_StatusCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DemoBaseLightDetect_StatusCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DemoBaseAirDetect_StatusCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DemoBaseAirDetect_StatusCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??lightctrl_init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    lightctrl_init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??set_lightctrl_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    set_lightctrl_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??get_plc_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_plc_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??get_rfid_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_rfid_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??get_humiture_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_humiture_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??get_lightdetect_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_lightdetect_data
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??get_airdetect_data?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_airdetect_data
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "SETID">`:
+   \   000000   53455449     DB "SETID"
+   \            4400    
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "GETID">`:
+   \   000000   47455449     DB "GETID"
+   \            4400    
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "ER">`:
+   \   000000   455200       DB "ER"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "03">`:
+   \   000000   303300       DB "03"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "04">`:
+   \   000000   303400       DB "04"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "05">`:
+   \   000000   303500       DB "05"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "06">`:
+   \   000000   303600       DB "06"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "01">`:
+   \   000000   303100       DB "01"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "02">`:
+   \   000000   303200       DB "02"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "07">`:
+   \   000000   303700       DB "07"
+    882          
+    883          int8 get_lightctrl_data(uint8 *data, uint8 *dataLen)
+    884          {
+    885          	if(optData != NULL && optDataLen < LIGHTCTRL_DATA_SIZE)
+    886          	{
+    887          		osal_mem_free(optData);
+    888          		optData = NULL;
+    889          	}
+    890          
+    891          	if(optData == NULL)
+    892          	{
+    893          		optData = osal_mem_alloc(LIGHTCTRL_DATA_SIZE);
+    894          		optDataLen = LIGHTCTRL_DATA_SIZE;
+    895          	}
+    896          
+    897          	osal_memcpy(optData, DEMOBASE_DEVICE_LIGHTCTRL, 2);
+    898          	incode_xtocs(optData+2, &lightCtrlStates, 1);
+    899          
+    900          	osal_memcpy(data, optData, LIGHTCTRL_DATA_SIZE);
+    901          	*dataLen = LIGHTCTRL_DATA_SIZE;
+    902          
+    903          	return 0;
+    904          }
+
+   Maximum stack usage in bytes:
+
+     Function                     ISTACK PSTACK XSTACK
+     --------                     ------ ------ ------
+     DemoBaseAirDetect_StatusCB       0      0     16
+       -> osal_mem_free               0      0     22
+       -> osal_mem_alloc              0      0     22
+       -> osal_memcpy                 0      0     28
+       -> incode_xtocs                0      0     26
+       -> Update_Refresh              0      0     22
+     DemoBaseHumiture_StatusCB        0      0     26
+       -> s_connectionreset           0      0     42
+       -> s_measure                   0      0     42
+       -> s_measure                   0      0     42
+       -> s_connectionreset           0      0     42
+       -> calc_sht11                  0      0     42
+       -> osal_mem_free               0      0     42
+       -> osal_mem_alloc              0      0     42
+       -> osal_memcpy                 0      0     48
+       -> incode_xtocs                0      0     46
+       -> incode_xtocs                0      0     46
+       -> Update_Refresh              0      0     42
+     DemoBaseLightDetect_StatusCB     0      0     16
+       -> osal_mem_free               0      0     22
+       -> osal_mem_alloc              0      0     22
+       -> osal_memcpy                 0      0     28
+       -> incode_xtocs                0      0     26
+       -> Update_Refresh              0      0     22
+     DemoBaseRFID_QueryCB             0      0     21
+       -> Rc522RFReset                0      0     28
+       -> ActivateCard                0      0     36
+       -> osal_mem_free               0      0     28
+       -> osal_mem_alloc              0      0     28
+       -> osal_memcpy                 0      0     34
+       -> incode_xtocs                0      0     32
+       -> Update_Refresh              0      0     28
+       -> update_user_event           0      0     38
+     DemoBaseRFID_StopBeeCB           0      0      2
+     HalDeviceInit                    0      0      0
+     HalStatesInit                    0      0     15
+       -> IRecvByte                   0      0     20
+       -> update_user_event           0      0     30
+       -> update_user_event           0      0     30
+       -> update_user_event           0      0     30
+       -> update_user_event           0      0     30
+       -> lightctrl_init              0      0     20
+     get_airdetect_data               0      0     34
+       -> osal_mem_free               0      0     30
+       -> osal_mem_alloc              0      0     30
+       -> osal_memcpy                 0      0     36
+       -> incode_xtocs                0      0     34
+       -> osal_memcpy                 0      0     36
+       -> osal_memcpy                 0      0     36
+     get_device_data                  1      0     19
+       -> osal_memcmp                 0      0     38
+       -> osal_memcmp                 0      0     38
+       -> osal_memcpy                 0      0     38
+       -> IRecvByte                   0      0     32
+       -> osal_mem_free               0      0     32
+       -> osal_mem_alloc              0      0     32
+       -> osal_memcpy                 0      0     38
+       -> incode_xtocs                0      0     36
+       -> osal_memcpy                 0      0     38
+       -> get_plc_data                0      0     32
+       -> get_rfid_data               0      0     32
+       -> get_humiture_data           0      0     32
+       -> get_lightdetect_data        0      0     32
+       -> get_airdetect_data          0      0     32
+       -> osal_mem_free               0      0     32
+       -> osal_mem_alloc              0      0     32
+       -> osal_memcpy                 0      0     38
+       -> incode_xtocs                0      0     36
+       -> osal_memcpy                 0      0     38
+     get_humiture_data                0      0     34
+       -> osal_mem_free               0      0     30
+       -> osal_mem_alloc              0      0     30
+       -> osal_memcpy                 0      0     36
+       -> incode_xtocs                0      0     34
+       -> incode_xtocs                0      0     34
+       -> osal_memcpy                 0      0     36
+       -> osal_memcpy                 0      0     36
+     get_lightdetect_data             0      0     34
+       -> osal_mem_free               0      0     30
+       -> osal_mem_alloc              0      0     30
+       -> osal_memcpy                 0      0     36
+       -> incode_xtocs                0      0     34
+       -> osal_memcpy                 0      0     36
+       -> osal_memcpy                 0      0     36
+     get_plc_data                     1      0     34
+       -> osal_mem_free               0      0     30
+       -> osal_mem_alloc              0      0     30
+       -> osal_memcpy                 0      0     36
+       -> osal_memcpy                 0      0     36
+     get_rfid_data                    1      0     34
+       -> osal_mem_free               0      0     30
+       -> osal_mem_alloc              0      0     30
+       -> osal_memcpy                 0      0     36
+       -> incode_xtocs                0      0     34
+       -> osal_memcpy                 0      0     36
+       -> osal_memcpy                 0      0     36
+     lightctrl_init                   2      0     12
+     set_device_data                  1      0     19
+       -> osal_memcmp                 0      0     38
+       -> atox                        0      0     32
+       -> ISendByte                   0      0     32
+       -> osal_memcpy                 0      0     38
+       -> IRecvByte                   0      0     32
+       -> incode_xtocs                0      0     36
+       -> osal_memcpy                 0      0     38
+       -> IRecvByte                   0      0     32
+       -> IRecvByte                   0      0     32
+       -> incode_atox                 0      0     32
+       -> incode_atox                 0      0     32
+       -> IRecvByte                   0      0     32
+       -> incode_atox                 0      0     32
+       -> IRecvByte                   0      0     32
+       -> incode_atox                 0      0     32
+       -> IRecvByte                   0      0     32
+       -> incode_atox                 0      0     32
+       -> IRecvByte                   0      0     32
+       -> incode_atox                 0      0     32
+       -> IRecvByte                   0      0     32
+       -> incode_atox                 0      0     32
+       -> set_lightctrl_data          0      0     32
+     set_lightctrl_data               0      0     26
+       -> IRecvByte                   0      0     20
+       -> incode_atox                 0      0     20
+       -> incode_atox                 0      0     20
+
+
+   Segment part sizes:
+
+     Function/Label                       Bytes
+     --------------                       -----
+     _A_P1                                   1
+     _A_IEN0                                 1
+     ADCCON1                                 1
+     ADCCON3                                 1
+     _A_IEN1                                 1
+     ADCL                                    1
+     ADCH                                    1
+     CLKCONCMD                               1
+     T1CC0L                                  1
+     T1CC0H                                  1
+     T1CC1L                                  1
+     T1CC1H                                  1
+     T1CTL                                   1
+     T1CCTL1                                 1
+     PERCFG                                  1
+     P1SEL                                   1
+     P1DIR                                   1
+     queryStates                             1
+     isBee                                   1
+     ids                                     8
+     idlen                                   1
+     temp                                    1
+     humi                                    1
+     lightGrade                              1
+     airStates                               1
+     lightCtrlStates                         1
+     HalDeviceInit                           3
+     HalStatesInit                         250
+     ?Subroutine0                            5
+     set_device_data                       327
+     ?Subroutine5                           16
+     ?Subroutine14                          19
+     ??Subroutine37_0                        6
+     ??Subroutine38_0                        4
+     ?Subroutine35                          12
+     ??Subroutine41_0                       16
+     ?Subroutine28                          17
+     ?Subroutine4                           25
+     ??Subroutine44_0                        1
+     ??Subroutine45_0                        6
+     ?Subroutine1                            5
+     ??Subroutine47_0                        5
+     ?Subroutine31                          12
+     get_device_data                       409
+     ??Subroutine50_0                       13
+     DemoBaseRFID_QueryCB                  230
+     ?Subroutine2                            5
+     ?Subroutine18                           2
+     ??Subroutine36_0                       11
+     ??Subroutine39_0                        6
+     ??Subroutine40_0                       12
+     ?Subroutine33                           9
+     ?Subroutine7                            2
+     ??Subroutine46_0                       11
+     ?Subroutine10                           4
+     ?Subroutine32                          19
+     ?Subroutine24                           9
+     ?Subroutine30                          17
+     ?Subroutine8                            4
+     ??Subroutine51_0                       10
+     DemoBaseRFID_StopBeeCB                  5
+     DemoBaseHumiture_StatusCB             272
+     ?Subroutine17                          15
+     ?Subroutine15                           4
+     ?Subroutine13                          12
+     ?Subroutine25                           9
+     ?Subroutine6                            8
+     DemoBaseLightDetect_StatusCB          162
+     ?Subroutine26                           1
+     ?Subroutine16                           2
+     ?Subroutine21                           9
+     DemoBaseAirDetect_StatusCB             89
+     lightctrl_init                         80
+     set_lightctrl_data                     62
+     get_plc_data                          155
+     ??Subroutine42_0                        2
+     ??Subroutine43_0                        3
+     ?Subroutine20                           4
+     ?Subroutine34                          11
+     ?Subroutine19                           6
+     ?Subroutine12                           8
+     ?Subroutine3                            6
+     ??Subroutine49_0                        1
+     ?Subroutine27                           2
+     get_rfid_data                         142
+     ?Subroutine11                          21
+     ?Subroutine9                            2
+     get_humiture_data                     121
+     ?Subroutine22                           2
+     ??Subroutine48_0                       10
+     get_lightdetect_data                  113
+     get_airdetect_data                    113
+     ?Subroutine23                           9
+     ?Subroutine29                          35
+     ?<Initializer for lightGrade>           1
+     ?<Initializer for airStates>            1
+     ??HalDeviceInit?relay                   6
+     ??HalStatesInit?relay                   6
+     ??set_device_data?relay                 6
+     ??get_device_data?relay                 6
+     ??DemoBaseRFID_QueryCB?relay            6
+     ??DemoBaseRFID_StopBeeCB?relay          6
+     ??DemoBaseHumiture_StatusCB?relay       6
+     ??DemoBaseLightDetect_StatusCB?relay    6
+     ??DemoBaseAirDetect_StatusCB?relay      6
+     ??lightctrl_init?relay                  6
+     ??set_lightctrl_data?relay              6
+     ??get_plc_data?relay                    6
+     ??get_rfid_data?relay                   6
+     ??get_humiture_data?relay               6
+     ??get_lightdetect_data?relay            6
+     ??get_airdetect_data?relay              6
+     ?<Constant "SETID">                     6
+     ?<Constant "GETID">                     6
+     ?<Constant "ER">                        3
+     ?<Constant "03">                        3
+     ?<Constant "04">                        3
+     ?<Constant "05">                        3
+     ?<Constant "06">                        3
+     ?<Constant "01">                        3
+     ?<Constant "02">                        3
+     ?<Constant "07">                        3
+
+ 
+ 2 998 bytes in segment BANKED_CODE
+    96 bytes in segment BANK_RELAYS
+    17 bytes in segment SFR_AN
+     2 bytes in segment XDATA_I
+     2 bytes in segment XDATA_ID
+    36 bytes in segment XDATA_ROM_C
+    14 bytes in segment XDATA_Z
+ 
+ 3 096 bytes of CODE  memory
+    36 bytes of CONST memory
+     0 bytes of DATA  memory (+ 17 bytes shared)
+    16 bytes of XDATA memory
+
+Errors: none
+Warnings: none

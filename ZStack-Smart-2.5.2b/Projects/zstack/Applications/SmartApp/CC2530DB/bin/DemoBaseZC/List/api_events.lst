@@ -1,0 +1,1630 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         23/Nov/2016  19:49:19 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\Source\Manage\Callbacks\api #
+#                          _events.c                                          #
+#    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\..\..\. #
+#                          .\..\Tools\CC2530DB\f8wCoord.cfg (-DCPU32MHZ       #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8       #
+#                          -DMAC_CFG_RX_MAX=5 -DZDO_COORDINATOR -DRTR_NWK     #
+#                          -DSSA_CONNECTOR) -f E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                           (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1     #
+#                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800          #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
+#                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
+#                          ce\Manage\Callbacks\api_events.c -D SECURE=1 -D    #
+#                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                 #
+#                          SIGNAL_AMPLIFIER_SETTING -D                        #
+#                          xPOWER_AMPLIFIER_POSITION_1 -D xNWK_AUTO_POLL -D   #
+#                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
+#                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Lis #
+#                          t\ -lA E:\work\zigbee\ZStack-Smart-2.5.2b\Projects #
+#                          \zstack\Applications\SmartApp\CC2530DB\bin\DemoBas #
+#                          eZC\List\ --diag_suppress Pe001,Pa010 -o           #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zst #
+#                          ack\Applications\SmartApp\CC2530DB\Devices\ -I     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Connector\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5.2b #
+#                          \Projects\zstack\Applications\SmartApp\CC2530DB\De #
+#                          vices\..\..\Source\Board\ -I                       #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\P #
+#                          rojects\zstack\Applications\SmartApp\CC2530DB\Devi #
+#                          ces\..\..\Source\Manage\Callbacks\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart-2. #
+#                          5.2b\Projects\zstack\Applications\SmartApp\CC2530D #
+#                          B\Devices\..\..\Source\Manage\HeartBeat\ -I        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\Sour #
+#                          ce\Manage\incode\ -I E:\work\zigbee\ZStack-Smart-2 #
+#                          .5.2b\Projects\zstack\Applications\SmartApp\CC2530 #
+#                          DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I          #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\hal\target\CC2530EB\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\include\ -I                 #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\high_level\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\ -I         #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\mac\low_level\srf04\single_chip #
+#                          \ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\z #
+#                          stack\Applications\SmartApp\CC2530DB\Devices\..\.. #
+#                          \..\..\..\..\Components\mt\ -I                     #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\osal\include\ -I                #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\saddr\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\services\sdata\ -I              #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\af\ -I                    #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\nwk\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sapi\ -I                  #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sec\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\sys\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\stack\zdo\ -I                   #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\ -I                        #
+#                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\Devices\..\..\..\. #
+#                          .\..\..\Components\zmac\f8w\ -Oh                   #
+#                          --require_prototypes                               #
+#    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Lis #
+#                          t\api_events.lst                                   #
+#    Object file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack #
+#                          \Applications\SmartApp\CC2530DB\bin\DemoBaseZC\Obj #
+#                          \api_events.r51                                    #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\Callbacks\api_events.c
+      1          /**************************************************************************************************
+      2            Filename:       api_events.c
+      3            Revised:        $Date: 2014-04-29 09:03:06 -0800 (Thu, 29 Apr 2014) $
+      4            Revision:       $Revision: 29217 $
+      5          
+      6            Description:    Set Events Application Interface
+      7          **************************************************************************************************/
+      8          
+      9          /**************************************************************************************************
+     10          Modify by Sam_Chen
+     11          Date:2014-07-31
+     12          **************************************************************************************************/
+     13          
+     14          
+     15          /*********************************************************************
+     16           * INCLUDES
+     17           */
+     18          #include "api_events.h"
+     19          
+     20          /*********************************************************************
+     21           * MACROS
+     22           */
+     23          
+     24          /*********************************************************************
+     25           * CONSTANTS
+     26           */
+     27          
+     28          /*********************************************************************
+     29           * EXTERNAL VARIABLES
+     30           */
+     31          
+     32          /*********************************************************************
+     33           * EXTERNAL FUNCTIONS
+     34           */
+     35           
+     36          /*********************************************************************
+     37           * GLOBAL VARIABLES
+     38           */
+     39          
+     40          /*********************************************************************
+     41           * LOCAL VARIABLES
+     42           */
+     43          //chain list header
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     44          static ssaUserEvent_t *puser_event = NULL;
+   \                     puser_event:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     45          
+     46          //event map
+     47          #ifdef EVENT_MAP_ID
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     48          static ssaUserEvent_t *userevent_map[USER_EVENT_MAP_SIZE] = {NULL};
+   \                     userevent_map:
+   \   000000                DS 32
+   \   000020                REQUIRE __INIT_XDATA_Z
+     49          #endif
+     50          
+     51          /*********************************************************************
+     52           * LOCAL FUNCTIONS
+     53           */
+     54          
+     55          #ifdef EVENT_MAP_ID
+     56          static uint8 event_to_id(uint16 event);
+     57          #endif
+     58          static int8 Add_User_Event(ssaUserEvent_t *ssaUserEvent);
+     59          static ssaUserEvent_t *Query_User_Event(uint16 event);
+     60          static int8 Del_User_Event(uint16 event);
+     61          
+     62          static void set_app_event(ssaUserEvent_t *ssaUserEvent);
+     63          
+     64          /*********************************************************************
+     65           * PUBLIC FUNCTIONS
+     66           */
+     67          
+     68          #ifdef EVENT_MAP_ID
+     69          /*********************************************************************
+     70           * @fn      event_to_id
+     71           *
+     72           * @brief   get map id from user event flag
+     73           *
+     74           * @param   user process event
+     75           *
+     76           * @return  user map id
+     77           */
+     78          uint8 event_to_id(uint16 event)
+     79          {
+     80            uint8 i = 0;
+     81            
+     82            for(i=0; i<16; i++)
+     83            	if(event & 1<<i) break;
+     84          	
+     85            return i;
+     86          }
+     87          #endif
+     88           
+     89          
+     90          /*********************************************************************
+     91           * @fn      Add_User_Event
+     92           *
+     93           * @brief   add user event to chain list
+     94           *
+     95           * @param   user process event
+     96           *
+     97           * @return  result(susses or failed)
+     98           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     99          int8 Add_User_Event(ssaUserEvent_t *ssaUserEvent)
+   \                     Add_User_Event:
+    100          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+    101            if(ssaUserEvent != NULL)
+   \   000005   EA           MOV     A,R2
+   \   000006   4B           ORL     A,R3
+   \   000007   6036         JZ      ??Add_User_Event_0
+    102            {
+    103            	ssaUserEvent->next = NULL;
+   \   000009   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_17:
+   \   00000C   E4           CLR     A
+   \   00000D   F0           MOVX    @DPTR,A
+   \   00000E   A3           INC     DPTR
+   \   00000F   F0           MOVX    @DPTR,A
+    104          #ifdef EVENT_MAP_ID
+    105          	ssaUserEvent->map_id = event_to_id(ssaUserEvent->event);
+   \   000010   8A82         MOV     DPL,R2
+   \   000012   8B83         MOV     DPH,R3
+   \   000014   12....       LCALL   ?Subroutine12 & 0xFFFF
+   \                     ??CrossCallReturnLabel_29:
+   \   000017   7E00         MOV     R6,#0x0
+   \                     ??Add_User_Event_1:
+   \   000019   75..01       MOV     ?V0 + 0,#0x1
+   \   00001C   75..00       MOV     ?V0 + 1,#0x0
+   \   00001F   EE           MOV     A,R6
+   \   000020   78..         MOV     R0,#?V0 + 0
+   \   000022   12....       LCALL   ?S_SHL
+   \   000025   EC           MOV     A,R4
+   \   000026   55..         ANL     A,?V0 + 0
+   \   000028   F8           MOV     R0,A
+   \   000029   ED           MOV     A,R5
+   \   00002A   55..         ANL     A,?V0 + 1
+   \   00002C   F9           MOV     R1,A
+   \   00002D   E8           MOV     A,R0
+   \   00002E   49           ORL     A,R1
+   \   00002F   7007         JNZ     ??Add_User_Event_2
+   \   000031   0E           INC     R6
+   \   000032   EE           MOV     A,R6
+   \   000033   C3           CLR     C
+   \   000034   9410         SUBB    A,#0x10
+   \   000036   40E1         JC      ??Add_User_Event_1
+    106          #endif
+    107            }
+   \                     ??Add_User_Event_2:
+   \   000038   EE           MOV     A,R6
+   \   000039   8A82         MOV     DPL,R2
+   \   00003B   8B83         MOV     DPH,R3
+   \   00003D   A3           INC     DPTR
+   \   00003E   F0           MOVX    @DPTR,A
+    108           
+    109            if(puser_event == NULL)
+   \                     ??Add_User_Event_0:
+   \   00003F   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_23:
+   \   000042   7015         JNZ     ??Add_User_Event_3
+    110            {
+    111          	puser_event = ssaUserEvent;
+   \   000044   12....       LCALL   ?Subroutine0 & 0xFFFF
+    112          #ifdef EVENT_MAP_ID
+    113          	if(ssaUserEvent->map_id < USER_EVENT_MAP_SIZE)
+   \                     ??CrossCallReturnLabel_24:
+   \   000047   504D         JNC     ??Add_User_Event_4
+    114          	{
+    115          	  userevent_map[ssaUserEvent->map_id] = ssaUserEvent;
+   \                     ??Add_User_Event_5:
+   \   000049   8A82         MOV     DPL,R2
+   \   00004B   8B83         MOV     DPH,R3
+   \   00004D   A3           INC     DPTR
+   \   00004E   E0           MOVX    A,@DPTR
+   \   00004F   12....       LCALL   ?Subroutine9 & 0xFFFF
+    116          	}
+    117          #endif
+    118            }
+   \                     ??CrossCallReturnLabel_15:
+   \   000052   EA           MOV     A,R2
+   \   000053   F0           MOVX    @DPTR,A
+   \   000054   A3           INC     DPTR
+   \   000055   EB           MOV     A,R3
+   \   000056   F0           MOVX    @DPTR,A
+   \   000057   803D         SJMP    ??Add_User_Event_4
+    119            else
+    120            {
+    121          	ssaUserEvent_t *pre_event = NULL;
+    122          	ssaUserEvent_t *t_event = puser_event;
+    123          	if(ssaUserEvent->event == t_event->event)
+   \                     ??Add_User_Event_3:
+   \   000059   8A82         MOV     DPL,R2
+   \   00005B   8B83         MOV     DPH,R3
+   \   00005D   A3           INC     DPTR
+   \   00005E   A3           INC     DPTR
+   \   00005F   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_10:
+   \   000062   8882         MOV     DPL,R0
+   \   000064   8983         MOV     DPH,R1
+   \   000066   A3           INC     DPTR
+   \   000067   A3           INC     DPTR
+   \   000068   E0           MOVX    A,@DPTR
+   \   000069   65..         XRL     A,?V0 + 2
+   \   00006B   7004         JNZ     ??Add_User_Event_6
+   \   00006D   A3           INC     DPTR
+   \   00006E   E0           MOVX    A,@DPTR
+   \   00006F   65..         XRL     A,?V0 + 3
+   \                     ??Add_User_Event_6:
+   \   000071   7007         JNZ     ??Add_User_Event_7
+    124          	{
+    125          	  return -1;
+   \                     ??Add_User_Event_8:
+   \   000073   79FF         MOV     R1,#-0x1
+   \                     ??Add_User_Event_9:
+   \   000075   7F06         MOV     R7,#0x6
+   \   000077   02....       LJMP    ?BANKED_LEAVE_XDATA
+    126          	}
+    127          	else if(ssaUserEvent->duration < t_event->duration)
+   \                     ??Add_User_Event_7:
+   \   00007A   8A82         MOV     DPL,R2
+   \   00007C   8B83         MOV     DPH,R3
+   \   00007E   A3           INC     DPTR
+   \   00007F   A3           INC     DPTR
+   \   000080   A3           INC     DPTR
+   \   000081   A3           INC     DPTR
+   \   000082   E0           MOVX    A,@DPTR
+   \   000083   F5..         MOV     ?V0 + 4,A
+   \   000085   A3           INC     DPTR
+   \   000086   E0           MOVX    A,@DPTR
+   \   000087   F5..         MOV     ?V0 + 5,A
+   \   000089   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   00008C   500C         JNC     ??Add_User_Event_10
+    128          	{
+    129          	  ssaUserEvent->next = t_event;
+   \   00008E   12....       LCALL   ?Subroutine1 & 0xFFFF
+    130          	  puser_event = ssaUserEvent;
+   \                     ??CrossCallReturnLabel_0:
+   \   000091   12....       LCALL   ?Subroutine0 & 0xFFFF
+    131          #ifdef EVENT_MAP_ID
+    132          	  if(ssaUserEvent->map_id < USER_EVENT_MAP_SIZE)
+   \                     ??CrossCallReturnLabel_25:
+   \   000094   40B3         JC      ??Add_User_Event_5
+    133          	  {
+    134          	    userevent_map[ssaUserEvent->map_id] = ssaUserEvent;
+    135          	  }
+    136          #endif
+    137          	  return 0;
+   \                     ??Add_User_Event_4:
+   \   000096   7900         MOV     R1,#0x0
+   \   000098   80DB         SJMP    ??Add_User_Event_9
+    138          	}
+    139          
+    140          	while(t_event->next != NULL)
+   \                     ??Add_User_Event_10:
+   \   00009A   E8           MOV     A,R0
+   \   00009B   240B         ADD     A,#0xb
+   \   00009D   FC           MOV     R4,A
+   \   00009E   E9           MOV     A,R1
+   \   00009F   3400         ADDC    A,#0x0
+   \   0000A1   FD           MOV     R5,A
+   \   0000A2   EC           MOV     A,R4
+   \   0000A3   FE           MOV     R6,A
+   \   0000A4   ED           MOV     A,R5
+   \   0000A5   FF           MOV     R7,A
+   \   0000A6   8E82         MOV     DPL,R6
+   \   0000A8   8F83         MOV     DPH,R7
+   \   0000AA   12....       LCALL   ??Subroutine16_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_27:
+   \   0000AD   EC           MOV     A,R4
+   \   0000AE   4D           ORL     A,R5
+   \   0000AF   6029         JZ      ??Add_User_Event_11
+    141          	{
+    142          	  pre_event = t_event;
+    143          	  t_event = t_event->next;
+   \   0000B1   EC           MOV     A,R4
+   \   0000B2   F8           MOV     R0,A
+   \   0000B3   ED           MOV     A,R5
+   \   0000B4   F9           MOV     R1,A
+    144          	  if(ssaUserEvent->event == t_event->event)
+   \   0000B5   8882         MOV     DPL,R0
+   \   0000B7   8983         MOV     DPH,R1
+   \   0000B9   A3           INC     DPTR
+   \   0000BA   A3           INC     DPTR
+   \   0000BB   E0           MOVX    A,@DPTR
+   \   0000BC   65..         XRL     A,?V0 + 2
+   \   0000BE   7004         JNZ     ??Add_User_Event_12
+   \   0000C0   A3           INC     DPTR
+   \   0000C1   E0           MOVX    A,@DPTR
+   \   0000C2   65..         XRL     A,?V0 + 3
+   \                     ??Add_User_Event_12:
+   \   0000C4   60AD         JZ      ??Add_User_Event_8
+    145          	  {
+    146          		return -1;
+    147          	  }
+    148          	  else if(ssaUserEvent->duration < t_event->duration)
+   \   0000C6   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   0000C9   50CF         JNC     ??Add_User_Event_10
+    149          	  {
+    150          		ssaUserEvent->next = t_event;
+   \   0000CB   12....       LCALL   ?Subroutine1 & 0xFFFF
+    151          		pre_event->next = ssaUserEvent;
+   \                     ??CrossCallReturnLabel_1:
+   \   0000CE   8E82         MOV     DPL,R6
+   \   0000D0   8F83         MOV     DPH,R7
+   \   0000D2   12....       LCALL   ??Subroutine15_0 & 0xFFFF
+    152          #ifdef EVENT_MAP_ID
+    153          		if(ssaUserEvent->map_id < USER_EVENT_MAP_SIZE)
+    154          		{
+    155          		  userevent_map[ssaUserEvent->map_id] = ssaUserEvent;
+    156          		}
+    157          #endif
+    158          
+    159          		return 0;
+    160          	  }
+    161          	}
+   \                     ??CrossCallReturnLabel_26:
+   \   0000D5   50BF         JNC     ??Add_User_Event_4
+   \   0000D7   02....       LJMP    ??Add_User_Event_5 & 0xFFFF
+    162          	t_event->next = ssaUserEvent;
+   \                     ??Add_User_Event_11:
+   \   0000DA   8E82         MOV     DPL,R6
+   \   0000DC   8F83         MOV     DPH,R7
+   \   0000DE   02....       LJMP    ??CrossCallReturnLabel_15 & 0xFFFF
+    163            }
+    164          
+    165            return 0;
+    166          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   90....       MOV     DPTR,#puser_event
+   \   000003                REQUIRE ??Subroutine14_0
+   \   000003                ; // Fall through to label ??Subroutine14_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine14_0:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F8           MOV     R0,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F9           MOV     R1,A
+   \   000005   E8           MOV     A,R0
+   \   000006   49           ORL     A,R1
+   \   000007   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   8882         MOV     DPL,R0
+   \   000002   8983         MOV     DPH,R1
+   \   000004   A3           INC     DPTR
+   \   000005   A3           INC     DPTR
+   \   000006   12....       LCALL   ?Subroutine12 & 0xFFFF
+   \                     ??CrossCallReturnLabel_30:
+   \   000009   C3           CLR     C
+   \   00000A   E5..         MOV     A,?V0 + 4
+   \   00000C   9C           SUBB    A,R4
+   \   00000D   E5..         MOV     A,?V0 + 5
+   \   00000F   9D           SUBB    A,R5
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   000003   E8           MOV     A,R0
+   \   000004   F0           MOVX    @DPTR,A
+   \   000005   A3           INC     DPTR
+   \   000006   E9           MOV     A,R1
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   EA           MOV     A,R2
+   \   000001   240B         ADD     A,#0xb
+   \   000003   F582         MOV     DPL,A
+   \   000005   EB           MOV     A,R3
+   \   000006   3400         ADDC    A,#0x0
+   \   000008   F583         MOV     DPH,A
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   90....       MOV     DPTR,#puser_event
+   \   000003                REQUIRE ??Subroutine15_0
+   \   000003                ; // Fall through to label ??Subroutine15_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine15_0:
+   \   000000   EA           MOV     A,R2
+   \   000001   F0           MOVX    @DPTR,A
+   \   000002   A3           INC     DPTR
+   \   000003   EB           MOV     A,R3
+   \   000004   F0           MOVX    @DPTR,A
+   \   000005   8A82         MOV     DPL,R2
+   \   000007   8B83         MOV     DPH,R3
+   \   000009   A3           INC     DPTR
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   C3           CLR     C
+   \   00000C   9410         SUBB    A,#0x10
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine12:
+   \   000000   A3           INC     DPTR
+   \   000001   A3           INC     DPTR
+   \   000002                REQUIRE ??Subroutine16_0
+   \   000002                ; // Fall through to label ??Subroutine16_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine16_0:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   FC           MOV     R4,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   FD           MOV     R5,A
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F5..         MOV     ?V0 + 2,A
+   \   000003   A3           INC     DPTR
+   \   000004   E0           MOVX    A,@DPTR
+   \   000005   F5..         MOV     ?V0 + 3,A
+   \   000007   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   C3           CLR     C
+   \   000001   33           RLC     A
+   \   000002   F8           MOV     R0,A
+   \   000003   E4           CLR     A
+   \   000004   33           RLC     A
+   \   000005   F9           MOV     R1,A
+   \   000006   74..         MOV     A,#userevent_map & 0xff
+   \   000008   28           ADD     A,R0
+   \   000009   F582         MOV     DPL,A
+   \   00000B   74..         MOV     A,#(userevent_map >> 8) & 0xff
+   \   00000D   39           ADDC    A,R1
+   \   00000E   F583         MOV     DPH,A
+   \   000010   22           RET
+    167          
+    168          
+    169          /*********************************************************************
+    170           * @fn      Query_User_Event
+    171           *
+    172           * @brief   query user event from chain list
+    173           *
+    174           * @param   event flag
+    175           *
+    176           * @return  result(event obj or NULL)
+    177           */
+    178          ssaUserEvent_t *Query_User_Event(uint16 event)
+    179          {
+    180            ssaUserEvent_t *t_event;
+    181          #ifdef EVENT_MAP_ID
+    182            uint8 map_id = event_to_id(event);
+    183            if(map_id<USER_EVENT_MAP_SIZE && userevent_map[map_id]!=NULL)
+    184            	return userevent_map[map_id];
+    185          #endif
+    186          
+    187            t_event = puser_event;
+    188            while(t_event->next!=NULL && t_event->event!=event)
+    189            	t_event = t_event->next;
+    190          
+    191            if(t_event->event == event)
+    192            	return t_event;
+    193            else
+    194            	return NULL;
+    195          }
+    196          
+    197          
+    198          /*********************************************************************
+    199           * @fn      Del_User_Event
+    200           *
+    201           * @brief   delete user event from chain list
+    202           *
+    203           * @param   event flag
+    204           *
+    205           * @return  result(susses or failed)
+    206           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    207          int8 Del_User_Event(uint16 event)
+   \                     Del_User_Event:
+    208          {
+   \   000000   74F3         MOV     A,#-0xd
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 13
+   \   000005                ; Auto size: 0
+    209            ssaUserEvent_t *pre_event = NULL;
+   \   000005   7C00         MOV     R4,#0x0
+   \   000007   7D00         MOV     R5,#0x0
+    210            ssaUserEvent_t *t_event = puser_event;
+   \   000009   12....       LCALL   ?Subroutine6 & 0xFFFF
+    211            if(t_event == NULL)
+   \                     ??CrossCallReturnLabel_21:
+   \   00000C   700D         JNZ     ??Del_User_Event_0
+    212            	return -1;
+   \   00000E   79FF         MOV     R1,#-0x1
+   \   000010   02....       LJMP    ??Del_User_Event_1 & 0xFFFF
+    213          
+    214            while(t_event->next!=NULL && t_event->event != event)
+    215            {
+    216          	pre_event = t_event;
+   \                     ??Del_User_Event_2:
+   \   000013   E8           MOV     A,R0
+   \   000014   FC           MOV     R4,A
+   \   000015   E9           MOV     A,R1
+   \   000016   FD           MOV     R5,A
+    217          	t_event = t_event->next;
+   \   000017   EE           MOV     A,R6
+   \   000018   F8           MOV     R0,A
+   \   000019   EF           MOV     A,R7
+   \   00001A   F9           MOV     R1,A
+    218            }
+   \                     ??Del_User_Event_0:
+   \   00001B   E8           MOV     A,R0
+   \   00001C   240B         ADD     A,#0xb
+   \   00001E   FE           MOV     R6,A
+   \   00001F   E9           MOV     A,R1
+   \   000020   3400         ADDC    A,#0x0
+   \   000022   FF           MOV     R7,A
+   \   000023   8E..         MOV     ?V0 + 0,R6
+   \   000025   8F..         MOV     ?V0 + 1,R7
+   \   000027   8E82         MOV     DPL,R6
+   \   000029   F583         MOV     DPH,A
+   \   00002B   E0           MOVX    A,@DPTR
+   \   00002C   FE           MOV     R6,A
+   \   00002D   A3           INC     DPTR
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   FF           MOV     R7,A
+   \   000030   E8           MOV     A,R0
+   \   000031   2402         ADD     A,#0x2
+   \   000033   F5..         MOV     ?V0 + 2,A
+   \   000035   E9           MOV     A,R1
+   \   000036   3400         ADDC    A,#0x0
+   \   000038   F5..         MOV     ?V0 + 3,A
+   \   00003A   EE           MOV     A,R6
+   \   00003B   4F           ORL     A,R7
+   \   00003C   600F         JZ      ??Del_User_Event_3
+   \   00003E   85..82       MOV     DPL,?V0 + 2
+   \   000041   85..83       MOV     DPH,?V0 + 3
+   \   000044   E0           MOVX    A,@DPTR
+   \   000045   6A           XRL     A,R2
+   \   000046   7003         JNZ     ??Del_User_Event_4
+   \   000048   A3           INC     DPTR
+   \   000049   E0           MOVX    A,@DPTR
+   \   00004A   6B           XRL     A,R3
+   \                     ??Del_User_Event_4:
+   \   00004B   70C6         JNZ     ??Del_User_Event_2
+    219          
+    220            if(t_event->event == event)
+   \                     ??Del_User_Event_3:
+   \   00004D   85..82       MOV     DPL,?V0 + 2
+   \   000050   85..83       MOV     DPH,?V0 + 3
+   \   000053   E0           MOVX    A,@DPTR
+   \   000054   6A           XRL     A,R2
+   \   000055   7003         JNZ     ??Del_User_Event_5
+   \   000057   A3           INC     DPTR
+   \   000058   E0           MOVX    A,@DPTR
+   \   000059   6B           XRL     A,R3
+   \                     ??Del_User_Event_5:
+   \   00005A   704D         JNZ     ??Del_User_Event_6
+    221            {
+    222          	if(pre_event == NULL)
+   \   00005C   85..82       MOV     DPL,?V0 + 0
+   \   00005F   85..83       MOV     DPH,?V0 + 1
+   \   000062   12....       LCALL   ??Subroutine17_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_31:
+   \   000065   EC           MOV     A,R4
+   \   000066   4D           ORL     A,R5
+   \   000067   7005         JNZ     ??Del_User_Event_7
+    223          		puser_event = t_event->next;
+   \   000069   90....       MOV     DPTR,#puser_event
+   \   00006C   800A         SJMP    ??Del_User_Event_8
+    224          	else
+    225          		pre_event->next = t_event->next;
+   \                     ??Del_User_Event_7:
+   \   00006E   EC           MOV     A,R4
+   \   00006F   240B         ADD     A,#0xb
+   \   000071   F582         MOV     DPL,A
+   \   000073   ED           MOV     A,R5
+   \   000074   3400         ADDC    A,#0x0
+   \   000076   F583         MOV     DPH,A
+   \                     ??Del_User_Event_8:
+   \   000078   EA           MOV     A,R2
+   \   000079   F0           MOVX    @DPTR,A
+   \   00007A   A3           INC     DPTR
+   \   00007B   EB           MOV     A,R3
+   \   00007C   F0           MOVX    @DPTR,A
+    226          
+    227          #ifdef EVENT_MAP_ID
+    228          	if(t_event->map_id<USER_EVENT_MAP_SIZE)
+   \   00007D   8882         MOV     DPL,R0
+   \   00007F   8983         MOV     DPH,R1
+   \   000081   A3           INC     DPTR
+   \   000082   E0           MOVX    A,@DPTR
+   \   000083   FA           MOV     R2,A
+   \   000084   C3           CLR     C
+   \   000085   9410         SUBB    A,#0x10
+   \   000087   5015         JNC     ??Del_User_Event_9
+    229          		userevent_map[t_event->map_id] = NULL;
+   \   000089   EA           MOV     A,R2
+   \   00008A   C3           CLR     C
+   \   00008B   33           RLC     A
+   \   00008C   FA           MOV     R2,A
+   \   00008D   E4           CLR     A
+   \   00008E   33           RLC     A
+   \   00008F   FB           MOV     R3,A
+   \   000090   74..         MOV     A,#userevent_map & 0xff
+   \   000092   2A           ADD     A,R2
+   \   000093   F582         MOV     DPL,A
+   \   000095   74..         MOV     A,#(userevent_map >> 8) & 0xff
+   \   000097   3B           ADDC    A,R3
+   \   000098   F583         MOV     DPH,A
+   \   00009A   E4           CLR     A
+   \   00009B   F0           MOVX    @DPTR,A
+   \   00009C   A3           INC     DPTR
+   \   00009D   F0           MOVX    @DPTR,A
+    230          #endif
+    231          	
+    232          	osal_mem_free(t_event);
+   \                     ??Del_User_Event_9:
+   \   00009E                ; Setup parameters for call to function osal_mem_free
+   \   00009E   E8           MOV     A,R0
+   \   00009F   FA           MOV     R2,A
+   \   0000A0   E9           MOV     A,R1
+   \   0000A1   FB           MOV     R3,A
+   \   0000A2   12....       LCALL   ??osal_mem_free?relay
+    233          	return 0;
+   \   0000A5   7900         MOV     R1,#0x0
+   \   0000A7   8002         SJMP    ??Del_User_Event_1
+    234            }
+    235            else
+    236            	return -2;
+   \                     ??Del_User_Event_6:
+   \   0000A9   79FE         MOV     R1,#-0x2
+   \                     ??Del_User_Event_1:
+   \   0000AB   7F05         MOV     R7,#0x5
+   \   0000AD   02....       LJMP    ?BANKED_LEAVE_XDATA
+    237          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine17_0:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   FA           MOV     R2,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   FB           MOV     R3,A
+   \   000005   22           RET
+    238          
+    239          /*********************************************************************
+    240           * @fn      set_app_event
+    241           *
+    242           * @brief   set osal event from app event
+    243           *
+    244           * @param   user process event
+    245           *
+    246           * @return  none
+    247           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    248          void set_app_event(ssaUserEvent_t *ssaUserEvent)
+   \                     set_app_event:
+    249          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    250            if(ssaUserEvent->count.branch.count)
+   \   000009   8E82         MOV     DPL,R6
+   \   00000B   8F83         MOV     DPH,R7
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   A3           INC     DPTR
+   \   000010   A3           INC     DPTR
+   \   000011   A3           INC     DPTR
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   547F         ANL     A,#0x7f
+   \   000016   604A         JZ      ??set_app_event_0
+    251            {
+    252              if(ssaUserEvent->duration > TIMER_LOWER_LIMIT)
+   \   000018   EE           MOV     A,R6
+   \   000019   2402         ADD     A,#0x2
+   \   00001B   F8           MOV     R0,A
+   \   00001C   EF           MOV     A,R7
+   \   00001D   3400         ADDC    A,#0x0
+   \   00001F   F9           MOV     R1,A
+   \   000020   88..         MOV     ?V0 + 0,R0
+   \   000022   89..         MOV     ?V0 + 1,R1
+   \   000024   8882         MOV     DPL,R0
+   \   000026   F583         MOV     DPH,A
+   \   000028   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
+   \   00002B   EE           MOV     A,R6
+   \   00002C   2404         ADD     A,#0x4
+   \   00002E   FC           MOV     R4,A
+   \   00002F   EF           MOV     A,R7
+   \   000030   3400         ADDC    A,#0x0
+   \   000032   FD           MOV     R5,A
+   \   000033   8C..         MOV     ?V0 + 2,R4
+   \   000035   8D..         MOV     ?V0 + 3,R5
+   \   000037   8C82         MOV     DPL,R4
+   \   000039   F583         MOV     DPH,A
+   \   00003B   C3           CLR     C
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   9464         SUBB    A,#0x64
+   \   00003F   A3           INC     DPTR
+   \   000040   E0           MOVX    A,@DPTR
+   \   000041   9400         SUBB    A,#0x0
+   \   000043   401A         JC      ??set_app_event_1
+    253              {
+    254          	  osal_stop_timerEx(ssaUserEvent->task_id, ssaUserEvent->event);
+   \   000045                ; Setup parameters for call to function osal_stop_timerEx
+   \   000045   12....       LCALL   ??osal_stop_timerEx?relay
+    255          	  osal_start_timerEx(ssaUserEvent->task_id, 
+    256          	  		ssaUserEvent->event, ssaUserEvent->duration);
+   \   000048                ; Setup parameters for call to function osal_start_timerEx
+   \   000048   85..82       MOV     DPL,?V0 + 2
+   \   00004B   85..83       MOV     DPH,?V0 + 3
+   \   00004E   12....       LCALL   ??Subroutine16_0 & 0xFFFF
+    257              }
+   \                     ??CrossCallReturnLabel_28:
+   \   000051   85..82       MOV     DPL,?V0 + 0
+   \   000054   85..83       MOV     DPH,?V0 + 1
+   \   000057   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_14:
+   \   00005A   12....       LCALL   ??osal_start_timerEx?relay
+   \   00005D   8003         SJMP    ??set_app_event_0
+    258              else
+    259              {
+    260          	  osal_set_event(ssaUserEvent->task_id, ssaUserEvent->event);
+   \                     ??set_app_event_1:
+   \   00005F                ; Setup parameters for call to function osal_set_event
+   \   00005F   12....       LCALL   ??osal_set_event?relay
+    261              }
+    262            }
+    263          }
+   \                     ??set_app_event_0:
+   \   000062   7F04         MOV     R7,#0x4
+   \   000064   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   12....       LCALL   ??Subroutine17_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_32:
+   \   000003   8E82         MOV     DPL,R6
+   \   000005   8F83         MOV     DPH,R7
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   F9           MOV     R1,A
+   \   000009   22           RET
+    264          
+    265          
+    266          /*********************************************************************
+    267           * @fn      set_user_event
+    268           *
+    269           * @brief   set user defined events
+    270           *
+    271           * @param   none
+    272           *
+    273           * @return  none
+    274           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    275          int8 set_user_event(uint8 task_id, uint16 event, 
+   \                     set_user_event:
+    276          	ssa_ProcessUserTaskCB_t ssa_ProcessUserTaskCB, uint16 duration, uint8 count, void *ptype)
+    277          {
+   \   000000   74EC         MOV     A,#-0x14
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 20
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 8,R1
+   \   000007   8A..         MOV     ?V0 + 4,R2
+   \   000009   8B..         MOV     ?V0 + 5,R3
+   \   00000B   8C..         MOV     ?V0 + 0,R4
+   \   00000D   8D..         MOV     ?V0 + 1,R5
+   \   00000F   7414         MOV     A,#0x14
+   \   000011   12....       LCALL   ?XSTACK_DISP0_8
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   F5..         MOV     ?V0 + 6,A
+   \   000017   A3           INC     DPTR
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   F5..         MOV     ?V0 + 7,A
+   \   00001B   7416         MOV     A,#0x16
+   \   00001D   12....       LCALL   ?XSTACK_DISP0_8
+   \   000020   E0           MOVX    A,@DPTR
+   \   000021   F5..         MOV     ?V0 + 9,A
+   \   000023   7417         MOV     A,#0x17
+   \   000025   12....       LCALL   ?XSTACK_DISP0_8
+   \   000028   12....       LCALL   ?Subroutine7 & 0xFFFF
+    278          	ssaUserEvent_t *m_ssaUserEvent;
+    279          	m_ssaUserEvent = (ssaUserEvent_t *)osal_mem_alloc(sizeof(ssaUserEvent_t));
+   \                     ??CrossCallReturnLabel_11:
+   \   00002B                ; Setup parameters for call to function osal_mem_alloc
+   \   00002B   7A0D         MOV     R2,#0xd
+   \   00002D   7B00         MOV     R3,#0x0
+   \   00002F   12....       LCALL   ??osal_mem_alloc?relay
+   \   000032   8A..         MOV     ?V0 + 10,R2
+   \   000034   8B..         MOV     ?V0 + 11,R3
+   \   000036   AE..         MOV     R6,?V0 + 10
+   \   000038   AF..         MOV     R7,?V0 + 11
+    280          
+    281          	m_ssaUserEvent->task_id = task_id;
+   \   00003A   8E82         MOV     DPL,R6
+   \   00003C   8F83         MOV     DPH,R7
+   \   00003E   E5..         MOV     A,?V0 + 8
+   \   000040   F0           MOVX    @DPTR,A
+    282          	m_ssaUserEvent->event = event;
+   \   000041   A3           INC     DPTR
+   \   000042   A3           INC     DPTR
+   \   000043   E5..         MOV     A,?V0 + 4
+   \   000045   F0           MOVX    @DPTR,A
+   \   000046   A3           INC     DPTR
+   \   000047   E5..         MOV     A,?V0 + 5
+   \   000049   12....       LCALL   ?Subroutine4 & 0xFFFF
+    283          	m_ssaUserEvent->duration = duration;
+   \                     ??CrossCallReturnLabel_6:
+   \   00004C   E5..         MOV     A,?V0 + 6
+   \   00004E   F0           MOVX    @DPTR,A
+   \   00004F   A3           INC     DPTR
+   \   000050   E5..         MOV     A,?V0 + 7
+   \   000052   12....       LCALL   ?Subroutine4 & 0xFFFF
+    284          	m_ssaUserEvent->count.overall = count;
+   \                     ??CrossCallReturnLabel_7:
+   \   000055   A3           INC     DPTR
+   \   000056   A3           INC     DPTR
+   \   000057   E5..         MOV     A,?V0 + 9
+   \   000059   12....       LCALL   ?Subroutine3 & 0xFFFF
+    285          	m_ssaUserEvent->ptype = ptype;
+   \                     ??CrossCallReturnLabel_4:
+   \   00005C   E5..         MOV     A,?V0 + 2
+   \   00005E   F0           MOVX    @DPTR,A
+   \   00005F   A3           INC     DPTR
+   \   000060   E5..         MOV     A,?V0 + 3
+   \   000062   12....       LCALL   ?Subroutine3 & 0xFFFF
+    286          	m_ssaUserEvent->ssa_ProcessUserTaskCB = ssa_ProcessUserTaskCB;
+   \                     ??CrossCallReturnLabel_5:
+   \   000065   A3           INC     DPTR
+   \   000066   A3           INC     DPTR
+   \   000067   E5..         MOV     A,?V0 + 0
+   \   000069   F0           MOVX    @DPTR,A
+   \   00006A   A3           INC     DPTR
+   \   00006B   E5..         MOV     A,?V0 + 1
+   \   00006D   F0           MOVX    @DPTR,A
+    287          
+    288          	if(Add_User_Event(m_ssaUserEvent) < 0)
+   \   00006E                ; Setup parameters for call to function Add_User_Event
+   \   00006E   12....       LCALL   ??Add_User_Event?relay
+   \   000071   E9           MOV     A,R1
+   \   000072   C3           CLR     C
+   \   000073   9400         SUBB    A,#0x0
+   \   000075   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000077   65D0         XRL     A,PSW
+   \   000079   33           RLC     A
+   \   00007A   EE           MOV     A,R6
+   \   00007B   FA           MOV     R2,A
+   \   00007C   EF           MOV     A,R7
+   \   00007D   FB           MOV     R3,A
+   \   00007E   5007         JNC     ??set_user_event_0
+    289          	{
+    290          	  osal_mem_free(m_ssaUserEvent);
+   \   000080                ; Setup parameters for call to function osal_mem_free
+   \   000080   12....       LCALL   ??osal_mem_free?relay
+    291          	  return -1;
+   \   000083   79FF         MOV     R1,#-0x1
+   \   000085   8005         SJMP    ??set_user_event_1
+    292          	}
+    293          
+    294          	set_app_event(m_ssaUserEvent);
+   \                     ??set_user_event_0:
+   \   000087                ; Setup parameters for call to function set_app_event
+   \   000087   12....       LCALL   ??set_app_event?relay
+    295          	return 0;
+   \   00008A   7900         MOV     R1,#0x0
+   \                     ??set_user_event_1:
+   \   00008C   7F0C         MOV     R7,#0xc
+   \   00008E   02....       LJMP    ?BANKED_LEAVE_XDATA
+    296          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_19:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8E82         MOV     DPL,R6
+   \   000003   8F83         MOV     DPH,R7
+   \   000005   A3           INC     DPTR
+   \   000006   A3           INC     DPTR
+   \   000007   A3           INC     DPTR
+   \   000008   A3           INC     DPTR
+   \   000009   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_20:
+   \   000003   A3           INC     DPTR
+   \   000004   A3           INC     DPTR
+   \   000005   A3           INC     DPTR
+   \   000006   22           RET
+    297          
+    298          
+    299          /*********************************************************************
+    300           * @fn      update_user_event
+    301           *
+    302           * @brief   update user defined events
+    303           *
+    304           * @param   none
+    305           *
+    306           * @return  none
+    307           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    308          int8 update_user_event(uint8 task_id, uint16 event, 
+   \                     update_user_event:
+    309          	ssa_ProcessUserTaskCB_t ssa_ProcessUserTaskCB, uint16 duration, uint8 count, void *ptype)
+    310          {
+   \   000000   74EF         MOV     A,#-0x11
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 17
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FE           MOV     R6,A
+   \   000007   7411         MOV     A,#0x11
+   \   000009   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000C   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_12:
+   \   00000F   7413         MOV     A,#0x13
+   \   000011   12....       LCALL   ?XSTACK_DISP0_8
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   FF           MOV     R7,A
+   \   000016   7414         MOV     A,#0x14
+   \   000018   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001B   E0           MOVX    A,@DPTR
+   \   00001C   F5..         MOV     ?V0 + 0,A
+   \   00001E   A3           INC     DPTR
+   \   00001F   E0           MOVX    A,@DPTR
+   \   000020   F5..         MOV     ?V0 + 1,A
+    311            ssaUserEvent_t *m_ssaUserEvent;
+    312            m_ssaUserEvent = Query_User_Event(event);
+   \   000022   75..00       MOV     ?V0 + 4,#0x0
+   \                     ??update_user_event_0:
+   \   000025   75..01       MOV     ?V0 + 6,#0x1
+   \   000028   75..00       MOV     ?V0 + 7,#0x0
+   \   00002B   E5..         MOV     A,?V0 + 4
+   \   00002D   78..         MOV     R0,#?V0 + 6
+   \   00002F   12....       LCALL   ?S_SHL
+   \   000032   EA           MOV     A,R2
+   \   000033   55..         ANL     A,?V0 + 6
+   \   000035   F8           MOV     R0,A
+   \   000036   EB           MOV     A,R3
+   \   000037   55..         ANL     A,?V0 + 7
+   \   000039   F9           MOV     R1,A
+   \   00003A   E8           MOV     A,R0
+   \   00003B   49           ORL     A,R1
+   \   00003C   7009         JNZ     ??update_user_event_1
+   \   00003E   05..         INC     ?V0 + 4
+   \   000040   E5..         MOV     A,?V0 + 4
+   \   000042   C3           CLR     C
+   \   000043   9410         SUBB    A,#0x10
+   \   000045   40DE         JC      ??update_user_event_0
+   \                     ??update_user_event_1:
+   \   000047   E5..         MOV     A,?V0 + 4
+   \   000049   C3           CLR     C
+   \   00004A   9410         SUBB    A,#0x10
+   \   00004C   5045         JNC     ??update_user_event_2
+   \   00004E   E5..         MOV     A,?V0 + 4
+   \   000050   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_16:
+   \   000053   12....       LCALL   ??Subroutine14_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_22:
+   \   000056   603B         JZ      ??update_user_event_2
+    313          
+    314            if(m_ssaUserEvent == NULL)
+    315            {
+    316          	return set_user_event(task_id, event, 
+    317          		ssa_ProcessUserTaskCB, duration, count, ptype);
+    318            }
+    319          
+    320            m_ssaUserEvent->duration = duration;
+   \                     ??update_user_event_3:
+   \   000058   8882         MOV     DPL,R0
+   \   00005A   8983         MOV     DPH,R1
+   \   00005C   A3           INC     DPTR
+   \   00005D   A3           INC     DPTR
+   \   00005E   A3           INC     DPTR
+   \   00005F   A3           INC     DPTR
+   \   000060   E5..         MOV     A,?V0 + 2
+   \   000062   F0           MOVX    @DPTR,A
+   \   000063   A3           INC     DPTR
+   \   000064   E5..         MOV     A,?V0 + 3
+   \   000066   F0           MOVX    @DPTR,A
+    321            m_ssaUserEvent->count.overall = count;
+   \   000067   EF           MOV     A,R7
+   \   000068   8882         MOV     DPL,R0
+   \   00006A   8983         MOV     DPH,R1
+   \   00006C   A3           INC     DPTR
+   \   00006D   A3           INC     DPTR
+   \   00006E   A3           INC     DPTR
+   \   00006F   A3           INC     DPTR
+   \   000070   A3           INC     DPTR
+   \   000071   A3           INC     DPTR
+   \   000072   12....       LCALL   ?Subroutine2 & 0xFFFF
+    322            m_ssaUserEvent->ptype = ptype;
+   \                     ??CrossCallReturnLabel_2:
+   \   000075   E5..         MOV     A,?V0 + 0
+   \   000077   F0           MOVX    @DPTR,A
+   \   000078   A3           INC     DPTR
+   \   000079   E5..         MOV     A,?V0 + 1
+   \   00007B   12....       LCALL   ?Subroutine2 & 0xFFFF
+    323            m_ssaUserEvent->ssa_ProcessUserTaskCB = ssa_ProcessUserTaskCB;
+   \                     ??CrossCallReturnLabel_3:
+   \   00007E   A3           INC     DPTR
+   \   00007F   A3           INC     DPTR
+   \   000080   EC           MOV     A,R4
+   \   000081   F0           MOVX    @DPTR,A
+   \   000082   A3           INC     DPTR
+   \   000083   ED           MOV     A,R5
+   \   000084   F0           MOVX    @DPTR,A
+    324          
+    325            set_app_event(m_ssaUserEvent);
+   \   000085                ; Setup parameters for call to function set_app_event
+   \   000085   E8           MOV     A,R0
+   \   000086   FA           MOV     R2,A
+   \   000087   E9           MOV     A,R1
+   \   000088   FB           MOV     R3,A
+   \   000089   12....       LCALL   ??set_app_event?relay
+    326            
+    327            return 0;
+   \   00008C   7900         MOV     R1,#0x0
+   \                     ??update_user_event_4:
+   \   00008E   7F09         MOV     R7,#0x9
+   \   000090   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \                     ??update_user_event_2:
+   \   000093   90....       MOV     DPTR,#puser_event
+   \   000096   E0           MOVX    A,@DPTR
+   \   000097   F8           MOV     R0,A
+   \   000098   A3           INC     DPTR
+   \   000099   E0           MOVX    A,@DPTR
+   \   00009A   F9           MOV     R1,A
+   \   00009B   8004         SJMP    ??update_user_event_5
+   \                     ??update_user_event_6:
+   \   00009D   A8..         MOV     R0,?V0 + 4
+   \   00009F   A9..         MOV     R1,?V0 + 5
+   \                     ??update_user_event_5:
+   \   0000A1   E8           MOV     A,R0
+   \   0000A2   240B         ADD     A,#0xb
+   \   0000A4   F582         MOV     DPL,A
+   \   0000A6   E9           MOV     A,R1
+   \   0000A7   3400         ADDC    A,#0x0
+   \   0000A9   F583         MOV     DPH,A
+   \   0000AB   E0           MOVX    A,@DPTR
+   \   0000AC   F5..         MOV     ?V0 + 4,A
+   \   0000AE   A3           INC     DPTR
+   \   0000AF   E0           MOVX    A,@DPTR
+   \   0000B0   F5..         MOV     ?V0 + 5,A
+   \   0000B2   E8           MOV     A,R0
+   \   0000B3   2402         ADD     A,#0x2
+   \   0000B5   F5..         MOV     ?V0 + 6,A
+   \   0000B7   E9           MOV     A,R1
+   \   0000B8   3400         ADDC    A,#0x0
+   \   0000BA   F5..         MOV     ?V0 + 7,A
+   \   0000BC   E5..         MOV     A,?V0 + 4
+   \   0000BE   45..         ORL     A,?V0 + 5
+   \   0000C0   600F         JZ      ??update_user_event_7
+   \   0000C2   85..82       MOV     DPL,?V0 + 6
+   \   0000C5   85..83       MOV     DPH,?V0 + 7
+   \   0000C8   E0           MOVX    A,@DPTR
+   \   0000C9   6A           XRL     A,R2
+   \   0000CA   7003         JNZ     ??update_user_event_8
+   \   0000CC   A3           INC     DPTR
+   \   0000CD   E0           MOVX    A,@DPTR
+   \   0000CE   6B           XRL     A,R3
+   \                     ??update_user_event_8:
+   \   0000CF   70CC         JNZ     ??update_user_event_6
+   \                     ??update_user_event_7:
+   \   0000D1   85..82       MOV     DPL,?V0 + 6
+   \   0000D4   85..83       MOV     DPH,?V0 + 7
+   \   0000D7   E0           MOVX    A,@DPTR
+   \   0000D8   6A           XRL     A,R2
+   \   0000D9   7003         JNZ     ??update_user_event_9
+   \   0000DB   A3           INC     DPTR
+   \   0000DC   E0           MOVX    A,@DPTR
+   \   0000DD   6B           XRL     A,R3
+   \                     ??update_user_event_9:
+   \   0000DE   7007         JNZ     ??update_user_event_10
+   \   0000E0   E8           MOV     A,R0
+   \   0000E1   49           ORL     A,R1
+   \   0000E2   6003         JZ      $+5
+   \   0000E4   02....       LJMP    ??update_user_event_3 & 0xFFFF
+   \                     ??update_user_event_10:
+   \   0000E7                ; Setup parameters for call to function set_user_event
+   \   0000E7   78..         MOV     R0,#?V0 + 0
+   \   0000E9   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000EC   EF           MOV     A,R7
+   \   0000ED   F5..         MOV     ?V0 + 0,A
+   \   0000EF   78..         MOV     R0,#?V0 + 0
+   \   0000F1   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   0000F4   78..         MOV     R0,#?V0 + 2
+   \   0000F6   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000F9   EE           MOV     A,R6
+   \   0000FA   F9           MOV     R1,A
+   \   0000FB   12....       LCALL   ??set_user_event?relay
+   \   0000FE   7405         MOV     A,#0x5
+   \   000100   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000103   8089         SJMP    ??update_user_event_4
+    328          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8882         MOV     DPL,R0
+   \   000003   8983         MOV     DPH,R1
+   \   000005   A3           INC     DPTR
+   \   000006   A3           INC     DPTR
+   \   000007   A3           INC     DPTR
+   \   000008   A3           INC     DPTR
+   \   000009   A3           INC     DPTR
+   \   00000A   A3           INC     DPTR
+   \   00000B   A3           INC     DPTR
+   \   00000C   22           RET
+    329          
+    330          
+    331          /*********************************************************************
+    332           * @fn      process_event
+    333           *
+    334           * @brief   Task event processor. 
+    335           *
+    336           * @param   task_id  - The OSAL assigned task ID.
+    337           * @param   events - events to process.  This is a bit map and can
+    338           *                   contain more than one event.
+    339           *
+    340           * @return  none
+    341           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine13:
+   \   000000   A3           INC     DPTR
+   \   000001   A3           INC     DPTR
+   \   000002                REQUIRE ??Subroutine17_0
+   \   000002                ; // Fall through to label ??Subroutine17_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    342          uint16 process_event(uint8 task_id, uint16 events)
+   \                     process_event:
+    343          {
+   \   000000   74EE         MOV     A,#-0x12
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 18
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 4,R1
+   \   000007   8A..         MOV     ?V0 + 0,R2
+   \   000009   8B..         MOV     ?V0 + 1,R3
+    344            ssaUserEvent_t *t_ssaUserEvent = puser_event;
+   \   00000B   90....       MOV     DPTR,#puser_event
+   \   00000E   8014         SJMP    ??process_event_0
+    345            
+    346            while(t_ssaUserEvent)
+    347            {
+    348              if(t_ssaUserEvent->count.branch.count>0
+    349          		|| t_ssaUserEvent->count.branch.resident==1)
+    350              {
+    351          	  if((t_ssaUserEvent->task_id == task_id )
+    352          	  		&& (events & t_ssaUserEvent->event))
+    353          	  {
+    354          		if(t_ssaUserEvent->ssa_ProcessUserTaskCB != NULL)
+    355                	  t_ssaUserEvent->ssa_ProcessUserTaskCB(t_ssaUserEvent->ptype, 
+    356          	    		&t_ssaUserEvent->duration, &t_ssaUserEvent->count.overall);
+    357          
+    358          	    if(t_ssaUserEvent->count.branch.count != TIMER_LOOP_EXECUTION)
+    359                    t_ssaUserEvent->count.branch.count--;
+    360          
+    361          	    if(t_ssaUserEvent->count.branch.count > 0)
+    362          		  set_app_event(t_ssaUserEvent);
+    363          
+    364          		return (events ^ t_ssaUserEvent->event);
+    365          	  }
+    366            	}
+    367            	else
+    368            	{
+    369          	  Del_User_Event(t_ssaUserEvent->event);
+   \                     ??process_event_1:
+   \   000010                ; Setup parameters for call to function Del_User_Event
+   \   000010   8E82         MOV     DPL,R6
+   \   000012   8F83         MOV     DPH,R7
+   \   000014   12....       LCALL   ?Subroutine13 & 0xFFFF
+    370            	}
+   \                     ??CrossCallReturnLabel_33:
+   \   000017   12....       LCALL   ??Del_User_Event?relay
+    371            
+    372            	t_ssaUserEvent = t_ssaUserEvent->next;
+   \                     ??process_event_2:
+   \   00001A   EE           MOV     A,R6
+   \   00001B   240B         ADD     A,#0xb
+   \   00001D   F582         MOV     DPL,A
+   \   00001F   EF           MOV     A,R7
+   \   000020   3400         ADDC    A,#0x0
+   \   000022   F583         MOV     DPH,A
+   \                     ??process_event_0:
+   \   000024   E0           MOVX    A,@DPTR
+   \   000025   FE           MOV     R6,A
+   \   000026   A3           INC     DPTR
+   \   000027   E0           MOVX    A,@DPTR
+   \   000028   FF           MOV     R7,A
+   \   000029   EE           MOV     A,R6
+   \   00002A   4F           ORL     A,R7
+   \   00002B   7003         JNZ     $+5
+   \   00002D   02....       LJMP    ??process_event_3 & 0xFFFF
+   \   000030   EE           MOV     A,R6
+   \   000031   2406         ADD     A,#0x6
+   \   000033   F5..         MOV     ?V0 + 8,A
+   \   000035   EF           MOV     A,R7
+   \   000036   3400         ADDC    A,#0x0
+   \   000038   F5..         MOV     ?V0 + 9,A
+   \   00003A   85..82       MOV     DPL,?V0 + 8
+   \   00003D   F583         MOV     DPH,A
+   \   00003F   E0           MOVX    A,@DPTR
+   \   000040   547F         ANL     A,#0x7f
+   \   000042   7005         JNZ     ??process_event_4
+   \   000044   E0           MOVX    A,@DPTR
+   \   000045   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000047   50C7         JNC     ??process_event_1
+   \                     ??process_event_4:
+   \   000049   8E82         MOV     DPL,R6
+   \   00004B   8F83         MOV     DPH,R7
+   \   00004D   E0           MOVX    A,@DPTR
+   \   00004E   65..         XRL     A,?V0 + 4
+   \   000050   70C8         JNZ     ??process_event_2
+   \   000052   EE           MOV     A,R6
+   \   000053   2402         ADD     A,#0x2
+   \   000055   F8           MOV     R0,A
+   \   000056   EF           MOV     A,R7
+   \   000057   3400         ADDC    A,#0x0
+   \   000059   F9           MOV     R1,A
+   \   00005A   88..         MOV     ?V0 + 2,R0
+   \   00005C   89..         MOV     ?V0 + 3,R1
+   \   00005E   8882         MOV     DPL,R0
+   \   000060   F583         MOV     DPH,A
+   \   000062   E0           MOVX    A,@DPTR
+   \   000063   55..         ANL     A,?V0 + 0
+   \   000065   F8           MOV     R0,A
+   \   000066   A3           INC     DPTR
+   \   000067   E0           MOVX    A,@DPTR
+   \   000068   55..         ANL     A,?V0 + 1
+   \   00006A   F9           MOV     R1,A
+   \   00006B   E8           MOV     A,R0
+   \   00006C   49           ORL     A,R1
+   \   00006D   60AB         JZ      ??process_event_2
+   \   00006F   8E82         MOV     DPL,R6
+   \   000071   8F83         MOV     DPH,R7
+   \   000073   A3           INC     DPTR
+   \   000074   A3           INC     DPTR
+   \   000075   A3           INC     DPTR
+   \   000076   A3           INC     DPTR
+   \   000077   A3           INC     DPTR
+   \   000078   A3           INC     DPTR
+   \   000079   A3           INC     DPTR
+   \   00007A   A3           INC     DPTR
+   \   00007B   A3           INC     DPTR
+   \   00007C   E0           MOVX    A,@DPTR
+   \   00007D   F8           MOV     R0,A
+   \   00007E   A3           INC     DPTR
+   \   00007F   E0           MOVX    A,@DPTR
+   \   000080   F9           MOV     R1,A
+   \   000081   88..         MOV     ?V0 + 6,R0
+   \   000083   89..         MOV     ?V0 + 7,R1
+   \   000085   E8           MOV     A,R0
+   \   000086   45..         ORL     A,?V0 + 7
+   \   000088   6026         JZ      ??process_event_5
+   \   00008A                ; Setup parameters for indirect call
+   \   00008A   78..         MOV     R0,#?V0 + 8
+   \   00008C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00008F   EE           MOV     A,R6
+   \   000090   2404         ADD     A,#0x4
+   \   000092   FC           MOV     R4,A
+   \   000093   EF           MOV     A,R7
+   \   000094   3400         ADDC    A,#0x0
+   \   000096   FD           MOV     R5,A
+   \   000097   8E82         MOV     DPL,R6
+   \   000099   8F83         MOV     DPH,R7
+   \   00009B   A3           INC     DPTR
+   \   00009C   A3           INC     DPTR
+   \   00009D   A3           INC     DPTR
+   \   00009E   A3           INC     DPTR
+   \   00009F   A3           INC     DPTR
+   \   0000A0   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_34:
+   \   0000A3   85..82       MOV     DPL,?V0 + 6
+   \   0000A6   8983         MOV     DPH,R1
+   \   0000A8   12....       LCALL   ?CALL_IND
+   \   0000AB   7402         MOV     A,#0x2
+   \   0000AD   12....       LCALL   ?DEALLOC_XSTACK8
+   \                     ??process_event_5:
+   \   0000B0   85..82       MOV     DPL,?V0 + 8
+   \   0000B3   85..83       MOV     DPH,?V0 + 9
+   \   0000B6   E0           MOVX    A,@DPTR
+   \   0000B7   F8           MOV     R0,A
+   \   0000B8   747F         MOV     A,#0x7f
+   \   0000BA   58           ANL     A,R0
+   \   0000BB   F9           MOV     R1,A
+   \   0000BC   747F         MOV     A,#0x7f
+   \   0000BE   69           XRL     A,R1
+   \   0000BF   6014         JZ      ??process_event_6
+   \   0000C1   88..         MOV     ?V0 + 5,R0
+   \   0000C3   74FF         MOV     A,#-0x1
+   \   0000C5   29           ADD     A,R1
+   \   0000C6   547F         ANL     A,#0x7f
+   \   0000C8   F8           MOV     R0,A
+   \   0000C9   7480         MOV     A,#-0x80
+   \   0000CB   55..         ANL     A,?V0 + 5
+   \   0000CD   48           ORL     A,R0
+   \   0000CE   F8           MOV     R0,A
+   \   0000CF   F0           MOVX    @DPTR,A
+   \   0000D0   747F         MOV     A,#0x7f
+   \   0000D2   58           ANL     A,R0
+   \   0000D3   6007         JZ      ??process_event_7
+   \                     ??process_event_6:
+   \   0000D5                ; Setup parameters for call to function set_app_event
+   \   0000D5   EE           MOV     A,R6
+   \   0000D6   FA           MOV     R2,A
+   \   0000D7   EF           MOV     A,R7
+   \   0000D8   FB           MOV     R3,A
+   \   0000D9   12....       LCALL   ??set_app_event?relay
+   \                     ??process_event_7:
+   \   0000DC   85..82       MOV     DPL,?V0 + 2
+   \   0000DF   85..83       MOV     DPH,?V0 + 3
+   \   0000E2   E0           MOVX    A,@DPTR
+   \   0000E3   65..         XRL     A,?V0 + 0
+   \   0000E5   FA           MOV     R2,A
+   \   0000E6   A3           INC     DPTR
+   \   0000E7   E0           MOVX    A,@DPTR
+   \   0000E8   65..         XRL     A,?V0 + 1
+   \   0000EA   FB           MOV     R3,A
+   \   0000EB   8004         SJMP    ??process_event_8
+    373            }	
+    374          
+    375            // Discard unknown events
+    376            return 0;
+   \                     ??process_event_3:
+   \   0000ED   7A00         MOV     R2,#0x0
+   \   0000EF   7B00         MOV     R3,#0x0
+   \                     ??process_event_8:
+   \   0000F1   7F0A         MOV     R7,#0xa
+   \   0000F3   02....       LJMP    ?BANKED_LEAVE_XDATA
+    377          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Add_User_Event?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Add_User_Event
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Del_User_Event?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Del_User_Event
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??set_app_event?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    set_app_event
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??set_user_event?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    set_user_event
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??update_user_event?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    update_user_event
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??process_event?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    process_event
+    378          
+
+   Maximum stack usage in bytes:
+
+     Function                ISTACK PSTACK XSTACK
+     --------                ------ ------ ------
+     Add_User_Event              1      0     34
+     Del_User_Event              0      0     31
+       -> osal_mem_free          0      0     26
+     process_event               1      0     20
+       -> Del_User_Event         0      0     36
+       -> set_app_event          0      0     36
+     set_app_event               0      0     32
+       -> osal_stop_timerEx      0      0     24
+       -> osal_start_timerEx     0      0     24
+       -> osal_set_event         0      0     24
+     set_user_event              1      0     42
+       -> osal_mem_alloc         0      0     40
+       -> Add_User_Event         0      0     40
+       -> osal_mem_free          0      0     40
+       -> set_app_event          0      0     40
+     update_user_event           1      0     27
+       -> set_app_event          0      0     34
+       -> set_user_event         0      0     44
+
+
+   Segment part sizes:
+
+     Function/Label            Bytes
+     --------------            -----
+     puser_event                  2
+     userevent_map               32
+     Add_User_Event             225
+     ?Subroutine6                 3
+     ??Subroutine14_0             8
+     ?Subroutine5                17
+     ?Subroutine1                 9
+     ?Subroutine10               11
+     ?Subroutine0                 3
+     ??Subroutine15_0            15
+     ?Subroutine12                2
+     ??Subroutine16_0             6
+     ?Subroutine7                 8
+     ?Subroutine9                17
+     Del_User_Event             176
+     ??Subroutine17_0             6
+     set_app_event              103
+     ?Subroutine8                10
+     set_user_event             145
+     ?Subroutine4                 4
+     ?Subroutine11               10
+     ?Subroutine3                 7
+     update_user_event          261
+     ?Subroutine2                13
+     ?Subroutine13                2
+     process_event              246
+     ??Add_User_Event?relay       6
+     ??Del_User_Event?relay       6
+     ??set_app_event?relay        6
+     ??set_user_event?relay       6
+     ??update_user_event?relay    6
+     ??process_event?relay        6
+
+ 
+ 1 307 bytes in segment BANKED_CODE
+    36 bytes in segment BANK_RELAYS
+    34 bytes in segment XDATA_Z
+ 
+ 1 343 bytes of CODE  memory
+    34 bytes of XDATA memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,4986 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  13:24:49 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  E:\work\zigbee\ZStack-Smart-2.5.2b\Components\hal /
+//                          \target\CC2530EB\hal_timer.c                      /
+//    Command line       =  -f E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\..\.. /
+//                          \..\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ    /
+//                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3        /
+//                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3             /
+//                          -DSSA_ENDNODE) -f E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=1   /
+//                          -DREFLECTOR -DDEFAULT_CHANLIST=0x00000800         /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DLINK_STATUS_JITTER_MASK=0x007F                  /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
+//                          __code" -DGENERIC=__generic                       /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
+//                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Components\hal\target\CC2530EB\hal_timer /
+//                          .c -D SECURE=1 -D ZTOOL_P1 -D                     /
+//                          DEVICE_TYPE_ID=0xFE -D SIGNAL_AMPLIFIER_SETTING   /
+//                          -D xNWK_AUTO_POLL -D xHAL_UART_DMA=2 -D           /
+//                          xHAL_UART_DMA_ALT1 -D xJIAJU_BUILDIN -D MT_TASK   /
+//                          -D MT_SYS_FUNC -D MT_ZDO_FUNC -D NV_INIT -D       /
+//                          NV_RESTORE -lC E:\work\zigbee\ZStack-Smart-2.5.2b /
+//                          \Projects\zstack\Applications\SmartApp\CC2530DB\b /
+//                          in\DemoBaseZD\List\ -lA                           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\ --diag_suppress Pe001,Pa010 -o               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\O /
+//                          bj\ -e --debug --core=plain --dptr=16,1           /
+//                          --data_model=large --code_model=banked            /
+//                          --calling_convention=xdata_reentrant              /
+//                          --place_constants=data_rom --nr_virtual_regs 16   /
+//                          -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zs /
+//                          tack\Applications\SmartApp\CC2530DB\Devices\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Common\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Connector\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\\EndNode\ -I E:\work\zigbee\ZStack-Smart-2.5 /
+//                          .2b\Projects\zstack\Applications\SmartApp\CC2530D /
+//                          B\Devices\..\..\Source\Board\ -I                  /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\ -I E:\work\zigbee\ZStack-Smart-2.5.2 /
+//                          b\Projects\zstack\Applications\SmartApp\CC2530DB\ /
+//                          Devices\..\..\Source\Manage\Callbacks\ -I         /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\debug\ -I E:\work\zigbee\ZStack-Smart /
+//                          -2.5.2b\Projects\zstack\Applications\SmartApp\CC2 /
+//                          530DB\Devices\..\..\Source\Manage\HeartBeat\ -I   /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\So /
+//                          urce\Manage\incode\ -I E:\work\zigbee\ZStack-Smar /
+//                          t-2.5.2b\Projects\zstack\Applications\SmartApp\CC /
+//                          2530DB\Devices\..\..\..\..\ZMain\TI2530DB\ -I     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\hal\target\CC2530EB\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\include\ -I              /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\high_level\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\ -I      /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\mac\low_level\srf04\single_c /
+//                          hip\ -I E:\work\zigbee\ZStack-Smart-2.5.2b\Projec /
+//                          ts\zstack\Applications\SmartApp\CC2530DB\Devices\ /
+//                          ..\..\..\..\..\..\Components\mt\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\osal\include\ -I             /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\saddr\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\services\sdata\ -I           /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\af\ -I                 /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\nwk\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sapi\ -I               /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sec\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\sys\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\stack\zdo\ -I                /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\ -I                     /
+//                          E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\Devices\..\..\.. /
+//                          \..\..\..\Components\zmac\f8w\ -Oh                /
+//                          --require_prototypes                              /
+//    List file          =  E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstac /
+//                          k\Applications\SmartApp\CC2530DB\bin\DemoBaseZD\L /
+//                          ist\hal_timer.s51                                 /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME hal_timer
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?CALL_IND
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?INTERRUPT_ENTER_XSP
+        EXTERN ?INTERRUPT_LEAVE_XSP
+        EXTERN ?L_ADD_X
+        EXTERN ?L_MOV_X
+        EXTERN ?L_MUL
+        EXTERN ?PUSH_XSTACK_I_ONE
+        EXTERN ?UL_DIV_MOD
+        EXTERN ?US_SHR
+        EXTERN ?V0
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??HalTimer1Init?relay
+        FUNCTION ??HalTimer1Init?relay,0203H
+        PUBLIC ??HalTimerConfig?relay
+        FUNCTION ??HalTimerConfig?relay,0203H
+        PUBLIC ??HalTimerInit?relay
+        FUNCTION ??HalTimerInit?relay,0203H
+        PUBLIC ??HalTimerInterruptEnable?relay
+        FUNCTION ??HalTimerInterruptEnable?relay,0203H
+        PUBLIC ??HalTimerStart?relay
+        FUNCTION ??HalTimerStart?relay,0203H
+        PUBLIC ??HalTimerStop?relay
+        FUNCTION ??HalTimerStop?relay,0203H
+        PUBLIC ??HalTimerTick?relay
+        FUNCTION ??HalTimerTick?relay,0203H
+        PUBLIC ??halProcessTimer1?relay
+        FUNCTION ??halProcessTimer1?relay,0203H
+        PUBLIC ??halProcessTimer3?relay
+        FUNCTION ??halProcessTimer3?relay,0203H
+        PUBLIC ??halProcessTimer4?relay
+        FUNCTION ??halProcessTimer4?relay,0203H
+        PUBWEAK `??halTimer1Isr??INTVEC 75`
+        PUBLIC ??halTimer1SetChannelCCTL?relay
+        FUNCTION ??halTimer1SetChannelCCTL?relay,0203H
+        PUBLIC ??halTimer1SetChannelCount?relay
+        FUNCTION ??halTimer1SetChannelCount?relay,0203H
+        PUBLIC ??halTimer1SetChannelDuty?relay
+        FUNCTION ??halTimer1SetChannelDuty?relay,0203H
+        PUBLIC ??halTimer1SetPeriod?relay
+        FUNCTION ??halTimer1SetPeriod?relay,0203H
+        PUBWEAK `??halTimer3Isr??INTVEC 91`
+        PUBWEAK `??halTimer4Isr??INTVEC 99`
+        PUBLIC ??halTimerRemap?relay
+        FUNCTION ??halTimerRemap?relay,0203H
+        PUBLIC ??halTimerSendCallBack?relay
+        FUNCTION ??halTimerSendCallBack?relay,0203H
+        PUBLIC ??halTimerSetChannelMode?relay
+        FUNCTION ??halTimerSetChannelMode?relay,0203H
+        PUBLIC ??halTimerSetCount?relay
+        FUNCTION ??halTimerSetCount?relay,0203H
+        PUBLIC ??halTimerSetOpMode?relay
+        FUNCTION ??halTimerSetOpMode?relay,0203H
+        PUBLIC ??halTimerSetPrescale?relay
+        FUNCTION ??halTimerSetPrescale?relay,0203H
+        PUBLIC HalTimer1Init
+        FUNCTION HalTimer1Init,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC HalTimerConfig
+        FUNCTION HalTimerConfig,0203H
+        ARGFRAME XSTACK, 2, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC HalTimerInit
+        FUNCTION HalTimerInit,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC HalTimerInterruptEnable
+        FUNCTION HalTimerInterruptEnable,0203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC HalTimerStart
+        FUNCTION HalTimerStart,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC HalTimerStop
+        FUNCTION HalTimerStop,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC HalTimerTick
+        FUNCTION HalTimerTick,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBWEAK T1CCTL0
+        PUBWEAK T1CCTL1
+        PUBWEAK T1CCTL2
+        PUBWEAK T1CTL
+        PUBWEAK T1STAT
+        PUBWEAK T3CCTL0
+        PUBWEAK T3CCTL1
+        PUBWEAK T3CTL
+        PUBWEAK T4CCTL0
+        PUBWEAK T4CCTL1
+        PUBWEAK T4CTL
+        PUBWEAK _A_IEN1
+        PUBWEAK _A_TIMIF
+        PUBWEAK __Constant_10c4
+        PUBWEAK __Constant_1f4
+        PUBWEAK __Constant_3e8
+        PUBLIC halProcessTimer1
+        FUNCTION halProcessTimer1,021203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC halProcessTimer3
+        FUNCTION halProcessTimer3,021203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC halProcessTimer4
+        FUNCTION halProcessTimer4,021203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC halTimer1Isr
+        FUNCTION halTimer1Isr,021233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 15, STACK
+        PUBLIC halTimer1SetChannelCCTL
+        FUNCTION halTimer1SetChannelCCTL,0203H
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC halTimer1SetChannelCount
+        FUNCTION halTimer1SetChannelCount,0203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC halTimer1SetChannelDuty
+        FUNCTION halTimer1SetChannelDuty,021203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC halTimer1SetPeriod
+        FUNCTION halTimer1SetPeriod,021203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC halTimer3Isr
+        FUNCTION halTimer3Isr,021233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 15, STACK
+        PUBLIC halTimer4Isr
+        FUNCTION halTimer4Isr,021233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 15, STACK
+        PUBLIC halTimerRemap
+        FUNCTION halTimerRemap,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC halTimerSendCallBack
+        FUNCTION halTimerSendCallBack,0203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC halTimerSetChannelMode
+        FUNCTION halTimerSetChannelMode,0203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC halTimerSetCount
+        FUNCTION halTimerSetCount,0203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC halTimerSetOpMode
+        FUNCTION halTimerSetOpMode,0203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUBLIC halTimerSetPrescale
+        FUNCTION halTimerSetPrescale,0203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+HalTimer1Init       SYMBOL "HalTimer1Init"
+??HalTimer1Init?relay SYMBOL "?relay", HalTimer1Init
+HalTimerConfig      SYMBOL "HalTimerConfig"
+??HalTimerConfig?relay SYMBOL "?relay", HalTimerConfig
+HalTimerInit        SYMBOL "HalTimerInit"
+??HalTimerInit?relay SYMBOL "?relay", HalTimerInit
+HalTimerInterruptEnable SYMBOL "HalTimerInterruptEnable"
+??HalTimerInterruptEnable?relay SYMBOL "?relay", HalTimerInterruptEnable
+HalTimerStart       SYMBOL "HalTimerStart"
+??HalTimerStart?relay SYMBOL "?relay", HalTimerStart
+HalTimerStop        SYMBOL "HalTimerStop"
+??HalTimerStop?relay SYMBOL "?relay", HalTimerStop
+HalTimerTick        SYMBOL "HalTimerTick"
+??HalTimerTick?relay SYMBOL "?relay", HalTimerTick
+halProcessTimer1    SYMBOL "halProcessTimer1"
+??halProcessTimer1?relay SYMBOL "?relay", halProcessTimer1
+halProcessTimer3    SYMBOL "halProcessTimer3"
+??halProcessTimer3?relay SYMBOL "?relay", halProcessTimer3
+halProcessTimer4    SYMBOL "halProcessTimer4"
+??halProcessTimer4?relay SYMBOL "?relay", halProcessTimer4
+halTimer1Isr        SYMBOL "halTimer1Isr"
+`??halTimer1Isr??INTVEC 75` SYMBOL "??INTVEC 75", halTimer1Isr
+halTimer1SetChannelCCTL SYMBOL "halTimer1SetChannelCCTL"
+??halTimer1SetChannelCCTL?relay SYMBOL "?relay", halTimer1SetChannelCCTL
+halTimer1SetChannelCount SYMBOL "halTimer1SetChannelCount"
+??halTimer1SetChannelCount?relay SYMBOL "?relay", halTimer1SetChannelCount
+halTimer1SetChannelDuty SYMBOL "halTimer1SetChannelDuty"
+??halTimer1SetChannelDuty?relay SYMBOL "?relay", halTimer1SetChannelDuty
+halTimer1SetPeriod  SYMBOL "halTimer1SetPeriod"
+??halTimer1SetPeriod?relay SYMBOL "?relay", halTimer1SetPeriod
+halTimer3Isr        SYMBOL "halTimer3Isr"
+`??halTimer3Isr??INTVEC 91` SYMBOL "??INTVEC 91", halTimer3Isr
+halTimer4Isr        SYMBOL "halTimer4Isr"
+`??halTimer4Isr??INTVEC 99` SYMBOL "??INTVEC 99", halTimer4Isr
+halTimerRemap       SYMBOL "halTimerRemap"
+??halTimerRemap?relay SYMBOL "?relay", halTimerRemap
+halTimerSendCallBack SYMBOL "halTimerSendCallBack"
+??halTimerSendCallBack?relay SYMBOL "?relay", halTimerSendCallBack
+halTimerSetChannelMode SYMBOL "halTimerSetChannelMode"
+??halTimerSetChannelMode?relay SYMBOL "?relay", halTimerSetChannelMode
+halTimerSetCount    SYMBOL "halTimerSetCount"
+??halTimerSetCount?relay SYMBOL "?relay", halTimerSetCount
+halTimerSetOpMode   SYMBOL "halTimerSetOpMode"
+??halTimerSetOpMode?relay SYMBOL "?relay", halTimerSetOpMode
+halTimerSetPrescale SYMBOL "halTimerSetPrescale"
+??halTimerSetPrescale?relay SYMBOL "?relay", halTimerSetPrescale
+
+// E:\work\zigbee\ZStack-Smart-2.5.2b\Components\hal\target\CC2530EB\hal_timer.c
+//    1 /**************************************************************************************************
+//    2   Filename:       hal_timer.c
+//    3   Revised:        $Date: 2011-09-20 04:30:28 -0700 (Tue, 20 Sep 2011) $
+//    4   Revision:       $Revision: 27635 $
+//    5 
+//    6   Description:   This file contains the interface to the Timer Service.
+//    7 
+//    8 
+//    9   Copyright 2006-2007 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights
+//   12   granted under the terms of a software license agreement between the user
+//   13   who downloaded the software, his/her employer (which must be your employer)
+//   14   and Texas Instruments Incorporated (the "License").  You may not use this
+//   15   Software unless you agree to abide by the terms of the License. The License
+//   16   limits your use, and you acknowledge, that the Software may not be modified,
+//   17   copied or distributed unless embedded on a Texas Instruments microcontroller
+//   18   or used solely and exclusively in conjunction with a Texas Instruments radio
+//   19   frequency transceiver, which is integrated into your product.  Other than for
+//   20   the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//   21   works of, modify, distribute, perform, display or sell this Software and/or
+//   22   its documentation for any purpose.
+//   23 
+//   24   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//   25   PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//   26   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//   27   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//   28   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   29   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//   30   LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+//   31   INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+//   32   OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+//   33   OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//   34   (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   35 
+//   36   Should you have any questions regarding your right to use this Software,
+//   37   contact Texas Instruments Incorporated at www.TI.com.
+//   38 **************************************************************************************************/
+//   39 /*********************************************************************
+//   40  NOTE: The following mapping is done between the logical timer
+//   41        names defined in HAL_TIMER.H and the physical HW timer.
+//   42 
+//   43        HAL_TIMER_0 --> HW Timer 3  (8-bits)
+//   44        HAL_TIMER_2 --> HW Timer 4  (8-bits)
+//   45        HAL_TIMER_3 --> HW Timer 1  (16-bits)
+//   46 
+//   47  NOTE: The timer code assumes only one channel, CHANNEL 0, is used
+//   48        for each timer.  There is currently no support for other
+//   49        channels.
+//   50 
+//   51  NOTE: Only Output Compare Mode is supported.  There is no provision
+//   52        to support Input Capture Mode.
+//   53 
+//   54  NOTE: There is no support to map the output of the timers to a
+//   55        physical I/O pin
+//   56 
+//   57 *********************************************************************/
+//   58 /*********************************************************************
+//   59  * INCLUDES
+//   60  */
+//   61 #include  "hal_mcu.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,0afH
+// unsigned char volatile __sfr T1STAT
+T1STAT:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b8H
+// union <unnamed> volatile __sfr _A_IEN1
+_A_IEN1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0cbH
+// unsigned char volatile __sfr T3CTL
+T3CTL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0ccH
+// unsigned char volatile __sfr T3CCTL0
+T3CCTL0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0ceH
+// unsigned char volatile __sfr T3CCTL1
+T3CCTL1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d8H
+// union <unnamed> volatile __sfr _A_TIMIF
+_A_TIMIF:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e4H
+// unsigned char volatile __sfr T1CTL
+T1CTL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e5H
+// unsigned char volatile __sfr T1CCTL0
+T1CCTL0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e6H
+// unsigned char volatile __sfr T1CCTL1
+T1CCTL1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e7H
+// unsigned char volatile __sfr T1CCTL2
+T1CCTL2:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0ebH
+// unsigned char volatile __sfr T4CTL
+T4CTL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0ecH
+// unsigned char volatile __sfr T4CCTL0
+T4CCTL0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0eeH
+// unsigned char volatile __sfr T4CCTL1
+T4CCTL1:
+        DATA8
+        DS 1
+//   62 #include  "hal_defs.h"
+//   63 #include  "hal_types.h"
+//   64 #include  "hal_timer.h"
+//   65 
+//   66 /*********************************************************************
+//   67  * MACROS
+//   68  */
+//   69 
+//   70 /*********************************************************************
+//   71  * CONSTANTS
+//   72  */
+//   73 #define HW_TIMER_1        0x00
+//   74 #define HW_TIMER_3        0x01
+//   75 #define HW_TIMER_4        0x02
+//   76 #define HW_TIMER_INVALID  0x03
+//   77 #define HW_TIMER_MAX      0x03
+//   78 
+//   79 #define IEN1_T1IE     0x02    /* Timer1 Interrupt Enable */
+//   80 #define IEN1_T3IE     0x08    /* Timer3 Interrupt Enable */
+//   81 #define IEN1_T4IE     0x10    /* Timer4 Interrupt Enable */
+//   82 
+//   83 #define T1STAT_CH2IF   0x04
+//   84 #define T1STAT_CH1IF   0x02
+//   85 #define T1STAT_CH0IF   0x01
+//   86 #define T1STAT_OVFIF   0x20
+//   87 
+//   88 #define TIMIF_T1OVFIM 0x40
+//   89 #define TIMIF_T4CH1IF 0x20
+//   90 #define TIMIF_T4CH0IF 0x10
+//   91 #define TIMIF_T4OVFIF 0x08
+//   92 #define TIMIF_T3CH1IF 0x04
+//   93 #define TIMIF_T3CH0IF 0x02
+//   94 #define TIMIF_T3OVFIF 0x01
+//   95 
+//   96 #define T34CTL_OVFIM  0x80
+//   97 
+//   98 #define T1CCTL_RFIRQ        0x80    /* Interrupt Mask for RFIRQ*/
+//   99 #define T134CCTL_IM         0x40    /* Interrupt Mask */
+//  100 #define T134CCTL_CMP_BITS   0x38    /* Bits[5:3] == CMP[2:0] */
+//  101 #define T134CCTL_MODE       0x04    /* Capture(0)/Compare(1) mode */
+//  102 #define T134CCTL_CAP_BITS   0x03    /* Bits[1:0] == CAP[1:0] */
+//  103 
+//  104 #define T134CCTL_CMP_OC     0x18    /* Set output on compare, clear at 0 */
+//  105 #define T134CCTL_CAP_RE     0x01    /* Set input capture on rising edge */
+//  106 
+//  107 /* Timer clock pre-scaler definitions for 16bit timer1 */
+//  108 #define HAL_TIMER1_16_TC_DIV1     0x00  /* No clock pre-scaling */
+//  109 #define HAL_TIMER1_16_TC_DIV8     0x04  /* Clock pre-scaled by 8 */
+//  110 #define HAL_TIMER1_16_TC_DIV32    0x08  /* Clock pre-scaled by 32 */
+//  111 #define HAL_TIMER1_16_TC_DIV128   0x0c  /* Clock pre-scaled by 128 */
+//  112 #define HAL_TIMER1_16_TC_BITS     0x0c  /* Bits 3:2 */
+//  113 
+//  114 /* Timer clock pre-scaler definitions for 8bit timer3 and timer4 */
+//  115 #define HAL_TIMER34_8_TC_DIV1     0x00  /* No clock pre-scaling */
+//  116 #define HAL_TIMER34_8_TC_DIV2     0x20  /* Clock pre-scaled by 2 */
+//  117 #define HAL_TIMER34_8_TC_DIV4     0x40  /* Clock pre-scaled by 4 */
+//  118 #define HAL_TIMER34_8_TC_DIV8     0x60  /* Clock pre-scaled by 8 */
+//  119 #define HAL_TIMER34_8_TC_DIV16    0x80  /* Clock pre-scaled by 16 */
+//  120 #define HAL_TIMER34_8_TC_DIV32    0xA0  /* Clock pre-scaled by 32 */
+//  121 #define HAL_TIMER34_8_TC_DIV64    0xC0  /* Clock pre-scaled by 64 */
+//  122 #define HAL_TIMER34_8_TC_DIV128   0xE0  /* Clock pre-scaled by 128 */
+//  123 #define HAL_TIMER34_8_TC_BITS     0xE0  /* Bits 7:5 */
+//  124 
+//  125 /* Operation Mode definitions */
+//  126 #define HAL_TIMER1_OPMODE_STOP      0x00  /* Free Running Mode, Count from 0 to Max */
+//  127 #define HAL_TIMER1_OPMODE_FREERUN   0x01  /* Free Running Mode, Count from 0 to Max */
+//  128 #define HAL_TIMER1_OPMODE_MODULO    0x02  /* Modulo Mode, Count from 0 to CompareValue */
+//  129 #define HAL_TIMER1_OPMODE_UPDOWN    0x03  /* Modulo Mode, Count up from 0 to CompareValue and down to 0 */
+//  130 #define HAL_TIMER1_OPMODE_BITS      0x03  /* Bits 1:0 */
+//  131 
+//  132 #define HAL_TIMER34_START           0x10  /* Timer3 and Timer4 have separate Start bit */
+//  133 #define HAL_TIMER34_OPMODE_FREERUN  0x00  /* Free Running Mode, Count from 0 to Max */
+//  134 #define HAL_TIMER34_OPMODE_MODULO   0x02  /* Modulo Mode, Count from 0 to CompareValue */
+//  135 #define HAL_TIMER34_OPMODE_BITS     0x03  /* Bits 1:0 */
+//  136 
+//  137 #define HAL_TIMER_MODE_STOP         0x03
+//  138 
+//  139 /* Prescale settings */
+//  140 #define HAL_TIMER1_16_PRESCALE      HAL_TIMER1_16_TC_DIV128
+//  141 #define HAL_TIMER1_16_PRESCALE_VAL  128
+//  142 #define HAL_TIMER3_8_PRESCALE       HAL_TIMER34_8_TC_DIV128
+//  143 #define HAL_TIMER3_8_PRESCALE_VAL   128
+//  144 #define HAL_TIMER4_8_PRESCALE       HAL_TIMER34_8_TC_DIV128
+//  145 #define HAL_TIMER4_8_PRESCALE_VAL   128
+//  146 
+//  147 /* Clock settings */
+//  148 #define HAL_TIMER_16MHZ           16
+//  149 #define HAL_TIMER_32MHZ           32
+//  150 
+//  151 /* Default all timers to use channel 0 */
+//  152 #define TCHN_T1CCTL   &(XX_T1CCTL0)
+//  153 #define TCHN_T1CCL    &(XX_T1CC0L)
+//  154 #define TCHN_T1CCH    &(XX_T1CC0H)
+//  155 #define TCNH_T1OVF    &(X_TIMIF)
+//  156 #define TCHN_T1OVFBIT TIMIF_T1OVFIM
+//  157 #define TCHN_T1INTBIT IEN1_T1IE
+//  158 
+//  159 #define TCHN_T3CCTL   &(X_T3CCTL0)
+//  160 #define TCHN_T3CCL    &(X_T3CC0)
+//  161 #define TCHN_T3CCH    &(X_T3CC0)
+//  162 #define TCNH_T3OVF    &(X_T3CTL)
+//  163 #define TCHN_T3OVFBIT T34CTL_OVFIM
+//  164 #define TCHN_T3INTBIT IEN1_T3IE
+//  165 
+//  166 #define TCHN_T4CCTL   &(X_T4CCTL0)
+//  167 #define TCHN_T4CCL    &(X_T4CC0)
+//  168 #define TCHN_T4CCH    &(X_T4CC0)
+//  169 #define TCNH_T4OVF    &(X_T4CTL)
+//  170 #define TCHN_T4OVFBIT T34CTL_OVFIM
+//  171 #define TCHN_T4INTBIT IEN1_T4IE
+//  172 
+//  173 /*********************************************************************
+//  174  * TYPEDEFS
+//  175  */
+//  176 typedef struct
+//  177 {
+//  178   bool configured;
+//  179   bool intEnable;
+//  180   uint8 opMode;
+//  181   uint8 channel;
+//  182   uint8 channelMode;
+//  183   uint8 prescale;
+//  184   uint8 prescaleVal;
+//  185   uint8 clock;
+//  186   halTimerCBack_t callBackFunc;
+//  187 } halTimerSettings_t;
+//  188 
+//  189 typedef struct
+//  190 {
+//  191   uint8 volatile XDATA *TxCCTL;
+//  192   uint8 volatile XDATA *TxCCH;
+//  193   uint8 volatile XDATA *TxCCL;
+//  194   uint8 volatile XDATA *TxOVF;
+//  195   uint8 ovfbit;
+//  196   uint8 intbit;
+//  197 } halTimerChannel_t;
+//  198 
+//  199 typedef struct
+//  200 {
+//  201   uint8 volatile XDATA *TxCCTL;
+//  202   uint8 volatile XDATA *TxCCH;
+//  203   uint8 volatile XDATA *TxCCL;
+//  204 } halTimer1Channel_t;
+//  205 
+//  206 
+//  207 /*********************************************************************
+//  208  * GLOBAL VARIABLES
+//  209  */
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  210 static halTimerSettings_t halTimerRecord[HW_TIMER_MAX];
+halTimerRecord:
+        DS 30
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  211 static halTimerChannel_t  halTimerChannel[HAL_TIMER_CH_MAX];
+halTimerChannel:
+        DS 60
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  212 static halTimer1Channel_t  halTimer1Channel[HAL_TIMER_CH_MAX];
+halTimer1Channel:
+        DS 36
+        REQUIRE __INIT_XDATA_Z
+//  213 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//  214 static uint16 Timer1MaxCount;
+Timer1MaxCount:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//  215 
+//  216 /*********************************************************************
+//  217  * FUNCTIONS - External
+//  218  */
+//  219 
+//  220 /*********************************************************************
+//  221  * FUNCTIONS - Local
+//  222  */
+//  223 uint8 halTimerSetCount (uint8 cc2430id, uint32 timePerTick);
+//  224 uint8 halTimerSetPrescale (uint8 cc2430id, uint8 prescale);
+//  225 uint8 halTimerSetOpMode (uint8 cc2430id, uint8 opMode);
+//  226 uint8 halTimerSetChannelMode (uint8 cc2430id, uint8 channelMode);
+//  227 void halTimerSendCallBack (uint8 timerId, uint8 channel, uint8 channelMode);
+//  228 uint8 halTimerRemap (uint8 timerId);
+//  229 void halProcessTimer1 (void);
+//  230 void halProcessTimer3 (void);
+//  231 void halProcessTimer4 (void);
+//  232 
+//  233 uint16 halTimer1SetPeriod (uint32 timePerTick);
+//  234 void halTimer1SetChannelCount (uint8 channel, uint16 count);
+//  235 uint8 halTimer1SetChannelCCTL (uint8 channel, uint8 rfirq,  uint8 im,  uint8 cmp,  uint8 mode,  uint8 cap );
+//  236 
+//  237 
+//  238 /*********************************************************************
+//  239  * FUNCTIONS - API
+//  240  */
+//  241 /*********************************************************************
+//  242  * @fn      HalTimer1Init
+//  243  *
+//  244  * @brief   Initialize Timer Service
+//  245  *
+//  246  * @param   None
+//  247  *
+//  248  * @return  None
+//  249  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  250 void HalTimer1Init (halTimerCBack_t cBack)
+HalTimer1Init:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function HalTimer1Init
+        CODE
+//  251 {
+        FUNCALL HalTimer1Init, halTimer1SetPeriod
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimerSetPrescale
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimerSetChannelMode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelCCTL
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelCCTL
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelCCTL
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelCCTL
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelCCTL
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelDuty
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelDuty
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelDuty
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimer1Init, halTimer1SetChannelDuty
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//  252   T1CCTL0 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xe5,#0x0
+//  253   T1CCTL1 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xe6,#0x0
+//  254   T1CCTL2 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xe7,#0x0
+//  255   T1CCTL3 = 0;    /* Make sure interrupts are disabled */
+        MOV     DPTR,#0x62a3
+        CLR     A
+        MOVX    @DPTR,A
+//  256   T1CCTL4 = 0;    /* Make sure interrupts are disabled */
+        INC     DPTR
+        MOVX    @DPTR,A
+//  257 
+//  258   /* Setup prescale & clock for timer0 */
+//  259   halTimerRecord[HW_TIMER_1].prescale    = HAL_TIMER1_16_PRESCALE;
+        LCALL   ?Subroutine6 & 0xFFFF
+//  260   halTimerRecord[HW_TIMER_1].clock       = HAL_TIMER_32MHZ;
+//  261   halTimerRecord[HW_TIMER_1].prescaleVal = HAL_TIMER1_16_PRESCALE_VAL;
+//  262 
+//  263   /* Setup Timer1 Channel structure */
+//  264   halTimer1Channel[0].TxCCTL =  TCHN_T1CCTL;
+??CrossCallReturnLabel_0:
+        MOV     DPTR,#halTimer1Channel
+        LCALL   ?Subroutine5 & 0xFFFF
+//  265   halTimer1Channel[0].TxCCL =   TCHN_T1CCL;
+??CrossCallReturnLabel_38:
+        MOV     DPTR,#halTimer1Channel + 4
+        MOV     A,#-0x5a
+        LCALL   ??Subroutine20_0 & 0xFFFF
+//  266   halTimer1Channel[0].TxCCH =   TCHN_T1CCH;
+??CrossCallReturnLabel_34:
+        MOV     DPTR,#halTimer1Channel + 2
+        MOV     A,#-0x59
+        LCALL   ??Subroutine20_0 & 0xFFFF
+//  267 
+//  268   halTimerRecord[HW_TIMER_1].configured    = TRUE;
+??CrossCallReturnLabel_35:
+        MOV     DPTR,#halTimerRecord
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  269   halTimerRecord[HW_TIMER_1].opMode        = HAL_TIMER1_OPMODE_UPDOWN;
+        MOV     DPTR,#halTimerRecord + 2
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+//  270   halTimerRecord[HW_TIMER_1].channel       = 0;
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//  271   halTimerRecord[HW_TIMER_1].channelMode   = 0;
+        INC     DPTR
+        MOVX    @DPTR,A
+//  272   halTimerRecord[HW_TIMER_1].intEnable     = FALSE;
+        MOV     DPTR,#halTimerRecord + 1
+        MOVX    @DPTR,A
+//  273   halTimerRecord[HW_TIMER_1].callBackFunc  = cBack;
+        MOV     DPTR,#halTimerRecord + 8
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  274   Timer1MaxCount = halTimer1SetPeriod (4292); // 233Hz
+        ; Setup parameters for call to function halTimer1SetPeriod
+        MOV     DPTR,#__Constant_10c4
+        LCALL   ?XLOAD_R2345
+        LCALL   ??halTimer1SetPeriod?relay
+        MOV     DPTR,#Timer1MaxCount
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  275 
+//  276   halTimerSetPrescale (HW_TIMER_1, halTimerRecord[HW_TIMER_1].prescale);
+        ; Setup parameters for call to function halTimerSetPrescale
+        MOV     DPTR,#halTimerRecord + 5
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,#0x0
+        LCALL   ??halTimerSetPrescale?relay
+//  277   halTimerSetChannelMode (HW_TIMER_1, halTimerRecord[HW_TIMER_1].channelMode);
+        ; Setup parameters for call to function halTimerSetChannelMode
+        MOV     DPTR,#halTimerRecord + 4
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,#0x0
+        LCALL   ??halTimerSetChannelMode?relay
+//  278   halTimer1SetChannelCCTL(HAL_T1_CH0, 0, 1, HAL_TIMER1_CH0_CMP_MODE_SET_ON_COMP, 1, HAL_TIMER1_CH_CAP_MODE_NO);
+        ; Setup parameters for call to function halTimer1SetChannelCCTL
+        MOV     ?V0 + 0,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_ONE
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R5,#0x1
+        MOV     R4,#0x0
+        MOV     R3,#0x1
+        MOV     R2,#0x0
+        MOV     R1,#0x0
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_11:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 9)
+//  279   halTimer1SetChannelCCTL(HAL_T1_CH1, 0, 1, HAL_TIMER1_CHn_CMP_MODE_CLR_ON_COMP_SET_ON_0, 1, HAL_TIMER1_CH_CAP_MODE_NO);
+        ; Setup parameters for call to function halTimer1SetChannelCCTL
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_ONE
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R5,#0x1
+        MOV     R4,#0x4
+        MOV     R3,#0x1
+        MOV     R2,#0x0
+        MOV     R1,#0x1
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_12:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 9)
+//  280   halTimer1SetChannelCCTL(HAL_T1_CH2, 0, 1, HAL_TIMER1_CHn_CMP_MODE_CLR_ON_COMP_SET_ON_0, 1, HAL_TIMER1_CH_CAP_MODE_NO);
+        ; Setup parameters for call to function halTimer1SetChannelCCTL
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_ONE
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R5,#0x1
+        MOV     R4,#0x4
+        MOV     R3,#0x1
+        MOV     R2,#0x0
+        MOV     R1,#0x2
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_13:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 9)
+//  281   halTimer1SetChannelCCTL(HAL_T1_CH3, 0, 1, HAL_TIMER1_CHn_CMP_MODE_CLR_ON_COMP_SET_ON_0, 1, HAL_TIMER1_CH_CAP_MODE_NO);
+        ; Setup parameters for call to function halTimer1SetChannelCCTL
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_ONE
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R5,#0x1
+        MOV     R4,#0x4
+        MOV     R3,#0x1
+        MOV     R2,#0x0
+        MOV     R1,#0x3
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_14:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 9)
+//  282   halTimer1SetChannelCCTL(HAL_T1_CH4, 0, 1, HAL_TIMER1_CHn_CMP_MODE_CLR_ON_COMP_SET_ON_0, 1, HAL_TIMER1_CH_CAP_MODE_NO);
+        ; Setup parameters for call to function halTimer1SetChannelCCTL
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_ONE
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R5,#0x1
+        MOV     R4,#0x4
+        MOV     R3,#0x1
+        MOV     R2,#0x0
+        MOV     R1,#0x4
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_15:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 9)
+//  283   
+//  284   halTimer1SetChannelDuty (HAL_T1_CH1, 0);
+        ; Setup parameters for call to function halTimer1SetChannelDuty
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        MOV     R1,#0x1
+        LCALL   ?Subroutine13 & 0xFFFF
+//  285   halTimer1SetChannelDuty (HAL_T1_CH2, 0);
+??CrossCallReturnLabel_16:
+        MOV     R1,#0x2
+        LCALL   ?Subroutine13 & 0xFFFF
+//  286   halTimer1SetChannelDuty (HAL_T1_CH3, 0);
+??CrossCallReturnLabel_17:
+        MOV     R1,#0x3
+        LCALL   ?Subroutine13 & 0xFFFF
+//  287   halTimer1SetChannelDuty (HAL_T1_CH4, 0);
+??CrossCallReturnLabel_18:
+        MOV     R1,#0x4
+        LCALL   ??halTimer1SetChannelDuty?relay
+//  288 
+//  289 
+//  290     /* set timer 1 operating mode */
+//  291   T1CTL &= ~(HAL_TIMER1_OPMODE_BITS);
+        ANL     0xe4,#0xfc
+//  292   T1CTL |= HAL_TIMER1_OPMODE_UPDOWN;
+        ORL     0xe4,#0x3
+//  293 
+//  294 }
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock0
+        REQUIRE T1CCTL0
+        REQUIRE T1CCTL1
+        REQUIRE T1CCTL2
+        REQUIRE T1CTL
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine13:
+        CFI Block cfiCond1 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_16
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond2 Using cfiCommon0
+        CFI (cfiCond2) NoFunction
+        CFI (cfiCond2) Conditional ??CrossCallReturnLabel_17
+        CFI (cfiCond2) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond2) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond2) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond2) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond2) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond2) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond2) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond2) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond2) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond2) CFA_SP SP+0
+        CFI (cfiCond2) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond3 Using cfiCommon0
+        CFI (cfiCond3) NoFunction
+        CFI (cfiCond3) Conditional ??CrossCallReturnLabel_18
+        CFI (cfiCond3) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond3) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond3) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond3) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond3) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond3) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond3) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond3) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond3) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond3) CFA_SP SP+0
+        CFI (cfiCond3) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker4 Using cfiCommon1
+        CFI (cfiPicker4) NoFunction
+        CFI (cfiPicker4) Picker
+        LCALL   ??halTimer1SetChannelDuty?relay
+        ; Setup parameters for call to function halTimer1SetChannelDuty
+        ; Setup parameters for call to function halTimer1SetChannelDuty
+        ; Setup parameters for call to function halTimer1SetChannelDuty
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        RET
+        CFI EndBlock cfiCond1
+        CFI EndBlock cfiCond2
+        CFI EndBlock cfiCond3
+        CFI EndBlock cfiPicker4
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine12:
+        CFI Block cfiCond5 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_11
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond6 Using cfiCommon0
+        CFI (cfiCond6) NoFunction
+        CFI (cfiCond6) Conditional ??CrossCallReturnLabel_12
+        CFI (cfiCond6) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond6) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond6) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond6) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond6) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond6) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond6) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond6) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond6) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond6) CFA_SP SP+0
+        CFI (cfiCond6) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond7 Using cfiCommon0
+        CFI (cfiCond7) NoFunction
+        CFI (cfiCond7) Conditional ??CrossCallReturnLabel_13
+        CFI (cfiCond7) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond7) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond7) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond7) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond7) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond7) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond7) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond7) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond7) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond7) CFA_SP SP+0
+        CFI (cfiCond7) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond8 Using cfiCommon0
+        CFI (cfiCond8) NoFunction
+        CFI (cfiCond8) Conditional ??CrossCallReturnLabel_14
+        CFI (cfiCond8) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond8) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond8) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond8) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond8) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond8) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond8) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond8) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond8) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond8) CFA_SP SP+0
+        CFI (cfiCond8) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond9 Using cfiCommon0
+        CFI (cfiCond9) NoFunction
+        CFI (cfiCond9) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond9) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond9) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond9) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond9) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond9) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond9) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond9) CFA_SP SP+0
+        CFI (cfiCond9) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker10 Using cfiCommon1
+        CFI (cfiPicker10) NoFunction
+        CFI (cfiPicker10) Picker
+        LCALL   ??halTimer1SetChannelCCTL?relay
+        MOV     A,#0x1
+        RET
+        CFI EndBlock cfiCond5
+        CFI EndBlock cfiCond6
+        CFI EndBlock cfiCond7
+        CFI EndBlock cfiCond8
+        CFI EndBlock cfiCond9
+        CFI EndBlock cfiPicker10
+//  295 
+//  296 /***************************************************************************************************
+//  297  * @fn      halTimer1SetPeriod
+//  298  *
+//  299  * @brief   Set period for Timer1 PWM
+//  300  *
+//  301  * @param   
+//  302  *          timerPerTick - Number micro sec per ticks
+//  303  *
+//  304  * @return  Status - OK or Not OK
+//  305  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  306 uint16 halTimer1SetPeriod (uint32 timePerTick)
+halTimer1SetPeriod:
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI Function halTimer1SetPeriod
+        CODE
+//  307 {
+        FUNCALL halTimer1SetPeriod, halTimer1SetChannelCount
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     ?V0 + 2,R4
+        MOV     ?V0 + 3,R5
+//  308   uint16  count;
+//  309 
+//  310   /* Load count = ((sec/tick) x clock) / prescale */
+//  311   count = (uint16)((timePerTick * halTimerRecord[HW_TIMER_1].clock) / halTimerRecord[HW_TIMER_1].prescaleVal)/2;
+        MOV     DPTR,#halTimerRecord + 7
+        LCALL   ?Subroutine11 & 0xFFFF
+??CrossCallReturnLabel_9:
+        LCALL   ?L_MUL
+        MOV     DPTR,#halTimerRecord + 6
+        MOVX    A,@DPTR
+        MOV     ?V0 + 4,A
+        MOV     R0,#?V0 + 0
+        MOV     R1,#?V0 + 4
+        LCALL   ?UL_DIV_MOD
+        MOV     A,#0x1
+        MOV     R0,#?V0 + 0
+        LCALL   ?US_SHR
+        MOV     R6,?V0 + 0
+        MOV     R7,?V0 + 1
+//  312   halTimer1SetChannelCount(HAL_T1_CH0, count);
+        ; Setup parameters for call to function halTimer1SetChannelCount
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        MOV     R1,#0x0
+        LCALL   ??halTimer1SetChannelCount?relay
+//  313   return count;
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock11
+//  314 }
+//  315 
+//  316 
+//  317 /***************************************************************************************************
+//  318  * @fn      halTimer1SetChannelDuty
+//  319  *
+//  320  * @brief   Set duty for Timer1 PWM
+//  321  *
+//  322  * @param   channel - timer channel to control
+//  323  *          percent - dutycycle in promill
+//  324  *
+//  325  * @return  Status - OK or Not OK
+//  326  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  327 void halTimer1SetChannelDuty (uint8 channel, uint16 promill)
+halTimer1SetChannelDuty:
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI Function halTimer1SetChannelDuty
+        CODE
+//  328 {
+        FUNCALL halTimer1SetChannelDuty, halTimer1SetChannelCount
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+//  329 #define MIN_PROMILL 20
+//  330   uint16  count;
+//  331   
+//  332   if (promill < MIN_PROMILL)
+        CLR     C
+        MOV     A,R2
+        SUBB    A,#0x14
+        MOV     A,R3
+        SUBB    A,#0x0
+        JNC     ??halTimer1SetChannelDuty_0
+//  333     promill = 0;
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+//  334   
+//  335   /* Load count = ((sec/tick) x clock) / prescale */
+//  336   count = (uint16)( ((uint32)(Timer1MaxCount) * promill + 500)/ 1000 );
+??halTimer1SetChannelDuty_0:
+        MOV     DPTR,#Timer1MaxCount
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 4,?V0 + 0
+        MOV     ?V0 + 5,A
+        CLR     A
+        MOV     ?V0 + 6,A
+        MOV     ?V0 + 7,A
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     ?V0 + 2,A
+        MOV     ?V0 + 3,A
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 0
+        LCALL   ?L_MUL
+        MOV     DPTR,#__Constant_1f4
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_ADD_X
+        MOV     DPTR,#__Constant_3e8
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 0
+        LCALL   ?UL_DIV_MOD
+        MOV     R2,?V0 + 4
+        MOV     R3,?V0 + 5
+//  337   count = ( (count >= Timer1MaxCount) ? Timer1MaxCount-1 : (count == 0 ? 1 : count) ); 
+        MOV     DPTR,#Timer1MaxCount
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        CLR     C
+        MOV     A,R2
+        SUBB    A,R0
+        MOV     A,R3
+        SUBB    A,R1
+        JC      ??halTimer1SetChannelDuty_1
+        MOV     DPTR,#Timer1MaxCount
+        MOVX    A,@DPTR
+        ADD     A,#-0x1
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADDC    A,#-0x1
+        MOV     R3,A
+        SJMP    ??halTimer1SetChannelDuty_2
+??halTimer1SetChannelDuty_1:
+        MOV     A,R2
+        ORL     A,R3
+        JNZ     ??halTimer1SetChannelDuty_2
+        MOV     R2,#0x1
+        MOV     R3,#0x0
+//  338   
+//  339   halTimer1SetChannelCount(channel, count);
+??halTimer1SetChannelDuty_2:
+        ; Setup parameters for call to function halTimer1SetChannelCount
+        MOV     A,R6
+        MOV     R1,A
+        LCALL   ??halTimer1SetChannelCount?relay
+//  340 }
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock12
+//  341 
+//  342 /***************************************************************************************************
+//  343  * @fn      halTimer1SetChannelCount
+//  344  *
+//  345  * @brief   Stop the Timer Service
+//  346  *
+//  347  * @param   hwtimerid - ID of the timer
+//  348  *          timerPerTick - Number micro sec per ticks
+//  349  *
+//  350  * @return  Status - OK or Not OK
+//  351  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  352 void halTimer1SetChannelCount (uint8 channel, uint16 count)
+halTimer1SetChannelCount:
+        CFI Block cfiBlock13 Using cfiCommon0
+        CFI Function halTimer1SetChannelCount
+        CODE
+//  353 {
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//  354   uint8   high, low;
+//  355 
+//  356   high = (uint8) (count >> 8);
+//  357   low = (uint8) count;
+//  358 
+//  359   *(halTimer1Channel[0].TxCCH + 2*channel) = high;
+        MOV     A,R1
+        CLR     C
+        RLC     A
+        MOV     R4,A
+        CLR     A
+        RLC     A
+        MOV     R5,A
+        MOV     DPTR,#halTimer1Channel + 2
+        LCALL   ?Subroutine14 & 0xFFFF
+??CrossCallReturnLabel_19:
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  360   *(halTimer1Channel[0].TxCCL + 2*channel) = low;
+        MOV     DPTR,#halTimer1Channel + 4
+        LCALL   ?Subroutine14 & 0xFFFF
+??CrossCallReturnLabel_20:
+        MOV     A,R2
+        MOVX    @DPTR,A
+//  361 }
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock13
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine14:
+        CFI Block cfiCond14 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_19
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond15 Using cfiCommon0
+        CFI (cfiCond15) NoFunction
+        CFI (cfiCond15) Conditional ??CrossCallReturnLabel_20
+        CFI (cfiCond15) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond15) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond15) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond15) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond15) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond15) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond15) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond15) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond15) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond15) CFA_SP SP+0
+        CFI (cfiCond15) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker16 Using cfiCommon1
+        CFI (cfiPicker16) NoFunction
+        CFI (cfiPicker16) Picker
+        MOVX    A,@DPTR
+        ADD     A,R4
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADDC    A,R5
+        MOV     DPL,R0
+        MOV     DPH,A
+        RET
+        CFI EndBlock cfiCond14
+        CFI EndBlock cfiCond15
+        CFI EndBlock cfiPicker16
+//  362 
+//  363 /***************************************************************************************************
+//  364  * @fn      halTimerSetChannelMode
+//  365  *
+//  366  * @brief   Setup channel modes.  Currently, only output compare mode is supported.  Input capture
+//  367  *          mode is NOT supported.  Additionally, mapping timer channel inputs/outputs to I/O pins
+//  368  *          is NOT supported.
+//  369  *
+//  370  * @param   hwtimerid - ID of the timer
+//  371  *          channelMode - channel mode of the timer
+//  372  *
+//  373  * @return  Status - OK or Not OK
+//  374  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  375 uint8 halTimer1SetChannelCCTL (uint8 channel, uint8 rfirq,  uint8 im,  uint8 cmp,  uint8 mode,  uint8 cap )
+halTimer1SetChannelCCTL:
+        CFI Block cfiBlock17 Using cfiCommon0
+        CFI Function halTimer1SetChannelCCTL
+        CODE
+//  376 {
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,#0xa
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+//  377   *(halTimer1Channel[0].TxCCTL + channel) = 0;
+        MOV     DPL,R1
+        MOV     R0,DPL
+        LCALL   ?Subroutine17 & 0xFFFF
+??CrossCallReturnLabel_25:
+        CLR     A
+        MOVX    @DPTR,A
+//  378   
+//  379   if (rfirq)
+        MOV     A,R2
+        JZ      ??halTimer1SetChannelCCTL_0
+//  380     *(halTimer1Channel[0].TxCCTL + channel) |= T1CCTL_RFIRQ;
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_4:
+        SETB    0xE0 /* A   */.7
+        MOVX    @DPTR,A
+//  381 
+//  382   if (im)
+??halTimer1SetChannelCCTL_0:
+        MOV     A,R3
+        JZ      ??halTimer1SetChannelCCTL_1
+//  383     *(halTimer1Channel[0].TxCCTL + channel) |= T134CCTL_IM;
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_5:
+        SETB    0xE0 /* A   */.6
+        MOVX    @DPTR,A
+//  384   
+//  385   if (mode)
+??halTimer1SetChannelCCTL_1:
+        MOV     A,R5
+        JZ      ??halTimer1SetChannelCCTL_2
+//  386     *(halTimer1Channel[0].TxCCTL + channel) |= T134CCTL_MODE;
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_6:
+        SETB    0xE0 /* A   */.2
+        MOVX    @DPTR,A
+//  387 
+//  388   *(halTimer1Channel[0].TxCCTL + channel) |= (cmp << 3);
+??halTimer1SetChannelCCTL_2:
+        MOV     A,R4
+        RLC     A
+        RLC     A
+        RLC     A
+        ANL     A,#0xf8
+        MOV     R7,A
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_7:
+        ORL     A,R7
+        MOVX    @DPTR,A
+//  389   
+//  390   
+//  391     *(halTimer1Channel[0].TxCCTL + channel) |= cap;
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_8:
+        ORL     A,?V0 + 0
+        MOVX    @DPTR,A
+//  392 
+//  393   return HAL_TIMER_OK;
+        MOV     R1,#0x0
+        CFI EndBlock cfiBlock17
+        REQUIRE ?Subroutine2
+        ; // Fall through to label ?Subroutine2
+//  394 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiBlock18 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock18
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine9:
+        CFI Block cfiCond19 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_4
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond20 Using cfiCommon0
+        CFI (cfiCond20) NoFunction
+        CFI (cfiCond20) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond20) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond20) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond20) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond20) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond20) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond20) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond20) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond20) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond20) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond20) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond20) CFA_SP SP+0
+        CFI (cfiCond20) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond21 Using cfiCommon0
+        CFI (cfiCond21) NoFunction
+        CFI (cfiCond21) Conditional ??CrossCallReturnLabel_6
+        CFI (cfiCond21) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond21) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond21) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond21) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond21) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond21) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond21) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond21) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond21) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond21) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond21) CFA_SP SP+0
+        CFI (cfiCond21) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond22 Using cfiCommon0
+        CFI (cfiCond22) NoFunction
+        CFI (cfiCond22) Conditional ??CrossCallReturnLabel_7
+        CFI (cfiCond22) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond22) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond22) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond22) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond22) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond22) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond22) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond22) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond22) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond22) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond22) CFA_SP SP+0
+        CFI (cfiCond22) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond23 Using cfiCommon0
+        CFI (cfiCond23) NoFunction
+        CFI (cfiCond23) Conditional ??CrossCallReturnLabel_8
+        CFI (cfiCond23) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond23) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond23) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond23) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond23) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond23) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond23) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond23) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond23) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond23) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond23) CFA_SP SP+0
+        CFI (cfiCond23) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker24 Using cfiCommon1
+        CFI (cfiPicker24) NoFunction
+        CFI (cfiPicker24) Picker
+        LCALL   ?Subroutine17 & 0xFFFF
+??CrossCallReturnLabel_26:
+        MOVX    A,@DPTR
+        RET
+        CFI EndBlock cfiCond19
+        CFI EndBlock cfiCond20
+        CFI EndBlock cfiCond21
+        CFI EndBlock cfiCond22
+        CFI EndBlock cfiCond23
+        CFI EndBlock cfiPicker24
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine17:
+        CFI Block cfiCond25 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_25
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond26 Using cfiCommon0
+        CFI (cfiCond26) NoFunction
+        CFI (cfiCond26) Conditional ??CrossCallReturnLabel_26, ??CrossCallReturnLabel_4
+        CFI (cfiCond26) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond26) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond26) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond26) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond26) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond26) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond26) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond26) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond26) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond26) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond26) CFA_SP SP+0
+        CFI (cfiCond26) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond27 Using cfiCommon0
+        CFI (cfiCond27) NoFunction
+        CFI (cfiCond27) Conditional ??CrossCallReturnLabel_26, ??CrossCallReturnLabel_5
+        CFI (cfiCond27) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond27) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond27) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond27) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond27) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond27) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond27) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond27) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond27) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond27) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond27) CFA_SP SP+0
+        CFI (cfiCond27) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond28 Using cfiCommon0
+        CFI (cfiCond28) NoFunction
+        CFI (cfiCond28) Conditional ??CrossCallReturnLabel_26, ??CrossCallReturnLabel_6
+        CFI (cfiCond28) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond28) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond28) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond28) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond28) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond28) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond28) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond28) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond28) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond28) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond28) CFA_SP SP+0
+        CFI (cfiCond28) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond29 Using cfiCommon0
+        CFI (cfiCond29) NoFunction
+        CFI (cfiCond29) Conditional ??CrossCallReturnLabel_26, ??CrossCallReturnLabel_7
+        CFI (cfiCond29) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond29) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond29) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond29) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond29) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond29) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond29) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond29) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond29) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond29) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond29) CFA_SP SP+0
+        CFI (cfiCond29) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond30 Using cfiCommon0
+        CFI (cfiCond30) NoFunction
+        CFI (cfiCond30) Conditional ??CrossCallReturnLabel_26, ??CrossCallReturnLabel_8
+        CFI (cfiCond30) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond30) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond30) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond30) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond30) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond30) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond30) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond30) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond30) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond30) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond30) CFA_SP SP+0
+        CFI (cfiCond30) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker31 Using cfiCommon1
+        CFI (cfiPicker31) NoFunction
+        CFI (cfiPicker31) Picker
+        MOV     DPTR,#halTimer1Channel
+        MOVX    A,@DPTR
+        ADD     A,R0
+        MOV     R6,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADDC    A,#0x0
+        MOV     DPL,R6
+        MOV     DPH,A
+        RET
+        CFI EndBlock cfiCond25
+        CFI EndBlock cfiCond26
+        CFI EndBlock cfiCond27
+        CFI EndBlock cfiCond28
+        CFI EndBlock cfiCond29
+        CFI EndBlock cfiCond30
+        CFI EndBlock cfiPicker31
+//  395 
+//  396 /*********************************************************************
+//  397  * @fn      HalTimerInit
+//  398  *
+//  399  * @brief   Initialize Timer Service
+//  400  *
+//  401  * @param   None
+//  402  *
+//  403  * @return  None
+//  404  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  405 void HalTimerInit (void)
+HalTimerInit:
+        CFI Block cfiBlock32 Using cfiCommon0
+        CFI Function HalTimerInit
+        CODE
+//  406 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  407   T1CCTL0 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xe5,#0x0
+//  408   T1CCTL1 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xe6,#0x0
+//  409   T1CCTL2 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xe7,#0x0
+//  410   T1CCTL3 = 0;    /* Make sure interrupts are disabled */
+        MOV     DPTR,#0x62a3
+        CLR     A
+        MOVX    @DPTR,A
+//  411   T1CCTL4 = 0;    /* Make sure interrupts are disabled */
+        INC     DPTR
+        MOVX    @DPTR,A
+//  412   T3CCTL0 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xcc,#0x0
+//  413   T3CCTL1 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xce,#0x0
+//  414   T4CCTL0 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xec,#0x0
+//  415   T4CCTL1 = 0;    /* Make sure interrupts are disabled */
+        MOV     0xee,#0x0
+//  416 
+//  417   /* Setup prescale & clock for timer0 */
+//  418   halTimerRecord[HW_TIMER_1].prescale    = HAL_TIMER1_16_PRESCALE;
+        LCALL   ?Subroutine6 & 0xFFFF
+//  419   halTimerRecord[HW_TIMER_1].clock       = HAL_TIMER_32MHZ;
+//  420   halTimerRecord[HW_TIMER_1].prescaleVal = HAL_TIMER1_16_PRESCALE_VAL;
+//  421 
+//  422   /* Setup prescale & clock for timer2 */
+//  423   halTimerRecord[HW_TIMER_3].prescale    = HAL_TIMER3_8_PRESCALE;
+??CrossCallReturnLabel_1:
+        MOV     DPTR,#halTimerRecord + 15
+        MOV     A,#-0x20
+        MOVX    @DPTR,A
+//  424   halTimerRecord[HW_TIMER_3].clock       = HAL_TIMER_32MHZ;
+        MOV     DPTR,#halTimerRecord + 17
+        MOV     A,#0x20
+        MOVX    @DPTR,A
+//  425   halTimerRecord[HW_TIMER_3].prescaleVal = HAL_TIMER3_8_PRESCALE_VAL;
+        MOV     DPTR,#halTimerRecord + 16
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+//  426 
+//  427   /* Setup prescale & clock for timer3 */
+//  428   halTimerRecord[HW_TIMER_4].prescale    = HAL_TIMER4_8_PRESCALE;
+        MOV     DPTR,#halTimerRecord + 25
+        MOV     A,#-0x20
+        MOVX    @DPTR,A
+//  429   halTimerRecord[HW_TIMER_4].clock       = HAL_TIMER_32MHZ;
+        MOV     DPTR,#halTimerRecord + 27
+        MOV     A,#0x20
+        MOVX    @DPTR,A
+//  430   halTimerRecord[HW_TIMER_4].prescaleVal = HAL_TIMER4_8_PRESCALE_VAL;
+        MOV     DPTR,#halTimerRecord + 26
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+//  431 
+//  432   /* Setup Timer1 Channel structure */
+//  433   halTimerChannel[HW_TIMER_1].TxCCTL =  TCHN_T1CCTL;
+        MOV     DPTR,#halTimerChannel
+        LCALL   ?Subroutine5 & 0xFFFF
+//  434   halTimerChannel[HW_TIMER_1].TxCCL =   TCHN_T1CCL;
+??CrossCallReturnLabel_39:
+        MOV     DPTR,#halTimerChannel + 4
+        MOV     A,#-0x5a
+        LCALL   ??Subroutine20_0 & 0xFFFF
+//  435   halTimerChannel[HW_TIMER_1].TxCCH =   TCHN_T1CCH;
+??CrossCallReturnLabel_36:
+        MOV     DPTR,#halTimerChannel + 2
+        MOV     A,#-0x59
+        LCALL   ??Subroutine20_0 & 0xFFFF
+//  436   halTimerChannel[HW_TIMER_1].TxOVF =   TCNH_T1OVF;
+??CrossCallReturnLabel_37:
+        MOV     DPTR,#halTimerChannel + 6
+        MOV     A,#-0x28
+        LCALL   ??Subroutine19_0 & 0xFFFF
+//  437   halTimerChannel[HW_TIMER_1].ovfbit =  TCHN_T1OVFBIT;
+??CrossCallReturnLabel_27:
+        INC     DPTR
+        MOV     A,#0x40
+        MOVX    @DPTR,A
+//  438   halTimerChannel[HW_TIMER_1].intbit =  TCHN_T1INTBIT;
+        INC     DPTR
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+//  439 
+//  440   /* Setup Timer3 Channel structure */
+//  441   halTimerChannel[HW_TIMER_3].TxCCTL =  TCHN_T3CCTL;
+        INC     DPTR
+        MOV     A,#-0x34
+        LCALL   ??Subroutine19_0 & 0xFFFF
+//  442   halTimerChannel[HW_TIMER_3].TxCCL =   TCHN_T3CCL;
+??CrossCallReturnLabel_28:
+        MOV     DPTR,#halTimerChannel + 14
+        LCALL   ?Subroutine8 & 0xFFFF
+//  443   halTimerChannel[HW_TIMER_3].TxCCH =   TCHN_T3CCH;
+??CrossCallReturnLabel_32:
+        MOV     DPTR,#halTimerChannel + 12
+        LCALL   ?Subroutine8 & 0xFFFF
+//  444   halTimerChannel[HW_TIMER_3].TxOVF =   TCNH_T3OVF;
+??CrossCallReturnLabel_33:
+        MOV     DPTR,#halTimerChannel + 16
+        MOV     A,#-0x35
+        LCALL   ?Subroutine7 & 0xFFFF
+//  445   halTimerChannel[HW_TIMER_3].ovfbit =  TCHN_T3OVFBIT;
+//  446   halTimerChannel[HW_TIMER_3].intbit =  TCHN_T3INTBIT;
+??CrossCallReturnLabel_2:
+        MOV     A,#0x8
+        MOVX    @DPTR,A
+//  447 
+//  448   /* Setup Timer4 Channel structure */
+//  449   halTimerChannel[HW_TIMER_4].TxCCTL =  TCHN_T4CCTL;
+        INC     DPTR
+        MOV     A,#-0x14
+        LCALL   ??Subroutine19_0 & 0xFFFF
+//  450   halTimerChannel[HW_TIMER_4].TxCCL =   TCHN_T4CCL;
+??CrossCallReturnLabel_29:
+        MOV     DPTR,#halTimerChannel + 24
+        MOV     A,#-0x13
+        LCALL   ??Subroutine19_0 & 0xFFFF
+//  451   halTimerChannel[HW_TIMER_4].TxCCH =   TCHN_T4CCH;
+??CrossCallReturnLabel_30:
+        MOV     DPTR,#halTimerChannel + 22
+        MOV     A,#-0x13
+        LCALL   ??Subroutine19_0 & 0xFFFF
+//  452   halTimerChannel[HW_TIMER_4].TxOVF =   TCNH_T4OVF;
+??CrossCallReturnLabel_31:
+        MOV     DPTR,#halTimerChannel + 26
+        MOV     A,#-0x15
+        LCALL   ?Subroutine7 & 0xFFFF
+//  453   halTimerChannel[HW_TIMER_4].ovfbit =  TCHN_T4OVFBIT;
+//  454   halTimerChannel[HW_TIMER_4].intbit =  TCHN_T4INTBIT;
+??CrossCallReturnLabel_3:
+        MOV     A,#0x10
+        MOVX    @DPTR,A
+//  455 }
+        LJMP    ?Subroutine3 & 0xFFFF
+        CFI EndBlock cfiBlock32
+        REQUIRE T1CCTL0
+        REQUIRE T1CCTL1
+        REQUIRE T1CCTL2
+        REQUIRE T3CCTL0
+        REQUIRE T3CCTL1
+        REQUIRE T4CCTL0
+        REQUIRE T4CCTL1
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine8:
+        CFI Block cfiCond33 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_32
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond34 Using cfiCommon0
+        CFI (cfiCond34) NoFunction
+        CFI (cfiCond34) Conditional ??CrossCallReturnLabel_33
+        CFI (cfiCond34) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond34) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond34) CFA_SP SP+-5
+        CFI Block cfiPicker35 Using cfiCommon1
+        CFI (cfiPicker35) NoFunction
+        CFI (cfiPicker35) Picker
+        MOV     A,#-0x33
+        CFI EndBlock cfiCond33
+        CFI EndBlock cfiCond34
+        CFI EndBlock cfiPicker35
+        REQUIRE ??Subroutine19_0
+        ; // Fall through to label ??Subroutine19_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine19_0:
+        CFI Block cfiCond36 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_27
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond37 Using cfiCommon0
+        CFI (cfiCond37) NoFunction
+        CFI (cfiCond37) Conditional ??CrossCallReturnLabel_28
+        CFI (cfiCond37) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond37) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond37) CFA_SP SP+-5
+        CFI Block cfiCond38 Using cfiCommon0
+        CFI (cfiCond38) NoFunction
+        CFI (cfiCond38) Conditional ??CrossCallReturnLabel_29
+        CFI (cfiCond38) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond38) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond38) CFA_SP SP+-5
+        CFI Block cfiCond39 Using cfiCommon0
+        CFI (cfiCond39) NoFunction
+        CFI (cfiCond39) Conditional ??CrossCallReturnLabel_30
+        CFI (cfiCond39) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond39) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond39) CFA_SP SP+-5
+        CFI Block cfiCond40 Using cfiCommon0
+        CFI (cfiCond40) NoFunction
+        CFI (cfiCond40) Conditional ??CrossCallReturnLabel_31
+        CFI (cfiCond40) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond40) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond40) CFA_SP SP+-5
+        CFI Block cfiCond41 Using cfiCommon0
+        CFI (cfiCond41) NoFunction
+        CFI (cfiCond41) Conditional ??CrossCallReturnLabel_32
+        CFI (cfiCond41) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond41) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond41) CFA_SP SP+-5
+        CFI Block cfiCond42 Using cfiCommon0
+        CFI (cfiCond42) NoFunction
+        CFI (cfiCond42) Conditional ??CrossCallReturnLabel_33
+        CFI (cfiCond42) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond42) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond42) CFA_SP SP+-5
+        CFI Block cfiPicker43 Using cfiCommon1
+        CFI (cfiPicker43) NoFunction
+        CFI (cfiPicker43) Picker
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x70
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond36
+        CFI EndBlock cfiCond37
+        CFI EndBlock cfiCond38
+        CFI EndBlock cfiCond39
+        CFI EndBlock cfiCond40
+        CFI EndBlock cfiCond41
+        CFI EndBlock cfiCond42
+        CFI EndBlock cfiPicker43
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine7:
+        CFI Block cfiCond44 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_2
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond45 Using cfiCommon0
+        CFI (cfiCond45) NoFunction
+        CFI (cfiCond45) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond45) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond45) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond45) CFA_SP SP+-5
+        CFI Block cfiPicker46 Using cfiCommon1
+        CFI (cfiPicker46) NoFunction
+        CFI (cfiPicker46) Picker
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x70
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        RET
+        CFI EndBlock cfiCond44
+        CFI EndBlock cfiCond45
+        CFI EndBlock cfiPicker46
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine6:
+        CFI Block cfiCond47 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond48 Using cfiCommon0
+        CFI (cfiCond48) NoFunction
+        CFI (cfiCond48) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond48) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond48) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond48) CFA_SP SP+-5
+        CFI Block cfiPicker49 Using cfiCommon1
+        CFI (cfiPicker49) NoFunction
+        CFI (cfiPicker49) Picker
+        MOV     DPTR,#halTimerRecord + 5
+        MOV     A,#0xc
+        MOVX    @DPTR,A
+        MOV     DPTR,#halTimerRecord + 7
+        MOV     A,#0x20
+        MOVX    @DPTR,A
+        MOV     DPTR,#halTimerRecord + 6
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond47
+        CFI EndBlock cfiCond48
+        CFI EndBlock cfiPicker49
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine5:
+        CFI Block cfiCond50 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_38
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond51 Using cfiCommon0
+        CFI (cfiCond51) NoFunction
+        CFI (cfiCond51) Conditional ??CrossCallReturnLabel_39
+        CFI (cfiCond51) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond51) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond51) CFA_SP SP+-5
+        CFI Block cfiPicker52 Using cfiCommon1
+        CFI (cfiPicker52) NoFunction
+        CFI (cfiPicker52) Picker
+        MOV     A,#-0x60
+        CFI EndBlock cfiCond50
+        CFI EndBlock cfiCond51
+        CFI EndBlock cfiPicker52
+        REQUIRE ??Subroutine20_0
+        ; // Fall through to label ??Subroutine20_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine20_0:
+        CFI Block cfiCond53 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_34
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond54 Using cfiCommon0
+        CFI (cfiCond54) NoFunction
+        CFI (cfiCond54) Conditional ??CrossCallReturnLabel_35
+        CFI (cfiCond54) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond54) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond54) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond54) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond54) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond54) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond54) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond54) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond54) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond54) CFA_SP SP+0
+        CFI (cfiCond54) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond55 Using cfiCommon0
+        CFI (cfiCond55) NoFunction
+        CFI (cfiCond55) Conditional ??CrossCallReturnLabel_36
+        CFI (cfiCond55) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond55) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond55) CFA_SP SP+-5
+        CFI Block cfiCond56 Using cfiCommon0
+        CFI (cfiCond56) NoFunction
+        CFI (cfiCond56) Conditional ??CrossCallReturnLabel_37
+        CFI (cfiCond56) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond56) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond56) CFA_SP SP+-5
+        CFI Block cfiCond57 Using cfiCommon0
+        CFI (cfiCond57) NoFunction
+        CFI (cfiCond57) Conditional ??CrossCallReturnLabel_38
+        CFI (cfiCond57) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond57) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond57) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond57) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond57) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond57) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond57) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond57) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond57) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond57) CFA_SP SP+0
+        CFI (cfiCond57) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond58 Using cfiCommon0
+        CFI (cfiCond58) NoFunction
+        CFI (cfiCond58) Conditional ??CrossCallReturnLabel_39
+        CFI (cfiCond58) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond58) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond58) CFA_SP SP+-5
+        CFI Block cfiPicker59 Using cfiCommon1
+        CFI (cfiPicker59) NoFunction
+        CFI (cfiPicker59) Picker
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x62
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond53
+        CFI EndBlock cfiCond54
+        CFI EndBlock cfiCond55
+        CFI EndBlock cfiCond56
+        CFI EndBlock cfiCond57
+        CFI EndBlock cfiCond58
+        CFI EndBlock cfiPicker59
+//  456 
+//  457 /***************************************************************************************************
+//  458  * @fn      HalTimerConfig
+//  459  *
+//  460  * @brief   Configure the Timer Serivce
+//  461  *
+//  462  * @param   timerId - Id of the timer
+//  463  *          opMode  - Operation mode
+//  464  *          channel - Channel where the counter operates on
+//  465  *          channelMode - Mode of that channel
+//  466  *          prescale - Prescale of the clock
+//  467  *          cBack - Pointer to the callback function
+//  468  *
+//  469  * @return  Status of the configuration
+//  470  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  471 uint8 HalTimerConfig (uint8 timerId, uint8 opMode, uint8 channel, uint8 channelMode,
+HalTimerConfig:
+        CFI Block cfiBlock60 Using cfiCommon0
+        CFI Function HalTimerConfig
+        CODE
+//  472                       bool intEnable, halTimerCBack_t cBack)
+//  473 {
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     ?V0 + 0,R1
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     A,#0xa
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+//  474   uint8 hwtimerid;
+//  475 
+//  476   hwtimerid = halTimerRemap (timerId);
+        MOV     A,?V0 + 0
+        JZ      ??HalTimerConfig_0
+        ADD     A,#-0x2
+        JZ      ??HalTimerConfig_1
+        DEC     A
+        JNZ     ??HalTimerConfig_2
+        MOV     R2,#0x0
+        SJMP    ??HalTimerConfig_3
+??HalTimerConfig_1:
+        MOV     R2,#0x2
+        SJMP    ??HalTimerConfig_3
+??HalTimerConfig_0:
+        MOV     R2,#0x1
+        SJMP    ??HalTimerConfig_3
+??HalTimerConfig_2:
+        MOV     R2,#0x3
+//  477 
+//  478   if ((opMode & HAL_TIMER_MODE_MASK) && (timerId < HAL_TIMER_MAX) &&
+//  479       (channelMode & HAL_TIMER_CHANNEL_MASK) && (channel & HAL_TIMER_CHANNEL_MASK))
+??HalTimerConfig_3:
+        MOV     A,#0x3
+        ANL     A,R6
+        JZ      ??HalTimerConfig_4
+        MOV     A,?V0 + 0
+        CLR     C
+        SUBB    A,#0x4
+        JNC     ??HalTimerConfig_4
+        MOV     A,#0x3f
+        ANL     A,R4
+        JZ      ??HalTimerConfig_4
+        MOV     A,#0x3f
+        ANL     A,R7
+        JZ      ??HalTimerConfig_4
+//  480   {
+//  481     halTimerRecord[hwtimerid].configured    = TRUE;
+        MOV     A,R2
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R2,A
+        MOV     ?V0 + 1,B
+        MOV     R3,?V0 + 1
+        MOV     A,#halTimerRecord & 0xff
+        ADD     A,R2
+        MOV     R2,A
+        MOV     A,#(halTimerRecord >> 8) & 0xff
+        ADDC    A,R3
+        MOV     R3,A
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  482     halTimerRecord[hwtimerid].opMode        = opMode;
+        MOV     A,R6
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+//  483     halTimerRecord[hwtimerid].channel       = channel;
+        MOV     A,R7
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+//  484     halTimerRecord[hwtimerid].channelMode   = channelMode;
+        MOV     A,R4
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+//  485     halTimerRecord[hwtimerid].intEnable     = intEnable;
+        MOV     A,R5
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        MOVX    @DPTR,A
+//  486     halTimerRecord[hwtimerid].callBackFunc  = cBack;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  487   }
+//  488   else
+//  489   {
+//  490     return HAL_TIMER_PARAMS_ERROR;
+//  491   }
+//  492   return HAL_TIMER_OK;
+        MOV     R1,#0x0
+        SJMP    ??HalTimerConfig_5
+??HalTimerConfig_4:
+        MOV     R1,#0x2
+??HalTimerConfig_5:
+        LJMP    ?Subroutine2 & 0xFFFF
+        CFI EndBlock cfiBlock60
+//  493 }
+//  494 
+//  495 
+//  496 /***************************************************************************************************
+//  497  * @fn      HalTimerStart
+//  498  *
+//  499  * @brief   Start the Timer Service
+//  500  *
+//  501  * @param   timerId      - ID of the timer
+//  502  *          timerPerTick - number of micro sec per tick, (ticks x prescale) / clock = usec/tick
+//  503  *
+//  504  * @return  Status - OK or Not OK
+//  505  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  506 uint8 HalTimerStart (uint8 timerId, uint32 timePerTick)
+HalTimerStart:
+        CFI Block cfiBlock61 Using cfiCommon0
+        CFI Function HalTimerStart
+        CODE
+//  507 {
+        FUNCALL HalTimerStart, halTimerSetCount
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimerStart, halTimerSetPrescale
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimerStart, halTimerSetOpMode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimerStart, halTimerSetChannelMode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimerStart, HalTimerInterruptEnable
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+//  508   uint8 hwtimerid;
+//  509 
+//  510   hwtimerid = halTimerRemap (timerId);
+        MOV     A,R1
+        JZ      ??HalTimerStart_0
+        ADD     A,#-0x2
+        JZ      ??HalTimerStart_1
+        DEC     A
+        JNZ     ??HalTimerStart_2
+        MOV     ?V0 + 0,#0x0
+        SJMP    ??HalTimerStart_3
+??HalTimerStart_1:
+        MOV     ?V0 + 0,#0x2
+        SJMP    ??HalTimerStart_3
+??HalTimerStart_0:
+        MOV     ?V0 + 0,#0x1
+        SJMP    ??HalTimerStart_3
+??HalTimerStart_2:
+        MOV     ?V0 + 0,#0x3
+//  511 
+//  512   if (halTimerRecord[hwtimerid].configured)
+??HalTimerStart_3:
+        MOV     A,?V0 + 0
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R0,A
+        MOV     R1,B
+        MOV     A,#halTimerRecord & 0xff
+        ADD     A,R0
+        MOV     R0,A
+        MOV     A,#(halTimerRecord >> 8) & 0xff
+        ADDC    A,R1
+        MOV     R1,A
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOVX    A,@DPTR
+        JZ      ??HalTimerStart_4
+//  513   {
+//  514     halTimerSetCount (hwtimerid, timePerTick);
+        ; Setup parameters for call to function halTimerSetCount
+        MOV     R1,?V0 + 0
+        LCALL   ??halTimerSetCount?relay
+//  515     halTimerSetPrescale (hwtimerid, halTimerRecord[hwtimerid].prescale);
+        ; Setup parameters for call to function halTimerSetPrescale
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,?V0 + 0
+        LCALL   ??halTimerSetPrescale?relay
+//  516     halTimerSetOpMode (hwtimerid, halTimerRecord[hwtimerid].opMode);
+        ; Setup parameters for call to function halTimerSetOpMode
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,?V0 + 0
+        LCALL   ??halTimerSetOpMode?relay
+//  517     halTimerSetChannelMode (hwtimerid, halTimerRecord[hwtimerid].channelMode);
+        MOV     A,R6
+        ADD     A,#0x4
+        MOV     R0,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     ?V0 + 2,R0
+        MOV     ?V0 + 3,R1
+        ; Setup parameters for call to function halTimerSetChannelMode
+        MOV     DPL,R0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,?V0 + 0
+        LCALL   ??halTimerSetChannelMode?relay
+//  518 
+//  519     if (hwtimerid == HW_TIMER_3)
+        MOV     A,#0x1
+        XRL     A,?V0 + 0
+        JNZ     ??HalTimerStart_5
+//  520     {
+//  521       T3CTL |= HAL_TIMER34_START;
+        ORL     0xcb,#0x10
+        SJMP    ??HalTimerStart_6
+//  522     }
+//  523     if (hwtimerid == HW_TIMER_4)
+??HalTimerStart_5:
+        MOV     A,#0x2
+        XRL     A,?V0 + 0
+        JNZ     ??HalTimerStart_6
+//  524     {
+//  525       T4CTL |= HAL_TIMER34_START;
+        ORL     0xeb,#0x10
+//  526     }
+//  527     HalTimerInterruptEnable (hwtimerid, halTimerRecord[hwtimerid].channelMode,
+//  528                              halTimerRecord[hwtimerid].intEnable);
+??HalTimerStart_6:
+        ; Setup parameters for call to function HalTimerInterruptEnable
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        MOV     DPL,?V0 + 2
+        MOV     DPH,?V0 + 3
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,?V0 + 0
+        LCALL   ??HalTimerInterruptEnable?relay
+//  529   }
+//  530   else
+//  531   {
+//  532     return HAL_TIMER_NOT_CONFIGURED;
+//  533   }
+//  534   return HAL_TIMER_OK;
+        MOV     R1,#0x0
+        SJMP    ??HalTimerStart_7
+??HalTimerStart_4:
+        MOV     R1,#0x3
+        CFI EndBlock cfiBlock61
+??HalTimerStart_7:
+        REQUIRE ?Subroutine1
+        REQUIRE T3CTL
+        REQUIRE T4CTL
+        ; // Fall through to label ?Subroutine1
+//  535 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock62 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock62
+//  536 
+//  537 /***************************************************************************************************
+//  538  * @fn      HalTimerTick
+//  539  *
+//  540  * @brief   Check the counter for expired counter.
+//  541  *
+//  542  * @param   None
+//  543  *
+//  544  * @return  None
+//  545  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  546 void HalTimerTick (void)
+HalTimerTick:
+        CFI Block cfiBlock63 Using cfiCommon0
+        CFI Function HalTimerTick
+        CODE
+//  547 {
+        FUNCALL HalTimerTick, halProcessTimer1
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimerTick, halProcessTimer3
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL HalTimerTick, halProcessTimer4
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  548   if (!halTimerRecord[HW_TIMER_1].intEnable)
+        MOV     DPTR,#halTimerRecord + 1
+        MOVX    A,@DPTR
+        JNZ     ??HalTimerTick_0
+//  549   {
+//  550     halProcessTimer1 ();
+        ; Setup parameters for call to function halProcessTimer1
+        LCALL   ??halProcessTimer1?relay
+//  551   }
+//  552 
+//  553   if (!halTimerRecord[HW_TIMER_3].intEnable)
+??HalTimerTick_0:
+        MOV     DPTR,#halTimerRecord + 11
+        MOVX    A,@DPTR
+        JNZ     ??HalTimerTick_1
+//  554   {
+//  555     halProcessTimer3 ();
+        ; Setup parameters for call to function halProcessTimer3
+        LCALL   ??halProcessTimer3?relay
+//  556   }
+//  557 
+//  558   if (!halTimerRecord[HW_TIMER_4].intEnable)
+??HalTimerTick_1:
+        MOV     DPTR,#halTimerRecord + 21
+        MOVX    A,@DPTR
+        JNZ     ??HalTimerTick_2
+//  559   {
+//  560     halProcessTimer4 ();
+        ; Setup parameters for call to function halProcessTimer4
+        LCALL   ??halProcessTimer4?relay
+//  561   }
+//  562 }
+??HalTimerTick_2:
+        LJMP    ?Subroutine3 & 0xFFFF
+        CFI EndBlock cfiBlock63
+//  563 
+//  564 /***************************************************************************************************
+//  565  * @fn      HalTimerStop
+//  566  *
+//  567  * @brief   Stop the Timer Service
+//  568  *
+//  569  * @param   timerId - ID of the timer
+//  570  *
+//  571  * @return  Status - OK or Not OK
+//  572  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  573 uint8 HalTimerStop (uint8 timerId)
+HalTimerStop:
+        CFI Block cfiBlock64 Using cfiCommon0
+        CFI Function HalTimerStop
+        CODE
+//  574 {
+        FUNCALL HalTimerStop, halTimerSetOpMode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+//  575   uint8 hwtimerid;
+//  576 
+//  577   hwtimerid = halTimerRemap (timerId);
+        JZ      ??HalTimerStop_0
+        ADD     A,#-0x2
+        JZ      ??HalTimerStop_1
+        DEC     A
+        JNZ     ??HalTimerStop_2
+//  578 
+//  579   switch (hwtimerid)
+//  580   {
+//  581     case HW_TIMER_1:
+//  582       halTimerSetOpMode(HW_TIMER_1, HAL_TIMER_MODE_STOP);
+        ; Setup parameters for call to function halTimerSetOpMode
+        MOV     R2,#0x3
+        MOV     R1,#0x0
+        LCALL   ??halTimerSetOpMode?relay
+//  583       break;
+//  584     case HW_TIMER_3:
+//  585       T3CTL &= ~(HAL_TIMER34_START);
+//  586       break;
+//  587     case HW_TIMER_4:
+//  588       T4CTL &= ~(HAL_TIMER34_START);
+//  589       break;
+//  590     default:
+//  591       return HAL_TIMER_INVALID_ID;
+//  592   }
+//  593   return HAL_TIMER_OK;
+??HalTimerStop_3:
+        MOV     R1,#0x0
+??HalTimerStop_4:
+        LJMP    ?Subroutine0 & 0xFFFF
+??HalTimerStop_1:
+        ANL     0xeb,#0xef
+        SJMP    ??HalTimerStop_3
+??HalTimerStop_0:
+        ANL     0xcb,#0xef
+        SJMP    ??HalTimerStop_3
+??HalTimerStop_2:
+        MOV     R1,#0x4
+        SJMP    ??HalTimerStop_4
+        CFI EndBlock cfiBlock64
+        REQUIRE T3CTL
+        REQUIRE T4CTL
+//  594 }
+//  595 
+//  596 /***************************************************************************************************
+//  597  * @fn      halTimerSetCount
+//  598  *
+//  599  * @brief   Stop the Timer Service
+//  600  *
+//  601  * @param   hwtimerid - ID of the timer
+//  602  *          timerPerTick - Number micro sec per ticks
+//  603  *
+//  604  * @return  Status - OK or Not OK
+//  605  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  606 uint8 halTimerSetCount (uint8 hwtimerid, uint32 timePerTick)
+halTimerSetCount:
+        CFI Block cfiBlock65 Using cfiCommon0
+        CFI Function halTimerSetCount
+        CODE
+//  607 {
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     ?V0 + 2,R4
+        MOV     ?V0 + 3,R5
+//  608   uint16  count;
+//  609   uint8   high, low;
+//  610 
+//  611   /* Load count = ((sec/tick) x clock) / prescale */
+//  612   count = (uint16)((timePerTick * halTimerRecord[hwtimerid].clock) / halTimerRecord[hwtimerid].prescaleVal);
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R2,A
+        MOV     R3,B
+        MOV     A,#halTimerRecord & 0xff
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,#(halTimerRecord >> 8) & 0xff
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     A,R0
+        MOV     R4,A
+        MOV     A,R1
+        MOV     R5,A
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        LCALL   ?Subroutine11 & 0xFFFF
+??CrossCallReturnLabel_10:
+        LCALL   ?L_MUL
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 4,A
+        MOV     R0,#?V0 + 0
+        MOV     R1,#?V0 + 4
+        LCALL   ?UL_DIV_MOD
+//  613   high = (uint8) (count >> 8);
+//  614   low = (uint8) count;
+//  615 
+//  616   *(halTimerChannel[hwtimerid].TxCCH) = high;
+        MOV     A,#halTimerChannel & 0xff
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,#(halTimerChannel >> 8) & 0xff
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R2
+        MOV     A,?V0 + 1
+        MOVX    @DPTR,A
+//  617   *(halTimerChannel[hwtimerid].TxCCL) = low;
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        LCALL   ?Subroutine18 & 0xFFFF
+??CrossCallReturnLabel_43:
+        MOV     A,?V0 + 0
+        MOVX    @DPTR,A
+//  618 
+//  619   return HAL_TIMER_OK;
+        MOV     R1,#0x0
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock65
+//  620 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine11:
+        CFI Block cfiCond66 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_9
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond67 Using cfiCommon0
+        CFI (cfiCond67) NoFunction
+        CFI (cfiCond67) Conditional ??CrossCallReturnLabel_10
+        CFI (cfiCond67) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond67) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond67) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond67) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond67) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond67) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond67) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond67) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond67) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond67) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond67) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond67) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond67) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond67) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond67) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond67) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond67) CFA_SP SP+0
+        CFI (cfiCond67) CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiPicker68 Using cfiCommon1
+        CFI (cfiPicker68) NoFunction
+        CFI (cfiPicker68) Picker
+        MOVX    A,@DPTR
+        MOV     ?V0 + 4,A
+        CLR     A
+        MOV     ?V0 + 5,A
+        MOV     ?V0 + 6,A
+        MOV     ?V0 + 7,A
+        MOV     R0,#?V0 + 0
+        MOV     R1,#?V0 + 4
+        RET
+        CFI EndBlock cfiCond66
+        CFI EndBlock cfiCond67
+        CFI EndBlock cfiPicker68
+//  621 
+//  622 /***************************************************************************************************
+//  623  * @fn      halTimerSetPrescale
+//  624  *
+//  625  * @brief   Stop the Timer Service
+//  626  *
+//  627  * @param   hwtimerid - ID of the timer
+//  628  *          prescale - Prescale of the clock
+//  629  *
+//  630  * @return  Status - OK or Not OK
+//  631  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  632 uint8 halTimerSetPrescale (uint8 hwtimerid, uint8 prescale)
+halTimerSetPrescale:
+        CFI Block cfiBlock69 Using cfiCommon0
+        CFI Function halTimerSetPrescale
+        CODE
+//  633 {
+        ; Saved register size: 0
+        ; Auto size: 0
+        MOV     A,R1
+//  634   switch (hwtimerid)
+        JZ      ??halTimerSetPrescale_0
+        DEC     A
+        JZ      ??halTimerSetPrescale_1
+        DEC     A
+        JZ      ??halTimerSetPrescale_2
+        SJMP    ??halTimerSetPrescale_3
+//  635   {
+//  636     case HW_TIMER_1:
+//  637       T1CTL &= ~(HAL_TIMER1_16_TC_BITS);
+??halTimerSetPrescale_0:
+        ANL     0xe4,#0xf3
+//  638       T1CTL |= prescale;
+        MOV     A,R2
+        ORL     0xe4,A
+//  639       break;
+//  640     case HW_TIMER_3:
+//  641       T3CTL &= ~(HAL_TIMER34_8_TC_BITS);
+//  642       T3CTL |= prescale;
+//  643       break;
+//  644     case HW_TIMER_4:
+//  645       T4CTL &= ~(HAL_TIMER34_8_TC_BITS);
+//  646       T4CTL |= prescale;
+//  647       break;
+//  648     default:
+//  649       return HAL_TIMER_INVALID_ID;
+//  650   }
+//  651   return HAL_TIMER_OK;
+??halTimerSetPrescale_4:
+        MOV     R1,#0x0
+??halTimerSetPrescale_5:
+        LJMP    ?BRET
+??halTimerSetPrescale_1:
+        ANL     0xcb,#0x1f
+        MOV     A,R2
+        ORL     0xcb,A
+        SJMP    ??halTimerSetPrescale_4
+??halTimerSetPrescale_2:
+        ANL     0xeb,#0x1f
+        MOV     A,R2
+        ORL     0xeb,A
+        SJMP    ??halTimerSetPrescale_4
+??halTimerSetPrescale_3:
+        MOV     R1,#0x4
+        SJMP    ??halTimerSetPrescale_5
+        CFI EndBlock cfiBlock69
+        REQUIRE T1CTL
+        REQUIRE T3CTL
+        REQUIRE T4CTL
+//  652 }
+//  653 
+//  654 /***************************************************************************************************
+//  655  * @fn      halTimerSetOpMode
+//  656  *
+//  657  * @brief   Setup operate modes
+//  658  *
+//  659  * @param   hwtimerid - ID of the timer
+//  660  *          opMode - operation mode of the timer
+//  661  *
+//  662  * @return  Status - OK or Not OK
+//  663  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  664 uint8 halTimerSetOpMode (uint8 hwtimerid, uint8 opMode)
+halTimerSetOpMode:
+        CFI Block cfiBlock70 Using cfiCommon0
+        CFI Function halTimerSetOpMode
+        CODE
+//  665 {
+        ; Saved register size: 0
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R0,A
+//  666   /* Load Waveform Generation Mode */
+//  667   switch (opMode)
+        MOV     A,R2
+        DEC     A
+        JZ      ??halTimerSetOpMode_0
+        DEC     A
+        JZ      ??halTimerSetOpMode_1
+        DEC     A
+        JZ      ??halTimerSetOpMode_2
+        SJMP    ??halTimerSetOpMode_3
+//  668   {
+//  669     case HAL_TIMER_MODE_NORMAL:
+//  670       switch (hwtimerid)
+??halTimerSetOpMode_0:
+        MOV     A,R0
+        JZ      ??halTimerSetOpMode_4
+        DEC     A
+        JZ      ??halTimerSetOpMode_5
+        DEC     A
+        JZ      ??halTimerSetOpMode_6
+        SJMP    ??halTimerSetOpMode_7
+//  671       {
+//  672         case HW_TIMER_1:
+//  673           T1CTL &= ~(HAL_TIMER1_OPMODE_BITS);
+??halTimerSetOpMode_4:
+        ANL     0xe4,#0xfc
+//  674           T1CTL |= HAL_TIMER1_OPMODE_FREERUN;
+        ORL     0xe4,#0x1
+//  675           break;
+//  676         case HW_TIMER_3:
+//  677           T3CTL &= ~(HAL_TIMER34_OPMODE_BITS);
+//  678           T3CTL |= HAL_TIMER34_OPMODE_FREERUN;
+//  679           break;
+//  680         case HW_TIMER_4:
+//  681           T4CTL &= ~(HAL_TIMER34_OPMODE_BITS);
+//  682           T4CTL |= HAL_TIMER34_OPMODE_FREERUN;
+//  683           break;
+//  684         default:
+//  685           return HAL_TIMER_INVALID_ID;
+//  686       }
+//  687       break;
+//  688 
+//  689     case HAL_TIMER_MODE_CTC:
+//  690       switch (hwtimerid)
+//  691       {
+//  692         case HW_TIMER_1:
+//  693           T1CTL &= ~(HAL_TIMER1_OPMODE_BITS);
+//  694           T1CTL |= HAL_TIMER1_OPMODE_MODULO;
+//  695           break;
+//  696         case HW_TIMER_3:
+//  697           T3CTL &= ~(HAL_TIMER34_OPMODE_BITS);
+//  698           T3CTL |= HAL_TIMER34_OPMODE_MODULO;
+//  699           break;
+//  700         case HW_TIMER_4:
+//  701           T4CTL &= ~(HAL_TIMER34_OPMODE_BITS);
+//  702           T4CTL |= HAL_TIMER34_OPMODE_MODULO;
+//  703           break;
+//  704         default:
+//  705           return HAL_TIMER_INVALID_ID;
+//  706       }
+//  707       break;
+//  708 
+//  709     case HAL_TIMER_MODE_STOP:
+//  710       if (hwtimerid == HW_TIMER_1)
+//  711       {
+//  712         T1CTL &= ~(HAL_TIMER1_OPMODE_BITS);
+//  713         T1CTL |= HAL_TIMER1_OPMODE_STOP;
+//  714       }
+//  715       break;
+//  716 
+//  717     default:
+//  718       return HAL_TIMER_INVALID_OP_MODE;
+//  719   }
+//  720   return HAL_TIMER_OK;
+??halTimerSetOpMode_8:
+        MOV     R1,#0x0
+??halTimerSetOpMode_9:
+        LJMP    ?BRET
+??halTimerSetOpMode_5:
+        ANL     0xcb,#0xfc
+        MOV     0xcb,0xcb
+        SJMP    ??halTimerSetOpMode_8
+??halTimerSetOpMode_6:
+        ANL     0xeb,#0xfc
+        MOV     0xeb,0xeb
+        SJMP    ??halTimerSetOpMode_8
+??halTimerSetOpMode_7:
+        MOV     R1,#0x4
+        SJMP    ??halTimerSetOpMode_9
+??halTimerSetOpMode_1:
+        MOV     A,R0
+        JZ      ??halTimerSetOpMode_10
+        DEC     A
+        JZ      ??halTimerSetOpMode_11
+        DEC     A
+        JZ      ??halTimerSetOpMode_12
+        SJMP    ??halTimerSetOpMode_7
+??halTimerSetOpMode_10:
+        ANL     0xe4,#0xfc
+        ORL     0xe4,#0x2
+        SJMP    ??halTimerSetOpMode_8
+??halTimerSetOpMode_11:
+        ANL     0xcb,#0xfc
+        ORL     0xcb,#0x2
+        SJMP    ??halTimerSetOpMode_8
+??halTimerSetOpMode_12:
+        ANL     0xeb,#0xfc
+        ORL     0xeb,#0x2
+        SJMP    ??halTimerSetOpMode_8
+??halTimerSetOpMode_2:
+        MOV     A,R0
+        JNZ     ??halTimerSetOpMode_8
+        ANL     0xe4,#0xfc
+        MOV     0xe4,0xe4
+        SJMP    ??halTimerSetOpMode_8
+??halTimerSetOpMode_3:
+        MOV     R1,#0x6
+        SJMP    ??halTimerSetOpMode_9
+        CFI EndBlock cfiBlock70
+        REQUIRE T1CTL
+        REQUIRE T3CTL
+        REQUIRE T4CTL
+//  721 }
+//  722 
+//  723 /***************************************************************************************************
+//  724  * @fn      halTimerSetChannelMode
+//  725  *
+//  726  * @brief   Setup channel modes.  Currently, only output compare mode is supported.  Input capture
+//  727  *          mode is NOT supported.  Additionally, mapping timer channel inputs/outputs to I/O pins
+//  728  *          is NOT supported.
+//  729  *
+//  730  * @param   hwtimerid - ID of the timer
+//  731  *          channelMode - channel mode of the timer
+//  732  *
+//  733  * @return  Status - OK or Not OK
+//  734  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  735 uint8 halTimerSetChannelMode (uint8 hwtimerid, uint8 channelMode)
+halTimerSetChannelMode:
+        CFI Block cfiBlock71 Using cfiCommon0
+        CFI Function halTimerSetChannelMode
+        CODE
+//  736 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R4,A
+//  737   switch (channelMode)
+        MOV     A,R2
+        DEC     A
+        JZ      ??halTimerSetChannelMode_0
+        DEC     A
+        JNZ     ??halTimerSetChannelMode_1
+//  738   {
+//  739     case HAL_TIMER_CH_MODE_OUTPUT_COMPARE:
+//  740       *(halTimerChannel[hwtimerid].TxCCTL) &= ~(T134CCTL_CMP_BITS);
+        MOV     A,R4
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R0,A
+        MOV     R1,B
+        MOV     A,#halTimerChannel & 0xff
+        ADD     A,R0
+        MOV     R0,A
+        MOV     A,#(halTimerChannel >> 8) & 0xff
+        ADDC    A,R1
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOVX    A,@DPTR
+        MOV     R3,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R3
+        MOVX    A,@DPTR
+        ANL     A,#0xc7
+        MOVX    @DPTR,A
+//  741       *(halTimerChannel[hwtimerid].TxCCTL) |= (T134CCTL_CMP_OC | T134CCTL_MODE);
+        LCALL   ??Subroutine21_0 & 0xFFFF
+??CrossCallReturnLabel_40:
+        ORL     A,#0x1c
+        MOVX    @DPTR,A
+//  742       break;
+//  743 
+//  744     case HAL_TIMER_CH_MODE_INPUT_CAPTURE:       /* Not Supported */
+//  745 /*
+//  746       *(halTimerChannel[hwtimerid].TxCCTL) &= ~(T134CCTL_CAP_BITS | T134CCTL_MODE);
+//  747       *(halTimerChannel[hwtimerid].TxCCTL) |= T134CCTL_CAP_RE;
+//  748 */
+//  749       break;
+//  750 
+//  751     default:
+//  752       return HAL_TIMER_INVALID_CH_MODE;
+//  753   }
+//  754   return HAL_TIMER_OK;
+??halTimerSetChannelMode_0:
+        MOV     R1,#0x0
+??halTimerSetChannelMode_2:
+        LJMP    ?Subroutine3 & 0xFFFF
+??halTimerSetChannelMode_1:
+        MOV     R1,#0x5
+        SJMP    ??halTimerSetChannelMode_2
+        CFI EndBlock cfiBlock71
+//  755 }
+//  756 
+//  757 /***************************************************************************************************
+//  758  * @fn      HalTimerInterruptEnable
+//  759  *
+//  760  * @brief   Setup operate modes
+//  761  *
+//  762  * @param   hwtimerid - ID of the timer
+//  763  *          channelMode - channel mode
+//  764  *          enable - TRUE or FALSE
+//  765  *
+//  766  * @return  Status - OK or Not OK
+//  767  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  768 uint8 HalTimerInterruptEnable (uint8 hwtimerid, uint8 channelMode, bool enable)
+HalTimerInterruptEnable:
+        CFI Block cfiBlock72 Using cfiCommon0
+        CFI Function HalTimerInterruptEnable
+        CODE
+//  769 {
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+//  770   switch (channelMode)
+        MOV     A,R2
+        DEC     A
+        JZ      ??HalTimerInterruptEnable_0
+        DEC     A
+        JZ      ??HalTimerInterruptEnable_0
+        ADD     A,#-0x2
+        JNZ     ??HalTimerInterruptEnable_1
+//  771   {
+//  772     case HAL_TIMER_CH_MODE_OVERFLOW:
+//  773 
+//  774       if (enable)
+        MOV     A,R6
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R4,A
+        MOV     R5,B
+        MOV     A,#halTimerChannel & 0xff
+        ADD     A,R4
+        MOV     R0,A
+        MOV     A,#(halTimerChannel >> 8) & 0xff
+        ADDC    A,R5
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#0x8
+        MOV     DPL,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOV     A,R0
+        ADD     A,#0x6
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     A,R3
+        JZ      ??HalTimerInterruptEnable_2
+//  775       {
+//  776         *(halTimerChannel[hwtimerid].TxOVF) |= halTimerChannel[hwtimerid].ovfbit;
+        MOVX    A,@DPTR
+        LCALL   ?Subroutine10 & 0xFFFF
+//  777       }
+??CrossCallReturnLabel_41:
+        ORL     A,R4
+??HalTimerInterruptEnable_3:
+        MOVX    @DPTR,A
+//  778       else
+//  779       {
+//  780         *(halTimerChannel[hwtimerid].TxOVF) &= ((halTimerChannel[hwtimerid].ovfbit) ^ 0xFF);
+//  781       }
+//  782       break;
+//  783 
+//  784     case HAL_TIMER_CH_MODE_OUTPUT_COMPARE:
+//  785     case HAL_TIMER_CH_MODE_INPUT_CAPTURE:
+//  786 
+//  787       if (enable)
+//  788       {
+//  789         *(halTimerChannel[hwtimerid].TxCCTL) |= T134CCTL_IM;
+//  790       }
+//  791       else
+//  792       {
+//  793         *(halTimerChannel[hwtimerid].TxCCTL) &= ~(T134CCTL_IM);
+//  794       }
+//  795       break;
+//  796 
+//  797     default:
+//  798       return HAL_TIMER_INVALID_CH_MODE;
+//  799   }
+//  800 
+//  801   if (halTimerRecord[hwtimerid].intEnable)
+        MOV     A,R6
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R4,A
+        LCALL   ?Subroutine15 & 0xFFFF
+??CrossCallReturnLabel_21:
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#(halTimerRecord + 1) & 0xff
+        ADD     A,R4
+        MOV     DPL,A
+        MOV     A,#((halTimerRecord + 1) >> 8) & 0xff
+        ADDC    A,R5
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        JZ      ??HalTimerInterruptEnable_4
+//  802   {
+//  803     IEN1 |= halTimerChannel[hwtimerid].intbit;
+        MOV     A,R0
+        ORL     0xb8,A
+        SJMP    ??HalTimerInterruptEnable_5
+//  804   }
+??HalTimerInterruptEnable_2:
+        MOVX    A,@DPTR
+        CPL     A
+        LCALL   ?Subroutine10 & 0xFFFF
+??CrossCallReturnLabel_42:
+        ANL     A,R4
+        SJMP    ??HalTimerInterruptEnable_3
+??HalTimerInterruptEnable_0:
+        MOV     A,R6
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R4,A
+        MOV     R5,B
+        LCALL   ?Subroutine15 & 0xFFFF
+??CrossCallReturnLabel_22:
+        LCALL   ?Subroutine16 & 0xFFFF
+??CrossCallReturnLabel_23:
+        MOV     A,R3
+        JZ      ??HalTimerInterruptEnable_6
+        MOVX    A,@DPTR
+        SETB    0xE0 /* A   */.6
+        SJMP    ??HalTimerInterruptEnable_3
+??HalTimerInterruptEnable_6:
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.6
+        SJMP    ??HalTimerInterruptEnable_3
+??HalTimerInterruptEnable_1:
+        MOV     R1,#0x5
+        SJMP    ??HalTimerInterruptEnable_7
+//  805   else
+//  806   {
+//  807     IEN1 &= ((halTimerChannel[hwtimerid].intbit) ^ 0xFF);
+??HalTimerInterruptEnable_4:
+        MOV     A,#-0x1
+        XRL     A,R0
+        ANL     0xb8,A
+//  808   }
+//  809   return HAL_TIMER_OK;
+??HalTimerInterruptEnable_5:
+        MOV     R1,#0x0
+        CFI EndBlock cfiBlock72
+??HalTimerInterruptEnable_7:
+        REQUIRE ?Subroutine0
+        REQUIRE _A_IEN1
+        ; // Fall through to label ?Subroutine0
+//  810 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock73 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock73
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine15:
+        CFI Block cfiCond74 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_21
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond75 Using cfiCommon0
+        CFI (cfiCond75) NoFunction
+        CFI (cfiCond75) Conditional ??CrossCallReturnLabel_22
+        CFI (cfiCond75) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond75) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond75) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond75) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond75) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond75) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond75) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond75) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond75) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond75) CFA_SP SP+0
+        CFI (cfiCond75) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker76 Using cfiCommon1
+        CFI (cfiPicker76) NoFunction
+        CFI (cfiPicker76) Picker
+        MOV     A,#halTimerChannel & 0xff
+        ADD     A,R4
+        MOV     R0,A
+        MOV     A,#(halTimerChannel >> 8) & 0xff
+        ADDC    A,R5
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        RET
+        CFI EndBlock cfiCond74
+        CFI EndBlock cfiCond75
+        CFI EndBlock cfiPicker76
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine10:
+        CFI Block cfiCond77 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_41
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond78 Using cfiCommon0
+        CFI (cfiCond78) NoFunction
+        CFI (cfiCond78) Conditional ??CrossCallReturnLabel_42
+        CFI (cfiCond78) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond78) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond78) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond78) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond78) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond78) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond78) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond78) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond78) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond78) CFA_SP SP+0
+        CFI (cfiCond78) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker79 Using cfiCommon1
+        CFI (cfiPicker79) NoFunction
+        CFI (cfiPicker79) Picker
+        MOV     R4,A
+        CFI EndBlock cfiCond77
+        CFI EndBlock cfiCond78
+        CFI EndBlock cfiPicker79
+        REQUIRE ??Subroutine21_0
+        ; // Fall through to label ??Subroutine21_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine21_0:
+        CFI Block cfiCond80 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_40
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond81 Using cfiCommon0
+        CFI (cfiCond81) NoFunction
+        CFI (cfiCond81) Conditional ??CrossCallReturnLabel_41
+        CFI (cfiCond81) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond81) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond81) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond81) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond81) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond81) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond81) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond81) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond81) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond81) CFA_SP SP+0
+        CFI (cfiCond81) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond82 Using cfiCommon0
+        CFI (cfiCond82) NoFunction
+        CFI (cfiCond82) Conditional ??CrossCallReturnLabel_42
+        CFI (cfiCond82) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond82) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond82) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond82) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond82) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond82) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond82) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond82) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond82) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond82) CFA_SP SP+0
+        CFI (cfiCond82) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker83 Using cfiCommon1
+        CFI (cfiPicker83) NoFunction
+        CFI (cfiPicker83) Picker
+        MOV     DPL,R0
+        MOV     DPH,R1
+        LCALL   ?Subroutine18 & 0xFFFF
+??CrossCallReturnLabel_44:
+        MOVX    A,@DPTR
+        RET
+        CFI EndBlock cfiCond80
+        CFI EndBlock cfiCond81
+        CFI EndBlock cfiCond82
+        CFI EndBlock cfiPicker83
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine18:
+        CFI Block cfiCond84 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_43
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond85 Using cfiCommon0
+        CFI (cfiCond85) NoFunction
+        CFI (cfiCond85) Conditional ??CrossCallReturnLabel_44, ??CrossCallReturnLabel_41
+        CFI (cfiCond85) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond85) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond85) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond85) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond85) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond85) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond85) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond85) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond85) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond85) CFA_SP SP+0
+        CFI (cfiCond85) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond86 Using cfiCommon0
+        CFI (cfiCond86) NoFunction
+        CFI (cfiCond86) Conditional ??CrossCallReturnLabel_44, ??CrossCallReturnLabel_42
+        CFI (cfiCond86) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond86) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond86) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond86) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond86) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond86) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond86) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond86) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond86) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond86) CFA_SP SP+0
+        CFI (cfiCond86) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond87 Using cfiCommon0
+        CFI (cfiCond87) NoFunction
+        CFI (cfiCond87) Conditional ??CrossCallReturnLabel_44, ??CrossCallReturnLabel_40
+        CFI (cfiCond87) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond87) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond87) CFA_SP SP+-5
+        CFI Block cfiPicker88 Using cfiCommon1
+        CFI (cfiPicker88) NoFunction
+        CFI (cfiPicker88) Picker
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R0
+        RET
+        CFI EndBlock cfiCond84
+        CFI EndBlock cfiCond85
+        CFI EndBlock cfiCond86
+        CFI EndBlock cfiCond87
+        CFI EndBlock cfiPicker88
+//  811 
+//  812 /***************************************************************************************************
+//  813  * @fn      halTimerSendCallBack
+//  814  *
+//  815  * @brief   Send Callback back to the caller
+//  816  *
+//  817  * @param   timerId - ID of the timer
+//  818  *          channel - channel where the interrupt occurs
+//  819  *          channelMode - channel mode
+//  820  *
+//  821  *
+//  822  * @return  None
+//  823  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  824 void halTimerSendCallBack (uint8 timerId, uint8 channel, uint8 channelMode)
+halTimerSendCallBack:
+        CFI Block cfiBlock89 Using cfiCommon0
+        CFI Function halTimerSendCallBack
+        CODE
+//  825 {
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     ?V0 + 0,R1
+//  826   uint8 hwtimerid;
+//  827 
+//  828   hwtimerid = halTimerRemap (timerId);
+        MOV     A,R1
+        JZ      ??halTimerSendCallBack_0
+        ADD     A,#-0x2
+        JZ      ??halTimerSendCallBack_1
+        DEC     A
+        JNZ     ??halTimerSendCallBack_2
+        CLR     A
+        SJMP    ??halTimerSendCallBack_3
+??halTimerSendCallBack_1:
+        MOV     A,#0x2
+        SJMP    ??halTimerSendCallBack_3
+??halTimerSendCallBack_0:
+        MOV     A,#0x1
+        SJMP    ??halTimerSendCallBack_3
+??halTimerSendCallBack_2:
+        MOV     A,#0x3
+??halTimerSendCallBack_3:
+        MOV     B,#0xa
+        MUL     AB
+        MOV     R0,A
+        MOV     R1,B
+        MOV     A,#(halTimerRecord + 8) & 0xff
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,#((halTimerRecord + 8) >> 8) & 0xff
+        ADDC    A,R1
+        MOV     DPH,A
+        LCALL   ?Subroutine16 & 0xFFFF
+??CrossCallReturnLabel_24:
+        MOV     A,DPL
+        ORL     A,DPH
+        JZ      ??halTimerSendCallBack_4
+//  829 
+//  830   if (halTimerRecord[hwtimerid].callBackFunc)
+//  831     (halTimerRecord[hwtimerid].callBackFunc) (timerId, channel, channelMode);
+        ; Setup parameters for indirect call
+        MOV     R1,?V0 + 0
+        LCALL   ?CALL_IND
+//  832 }
+??halTimerSendCallBack_4:
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock89
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine16:
+        CFI Block cfiCond90 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_23
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond91 Using cfiCommon0
+        CFI (cfiCond91) NoFunction
+        CFI (cfiCond91) Conditional ??CrossCallReturnLabel_24
+        CFI (cfiCond91) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond91) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond91) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond91) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond91) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond91) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond91) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond91) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond91) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond91) CFA_SP SP+0
+        CFI (cfiCond91) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker92 Using cfiCommon1
+        CFI (cfiPicker92) NoFunction
+        CFI (cfiPicker92) Picker
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        RET
+        CFI EndBlock cfiCond90
+        CFI EndBlock cfiCond91
+        CFI EndBlock cfiPicker92
+//  833 
+//  834 /***************************************************************************************************
+//  835  * @fn      halTimerRemap
+//  836  *
+//  837  * @brief   Maps API HAL_TIMER_ID to HW Timer ID.
+//  838  *          HAL_TIMER_0 --> HW Timer 3 8bit
+//  839  *          HAL_TIMER_2 --> HW Timer 4 8bit
+//  840  *          HAL_TIMER_3 --> HW Timer 1 16bit
+//  841  *
+//  842  * @param   timerId - ID of the timer
+//  843  *
+//  844  * @return  HW timer ID
+//  845  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  846 uint8 halTimerRemap (uint8 timerId)
+halTimerRemap:
+        CFI Block cfiBlock93 Using cfiCommon0
+        CFI Function halTimerRemap
+        CODE
+//  847 {
+        ; Saved register size: 0
+        ; Auto size: 0
+        MOV     A,R1
+//  848   switch (timerId)
+        JZ      ??halTimerRemap_0
+        ADD     A,#-0x2
+        JZ      ??halTimerRemap_1
+        DEC     A
+        JZ      ??halTimerRemap_2
+        SJMP    ??halTimerRemap_3
+//  849   {
+//  850     case HAL_TIMER_0:
+//  851       return HW_TIMER_3;
+??halTimerRemap_0:
+        MOV     R1,#0x1
+        SJMP    ??halTimerRemap_4
+//  852     case HAL_TIMER_2:
+//  853       return HW_TIMER_4;
+??halTimerRemap_1:
+        MOV     R1,#0x2
+        SJMP    ??halTimerRemap_4
+//  854     case HAL_TIMER_3:
+//  855       return HW_TIMER_1;
+??halTimerRemap_2:
+        MOV     R1,#0x0
+        SJMP    ??halTimerRemap_4
+//  856     default:
+//  857       return HW_TIMER_INVALID;
+??halTimerRemap_3:
+        MOV     R1,#0x3
+??halTimerRemap_4:
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock93
+//  858   }
+//  859 }
+//  860 
+//  861 /***************************************************************************************************
+//  862  * @fn      halProcessTimer1
+//  863  *
+//  864  * @brief   Processes Timer 1 Events.
+//  865  *
+//  866  * @param
+//  867  *
+//  868  * @return
+//  869  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  870 void halProcessTimer1 (void)
+halProcessTimer1:
+        CFI Block cfiBlock94 Using cfiCommon0
+        CFI Function halProcessTimer1
+        CODE
+//  871 {
+        FUNCALL halProcessTimer1, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer1, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer1, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer1, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  872   if (halTimerRecord[halTimerRemap(HAL_TIMER_3)].channelMode == HAL_TIMER_CH_MODE_OUTPUT_COMPARE)
+        MOV     DPTR,#halTimerRecord + 4
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#0x2
+        XRL     A,R0
+        JNZ     ??halProcessTimer1_0
+//  873   {
+//  874     if (T1STAT & T1STAT_CH0IF)
+        MOV     A,0xaf
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??halProcessTimer1_1
+//  875     {
+//  876       T1STAT &= ~(T1STAT_CH0IF);
+        ANL     0xaf,#0xfe
+//  877       halTimerSendCallBack (HAL_TIMER_3, HAL_TIMER_CHANNEL_A, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x2
+        MOV     R1,#0x3
+        LCALL   ??halTimerSendCallBack?relay
+//  878     }
+//  879     if (T1STAT & T1STAT_CH1IF)
+??halProcessTimer1_1:
+        MOV     A,0xaf
+        MOV     C,0xE0 /* A   */.1
+        JNC     ??halProcessTimer1_2
+//  880     {
+//  881       T1STAT &= ~(T1STAT_CH1IF);
+        ANL     0xaf,#0xfd
+//  882       halTimerSendCallBack (HAL_TIMER_3, HAL_TIMER_CHANNEL_B, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x4
+        MOV     R1,#0x3
+        LCALL   ??halTimerSendCallBack?relay
+//  883     }
+//  884     if (T1STAT & T1STAT_CH2IF)
+??halProcessTimer1_2:
+        MOV     A,0xaf
+        MOV     C,0xE0 /* A   */.2
+        JNC     ??halProcessTimer1_3
+//  885     {
+//  886       T1STAT &= ~(T1STAT_CH2IF);
+        ANL     0xaf,#0xfb
+//  887       halTimerSendCallBack (HAL_TIMER_3, HAL_TIMER_CHANNEL_C, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x8
+        SJMP    ??halProcessTimer1_4
+//  888     }
+//  889   }
+//  890   else if (halTimerRecord[halTimerRemap(HAL_TIMER_3)].channelMode == HAL_TIMER_CH_MODE_OVERFLOW)
+??halProcessTimer1_0:
+        MOV     A,#0x4
+        XRL     A,R0
+        JNZ     ??halProcessTimer1_3
+//  891   {
+//  892     if (T1STAT & T1STAT_OVFIF)
+        MOV     A,0xaf
+        MOV     C,0xE0 /* A   */.5
+        JNC     ??halProcessTimer1_3
+//  893     {
+//  894       T1STAT &= ~(T1STAT_OVFIF);
+        ANL     0xaf,#0xdf
+//  895       halTimerSendCallBack (HAL_TIMER_3, HAL_TIMER_CHANNEL_SINGLE, HAL_TIMER_CH_MODE_OVERFLOW);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x4
+        MOV     R2,#0x1
+??halProcessTimer1_4:
+        MOV     R1,#0x3
+        LCALL   ??halTimerSendCallBack?relay
+        CFI EndBlock cfiBlock94
+//  896     }
+//  897   }
+//  898 }
+??halProcessTimer1_3:
+        REQUIRE ?Subroutine3
+        REQUIRE T1STAT
+        ; // Fall through to label ?Subroutine3
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiBlock95 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock95
+//  899 
+//  900 /***************************************************************************************************
+//  901  * @fn      halProcessTimer3
+//  902  *
+//  903  * @brief   Processes Timer 3 Events.
+//  904  *
+//  905  * @param
+//  906  *
+//  907  * @return
+//  908  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  909 void halProcessTimer3 (void)
+halProcessTimer3:
+        CFI Block cfiBlock96 Using cfiCommon0
+        CFI Function halProcessTimer3
+        CODE
+//  910 {
+        FUNCALL halProcessTimer3, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer3, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer3, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  911   if (halTimerRecord[halTimerRemap(HAL_TIMER_0)].channelMode == HAL_TIMER_CH_MODE_OUTPUT_COMPARE)
+        MOV     DPTR,#halTimerRecord + 14
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#0x2
+        XRL     A,R0
+        JNZ     ??halProcessTimer3_0
+//  912   {
+//  913     if (TIMIF & TIMIF_T3CH0IF)
+        MOV     C,0xd8.1
+        JNC     ??halProcessTimer3_1
+//  914     {
+//  915       TIMIF &= ~(TIMIF_T3CH0IF);
+        CLR     0xd8.1
+//  916       halTimerSendCallBack (HAL_TIMER_0, HAL_TIMER_CHANNEL_A, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x2
+        MOV     R1,#0x0
+        LCALL   ??halTimerSendCallBack?relay
+//  917     }
+//  918     if (TIMIF & TIMIF_T3CH1IF)
+??halProcessTimer3_1:
+        MOV     C,0xd8.2
+        JNC     ??halProcessTimer3_2
+//  919     {
+//  920       TIMIF &= ~(TIMIF_T3CH1IF);
+        CLR     0xd8.2
+//  921       halTimerSendCallBack (HAL_TIMER_0, HAL_TIMER_CHANNEL_B, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x4
+        SJMP    ??halProcessTimer3_3
+//  922     }
+//  923   }
+//  924   else if (halTimerRecord[halTimerRemap(HAL_TIMER_0)].channelMode == HAL_TIMER_CH_MODE_OVERFLOW)
+??halProcessTimer3_0:
+        MOV     A,#0x4
+        XRL     A,R0
+        JNZ     ??halProcessTimer3_2
+//  925   {
+//  926     if (TIMIF & TIMIF_T3OVFIF)
+        MOV     C,0xd8.0
+        JNC     ??halProcessTimer3_2
+//  927     {
+//  928       TIMIF &= ~(TIMIF_T3OVFIF);
+        CLR     0xd8.0
+//  929       halTimerSendCallBack (HAL_TIMER_0, HAL_TIMER_CHANNEL_SINGLE, HAL_TIMER_CH_MODE_OVERFLOW);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x4
+        MOV     R2,#0x1
+??halProcessTimer3_3:
+        MOV     R1,#0x0
+        LCALL   ??halTimerSendCallBack?relay
+//  930     }
+//  931   }
+//  932 }
+??halProcessTimer3_2:
+        SJMP    ?Subroutine3
+        CFI EndBlock cfiBlock96
+        REQUIRE _A_TIMIF
+//  933 
+//  934 /***************************************************************************************************
+//  935  * @fn      halProcessTimer4
+//  936  *
+//  937  * @brief   Processes Timer 4 Events.
+//  938  *
+//  939  * @param
+//  940  *
+//  941  * @return
+//  942  ***************************************************************************************************/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  943 void halProcessTimer4 (void)
+halProcessTimer4:
+        CFI Block cfiBlock97 Using cfiCommon0
+        CFI Function halProcessTimer4
+        CODE
+//  944 {
+        FUNCALL halProcessTimer4, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer4, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL halProcessTimer4, halTimerSendCallBack
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  945   if (halTimerRecord[halTimerRemap(HAL_TIMER_2)].channelMode == HAL_TIMER_CH_MODE_OUTPUT_COMPARE)
+        MOV     DPTR,#halTimerRecord + 24
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#0x2
+        XRL     A,R0
+        JNZ     ??halProcessTimer4_0
+//  946   {
+//  947     if (TIMIF & TIMIF_T4CH0IF)
+        MOV     C,0xd8.4
+        JNC     ??halProcessTimer4_1
+//  948     {
+//  949       TIMIF &= ~(TIMIF_T4CH0IF);
+        CLR     0xd8.4
+//  950       halTimerSendCallBack (HAL_TIMER_2, HAL_TIMER_CHANNEL_A, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x2
+        MOV     R1,#0x2
+        LCALL   ??halTimerSendCallBack?relay
+//  951     }
+//  952     if (TIMIF & TIMIF_T4CH1IF)
+??halProcessTimer4_1:
+        MOV     C,0xd8.5
+        JNC     ??halProcessTimer4_2
+//  953     {
+//  954       TIMIF &= ~(TIMIF_T4CH1IF);
+        CLR     0xd8.5
+//  955       halTimerSendCallBack (HAL_TIMER_2, HAL_TIMER_CHANNEL_B, HAL_TIMER_CH_MODE_OUTPUT_COMPARE);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x2
+        MOV     R2,#0x4
+        SJMP    ??halProcessTimer4_3
+//  956     }
+//  957   }
+//  958   else if (halTimerRecord[halTimerRemap(HAL_TIMER_2)].channelMode == HAL_TIMER_CH_MODE_OVERFLOW)
+??halProcessTimer4_0:
+        MOV     A,#0x4
+        XRL     A,R0
+        JNZ     ??halProcessTimer4_2
+//  959   if (TIMIF & TIMIF_T4OVFIF)
+        MOV     C,0xd8.3
+        JNC     ??halProcessTimer4_2
+//  960   {
+//  961     TIMIF &= ~(TIMIF_T4OVFIF);
+        CLR     0xd8.3
+//  962     halTimerSendCallBack (HAL_TIMER_2, HAL_TIMER_CHANNEL_SINGLE, HAL_TIMER_CH_MODE_OVERFLOW);
+        ; Setup parameters for call to function halTimerSendCallBack
+        MOV     R3,#0x4
+        MOV     R2,#0x1
+??halProcessTimer4_3:
+        MOV     R1,#0x2
+        LCALL   ??halTimerSendCallBack?relay
+//  963   }
+//  964 }
+??halProcessTimer4_2:
+        LJMP    ?Subroutine3 & 0xFFFF
+        CFI EndBlock cfiBlock97
+        REQUIRE _A_TIMIF
+//  965 
+//  966 /***************************************************************************************************
+//  967  *                                    INTERRUPT SERVICE ROUTINE
+//  968  ***************************************************************************************************/
+//  969 
+//  970 /**************************************************************************************************
+//  971  * @fn      halTimer1Isr
+//  972  *
+//  973  * @brief   Timer 1 ISR
+//  974  *
+//  975  * @param
+//  976  *
+//  977  * @return
+//  978  **************************************************************************************************/
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  979 HAL_ISR_FUNCTION( halTimer1Isr, T1_VECTOR )
+halTimer1Isr:
+        CFI Block cfiBlock98 Using cfiCommon1
+        CFI Function halTimer1Isr
+        CODE
+//  980 {
+        FUNCALL halTimer1Isr, halProcessTimer1
+        LOCFRAME ISTACK, 15, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 15, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    A
+        CFI A Frame(CFA_SP, 3)
+        CFI CFA_SP SP+-3
+        MOV     A,#-0xe
+        LCALL   ?INTERRUPT_ENTER_XSP
+        CFI B load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI PSW load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 15
+        ; Auto size: 0
+//  981   halProcessTimer1 ();
+        ; Setup parameters for call to function halProcessTimer1
+        LCALL   ??halProcessTimer1?relay
+        CFI EndBlock cfiBlock98
+//  982 }
+        REQUIRE ?Subroutine4
+        ; // Fall through to label ?Subroutine4
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine4:
+        CFI Block cfiBlock99 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA_SP SP+-3
+        CFI CFA_XSP16 add(XSP16, 14)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI B load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI A Frame(CFA_SP, 3)
+        CFI PSW load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI R1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        MOV     R7,#0x1
+        LJMP    ?INTERRUPT_LEAVE_XSP
+        CFI EndBlock cfiBlock99
+//  983 
+//  984 /**************************************************************************************************
+//  985  * @fn      halTimer3Isr
+//  986  *
+//  987  * @brief   Timer 3 ISR
+//  988  *
+//  989  * @param
+//  990  *
+//  991  * @return
+//  992  **************************************************************************************************/
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  993 HAL_ISR_FUNCTION( halTimer3Isr, T3_VECTOR )
+halTimer3Isr:
+        CFI Block cfiBlock100 Using cfiCommon1
+        CFI Function halTimer3Isr
+        CODE
+//  994 {
+        FUNCALL halTimer3Isr, halProcessTimer3
+        LOCFRAME ISTACK, 15, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 15, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    A
+        CFI A Frame(CFA_SP, 3)
+        CFI CFA_SP SP+-3
+        MOV     A,#-0xe
+        LCALL   ?INTERRUPT_ENTER_XSP
+        CFI B load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI PSW load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 15
+        ; Auto size: 0
+//  995   halProcessTimer3 ();
+        ; Setup parameters for call to function halProcessTimer3
+        LCALL   ??halProcessTimer3?relay
+//  996 }
+        SJMP    ?Subroutine4
+        CFI EndBlock cfiBlock100
+//  997 
+//  998 /**************************************************************************************************
+//  999  * @fn      halTimer4Isr
+// 1000  *
+// 1001  * @brief   Timer 4 ISR
+// 1002  *
+// 1003  * @param
+// 1004  *
+// 1005  * @return
+// 1006  **************************************************************************************************/
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// 1007 HAL_ISR_FUNCTION( halTimer4Isr, T4_VECTOR )
+halTimer4Isr:
+        CFI Block cfiBlock101 Using cfiCommon1
+        CFI Function halTimer4Isr
+        CODE
+// 1008 {
+        FUNCALL halTimer4Isr, halProcessTimer4
+        LOCFRAME ISTACK, 15, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 15, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    A
+        CFI A Frame(CFA_SP, 3)
+        CFI CFA_SP SP+-3
+        MOV     A,#-0xe
+        LCALL   ?INTERRUPT_ENTER_XSP
+        CFI B load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI PSW load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 15
+        ; Auto size: 0
+// 1009   halProcessTimer4 ();
+        ; Setup parameters for call to function halProcessTimer4
+        LCALL   ??halProcessTimer4?relay
+// 1010 }
+        SJMP    ?Subroutine4
+        CFI EndBlock cfiBlock101
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 75
+`??halTimer1Isr??INTVEC 75`:
+        LJMP       (halTimer1Isr)
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 91
+`??halTimer3Isr??INTVEC 91`:
+        LJMP       (halTimer3Isr)
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 99
+`??halTimer4Isr??INTVEC 99`:
+        LJMP       (halTimer4Isr)
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_10c4:
+        DD 4292
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_1f4:
+        DD 500
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_3e8:
+        DD 1000
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimer1Init?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimer1Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimer1SetPeriod?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimer1SetPeriod
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimer1SetChannelDuty?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimer1SetChannelDuty
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimer1SetChannelCount?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimer1SetChannelCount
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimer1SetChannelCCTL?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimer1SetChannelCCTL
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimerInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimerInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimerConfig?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimerConfig
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimerStart?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimerStart
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimerTick?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimerTick
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimerStop?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimerStop
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimerSetCount?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimerSetCount
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimerSetPrescale?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimerSetPrescale
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimerSetOpMode?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimerSetOpMode
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimerSetChannelMode?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimerSetChannelMode
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??HalTimerInterruptEnable?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    HalTimerInterruptEnable
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimerSendCallBack?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimerSendCallBack
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halTimerRemap?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halTimerRemap
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halProcessTimer1?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halProcessTimer1
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halProcessTimer3?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halProcessTimer3
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halProcessTimer4?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halProcessTimer4
+
+        END
+// 1011 
+// 1012 /***************************************************************************************************
+// 1013 ***************************************************************************************************/
+// 
+// 2 047 bytes in segment BANKED_CODE
+//   120 bytes in segment BANK_RELAYS
+//     9 bytes in segment INTVEC
+//    39 bytes in segment NEAR_CODE
+//    13 bytes in segment SFR_AN
+//    12 bytes in segment XDATA_ROM_C
+//   128 bytes in segment XDATA_Z
+// 
+// 2 206 bytes of CODE  memory (+  9 bytes shared)
+//     0 bytes of CONST memory (+ 12 bytes shared)
+//     0 bytes of DATA  memory (+ 13 bytes shared)
+//   128 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none
