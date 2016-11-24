@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  15:08:47 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  16:35:31 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -1616,20 +1616,20 @@ CommonApp_ProcessEvent:
         MOV     DPL,R6
         MOV     DPH,R7
         MOVX    A,@DPTR
-        ADD     A,#-0x1a
-        JNZ     $+5
-        LJMP    ??CommonApp_ProcessEvent_3 & 0xFFFF
-        ADD     A,#0x5a
-        JZ      ??CommonApp_ProcessEvent_4
+        ADD     A,#0x40
+        JZ      ??CommonApp_ProcessEvent_3
         ADD     A,#-0x11
         JNZ     $+5
-        LJMP    ??CommonApp_ProcessEvent_5 & 0xFFFF
+        LJMP    ??CommonApp_ProcessEvent_4 & 0xFFFF
         ADD     A,#-0x2
-        JZ      $+5
-        LJMP    ??CommonApp_ProcessEvent_6 & 0xFFFF
+        JZ      ??CommonApp_ProcessEvent_5
+        ADD     A,#-0x47
+        JZ      ??CommonApp_ProcessEvent_6
+        LJMP    ??CommonApp_ProcessEvent_7 & 0xFFFF
 //  228         {
 //  229         case ZDO_CB_MSG:
 //  230 		  CommonApp_ProcessZDOMsgs( (zdoIncomingMsg_t *)MSGpkt );
+??CommonApp_ProcessEvent_5:
         MOV     A,R6
         ADD     A,#0xc
         MOV     DPL,A
@@ -1638,13 +1638,13 @@ CommonApp_ProcessEvent:
         MOV     DPH,A
         MOVX    A,@DPTR
         XRL     A,#0x6
-        JNZ     ??CommonApp_ProcessEvent_7
+        JNZ     ??CommonApp_ProcessEvent_8
         INC     DPTR
         MOVX    A,@DPTR
         XRL     A,#0x80
-??CommonApp_ProcessEvent_7:
+??CommonApp_ProcessEvent_8:
         JZ      $+5
-        LJMP    ??CommonApp_ProcessEvent_6 & 0xFFFF
+        LJMP    ??CommonApp_ProcessEvent_7 & 0xFFFF
         ; Setup parameters for call to function ZDO_ParseEPListRsp
         MOV     A,R6
         MOV     R2,A
@@ -1654,16 +1654,16 @@ CommonApp_ProcessEvent:
         MOV     A,R2
         ORL     A,R3
         JNZ     $+5
-        LJMP    ??CommonApp_ProcessEvent_6 & 0xFFFF
+        LJMP    ??CommonApp_ProcessEvent_7 & 0xFFFF
         MOV     DPL,R2
         MOV     DPH,R3
         MOVX    A,@DPTR
-        JNZ     ??CommonApp_ProcessEvent_8
+        JNZ     ??CommonApp_ProcessEvent_9
         INC     DPTR
         INC     DPTR
         INC     DPTR
         MOVX    A,@DPTR
-        JZ      ??CommonApp_ProcessEvent_8
+        JZ      ??CommonApp_ProcessEvent_9
         MOV     DPTR,#CommonApp_DstAddr + 8
         MOV     A,#0x2
         MOVX    @DPTR,A
@@ -1690,15 +1690,15 @@ CommonApp_ProcessEvent:
         MOVX    A,@DPTR
         MOV     DPTR,#CommonApp_DstAddr + 9
         MOVX    @DPTR,A
-??CommonApp_ProcessEvent_8:
+??CommonApp_ProcessEvent_9:
         ; Setup parameters for call to function osal_mem_free
         LCALL   ??osal_mem_free?relay
-        SJMP    ??CommonApp_ProcessEvent_6
+        SJMP    ??CommonApp_ProcessEvent_7
 //  231           break;
 //  232 
 //  233         case KEY_CHANGE:
 //  234 		  CommonApp_HandleKeys( ((keyChange_t *)MSGpkt)->state, ((keyChange_t *)MSGpkt)->keys );
-??CommonApp_ProcessEvent_4:
+??CommonApp_ProcessEvent_3:
         ; Setup parameters for call to function CommonApp_HandleKeys
         INC     DPTR
         INC     DPTR
@@ -1713,7 +1713,7 @@ CommonApp_ProcessEvent:
         MOV     R1,A
         LCALL   ??CommonApp_HandleKeys?relay
 //  235           break;
-        SJMP    ??CommonApp_ProcessEvent_6
+        SJMP    ??CommonApp_ProcessEvent_7
 //  236 
 //  237         case AF_DATA_CONFIRM_CMD:
 //  238           // This message is received as a confirmation of a data packet sent.
@@ -1739,7 +1739,7 @@ CommonApp_ProcessEvent:
 //  258 		  HalLedSet( HAL_LED_1,  HAL_LED_MODE_BLINK);
 //  259 #else
 //  260 		  HalLedSet(HAL_LED_2, HAL_LED_MODE_BLINK);
-??CommonApp_ProcessEvent_3:
+??CommonApp_ProcessEvent_6:
         ; Setup parameters for call to function HalLedSet
         MOV     R2,#0x2
         MOV     R1,#0x2
@@ -1754,11 +1754,11 @@ CommonApp_ProcessEvent:
         LCALL   ??CommonApp_MessageMSGCB?relay
 //  263 #endif
 //  264           break;
-        SJMP    ??CommonApp_ProcessEvent_6
+        SJMP    ??CommonApp_ProcessEvent_7
 //  265 
 //  266         case ZDO_STATE_CHANGE:
 //  267 		  HalLedSet(HAL_LED_3, HAL_LED_MODE_BLINK);
-??CommonApp_ProcessEvent_5:
+??CommonApp_ProcessEvent_4:
         ; Setup parameters for call to function HalLedSet
         MOV     R2,#0x2
         MOV     R1,#0x4
@@ -1783,13 +1783,13 @@ CommonApp_ProcessEvent:
         MOV     DPTR,#CommonApp_NwkState
         MOVX    A,@DPTR
         XRL     A,#0x7
-        JZ      ??CommonApp_ProcessEvent_9
+        JZ      ??CommonApp_ProcessEvent_10
         MOVX    A,@DPTR
         XRL     A,#0x6
-        JNZ     ??CommonApp_ProcessEvent_10
+        JNZ     ??CommonApp_ProcessEvent_11
 //  276           {      
 //  277             osal_set_event(CommonApp_TaskID,RS485_HEART_EVT);
-??CommonApp_ProcessEvent_9:
+??CommonApp_ProcessEvent_10:
         ; Setup parameters for call to function osal_set_event
         MOV     R2,#0x0
         MOV     R3,#0x2
@@ -1799,7 +1799,7 @@ CommonApp_ProcessEvent:
         LCALL   ??osal_set_event?relay
 //  278           }
 //  279 		  isFirstState = 0;
-??CommonApp_ProcessEvent_10:
+??CommonApp_ProcessEvent_11:
         MOV     DPTR,#isFirstState
         CLR     A
         MOVX    @DPTR,A
@@ -1811,7 +1811,7 @@ CommonApp_ProcessEvent:
 //  285 
 //  286       // Release the memory
 //  287       osal_msg_deallocate( (uint8 *)MSGpkt );
-??CommonApp_ProcessEvent_6:
+??CommonApp_ProcessEvent_7:
         ; Setup parameters for call to function osal_msg_deallocate
         MOV     A,R6
         MOV     R2,A
@@ -1834,16 +1834,16 @@ CommonApp_ProcessEvent:
         MOV     R2,?V0 + 0
         MOV     A,?V0 + 1
         XRL     A,#0x80
-??CommonApp_ProcessEvent_11:
+??CommonApp_ProcessEvent_12:
         MOV     R3,A
-        SJMP    ??CommonApp_ProcessEvent_12
+        SJMP    ??CommonApp_ProcessEvent_13
 //  295   }
 //  296   
 //  297    if ( events & RS485_HEART_EVT )
 ??CommonApp_ProcessEvent_0:
         MOV     A,R3
         ANL     A,#0x2
-        JZ      ??CommonApp_ProcessEvent_13
+        JZ      ??CommonApp_ProcessEvent_14
 //  298   {
 //  299     nwkAddr = NLME_GetShortAddr();//正常字节序，高位在前，低位在后
         ; Setup parameters for call to function NLME_GetShortAddr
@@ -1895,14 +1895,14 @@ CommonApp_ProcessEvent:
         MOV     R2,?V0 + 0
         MOV     A,?V0 + 1
         XRL     A,#0x2
-        SJMP    ??CommonApp_ProcessEvent_11
+        SJMP    ??CommonApp_ProcessEvent_12
 //  312   }
 //  313 
 //  314   return process_event(task_id, events);
-??CommonApp_ProcessEvent_13:
+??CommonApp_ProcessEvent_14:
         ; Setup parameters for call to function process_event
         LCALL   ??process_event?relay
-??CommonApp_ProcessEvent_12:
+??CommonApp_ProcessEvent_13:
         MOV     R7,#0x6
         LJMP    ?BANKED_LEAVE_XDATA
         CFI EndBlock cfiBlock2
@@ -5243,7 +5243,7 @@ RS485_GetDevDataSend:
 
         END
 // 
-// 2 251 bytes in segment BANKED_CODE
+// 2 248 bytes in segment BANKED_CODE
 //    96 bytes in segment BANK_RELAYS
 //     1 byte  in segment SFR_AN
 //     2 bytes in segment XDATA_I
@@ -5251,7 +5251,7 @@ RS485_GetDevDataSend:
 //   203 bytes in segment XDATA_ROM_C
 //    61 bytes in segment XDATA_Z
 // 
-// 2 349 bytes of CODE  memory
+// 2 346 bytes of CODE  memory
 //   203 bytes of CONST memory
 //     0 bytes of DATA  memory (+ 1 byte shared)
 //    63 bytes of XDATA memory

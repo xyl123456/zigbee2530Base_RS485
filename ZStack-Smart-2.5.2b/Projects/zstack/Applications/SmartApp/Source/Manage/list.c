@@ -90,16 +90,22 @@ void destroyNodeList(void)
 void setNodeList(Node * node)
 {
   Node* perior = head;
-  
+  uint8 count=0;
   while(NULL != perior)
   {
     if(perior->addr_dev==node->addr_dev)//通过设备地址确认是否在list表中
     {
+      count=1;
       perior->short_dev=node->short_dev;//if in the list,cover the short_dev
+      break;
     }
     else
-      addNode(node);
+    count=0;
     perior=perior->pNext;
+  }
+  if(count==0)
+  {
+     addNode(node);
   }
 }
 
