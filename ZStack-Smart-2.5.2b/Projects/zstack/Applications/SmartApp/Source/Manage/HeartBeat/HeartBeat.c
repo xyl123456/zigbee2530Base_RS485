@@ -76,7 +76,7 @@ void CommonApp_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
 
 	if(!SSAFrame_Package(HEAD_UH, &mFrame, &fBuf, &fLen))
 	{
-		CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
+	  CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
 	}
 
 #if defined(POWER_SAVING)
@@ -89,7 +89,7 @@ void CommonApp_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
 	memcpy(oFrame.short_addr, SHORT_ADDR_G, 4);
 	memcpy(oFrame.ext_addr, EXT_ADDR_G, 16);
 	oFrame.data = dbuf;
-    CommonDevice_GetData(oFrame.data, &oFrame.data_len);
+        CommonDevice_GetData(oFrame.data, &oFrame.data_len);
 	memcpy(oFrame.tail, f_tail, 4);
 
 	if(!SSAFrame_Package(HEAD_UO, &oFrame, &fBuf, &fLen))
@@ -97,4 +97,13 @@ void CommonApp_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
 		CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
 	}
 #endif
+}
+
+
+void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
+{
+      nwkAddr_buf[0]=nwkAddr>>8;
+      nwkAddr_buf[1]=nwkAddr&0x00ff;
+      nwkAddr_buf[2]=Address_dev;
+      CommonApp_SendTheMessage(COORDINATOR_ADDR,nwkAddr_buf, 3);
 }

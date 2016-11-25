@@ -373,6 +373,6 @@ uint16 process_event(uint8 task_id, uint16 events)
   }	
 
   // Discard unknown events
-  return 0;
+   return process_event(task_id, events);
 }
 

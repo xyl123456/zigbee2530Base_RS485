@@ -269,14 +269,9 @@ uint16 CommonApp_ProcessEvent(uint8 task_id, uint16 events)
 #if defined(POWERON_FACTORY_SETTING) && !defined(RTR_NWK)
 		  CommonApp_PowerOnFactorySetting(CommonApp_NwkState);
 #endif
-#ifndef RS485_DEV
 		  CommonApp_ProcessZDOStates( CommonApp_NwkState );
-#endif
-        if( CommonApp_NwkState == DEV_ROUTER || CommonApp_NwkState == DEV_END_DEVICE)
-          {      
-            osal_set_event(CommonApp_TaskID,RS485_HEART_EVT);
-          }
-		  isFirstState = 0;
+                  	  isFirstState = 0;
+  
           break;
 
         default:
@@ -294,23 +289,6 @@ uint16 CommonApp_ProcessEvent(uint8 task_id, uint16 events)
     return (events ^ SYS_EVENT_MSG);
   }
   
-   if ( events & RS485_HEART_EVT )
-  {
-    nwkAddr = NLME_GetShortAddr();//正常字节序，高位在前，低位在后
-    
-    nwkAddr_buf[0]=nwkAddr>>8;
-    nwkAddr_buf[1]=nwkAddr&0x00ff;
-    nwkAddr_buf[2]=Address_dev;
-#ifdef UART_DEBUG
-    Data_TxHandler(nwkAddr_buf, 3);
-#endif
-    CommonApp_SendTheMessage(COORDINATOR_ADDR, nwkAddr_buf, 3);
-    osal_start_timerEx( CommonApp_TaskID,
-                        RS485_HEART_EVT,
-                        RS485_SEND_realtime_TIMEOUT );
-    return (events ^ RS485_HEART_EVT);
-  }
-
   return process_event(task_id, events);
 }
 
@@ -846,8 +824,8 @@ void RS485_GetDevDataSend(uint8 *buf, uint16 len)
     Node *node1 = (Node*)osal_mem_alloc(sizeof(Node));
     node1->short_dev=(uint16)(data_buf[0])<<8 | (uint16)data_buf[1];
     node1->addr_dev=data_buf[2];
-    setNodeList(node1);
+    setNodeList(node1); 
   }
   else
-  HalUARTWrite(SERIAL_COM_PORT, buf, len);  
+  HalUARTWrite(SERIAL_COM_PORT, buf, len);
 }

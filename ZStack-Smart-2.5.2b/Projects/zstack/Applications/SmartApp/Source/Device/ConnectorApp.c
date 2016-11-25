@@ -170,6 +170,7 @@ void CommonApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
  */
 void CommonApp_ProcessZDOStates(devStates_t status)
 {
+#ifndef  RS485_DEV
   if(status == DEV_ZB_COORD || status == DEV_ROUTER)
   {
 	nwkAddr = NLME_GetShortAddr();
@@ -217,6 +218,10 @@ void CommonApp_ProcessZDOStates(devStates_t status)
 	ConnectorApp_HeartBeatEvent();
 #endif
   }
+  
+#else
+
+#endif
 }
 
 
@@ -429,7 +434,7 @@ void CommonApp_RS485SendMessage(uint8 *data, uint8 length)
 {
    uint16 dest_addr;
    uint8 dev_addr=data[0];
-  if(data[0]==0xFA)
+    if(data[0]==0xFA)
   {
     CommonApp_SendTheMessage(BROADCAST_ADDR, data,length);
   }
@@ -440,4 +445,5 @@ void CommonApp_RS485SendMessage(uint8 *data, uint8 length)
    if(dest_addr)
    CommonApp_SendTheMessage(dest_addr, data,length);
   }
+   //CommonApp_SendTheMessage(BROADCAST_ADDR, data,length);
 }

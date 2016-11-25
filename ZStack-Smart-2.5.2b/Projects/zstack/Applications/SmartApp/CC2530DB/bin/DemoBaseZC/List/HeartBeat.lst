@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  14:17:49 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         25/Nov/2016  10:13:18 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -303,7 +303,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   00008E   E9           MOV     A,R1
    \   00008F   7019         JNZ     ??CommonApp_HeartBeatCB_0
      78          	{
-     79          		CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
+     79          	  CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
    \   000091                ; Setup parameters for call to function CommonApp_SendTheMessage
    \   000091   85..82       MOV     DPL,?XSP + 0
    \   000094   85..83       MOV     DPH,?XSP + 1
@@ -331,7 +331,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      89          	memcpy(oFrame.short_addr, SHORT_ADDR_G, 4);
      90          	memcpy(oFrame.ext_addr, EXT_ADDR_G, 16);
      91          	oFrame.data = dbuf;
-     92              CommonDevice_GetData(oFrame.data, &oFrame.data_len);
+     92                  CommonDevice_GetData(oFrame.data, &oFrame.data_len);
      93          	memcpy(oFrame.tail, f_tail, 4);
      94          
      95          	if(!SSAFrame_Package(HEAD_UO, &oFrame, &fBuf, &fLen))
@@ -345,11 +345,54 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   0000AC   12....       LCALL   ?DEALLOC_XSTACK8
    \   0000AF   7F02         MOV     R7,#0x2
    \   0000B1   02....       LJMP    ?BANKED_LEAVE_XDATA
+    101          
+    102          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    103          void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
+   \                     RS485_HeartBeatCB:
+    104          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    105                nwkAddr_buf[0]=nwkAddr>>8;
+   \   000004   90....       MOV     DPTR,#nwkAddr + 1
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   90....       MOV     DPTR,#nwkAddr_buf
+   \   00000B   F0           MOVX    @DPTR,A
+    106                nwkAddr_buf[1]=nwkAddr&0x00ff;
+   \   00000C   90....       MOV     DPTR,#nwkAddr
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   90....       MOV     DPTR,#nwkAddr_buf + 1
+   \   000013   F0           MOVX    @DPTR,A
+    107                nwkAddr_buf[2]=Address_dev;
+   \   000014   90....       MOV     DPTR,#Address_dev
+   \   000017   E0           MOVX    A,@DPTR
+   \   000018   90....       MOV     DPTR,#nwkAddr_buf + 2
+   \   00001B   F0           MOVX    @DPTR,A
+    108                CommonApp_SendTheMessage(COORDINATOR_ADDR,nwkAddr_buf, 3);
+   \   00001C                ; Setup parameters for call to function CommonApp_SendTheMessage
+   \   00001C   7903         MOV     R1,#0x3
+   \   00001E   7C..         MOV     R4,#nwkAddr_buf & 0xff
+   \   000020   7D..         MOV     R5,#(nwkAddr_buf >> 8) & 0xff
+   \   000022   7A00         MOV     R2,#0x0
+   \   000024   7B00         MOV     R3,#0x0
+   \   000026   12....       LCALL   ??CommonApp_SendTheMessage?relay
+    109          }
+   \   000029   D083         POP     DPH
+   \   00002B   D082         POP     DPL
+   \   00002D   02....       LJMP    ?BRET
 
    \                                 In  segment BANK_RELAYS, align 1
    \                     ??CommonApp_HeartBeatCB?relay:
    \   000000   12....       LCALL   ?BDISPATCH
    \   000003   ......       DC24    CommonApp_HeartBeatCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RS485_HeartBeatCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RS485_HeartBeatCB
 
    \                                 In  segment XDATA_ROM_C, align 1
    \                     `?<Constant "UH:">`:
@@ -365,6 +408,8 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
        -> memcpy                       0      0     54
        -> SSAFrame_Package             0      0     54
        -> CommonApp_SendTheMessage     0      0     50
+     RS485_HeartBeatCB                 2      0      2
+       -> CommonApp_SendTheMessage     4      0      0
 
 
    Segment part sizes:
@@ -372,15 +417,17 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      Function/Label                Bytes
      --------------                -----
      CommonApp_HeartBeatCB          180
+     RS485_HeartBeatCB               48
      ??CommonApp_HeartBeatCB?relay    6
+     ??RS485_HeartBeatCB?relay        6
      ?<Constant "UH:">                4
 
  
- 180 bytes in segment BANKED_CODE
-   6 bytes in segment BANK_RELAYS
+ 228 bytes in segment BANKED_CODE
+  12 bytes in segment BANK_RELAYS
    4 bytes in segment XDATA_ROM_C
  
- 186 bytes of CODE  memory
+ 240 bytes of CODE  memory
    4 bytes of CONST memory
 
 Errors: none

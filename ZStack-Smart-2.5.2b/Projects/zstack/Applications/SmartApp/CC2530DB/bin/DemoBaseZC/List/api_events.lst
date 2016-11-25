@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         23/Nov/2016  19:49:19 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         25/Nov/2016  10:13:19 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -1334,8 +1334,9 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000007   8A..         MOV     ?V0 + 0,R2
    \   000009   8B..         MOV     ?V0 + 1,R3
     344            ssaUserEvent_t *t_ssaUserEvent = puser_event;
+   \                     ??process_event_0:
    \   00000B   90....       MOV     DPTR,#puser_event
-   \   00000E   8014         SJMP    ??process_event_0
+   \   00000E   8014         SJMP    ??process_event_1
     345            
     346            while(t_ssaUserEvent)
     347            {
@@ -1361,7 +1362,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
     367            	else
     368            	{
     369          	  Del_User_Event(t_ssaUserEvent->event);
-   \                     ??process_event_1:
+   \                     ??process_event_2:
    \   000010                ; Setup parameters for call to function Del_User_Event
    \   000010   8E82         MOV     DPL,R6
    \   000012   8F83         MOV     DPH,R7
@@ -1371,14 +1372,14 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000017   12....       LCALL   ??Del_User_Event?relay
     371            
     372            	t_ssaUserEvent = t_ssaUserEvent->next;
-   \                     ??process_event_2:
+   \                     ??process_event_3:
    \   00001A   EE           MOV     A,R6
    \   00001B   240B         ADD     A,#0xb
    \   00001D   F582         MOV     DPL,A
    \   00001F   EF           MOV     A,R7
    \   000020   3400         ADDC    A,#0x0
    \   000022   F583         MOV     DPH,A
-   \                     ??process_event_0:
+   \                     ??process_event_1:
    \   000024   E0           MOVX    A,@DPTR
    \   000025   FE           MOV     R6,A
    \   000026   A3           INC     DPTR
@@ -1386,144 +1387,138 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000028   FF           MOV     R7,A
    \   000029   EE           MOV     A,R6
    \   00002A   4F           ORL     A,R7
-   \   00002B   7003         JNZ     $+5
-   \   00002D   02....       LJMP    ??process_event_3 & 0xFFFF
-   \   000030   EE           MOV     A,R6
-   \   000031   2406         ADD     A,#0x6
-   \   000033   F5..         MOV     ?V0 + 8,A
-   \   000035   EF           MOV     A,R7
-   \   000036   3400         ADDC    A,#0x0
-   \   000038   F5..         MOV     ?V0 + 9,A
-   \   00003A   85..82       MOV     DPL,?V0 + 8
-   \   00003D   F583         MOV     DPH,A
-   \   00003F   E0           MOVX    A,@DPTR
-   \   000040   547F         ANL     A,#0x7f
-   \   000042   7005         JNZ     ??process_event_4
-   \   000044   E0           MOVX    A,@DPTR
-   \   000045   A2E7         MOV     C,0xE0 /* A   */.7
-   \   000047   50C7         JNC     ??process_event_1
+   \   00002B   60DE         JZ      ??process_event_0
+   \   00002D   EE           MOV     A,R6
+   \   00002E   2406         ADD     A,#0x6
+   \   000030   F5..         MOV     ?V0 + 8,A
+   \   000032   EF           MOV     A,R7
+   \   000033   3400         ADDC    A,#0x0
+   \   000035   F5..         MOV     ?V0 + 9,A
+   \   000037   85..82       MOV     DPL,?V0 + 8
+   \   00003A   F583         MOV     DPH,A
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   547F         ANL     A,#0x7f
+   \   00003F   7005         JNZ     ??process_event_4
+   \   000041   E0           MOVX    A,@DPTR
+   \   000042   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000044   50CA         JNC     ??process_event_2
    \                     ??process_event_4:
-   \   000049   8E82         MOV     DPL,R6
-   \   00004B   8F83         MOV     DPH,R7
-   \   00004D   E0           MOVX    A,@DPTR
-   \   00004E   65..         XRL     A,?V0 + 4
-   \   000050   70C8         JNZ     ??process_event_2
-   \   000052   EE           MOV     A,R6
-   \   000053   2402         ADD     A,#0x2
-   \   000055   F8           MOV     R0,A
-   \   000056   EF           MOV     A,R7
-   \   000057   3400         ADDC    A,#0x0
-   \   000059   F9           MOV     R1,A
-   \   00005A   88..         MOV     ?V0 + 2,R0
-   \   00005C   89..         MOV     ?V0 + 3,R1
-   \   00005E   8882         MOV     DPL,R0
-   \   000060   F583         MOV     DPH,A
-   \   000062   E0           MOVX    A,@DPTR
-   \   000063   55..         ANL     A,?V0 + 0
-   \   000065   F8           MOV     R0,A
-   \   000066   A3           INC     DPTR
-   \   000067   E0           MOVX    A,@DPTR
-   \   000068   55..         ANL     A,?V0 + 1
-   \   00006A   F9           MOV     R1,A
-   \   00006B   E8           MOV     A,R0
-   \   00006C   49           ORL     A,R1
-   \   00006D   60AB         JZ      ??process_event_2
-   \   00006F   8E82         MOV     DPL,R6
-   \   000071   8F83         MOV     DPH,R7
+   \   000046   8E82         MOV     DPL,R6
+   \   000048   8F83         MOV     DPH,R7
+   \   00004A   E0           MOVX    A,@DPTR
+   \   00004B   65..         XRL     A,?V0 + 4
+   \   00004D   70CB         JNZ     ??process_event_3
+   \   00004F   EE           MOV     A,R6
+   \   000050   2402         ADD     A,#0x2
+   \   000052   F8           MOV     R0,A
+   \   000053   EF           MOV     A,R7
+   \   000054   3400         ADDC    A,#0x0
+   \   000056   F9           MOV     R1,A
+   \   000057   88..         MOV     ?V0 + 2,R0
+   \   000059   89..         MOV     ?V0 + 3,R1
+   \   00005B   8882         MOV     DPL,R0
+   \   00005D   F583         MOV     DPH,A
+   \   00005F   E0           MOVX    A,@DPTR
+   \   000060   55..         ANL     A,?V0 + 0
+   \   000062   F8           MOV     R0,A
+   \   000063   A3           INC     DPTR
+   \   000064   E0           MOVX    A,@DPTR
+   \   000065   55..         ANL     A,?V0 + 1
+   \   000067   F9           MOV     R1,A
+   \   000068   E8           MOV     A,R0
+   \   000069   49           ORL     A,R1
+   \   00006A   60AE         JZ      ??process_event_3
+   \   00006C   8E82         MOV     DPL,R6
+   \   00006E   8F83         MOV     DPH,R7
+   \   000070   A3           INC     DPTR
+   \   000071   A3           INC     DPTR
+   \   000072   A3           INC     DPTR
    \   000073   A3           INC     DPTR
    \   000074   A3           INC     DPTR
    \   000075   A3           INC     DPTR
    \   000076   A3           INC     DPTR
    \   000077   A3           INC     DPTR
    \   000078   A3           INC     DPTR
-   \   000079   A3           INC     DPTR
-   \   00007A   A3           INC     DPTR
+   \   000079   E0           MOVX    A,@DPTR
+   \   00007A   F8           MOV     R0,A
    \   00007B   A3           INC     DPTR
    \   00007C   E0           MOVX    A,@DPTR
-   \   00007D   F8           MOV     R0,A
-   \   00007E   A3           INC     DPTR
-   \   00007F   E0           MOVX    A,@DPTR
-   \   000080   F9           MOV     R1,A
-   \   000081   88..         MOV     ?V0 + 6,R0
-   \   000083   89..         MOV     ?V0 + 7,R1
-   \   000085   E8           MOV     A,R0
-   \   000086   45..         ORL     A,?V0 + 7
-   \   000088   6026         JZ      ??process_event_5
-   \   00008A                ; Setup parameters for indirect call
-   \   00008A   78..         MOV     R0,#?V0 + 8
-   \   00008C   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   00008F   EE           MOV     A,R6
-   \   000090   2404         ADD     A,#0x4
-   \   000092   FC           MOV     R4,A
-   \   000093   EF           MOV     A,R7
-   \   000094   3400         ADDC    A,#0x0
-   \   000096   FD           MOV     R5,A
-   \   000097   8E82         MOV     DPL,R6
-   \   000099   8F83         MOV     DPH,R7
+   \   00007D   F9           MOV     R1,A
+   \   00007E   88..         MOV     ?V0 + 6,R0
+   \   000080   89..         MOV     ?V0 + 7,R1
+   \   000082   E8           MOV     A,R0
+   \   000083   45..         ORL     A,?V0 + 7
+   \   000085   6026         JZ      ??process_event_5
+   \   000087                ; Setup parameters for indirect call
+   \   000087   78..         MOV     R0,#?V0 + 8
+   \   000089   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00008C   EE           MOV     A,R6
+   \   00008D   2404         ADD     A,#0x4
+   \   00008F   FC           MOV     R4,A
+   \   000090   EF           MOV     A,R7
+   \   000091   3400         ADDC    A,#0x0
+   \   000093   FD           MOV     R5,A
+   \   000094   8E82         MOV     DPL,R6
+   \   000096   8F83         MOV     DPH,R7
+   \   000098   A3           INC     DPTR
+   \   000099   A3           INC     DPTR
+   \   00009A   A3           INC     DPTR
    \   00009B   A3           INC     DPTR
    \   00009C   A3           INC     DPTR
-   \   00009D   A3           INC     DPTR
-   \   00009E   A3           INC     DPTR
-   \   00009F   A3           INC     DPTR
-   \   0000A0   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \   00009D   12....       LCALL   ?Subroutine13 & 0xFFFF
    \                     ??CrossCallReturnLabel_34:
-   \   0000A3   85..82       MOV     DPL,?V0 + 6
-   \   0000A6   8983         MOV     DPH,R1
-   \   0000A8   12....       LCALL   ?CALL_IND
-   \   0000AB   7402         MOV     A,#0x2
-   \   0000AD   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000A0   85..82       MOV     DPL,?V0 + 6
+   \   0000A3   8983         MOV     DPH,R1
+   \   0000A5   12....       LCALL   ?CALL_IND
+   \   0000A8   7402         MOV     A,#0x2
+   \   0000AA   12....       LCALL   ?DEALLOC_XSTACK8
    \                     ??process_event_5:
-   \   0000B0   85..82       MOV     DPL,?V0 + 8
-   \   0000B3   85..83       MOV     DPH,?V0 + 9
-   \   0000B6   E0           MOVX    A,@DPTR
-   \   0000B7   F8           MOV     R0,A
-   \   0000B8   747F         MOV     A,#0x7f
-   \   0000BA   58           ANL     A,R0
-   \   0000BB   F9           MOV     R1,A
-   \   0000BC   747F         MOV     A,#0x7f
-   \   0000BE   69           XRL     A,R1
-   \   0000BF   6014         JZ      ??process_event_6
-   \   0000C1   88..         MOV     ?V0 + 5,R0
-   \   0000C3   74FF         MOV     A,#-0x1
-   \   0000C5   29           ADD     A,R1
-   \   0000C6   547F         ANL     A,#0x7f
-   \   0000C8   F8           MOV     R0,A
-   \   0000C9   7480         MOV     A,#-0x80
-   \   0000CB   55..         ANL     A,?V0 + 5
-   \   0000CD   48           ORL     A,R0
-   \   0000CE   F8           MOV     R0,A
-   \   0000CF   F0           MOVX    @DPTR,A
-   \   0000D0   747F         MOV     A,#0x7f
-   \   0000D2   58           ANL     A,R0
-   \   0000D3   6007         JZ      ??process_event_7
+   \   0000AD   85..82       MOV     DPL,?V0 + 8
+   \   0000B0   85..83       MOV     DPH,?V0 + 9
+   \   0000B3   E0           MOVX    A,@DPTR
+   \   0000B4   F8           MOV     R0,A
+   \   0000B5   747F         MOV     A,#0x7f
+   \   0000B7   58           ANL     A,R0
+   \   0000B8   F9           MOV     R1,A
+   \   0000B9   747F         MOV     A,#0x7f
+   \   0000BB   69           XRL     A,R1
+   \   0000BC   6014         JZ      ??process_event_6
+   \   0000BE   88..         MOV     ?V0 + 5,R0
+   \   0000C0   74FF         MOV     A,#-0x1
+   \   0000C2   29           ADD     A,R1
+   \   0000C3   547F         ANL     A,#0x7f
+   \   0000C5   F8           MOV     R0,A
+   \   0000C6   7480         MOV     A,#-0x80
+   \   0000C8   55..         ANL     A,?V0 + 5
+   \   0000CA   48           ORL     A,R0
+   \   0000CB   F8           MOV     R0,A
+   \   0000CC   F0           MOVX    @DPTR,A
+   \   0000CD   747F         MOV     A,#0x7f
+   \   0000CF   58           ANL     A,R0
+   \   0000D0   6007         JZ      ??process_event_7
    \                     ??process_event_6:
-   \   0000D5                ; Setup parameters for call to function set_app_event
-   \   0000D5   EE           MOV     A,R6
-   \   0000D6   FA           MOV     R2,A
-   \   0000D7   EF           MOV     A,R7
-   \   0000D8   FB           MOV     R3,A
-   \   0000D9   12....       LCALL   ??set_app_event?relay
+   \   0000D2                ; Setup parameters for call to function set_app_event
+   \   0000D2   EE           MOV     A,R6
+   \   0000D3   FA           MOV     R2,A
+   \   0000D4   EF           MOV     A,R7
+   \   0000D5   FB           MOV     R3,A
+   \   0000D6   12....       LCALL   ??set_app_event?relay
    \                     ??process_event_7:
-   \   0000DC   85..82       MOV     DPL,?V0 + 2
-   \   0000DF   85..83       MOV     DPH,?V0 + 3
-   \   0000E2   E0           MOVX    A,@DPTR
-   \   0000E3   65..         XRL     A,?V0 + 0
-   \   0000E5   FA           MOV     R2,A
-   \   0000E6   A3           INC     DPTR
-   \   0000E7   E0           MOVX    A,@DPTR
-   \   0000E8   65..         XRL     A,?V0 + 1
-   \   0000EA   FB           MOV     R3,A
-   \   0000EB   8004         SJMP    ??process_event_8
+   \   0000D9   85..82       MOV     DPL,?V0 + 2
+   \   0000DC   85..83       MOV     DPH,?V0 + 3
+   \   0000DF   E0           MOVX    A,@DPTR
+   \   0000E0   65..         XRL     A,?V0 + 0
+   \   0000E2   FA           MOV     R2,A
+   \   0000E3   A3           INC     DPTR
+   \   0000E4   E0           MOVX    A,@DPTR
+   \   0000E5   65..         XRL     A,?V0 + 1
+   \   0000E7   FB           MOV     R3,A
+   \   0000E8   7F0A         MOV     R7,#0xa
+   \   0000EA   02....       LJMP    ?BANKED_LEAVE_XDATA
     373            }	
     374          
     375            // Discard unknown events
-    376            return 0;
-   \                     ??process_event_3:
-   \   0000ED   7A00         MOV     R2,#0x0
-   \   0000EF   7B00         MOV     R3,#0x0
-   \                     ??process_event_8:
-   \   0000F1   7F0A         MOV     R7,#0xa
-   \   0000F3   02....       LJMP    ?BANKED_LEAVE_XDATA
+    376             return process_event(task_id, events);
     377          }
 
    \                                 In  segment BANK_RELAYS, align 1
@@ -1610,7 +1605,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      update_user_event          261
      ?Subroutine2                13
      ?Subroutine13                2
-     process_event              246
+     process_event              237
      ??Add_User_Event?relay       6
      ??Del_User_Event?relay       6
      ??set_app_event?relay        6
@@ -1619,11 +1614,11 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      ??process_event?relay        6
 
  
- 1 307 bytes in segment BANKED_CODE
+ 1 298 bytes in segment BANKED_CODE
     36 bytes in segment BANK_RELAYS
     34 bytes in segment XDATA_Z
  
- 1 343 bytes of CODE  memory
+ 1 334 bytes of CODE  memory
     34 bytes of XDATA memory
 
 Errors: none

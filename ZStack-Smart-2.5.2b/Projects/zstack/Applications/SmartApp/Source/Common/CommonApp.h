@@ -61,7 +61,7 @@ extern "C"
 /*********************************************************************
  * MACROS
  */
-#define RS485_HEART_EVT                 0x0200
+#define RS485_HEART_EVT                 0x0008
 //User events message
 #define SERIAL_CMD_EVT				0x4000		//serial receive event by user defined
 #define TRANSNODE_UPLOAD_EVT		0x2000
@@ -254,6 +254,9 @@ extern uint8 list_len;
 extern void CommonApp_GetDevDataSend(uint8 *buf, uint16 len);
 extern void RS485_GetDevDataSend(uint8 *buf, uint16 len);
 extern void CommonApp_RS485SendMessage(uint8 *data, uint8 length);
+
+extern uint16 nwkAddr;
+extern uint8 nwkAddr_buf[3];
 
 /*********************************************************************
 *********************************************************************/

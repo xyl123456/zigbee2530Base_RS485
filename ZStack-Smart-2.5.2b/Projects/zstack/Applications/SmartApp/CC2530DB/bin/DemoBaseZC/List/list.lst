@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  16:51:13 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         25/Nov/2016  10:40:14 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -186,7 +186,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000012   F0           MOVX    @DPTR,A
       9          	if(NULL == head){
    \   000013   12....       LCALL   ?Subroutine2 & 0xFFFF
-   \                     ??CrossCallReturnLabel_10:
+   \                     ??CrossCallReturnLabel_11:
    \   000016   7004         JNZ     ??createNodelist_0
      10          		return list_false;
    \   000018   7900         MOV     R1,#0x0
@@ -244,25 +244,19 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \                     ?Subroutine2:
    \   000000   90....       MOV     DPTR,#head
-   \   000003                REQUIRE ??Subroutine7_0
-   \   000003                ; // Fall through to label ??Subroutine7_0
+   \   000003                REQUIRE ??Subroutine6_0
+   \   000003                ; // Fall through to label ??Subroutine6_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine7_0:
-   \   000000   12....       LCALL   ??Subroutine8_0 & 0xFFFF
-   \                     ??CrossCallReturnLabel_17:
-   \   000003   E8           MOV     A,R0
-   \   000004   49           ORL     A,R1
-   \   000005   22           RET
-
-   \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine8_0:
+   \                     ??Subroutine6_0:
    \   000000   E0           MOVX    A,@DPTR
    \   000001   F8           MOV     R0,A
    \   000002   A3           INC     DPTR
    \   000003   E0           MOVX    A,@DPTR
    \   000004   F9           MOV     R1,A
-   \   000005   22           RET
+   \   000005   E8           MOV     A,R0
+   \   000006   49           ORL     A,R1
+   \   000007   22           RET
      19          
      20          //增加节点尾部添加
 
@@ -276,7 +270,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000005                ; Auto size: 0
      23          	if(NULL == head){
    \   000005   12....       LCALL   ?Subroutine2 & 0xFFFF
-   \                     ??CrossCallReturnLabel_11:
+   \                     ??CrossCallReturnLabel_12:
    \   000008   7004         JNZ     ??addNode_0
      24          		return list_false;
    \   00000A   7900         MOV     R1,#0x0
@@ -313,9 +307,9 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000029   A3           INC     DPTR
    \   00002A   A3           INC     DPTR
    \   00002B   A3           INC     DPTR
-   \   00002C   12....       LCALL   ??Subroutine7_0 & 0xFFFF
+   \   00002C   12....       LCALL   ??Subroutine6_0 & 0xFFFF
      31          		}
-   \                     ??CrossCallReturnLabel_9:
+   \                     ??CrossCallReturnLabel_10:
    \   00002F   70F0         JNZ     ??addNode_3
      32          	q->pNext = node;
    \                     ??addNode_2:
@@ -376,12 +370,12 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000006   FE           MOV     R6,A
      40          	if(NULL == head){
    \   000007   12....       LCALL   ?Subroutine2 & 0xFFFF
-   \                     ??CrossCallReturnLabel_12:
+   \                     ??CrossCallReturnLabel_13:
    \   00000A   7004         JNZ     ??deleteNode_0
      41          		return list_false;
    \                     ??deleteNode_1:
    \   00000C   7900         MOV     R1,#0x0
-   \   00000E   8056         SJMP    ??deleteNode_2
+   \   00000E   805B         SJMP    ??deleteNode_2
      42          		}
      43          	Node* perior = head;
    \                     ??deleteNode_0:
@@ -432,26 +426,32 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000040   70CA         JNZ     ??deleteNode_1
    \   000042   8A82         MOV     DPL,R2
    \   000044   8B83         MOV     DPH,R3
-   \   000046   12....       LCALL   ?Subroutine6 & 0xFFFF
-   \                     ??CrossCallReturnLabel_15:
-   \   000049   EC           MOV     A,R4
-   \   00004A   2403         ADD     A,#0x3
-   \   00004C   F582         MOV     DPL,A
-   \   00004E   ED           MOV     A,R5
-   \   00004F   3400         ADDC    A,#0x0
-   \   000051   F583         MOV     DPH,A
-   \   000053   E8           MOV     A,R0
-   \   000054   49           ORL     A,R1
-   \   000055   7005         JNZ     ??deleteNode_6
+   \   000046   A3           INC     DPTR
+   \   000047   A3           INC     DPTR
+   \   000048   A3           INC     DPTR
+   \   000049   E0           MOVX    A,@DPTR
+   \   00004A   F8           MOV     R0,A
+   \   00004B   A3           INC     DPTR
+   \   00004C   E0           MOVX    A,@DPTR
+   \   00004D   F9           MOV     R1,A
+   \   00004E   EC           MOV     A,R4
+   \   00004F   2403         ADD     A,#0x3
+   \   000051   F582         MOV     DPL,A
+   \   000053   ED           MOV     A,R5
+   \   000054   3400         ADDC    A,#0x0
+   \   000056   F583         MOV     DPH,A
+   \   000058   E8           MOV     A,R0
+   \   000059   49           ORL     A,R1
+   \   00005A   7005         JNZ     ??deleteNode_6
      51          		{
      52          		if(q->pNext == NULL)
      53          			{
      54          
      55          			perior->pNext = NULL;
-   \   000057   E4           CLR     A
-   \   000058   F0           MOVX    @DPTR,A
-   \   000059   A3           INC     DPTR
-   \   00005A   8004         SJMP    ??deleteNode_7
+   \   00005C   E4           CLR     A
+   \   00005D   F0           MOVX    @DPTR,A
+   \   00005E   A3           INC     DPTR
+   \   00005F   8004         SJMP    ??deleteNode_7
      56          		        osal_mem_free(q);
      57          			return list_true;
      58          			}
@@ -459,31 +459,23 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      60          			{
      61          			perior->pNext = q->pNext;
    \                     ??deleteNode_6:
-   \   00005C   E8           MOV     A,R0
-   \   00005D   F0           MOVX    @DPTR,A
-   \   00005E   A3           INC     DPTR
-   \   00005F   E9           MOV     A,R1
+   \   000061   E8           MOV     A,R0
+   \   000062   F0           MOVX    @DPTR,A
+   \   000063   A3           INC     DPTR
+   \   000064   E9           MOV     A,R1
    \                     ??deleteNode_7:
-   \   000060   F0           MOVX    @DPTR,A
+   \   000065   F0           MOVX    @DPTR,A
      62              			osal_mem_free(q);
-   \   000061                ; Setup parameters for call to function osal_mem_free
-   \   000061   12....       LCALL   ??osal_mem_free?relay
+   \   000066                ; Setup parameters for call to function osal_mem_free
+   \   000066   12....       LCALL   ??osal_mem_free?relay
      63          			return list_true;
-   \   000064   7901         MOV     R1,#0x1
+   \   000069   7901         MOV     R1,#0x1
      64          			}
      65          		}
    \                     ??deleteNode_2:
-   \   000066   80..         SJMP    ?Subroutine1
+   \   00006B   80..         SJMP    ?Subroutine1
      66                  return list_false;
      67          }
-
-   \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine6:
-   \   000000   A3           INC     DPTR
-   \   000001   A3           INC     DPTR
-   \   000002   A3           INC     DPTR
-   \   000003                REQUIRE ??Subroutine8_0
-   \   000003                ; // Fall through to label ??Subroutine8_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \                     ?Subroutine4:
@@ -506,7 +498,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000005                ; Auto size: 0
      72          	if(NULL == head){
    \   000005   12....       LCALL   ?Subroutine2 & 0xFFFF
-   \                     ??CrossCallReturnLabel_13:
+   \                     ??CrossCallReturnLabel_14:
    \   000008   601B         JZ      ??destroyNodeList_0
      73          		return;
      74          		}
@@ -573,96 +565,105 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      90          void setNodeList(Node * node)
    \                     setNodeList:
      91          {
-   \   000000   74F7         MOV     A,#-0x9
-   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
-   \   000005                ; Saved register size: 9
-   \   000005                ; Auto size: 0
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
      92            Node* perior = head;
-   \   000005   90....       MOV     DPTR,#head
-   \   000008   12....       LCALL   ??Subroutine8_0 & 0xFFFF
+   \   000004   90....       MOV     DPTR,#head
+   \   000007   8007         SJMP    ??setNodeList_0
      93            uint8 count=0;
-   \                     ??CrossCallReturnLabel_14:
-   \   00000B   EA           MOV     A,R2
-   \   00000C   2402         ADD     A,#0x2
-   \   00000E   FC           MOV     R4,A
-   \   00000F   EB           MOV     A,R3
-   \   000010   3400         ADDC    A,#0x0
-   \   000012   FD           MOV     R5,A
-   \   000013   8007         SJMP    ??CrossCallReturnLabel_16
      94            while(NULL != perior)
      95            {
      96              if(perior->addr_dev==node->addr_dev)//通过设备地址确认是否在list表中
      97              {
      98                count=1;
-     99                perior->short_dev=node->short_dev;//if in the list,cover the short_dev
-    100                break;
-    101              }
-    102              else
-    103                count=0;
-    104              perior=perior->pNext;
+     99                if( perior->short_dev==node->short_dev)
+    100                  return;
+    101                else
+    102                perior->short_dev=node->short_dev;//if in the list,cover the short_dev
+    103                break;
+    104              }
+    105              else
+    106              count=0;
+    107              perior=perior->pNext;
+   \                     ??setNodeList_1:
+   \   000009   8882         MOV     DPL,R0
+   \   00000B   8983         MOV     DPH,R1
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   A3           INC     DPTR
    \                     ??setNodeList_0:
+   \   000010   12....       LCALL   ??Subroutine6_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   000013   6031         JZ      ??setNodeList_2
    \   000015   8882         MOV     DPL,R0
    \   000017   8983         MOV     DPH,R1
-   \   000019   12....       LCALL   ?Subroutine6 & 0xFFFF
-   \                     ??CrossCallReturnLabel_16:
-   \   00001C   E8           MOV     A,R0
-   \   00001D   49           ORL     A,R1
-   \   00001E   6022         JZ      ??setNodeList_1
-   \   000020   8882         MOV     DPL,R0
-   \   000022   8983         MOV     DPH,R1
-   \   000024   A3           INC     DPTR
-   \   000025   A3           INC     DPTR
-   \   000026   E0           MOVX    A,@DPTR
-   \   000027   FE           MOV     R6,A
-   \   000028   8C82         MOV     DPL,R4
-   \   00002A   8D83         MOV     DPH,R5
-   \   00002C   E0           MOVX    A,@DPTR
-   \   00002D   6E           XRL     A,R6
-   \   00002E   70E5         JNZ     ??setNodeList_0
-   \   000030   8A82         MOV     DPL,R2
-   \   000032   8B83         MOV     DPH,R3
-   \   000034   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \   000019   A3           INC     DPTR
+   \   00001A   A3           INC     DPTR
+   \   00001B   E0           MOVX    A,@DPTR
+   \   00001C   FC           MOV     R4,A
+   \   00001D   8A82         MOV     DPL,R2
+   \   00001F   8B83         MOV     DPH,R3
+   \   000021   A3           INC     DPTR
+   \   000022   A3           INC     DPTR
+   \   000023   E0           MOVX    A,@DPTR
+   \   000024   6C           XRL     A,R4
+   \   000025   70E2         JNZ     ??setNodeList_1
+   \   000027   8A82         MOV     DPL,R2
+   \   000029   8B83         MOV     DPH,R3
+   \   00002B   12....       LCALL   ?Subroutine4 & 0xFFFF
    \                     ??CrossCallReturnLabel_4:
-   \   000037   8882         MOV     DPL,R0
-   \   000039   8983         MOV     DPH,R1
-   \   00003B   EA           MOV     A,R2
-   \   00003C   F0           MOVX    @DPTR,A
-   \   00003D   A3           INC     DPTR
-   \   00003E   EB           MOV     A,R3
-   \   00003F   F0           MOVX    @DPTR,A
-   \   000040   8003         SJMP    ??setNodeList_2
-    105            }
-    106            if(count==0)
-    107            {
-    108               addNode(node);
-   \                     ??setNodeList_1:
-   \   000042                ; Setup parameters for call to function addNode
-   \   000042   12....       LCALL   ??addNode?relay
-    109            }
-    110          }
+   \   00002E   8882         MOV     DPL,R0
+   \   000030   8983         MOV     DPH,R1
+   \   000032   E0           MOVX    A,@DPTR
+   \   000033   6A           XRL     A,R2
+   \   000034   7003         JNZ     ??setNodeList_3
+   \   000036   A3           INC     DPTR
+   \   000037   E0           MOVX    A,@DPTR
+   \   000038   6B           XRL     A,R3
+   \                     ??setNodeList_3:
+   \   000039   600E         JZ      ??setNodeList_4
+   \   00003B   8882         MOV     DPL,R0
+   \   00003D   8983         MOV     DPH,R1
+   \   00003F   EA           MOV     A,R2
+   \   000040   F0           MOVX    @DPTR,A
+   \   000041   A3           INC     DPTR
+   \   000042   EB           MOV     A,R3
+   \   000043   F0           MOVX    @DPTR,A
+   \   000044   8003         SJMP    ??setNodeList_4
+    108            }
+    109            if(count==0)
+    110            {
+    111               addNode(node);
    \                     ??setNodeList_2:
-   \   000045   02....       LJMP    ?Subroutine1 & 0xFFFF
-    111          
+   \   000046                ; Setup parameters for call to function addNode
+   \   000046   12....       LCALL   ??addNode?relay
+    112            }
+   \                     ??setNodeList_4:
+   \   000049   02....       LJMP    ?Subroutine0 & 0xFFFF
+    113          }
+    114          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    112          uint16 get_NodeList(uint8 dev)
+    115          uint16 get_NodeList(uint8 dev)
    \                     get_NodeList:
-    113          {
+    116          {
    \   000000   C082         PUSH    DPL
    \   000002   C083         PUSH    DPH
    \   000004                ; Saved register size: 2
    \   000004                ; Auto size: 0
-    114             Node* p = head;
+    117             Node* p = head;
    \   000004   90....       MOV     DPTR,#head
    \   000007   8003         SJMP    ??get_NodeList_0
-    115            while(NULL != p)
-    116            {
-    117              if(p->addr_dev==dev)
-    118              {
-    119                return p->short_dev;
-    120              }
-    121              else
-    122              p=p->pNext;
+    118            while(NULL != p)
+    119            {
+    120              if(p->addr_dev==dev)
+    121              {
+    122                return p->short_dev;
+    123              }
+    124              else
+    125              p=p->pNext;
    \                     ??get_NodeList_1:
    \   000009   A3           INC     DPTR
    \   00000A   A3           INC     DPTR
@@ -683,16 +684,16 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   00001D   8B83         MOV     DPH,R3
    \   00001F   70E8         JNZ     ??get_NodeList_1
    \   000021   12....       LCALL   ?Subroutine4 & 0xFFFF
-    123            }
+    126            }
    \                     ??CrossCallReturnLabel_6:
    \   000024   8004         SJMP    ??get_NodeList_3
-    124            return NULL;
+    127            return NULL;
    \                     ??get_NodeList_2:
    \   000026   7A00         MOV     R2,#0x0
    \   000028   7B00         MOV     R3,#0x0
    \                     ??get_NodeList_3:
    \   00002A   02....       LJMP    ?Subroutine0 & 0xFFFF
-    125          }
+    128          }
 
    \                                 In  segment BANK_RELAYS, align 1
    \                     ??createNodelist?relay:
@@ -728,7 +729,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
 
      Function            ISTACK PSTACK XSTACK
      --------            ------ ------ ------
-     addNode                 0      0     18
+     addNode                 0      0      9
      createNodelist          2      0      0
        -> osal_mem_alloc     4      0      0
      deleteNode              0      0      9
@@ -738,8 +739,8 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
        -> osal_mem_free      0      0     18
        -> osal_mem_free      0      0     18
      get_NodeList            2      0      0
-     setNodeList             0      0      9
-       -> addNode            0      0     18
+     setNodeList             2      0      0
+       -> addNode            4      0      0
 
 
    Segment part sizes:
@@ -751,16 +752,14 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      ?Subroutine0               7
      ?Subroutine3              15
      ?Subroutine2               3
-     ??Subroutine7_0            6
-     ??Subroutine8_0            6
+     ??Subroutine6_0            8
      addNode                   74
      ?Subroutine1               5
      ?Subroutine5              10
-     deleteNode               104
-     ?Subroutine6               3
+     deleteNode               109
      ?Subroutine4               6
      destroyNodeList           65
-     setNodeList               72
+     setNodeList               76
      get_NodeList              45
      ??createNodelist?relay     6
      ??addNode?relay            6
@@ -770,11 +769,11 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      ??get_NodeList?relay       6
 
  
- 471 bytes in segment BANKED_CODE
+ 473 bytes in segment BANKED_CODE
   36 bytes in segment BANK_RELAYS
    2 bytes in segment XDATA_Z
  
- 507 bytes of CODE  memory
+ 509 bytes of CODE  memory
    2 bytes of XDATA memory
 
 Errors: none

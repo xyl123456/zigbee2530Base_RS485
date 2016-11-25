@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        23/Nov/2016  19:16:41 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        25/Nov/2016  09:41:52 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -3012,8 +3012,9 @@ process_event:
         MOV     ?V0 + 0,R2
         MOV     ?V0 + 1,R3
 //  344   ssaUserEvent_t *t_ssaUserEvent = puser_event;
+??process_event_0:
         MOV     DPTR,#puser_event
-        SJMP    ??process_event_0
+        SJMP    ??process_event_1
 //  345   
 //  346   while(t_ssaUserEvent)
 //  347   {
@@ -3039,7 +3040,7 @@ process_event:
 //  367   	else
 //  368   	{
 //  369 	  Del_User_Event(t_ssaUserEvent->event);
-??process_event_1:
+??process_event_2:
         ; Setup parameters for call to function Del_User_Event
         MOV     DPL,R6
         MOV     DPH,R7
@@ -3049,14 +3050,14 @@ process_event:
         LCALL   ??Del_User_Event?relay
 //  371   
 //  372   	t_ssaUserEvent = t_ssaUserEvent->next;
-??process_event_2:
+??process_event_3:
         MOV     A,R6
         ADD     A,#0xb
         MOV     DPL,A
         MOV     A,R7
         ADDC    A,#0x0
         MOV     DPH,A
-??process_event_0:
+??process_event_1:
         MOVX    A,@DPTR
         MOV     R6,A
         INC     DPTR
@@ -3064,8 +3065,7 @@ process_event:
         MOV     R7,A
         MOV     A,R6
         ORL     A,R7
-        JNZ     $+5
-        LJMP    ??process_event_3 & 0xFFFF
+        JZ      ??process_event_0
         MOV     A,R6
         ADD     A,#0x6
         MOV     ?V0 + 8,A
@@ -3079,13 +3079,13 @@ process_event:
         JNZ     ??process_event_4
         MOVX    A,@DPTR
         MOV     C,0xE0 /* A   */.7
-        JNC     ??process_event_1
+        JNC     ??process_event_2
 ??process_event_4:
         MOV     DPL,R6
         MOV     DPH,R7
         MOVX    A,@DPTR
         XRL     A,?V0 + 4
-        JNZ     ??process_event_2
+        JNZ     ??process_event_3
         MOV     A,R6
         ADD     A,#0x2
         MOV     R0,A
@@ -3105,7 +3105,7 @@ process_event:
         MOV     R1,A
         MOV     A,R0
         ORL     A,R1
-        JZ      ??process_event_2
+        JZ      ??process_event_3
         MOV     DPL,R6
         MOV     DPH,R7
         INC     DPTR
@@ -3193,18 +3193,13 @@ process_event:
         MOVX    A,@DPTR
         XRL     A,?V0 + 1
         MOV     R3,A
-        SJMP    ??process_event_8
-//  373   }	
-//  374 
-//  375   // Discard unknown events
-//  376   return 0;
-??process_event_3:
-        MOV     R2,#0x0
-        MOV     R3,#0x0
-??process_event_8:
         MOV     R7,#0xa
         LJMP    ?BANKED_LEAVE_XDATA
         CFI EndBlock cfiBlock72
+//  373   }	
+//  374 
+//  375   // Discard unknown events
+//  376    return process_event(task_id, events);
 //  377 }
 
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
@@ -3246,11 +3241,11 @@ process_event:
         END
 //  378 
 // 
-// 1 307 bytes in segment BANKED_CODE
+// 1 298 bytes in segment BANKED_CODE
 //    36 bytes in segment BANK_RELAYS
 //    34 bytes in segment XDATA_Z
 // 
-// 1 343 bytes of CODE  memory
+// 1 334 bytes of CODE  memory
 //    34 bytes of XDATA memory
 //
 //Errors: none

@@ -62,10 +62,6 @@ extern byte CommonApp_TransID;
 
 extern afAddrType_t CommonApp_DstAddr;
 
-
-//network address
-extern uint16 nwkAddr;
-extern uint8 nwkAddr_buf[2];
 //mac address
 extern ZLongAddr_t macAddr;
 
@@ -126,7 +122,6 @@ void CommonApp_InitConfirm( uint8 task_id )
   osal_nv_item_init(ZCD_DEV_ADDRESS, 1, NULL);
   osal_nv_read(ZCD_DEV_ADDRESS, 0, 1, &Address_dev);
 #endif
-
   CommonApp_PermitJoiningRequest(PERMIT_JOIN_FORBID);
   ZDOInitDevice( 0 );
 /* 串口回调中断未定义
@@ -163,7 +158,7 @@ void CommonApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
 #else
       RS485_Analysis(pkt->cmd.Data, pkt->cmd.DataLength);
 #endif
-      break; 
+      break;
   }
 }
 
@@ -172,8 +167,8 @@ void RS485_Analysis(uint8 *data, uint16 length)
 {
   RS485DR_t  rs485_rsData;
   uint8 len=length;
- // uint8 buf[FRAME_DATA_SIZE] = {0};
-  memcpy(rs485_rsData.data_buf,data,length);
+ 
+  osal_memcpy(rs485_rsData.data_buf,data,length);
   if(crc_confirm(data,length))
   {
     //判断是否是该设备命令
@@ -181,15 +176,24 @@ void RS485_Analysis(uint8 *data, uint16 length)
     {
      case CT_CMD_CX:
       //查询状态 0x03
+       if(rs485_rsData.data_core.head[0]==Address_dev)
+       {
        rs485_state(rs485_rsData.data_buf,len);
+       }
       break;
     case CT_CMD_KZ:
       //控制设备 0x04
+      if(rs485_rsData.data_core.head[0]==Address_dev)
+      {
        rs485_control(rs485_rsData.data_buf,len);
+      }
       break;
     case CT_CMD_XG:
       //修改地址 0x06
+      if(rs485_rsData.data_core.head[0]==Address_dev)
+      {
        rs485_changeAddr(rs485_rsData.data_buf,len);
+      }
       break;
     case CT_CMD_DI:
       //查询地址 0x25
@@ -303,6 +307,7 @@ void Data_Analysis(uint8 *data, uint16 length)
  */
 void CommonApp_ProcessZDOStates(devStates_t status)
 {
+#ifndef RS485_DEV
   UO_t mFrame;
   uint8 buf[FRAME_DATA_SIZE] = {0};
   
@@ -334,6 +339,16 @@ void CommonApp_ProcessZDOStates(devStates_t status)
 	EndNodeApp_HeartBeatEvent();
 	HalStatesInit(status);
   }
+#else
+  if( status == DEV_ROUTER || status == DEV_END_DEVICE)
+  {
+        nwkAddr = NLME_GetShortAddr();
+        //正常字节序，高位在前，低位在后.上电发送设备地址
+        //设置心跳事件
+        EndNodeApp_HeartBeatEvent();
+        HalStatesInit(status);
+  }
+#endif
 }
 
 #ifndef HAL_KEY_LONG_SHORT_DISTINGUISH
@@ -456,9 +471,16 @@ void CommonApp_HandleCombineKeys(uint16 keys, uint8 keyCounts)
 
 void EndNodeApp_HeartBeatEvent(void)
 {
+#ifndef RS485_DEV
   CommonApp_HeartBeatCB(NULL, NULL, NULL);
 
   set_user_event(CommonApp_TaskID, HEARTBERAT_EVT, CommonApp_HeartBeatCB, 
   	HEARTBEAT_TIMEOUT, TIMER_LOOP_EXECUTION|TIMER_EVENT_RESIDENTS, NULL);
+#else
+  RS485_HeartBeatCB(NULL, NULL, NULL);
+
+  set_user_event(CommonApp_TaskID, HEARTBERAT_EVT, RS485_HeartBeatCB, 
+  	HEARTBEAT_TIMEOUT, TIMER_LOOP_EXECUTION|TIMER_EVENT_RESIDENTS, NULL);
+#endif
 }
 

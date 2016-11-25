@@ -46,6 +46,8 @@ extern "C"
  */
 extern void CommonApp_HeartBeatCB( void *params, uint16 *duration, uint8 *count);
 
+extern void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count);
+
 /*********************************************************************
 *********************************************************************/
 

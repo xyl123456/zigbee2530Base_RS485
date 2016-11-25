@@ -96,6 +96,9 @@ void setNodeList(Node * node)
     if(perior->addr_dev==node->addr_dev)//通过设备地址确认是否在list表中
     {
       count=1;
+      if( perior->short_dev==node->short_dev)
+        return;
+      else
       perior->short_dev=node->short_dev;//if in the list,cover the short_dev
       break;
     }

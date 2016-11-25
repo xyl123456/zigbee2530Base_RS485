@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  14:17:49 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        25/Nov/2016  10:13:18 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -176,6 +176,7 @@
         EXTERN ?BANKED_ENTER_XDATA
         EXTERN ?BANKED_LEAVE_XDATA
         EXTERN ?BDISPATCH
+        EXTERN ?BRET
         EXTERN ?DEALLOC_XSTACK8
         EXTERN ?PUSH_XSTACK_I_TWO
         EXTERN ?V0
@@ -184,10 +185,16 @@
 
         PUBLIC ??CommonApp_HeartBeatCB?relay
         FUNCTION ??CommonApp_HeartBeatCB?relay,0203H
+        PUBLIC ??RS485_HeartBeatCB?relay
+        FUNCTION ??RS485_HeartBeatCB?relay,0203H
         PUBLIC CommonApp_HeartBeatCB
         FUNCTION CommonApp_HeartBeatCB,021203H
         ARGFRAME XSTACK, 2, STACK
         LOCFRAME XSTACK, 27, STACK
+        PUBLIC RS485_HeartBeatCB
+        FUNCTION RS485_HeartBeatCB,021203H
+        ARGFRAME XSTACK, 2, STACK
+        LOCFRAME ISTACK, 2, STACK
         
         CFI Names cfiNames0
         CFI StackFrame CFA_SP SP IDATA
@@ -285,6 +292,8 @@ CommonApp_SendTheMessage SYMBOL "CommonApp_SendTheMessage"
 ??memcpy?relay      SYMBOL "?relay", memcpy
 CommonApp_HeartBeatCB SYMBOL "CommonApp_HeartBeatCB"
 ??CommonApp_HeartBeatCB?relay SYMBOL "?relay", CommonApp_HeartBeatCB
+RS485_HeartBeatCB   SYMBOL "RS485_HeartBeatCB"
+??RS485_HeartBeatCB?relay SYMBOL "?relay", RS485_HeartBeatCB
 
         EXTERN memcpy
         FUNCTION memcpy,010202H
@@ -302,7 +311,7 @@ CommonApp_HeartBeatCB SYMBOL "CommonApp_HeartBeatCB"
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN CommonApp_SendTheMessage
         FUNCTION CommonApp_SendTheMessage,0202H
-        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME ISTACK, 2, STACK
         ARGFRAME PSTACK, 0, STACK
         ARGFRAME XSTACK, 25, STACK
         ARGFRAME IOVERLAY, 0, STATIC
@@ -313,8 +322,11 @@ CommonApp_HeartBeatCB SYMBOL "CommonApp_HeartBeatCB"
         FUNCTION ??SSAFrame_Package?relay,00H
         EXTERN ??memcpy?relay
         FUNCTION ??memcpy?relay,00H
+        EXTERN Address_dev
         EXTERN SHORT_ADDR_G
         EXTERN f_tail
+        EXTERN nwkAddr
+        EXTERN nwkAddr_buf
 
 // E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\HeartBeat\HeartBeat.c
 //    1 /**************************************************************************************************
@@ -543,7 +555,7 @@ CommonApp_HeartBeatCB:
         MOV     A,R1
         JNZ     ??CommonApp_HeartBeatCB_0
 //   78 	{
-//   79 		CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
+//   79 	  CommonApp_SendTheMessage(COORDINATOR_ADDR, fBuf, fLen);
         ; Setup parameters for call to function CommonApp_SendTheMessage
         MOV     DPL,?XSP + 0
         MOV     DPH,?XSP + 1
@@ -571,7 +583,7 @@ CommonApp_HeartBeatCB:
 //   89 	memcpy(oFrame.short_addr, SHORT_ADDR_G, 4);
 //   90 	memcpy(oFrame.ext_addr, EXT_ADDR_G, 16);
 //   91 	oFrame.data = dbuf;
-//   92     CommonDevice_GetData(oFrame.data, &oFrame.data_len);
+//   92         CommonDevice_GetData(oFrame.data, &oFrame.data_len);
 //   93 	memcpy(oFrame.tail, f_tail, 4);
 //   94 
 //   95 	if(!SSAFrame_Package(HEAD_UO, &oFrame, &fBuf, &fLen))
@@ -587,12 +599,79 @@ CommonApp_HeartBeatCB:
         MOV     R7,#0x2
         LJMP    ?BANKED_LEAVE_XDATA
         CFI EndBlock cfiBlock0
+//  101 
+//  102 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  103 void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
+RS485_HeartBeatCB:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function RS485_HeartBeatCB
+        CODE
+//  104 {
+        FUNCALL RS485_HeartBeatCB, CommonApp_SendTheMessage
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  105       nwkAddr_buf[0]=nwkAddr>>8;
+        MOV     DPTR,#nwkAddr + 1
+        MOVX    A,@DPTR
+        MOV     DPTR,#nwkAddr_buf
+        MOVX    @DPTR,A
+//  106       nwkAddr_buf[1]=nwkAddr&0x00ff;
+        MOV     DPTR,#nwkAddr
+        MOVX    A,@DPTR
+        MOV     DPTR,#nwkAddr_buf + 1
+        MOVX    @DPTR,A
+//  107       nwkAddr_buf[2]=Address_dev;
+        MOV     DPTR,#Address_dev
+        MOVX    A,@DPTR
+        MOV     DPTR,#nwkAddr_buf + 2
+        MOVX    @DPTR,A
+//  108       CommonApp_SendTheMessage(COORDINATOR_ADDR,nwkAddr_buf, 3);
+        ; Setup parameters for call to function CommonApp_SendTheMessage
+        MOV     R1,#0x3
+        MOV     R4,#nwkAddr_buf & 0xff
+        MOV     R5,#(nwkAddr_buf >> 8) & 0xff
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        LCALL   ??CommonApp_SendTheMessage?relay
+//  109 }
+        POP     DPH
+        CFI DPH0 SameValue
+        CFI CFA_SP SP+-4
+        POP     DPL
+        CFI DPL0 SameValue
+        CFI CFA_SP SP+-3
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock1
 
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
 ??CommonApp_HeartBeatCB?relay:
         LCALL   ?BDISPATCH
         DATA
         DC24    CommonApp_HeartBeatCB
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??RS485_HeartBeatCB?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    RS485_HeartBeatCB
 
         RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
         DATA32
@@ -601,11 +680,11 @@ CommonApp_HeartBeatCB:
 
         END
 // 
-// 180 bytes in segment BANKED_CODE
-//   6 bytes in segment BANK_RELAYS
+// 228 bytes in segment BANKED_CODE
+//  12 bytes in segment BANK_RELAYS
 //   4 bytes in segment XDATA_ROM_C
 // 
-// 186 bytes of CODE  memory
+// 240 bytes of CODE  memory
 //   4 bytes of CONST memory
 //
 //Errors: none
