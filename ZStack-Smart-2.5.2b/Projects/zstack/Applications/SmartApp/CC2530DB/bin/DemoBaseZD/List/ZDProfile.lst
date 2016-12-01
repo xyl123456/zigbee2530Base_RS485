@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  13:24:46 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         01/Dec/2016  17:09:41 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -39,12 +39,12 @@
 #                          -DMAC_MAX_FRAME_SIZE=116                           #
 #                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
 #                          __code" -DGENERIC=__generic                        #
-#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
 #                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
 #                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
 #                          -2.5.2b\Components\stack\zdo\ZDProfile.c -D        #
 #                          SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D     #
-#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     #
 #                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
 #                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
 #                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
@@ -354,26 +354,30 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\stack\zdo\ZDProfile.c
    \                                 In  segment CODE_C, align 1
     169          CONST zdpMsgProcItem_t zdpMsgProcs[] =
    \                     zdpMsgProcs:
-   \   000000   0100         DW 1
+   \   000000   0000         DW 0
    \   000002   ....         DW ??zdpProcessAddrReq?relay
-   \   000004   0200         DW 2
-   \   000006   ....         DW ??ZDO_ProcessNodeDescReq?relay
-   \   000008   0300         DW 3
-   \   00000A   ....         DW ??ZDO_ProcessPowerDescReq?relay
-   \   00000C   0400         DW 4
-   \   00000E   ....         DW ??ZDO_ProcessSimpleDescReq?relay
-   \   000010   0500         DW 5
-   \   000012   ....         DW ??ZDO_ProcessActiveEPReq?relay
-   \   000014   0600         DW 6
-   \   000016   ....         DW ??ZDO_ProcessMatchDescReq?relay
-   \   000018   1100         DW 17
-   \   00001A   ....         DW ??ZDO_ProcessUserDescReq?relay
-   \   00001C   1400         DW 20
-   \   00001E   ....         DW ??ZDO_ProcessUserDescSet?relay
-   \   000020   1500         DW 21
-   \   000022   ....         DW ??ZDO_ProcessServerDiscReq?relay
-   \   000024   FFFF         DW 65535
-   \   000026   0000         DW 0H
+   \   000004   1300         DW 19
+   \   000006   ....         DW ??ZDO_ProcessDeviceAnnce?relay
+   \   000008   0100         DW 1
+   \   00000A   ....         DW ??zdpProcessAddrReq?relay
+   \   00000C   0200         DW 2
+   \   00000E   ....         DW ??ZDO_ProcessNodeDescReq?relay
+   \   000010   0300         DW 3
+   \   000012   ....         DW ??ZDO_ProcessPowerDescReq?relay
+   \   000014   0400         DW 4
+   \   000016   ....         DW ??ZDO_ProcessSimpleDescReq?relay
+   \   000018   0500         DW 5
+   \   00001A   ....         DW ??ZDO_ProcessActiveEPReq?relay
+   \   00001C   0600         DW 6
+   \   00001E   ....         DW ??ZDO_ProcessMatchDescReq?relay
+   \   000020   1100         DW 17
+   \   000022   ....         DW ??ZDO_ProcessUserDescReq?relay
+   \   000024   1400         DW 20
+   \   000026   ....         DW ??ZDO_ProcessUserDescSet?relay
+   \   000028   1500         DW 21
+   \   00002A   ....         DW ??ZDO_ProcessServerDiscReq?relay
+   \   00002C   FFFF         DW 65535
+   \   00002E   0000         DW 0H
     170          {
     171          #if ( RFD_RCVC_ALWAYS_ON==TRUE ) || ( ZG_BUILD_RTR_TYPE ) || defined(ED_ALWAYS_RCV)
     172            // These aren't processed by sleeping end devices.
@@ -6723,7 +6727,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\stack\zdo\ZDProfile.c
      ZDP_TmpBuf                          2
      ZDP_TxOptions                       1
      zdoMsgCBs                           2
-     zdpMsgProcs                        40
+     zdpMsgProcs                        48
      fillAndSend                       183
      ?Subroutine0                        3
      ??Subroutine84_0                    5
@@ -6912,12 +6916,12 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\stack\zdo\ZDProfile.c
  
  6 112 bytes in segment BANKED_CODE
    204 bytes in segment BANK_RELAYS
-    41 bytes in segment CODE_C
+    49 bytes in segment CODE_C
      2 bytes in segment XDATA_I
      2 bytes in segment XDATA_ID
     84 bytes in segment XDATA_Z
  
- 6 359 bytes of CODE  memory
+ 6 367 bytes of CODE  memory
     86 bytes of XDATA memory
 
 Errors: none

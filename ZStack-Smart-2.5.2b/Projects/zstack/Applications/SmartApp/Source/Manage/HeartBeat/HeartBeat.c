@@ -99,11 +99,10 @@ void CommonApp_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
 #endif
 }
 
-
 void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
 {
-      nwkAddr_buf[0]=nwkAddr>>8;
-      nwkAddr_buf[1]=nwkAddr&0x00ff;
+      nwkAddr_buf[0]=value_addr_L;
+      nwkAddr_buf[1]=value_addr_H;
       nwkAddr_buf[2]=Address_dev;
       CommonApp_SendTheMessage(COORDINATOR_ADDR,nwkAddr_buf, 3);
 }

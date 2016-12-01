@@ -32,6 +32,7 @@ Date:2015-07-31
 #include "hal_uart.h"
 
 
+
 /*********************************************************************
  * MACROS
  */
@@ -51,6 +52,8 @@ Date:2015-07-31
 /*********************************************************************
  * EXTERNAL VARIABLES
  */
+void ConnectorApp_TxHandler(uint8 txBuf[], uint8 txLen);
+
 extern const cId_t CommonApp_InClusterList[];
 extern const cId_t CommonApp_OutClusterList[];
 extern const SimpleDescriptionFormat_t CommonApp_SimpleDesc;
@@ -73,6 +76,8 @@ extern const uint8 f_tail[4];
 
 extern bool isPermitJoining;
 
+RS485DR_t  *rs485_rsData;
+
 /*********************************************************************
  * EXTERNAL FUNCTIONS
  */
@@ -83,6 +88,8 @@ extern bool isPermitJoining;
 static uint8 *fBuf;		//pointer data buffer
 static uint16 fLen;		//buffer data length
 
+uint8 value_addr_L;
+uint8 value_addr_H;
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
@@ -117,18 +124,14 @@ static void RS485_Analysis(uint8 *data, uint16 length);
 
 void CommonApp_InitConfirm( uint8 task_id )
 {
-#ifdef RS485_DEV
-  //读取NV地址值到存储空间
-  osal_nv_item_init(ZCD_DEV_ADDRESS, 1, NULL);
-  osal_nv_read(ZCD_DEV_ADDRESS, 0, 1, &Address_dev);
-#endif
+
   CommonApp_PermitJoiningRequest(PERMIT_JOIN_FORBID);
   ZDOInitDevice( 0 );
-/* 串口回调中断未定义
+
 #if(HAL_UART==TRUE)
   SerialTx_Handler(SERIAL_COM_PORT, ConnectorApp_TxHandler);
 #endif
-  */
+
 }
 
 
@@ -159,45 +162,50 @@ void CommonApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
       RS485_Analysis(pkt->cmd.Data, pkt->cmd.DataLength);
 #endif
       break;
+    default:
+    break;
   }
 }
 
 #ifdef RS485_DEV
 void RS485_Analysis(uint8 *data, uint16 length)
 {
-  RS485DR_t  rs485_rsData;
+
   uint8 len=length;
- 
-  osal_memcpy(rs485_rsData.data_buf,data,length);
+  memcpy(rs485_rsData->head,data,1);
+  memcpy(rs485_rsData->cmdId,data+1,1);
+  CommonApp_GetDevDataSend(data,length);
   if(crc_confirm(data,length))
   {
     //判断是否是该设备命令
-  switch(rs485_rsData.data_core.cmdId[0])
+  switch(rs485_rsData->cmdId[0])
     {
      case CT_CMD_CX:
       //查询状态 0x03
-       if(rs485_rsData.data_core.head[0]==Address_dev)
+       if(rs485_rsData->head[0]==Address_dev)
        {
-       rs485_state(rs485_rsData.data_buf,len);
+       rs485_state(data,len);
        }
       break;
     case CT_CMD_KZ:
       //控制设备 0x04
-      if(rs485_rsData.data_core.head[0]==Address_dev)
+      if(rs485_rsData->head[0]==Address_dev)
       {
-       rs485_control(rs485_rsData.data_buf,len);
+       rs485_control(data,len);
       }
       break;
     case CT_CMD_XG:
       //修改地址 0x06
-      if(rs485_rsData.data_core.head[0]==Address_dev)
+      if(rs485_rsData->head[0]==Address_dev)
       {
-       rs485_changeAddr(rs485_rsData.data_buf,len);
+       rs485_changeAddr(data,len);
       }
       break;
     case CT_CMD_DI:
       //查询地址 0x25
       rs485_address();
+      break;
+    default:
       break;
     } 
   }
@@ -342,11 +350,17 @@ void CommonApp_ProcessZDOStates(devStates_t status)
 #else
   if( status == DEV_ROUTER || status == DEV_END_DEVICE)
   {
-        nwkAddr = NLME_GetShortAddr();
-        //正常字节序，高位在前，低位在后.上电发送设备地址
-        //设置心跳事件
-        EndNodeApp_HeartBeatEvent();
-        HalStatesInit(status);
+  //读取NV地址值到存储空间
+    osal_nv_item_init(ZCD_DEV_ADDRESS, 1, NULL);
+    osal_nv_read(ZCD_DEV_ADDRESS, 0, 1, &Address_dev);
+    nwkAddr = NLME_GetShortAddr();
+    value_addr_L=nwkAddr>>8;
+    value_addr_H=nwkAddr&0x00ff;
+      
+    //正常字节序，高位在前，低位在后.上电发送设备地址
+    //设置心跳事件
+    EndNodeApp_HeartBeatEvent();
+    HalStatesInit(status);
   }
 #endif
 }
@@ -484,3 +498,7 @@ void EndNodeApp_HeartBeatEvent(void)
 #endif
 }
 
+void ConnectorApp_TxHandler(uint8 txBuf[], uint8 txLen)
+{
+  
+}

@@ -58,7 +58,7 @@ static uint8 aDataLen = 0;
 const uint8 f_tail[4] = {0x3A, 0x4F, 0x0D, 0x0A}; 
 
 uint8 Address_dev;//设备地址
-uint8 Device_state[4];//开关状态
+uint8 Device_state[4]={0};//开关状态
 /*********************************************************************
  * EXTERNAL VARIABLES
  */

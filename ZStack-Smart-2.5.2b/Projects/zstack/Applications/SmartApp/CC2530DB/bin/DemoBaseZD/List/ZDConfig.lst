@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         23/Nov/2016  19:16:33 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         01/Dec/2016  16:42:10 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -39,12 +39,12 @@
 #                          -DMAC_MAX_FRAME_SIZE=116                           #
 #                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
 #                          __code" -DGENERIC=__generic                        #
-#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
 #                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
 #                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
 #                          -2.5.2b\Components\stack\zdo\ZDConfig.c -D         #
 #                          SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D     #
-#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     #
 #                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
 #                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
 #                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
@@ -335,57 +335,58 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\stack\zdo\ZDConfig.c
     140            #endif
     141                  );
    \   00000E   A3           INC     DPTR
-   \   00000F   E4           CLR     A
-   \   000010   F0           MOVX    @DPTR,A
+   \   00000F   7408         MOV     A,#0x8
+   \   000011   F0           MOVX    @DPTR,A
     142            }
     143            
     144            // Manufacturer Code - *YOU FILL IN*
     145            ZDO_Config_Node_Descriptor.ManufacturerCode[0] = 0;
-   \   000011   A3           INC     DPTR
-   \   000012   F0           MOVX    @DPTR,A
-    146            ZDO_Config_Node_Descriptor.ManufacturerCode[1] = 0;
-   \   000013   A3           INC     DPTR
+   \   000012   A3           INC     DPTR
+   \   000013   E4           CLR     A
    \   000014   F0           MOVX    @DPTR,A
+    146            ZDO_Config_Node_Descriptor.ManufacturerCode[1] = 0;
+   \   000015   A3           INC     DPTR
+   \   000016   F0           MOVX    @DPTR,A
     147            
     148            // Maximum Buffer Size
     149            ZDO_Config_Node_Descriptor.MaxBufferSize = MAX_BUFFER_SIZE;
-   \   000015   A3           INC     DPTR
-   \   000016   7450         MOV     A,#0x50
-   \   000018   F0           MOVX    @DPTR,A
+   \   000017   A3           INC     DPTR
+   \   000018   7450         MOV     A,#0x50
+   \   00001A   F0           MOVX    @DPTR,A
     150          
     151            // Maximum Incoming Transfer Size Field
     152            ZDO_Config_Node_Descriptor.MaxInTransferSize[0] = LO_UINT16( MAX_TRANSFER_SIZE );
-   \   000019   A3           INC     DPTR
-   \   00001A   74A0         MOV     A,#-0x60
-   \   00001C   F0           MOVX    @DPTR,A
+   \   00001B   A3           INC     DPTR
+   \   00001C   74A0         MOV     A,#-0x60
+   \   00001E   F0           MOVX    @DPTR,A
     153            ZDO_Config_Node_Descriptor.MaxInTransferSize[1] = HI_UINT16( MAX_TRANSFER_SIZE );
-   \   00001D   A3           INC     DPTR
-   \   00001E   E4           CLR     A
-   \   00001F   F0           MOVX    @DPTR,A
+   \   00001F   A3           INC     DPTR
+   \   000020   E4           CLR     A
+   \   000021   F0           MOVX    @DPTR,A
     154            
     155            // Maximum Outgoing Transfer Size Field
     156            ZDO_Config_Node_Descriptor.MaxOutTransferSize[0] = LO_UINT16( MAX_TRANSFER_SIZE );
-   \   000020   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 10
-   \   000023   74A0         MOV     A,#-0x60
-   \   000025   F0           MOVX    @DPTR,A
+   \   000022   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 10
+   \   000025   74A0         MOV     A,#-0x60
+   \   000027   F0           MOVX    @DPTR,A
     157            ZDO_Config_Node_Descriptor.MaxOutTransferSize[1] = HI_UINT16( MAX_TRANSFER_SIZE );
-   \   000026   A3           INC     DPTR
-   \   000027   E4           CLR     A
-   \   000028   F0           MOVX    @DPTR,A
+   \   000028   A3           INC     DPTR
+   \   000029   E4           CLR     A
+   \   00002A   F0           MOVX    @DPTR,A
     158            
     159            // Server Mask
     160            ZDO_Config_Node_Descriptor.ServerMask = 0;
-   \   000029   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 8
-   \   00002C   F0           MOVX    @DPTR,A
-   \   00002D   A3           INC     DPTR
+   \   00002B   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 8
    \   00002E   F0           MOVX    @DPTR,A
+   \   00002F   A3           INC     DPTR
+   \   000030   F0           MOVX    @DPTR,A
     161            
     162            // Descriptor Capability Field - extended active endpoint list and 
     163            // extended simple descriptor are not supported.
     164            ZDO_Config_Node_Descriptor.DescriptorCapability = 0;
-   \   00002F   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 12
-   \   000032                REQUIRE ?Subroutine0
-   \   000032                ; // Fall through to label ?Subroutine0
+   \   000031   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 12
+   \   000034                REQUIRE ?Subroutine0
+   \   000034                ; // Fall through to label ?Subroutine0
     165          }
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
@@ -510,7 +511,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\stack\zdo\ZDConfig.c
      ZDO_Config_Power_Descriptor               2
      ZDConfig_InitDescriptors                 12
      ??Subroutine1_0                           7
-     ZDConfig_UpdateNodeDescriptor            50
+     ZDConfig_UpdateNodeDescriptor            52
      ?Subroutine0                              1
      ZDConfig_UpdatePowerDescriptor           55
      ??ZDConfig_InitDescriptors?relay          6
@@ -518,11 +519,11 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\stack\zdo\ZDConfig.c
      ??ZDConfig_UpdatePowerDescriptor?relay    6
 
  
- 125 bytes in segment BANKED_CODE
+ 127 bytes in segment BANKED_CODE
   18 bytes in segment BANK_RELAYS
   15 bytes in segment XDATA_Z
  
- 143 bytes of CODE  memory
+ 145 bytes of CODE  memory
   15 bytes of XDATA memory
 
 Errors: none

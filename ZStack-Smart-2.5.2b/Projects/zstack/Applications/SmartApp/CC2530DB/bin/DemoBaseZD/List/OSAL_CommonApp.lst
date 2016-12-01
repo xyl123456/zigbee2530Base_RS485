@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         25/Nov/2016  10:03:22 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         01/Dec/2016  17:09:33 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -40,13 +40,13 @@
 #                          -DMAC_MAX_FRAME_SIZE=116                           #
 #                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
 #                          __code" -DGENERIC=__generic                        #
-#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
 #                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
 #                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
 #                          -2.5.2b\Projects\zstack\Applications\SmartApp\Sour #
 #                          ce\Common\OSAL_CommonApp.c -D SECURE=1 -D          #
 #                          ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D                 #
-#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     #
 #                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
 #                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
 #                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
@@ -205,7 +205,8 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000008   ....         DW ??APS_event_loop?relay
    \   00000A   ....         DW ??APSF_ProcessEvent?relay
    \   00000C   ....         DW ??ZDApp_event_loop?relay
-   \   00000E   ....         DW ??CommonApp_ProcessEvent?relay
+   \   00000E   ....         DW ??ZDNwkMgr_event_loop?relay
+   \   000010   ....         DW ??CommonApp_ProcessEvent?relay
      42            macEventLoop,
      43            nwk_event_loop,
      44            Hal_ProcessEvent,
@@ -227,7 +228,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \                                 In  segment XDATA_ROM_C, align 1
      59          const uint8 tasksCnt = sizeof( tasksArr ) / sizeof( tasksArr[0] );
    \                     tasksCnt:
-   \   000000   08           DB 8
+   \   000000   09           DB 9
 
    \                                 In  segment XDATA_Z, align 1, keep-with-next
      60          uint16 *tasksEvents;
@@ -261,7 +262,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
      78          
      79            tasksEvents = (uint16 *)osal_mem_alloc( sizeof( uint16 ) * tasksCnt);
    \   000004                ; Setup parameters for call to function osal_mem_alloc
-   \   000004   7A10         MOV     R2,#0x10
+   \   000004   7A12         MOV     R2,#0x12
    \   000006   7B00         MOV     R3,#0x0
    \   000008   12....       LCALL   ??osal_mem_alloc?relay
    \   00000B   90....       MOV     DPTR,#tasksEvents
@@ -272,7 +273,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   000012   F0           MOVX    @DPTR,A
      80            osal_memset( tasksEvents, 0, (sizeof( uint16 ) * tasksCnt));
    \   000013                ; Setup parameters for call to function osal_memset
-   \   000013   7C10         MOV     R4,#0x10
+   \   000013   7C12         MOV     R4,#0x12
    \   000015   7D00         MOV     R5,#0x0
    \   000017   7900         MOV     R1,#0x0
    \   000019   12....       LCALL   ??osal_memset?relay
@@ -311,15 +312,18 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
    \   00003C   12....       LCALL   ??ZDApp_Init?relay
      93          #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
      94            ZDNwkMgr_Init( taskID++ );
+   \   00003F                ; Setup parameters for call to function ZDNwkMgr_Init
+   \   00003F   7907         MOV     R1,#0x7
+   \   000041   12....       LCALL   ??ZDNwkMgr_Init?relay
      95          #endif
      96            CommonApp_Init( taskID );
-   \   00003F                ; Setup parameters for call to function CommonApp_Init
-   \   00003F   7907         MOV     R1,#0x7
-   \   000041   12....       LCALL   ??CommonApp_Init?relay
+   \   000044                ; Setup parameters for call to function CommonApp_Init
+   \   000044   7908         MOV     R1,#0x8
+   \   000046   12....       LCALL   ??CommonApp_Init?relay
      97          }
-   \   000044   D083         POP     DPH
-   \   000046   D082         POP     DPL
-   \   000048   02....       LJMP    ?BRET
+   \   000049   D083         POP     DPH
+   \   00004B   D082         POP     DPL
+   \   00004D   02....       LJMP    ?BRET
 
    \                                 In  segment BANK_RELAYS, align 1
    \                     ??osalInitTasks?relay:
@@ -343,6 +347,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
        -> APS_Init           4      0      0
        -> APSF_Init          4      0      0
        -> ZDApp_Init         4      0      0
+       -> ZDNwkMgr_Init      4      0      0
        -> CommonApp_Init     4      0      0
 
 
@@ -350,20 +355,20 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\
 
      Function/Label        Bytes
      --------------        -----
-     tasksArr                16
+     tasksArr                18
      tasksCnt                 1
      tasksEvents              2
-     osalInitTasks           75
+     osalInitTasks           80
      ??osalInitTasks?relay    6
 
  
- 75 bytes in segment BANKED_CODE
+ 80 bytes in segment BANKED_CODE
   6 bytes in segment BANK_RELAYS
- 17 bytes in segment XDATA_ROM_C
+ 19 bytes in segment XDATA_ROM_C
   2 bytes in segment XDATA_Z
  
- 81 bytes of CODE  memory
- 17 bytes of CONST memory
+ 86 bytes of CODE  memory
+ 19 bytes of CONST memory
   2 bytes of XDATA memory
 
 Errors: none

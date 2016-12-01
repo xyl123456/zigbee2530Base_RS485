@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        25/Nov/2016  10:13:18 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        01/Dec/2016  17:11:16 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -42,7 +42,7 @@
 //                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
 //                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
 //                          __code" -DGENERIC=__generic                       /
-//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000        /
 //                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
 //                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
 //                          t-2.5.2b\Projects\zstack\Applications\SmartApp\So /
@@ -325,8 +325,9 @@ RS485_HeartBeatCB   SYMBOL "RS485_HeartBeatCB"
         EXTERN Address_dev
         EXTERN SHORT_ADDR_G
         EXTERN f_tail
-        EXTERN nwkAddr
         EXTERN nwkAddr_buf
+        EXTERN value_addr_H
+        EXTERN value_addr_L
 
 // E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\HeartBeat\HeartBeat.c
 //    1 /**************************************************************************************************
@@ -600,15 +601,14 @@ CommonApp_HeartBeatCB:
         LJMP    ?BANKED_LEAVE_XDATA
         CFI EndBlock cfiBlock0
 //  101 
-//  102 
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//  103 void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
+//  102 void RS485_HeartBeatCB( void *params, uint16 *duration, uint8 *count)
 RS485_HeartBeatCB:
         CFI Block cfiBlock1 Using cfiCommon0
         CFI Function RS485_HeartBeatCB
         CODE
-//  104 {
+//  103 {
         FUNCALL RS485_HeartBeatCB, CommonApp_SendTheMessage
         LOCFRAME ISTACK, 2, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -628,22 +628,22 @@ RS485_HeartBeatCB:
         CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
-//  105       nwkAddr_buf[0]=nwkAddr>>8;
-        MOV     DPTR,#nwkAddr + 1
+//  104       nwkAddr_buf[0]=value_addr_L;
+        MOV     DPTR,#value_addr_L
         MOVX    A,@DPTR
         MOV     DPTR,#nwkAddr_buf
         MOVX    @DPTR,A
-//  106       nwkAddr_buf[1]=nwkAddr&0x00ff;
-        MOV     DPTR,#nwkAddr
+//  105       nwkAddr_buf[1]=value_addr_H;
+        MOV     DPTR,#value_addr_H
         MOVX    A,@DPTR
         MOV     DPTR,#nwkAddr_buf + 1
         MOVX    @DPTR,A
-//  107       nwkAddr_buf[2]=Address_dev;
+//  106       nwkAddr_buf[2]=Address_dev;
         MOV     DPTR,#Address_dev
         MOVX    A,@DPTR
         MOV     DPTR,#nwkAddr_buf + 2
         MOVX    @DPTR,A
-//  108       CommonApp_SendTheMessage(COORDINATOR_ADDR,nwkAddr_buf, 3);
+//  107       CommonApp_SendTheMessage(COORDINATOR_ADDR,nwkAddr_buf, 3);
         ; Setup parameters for call to function CommonApp_SendTheMessage
         MOV     R1,#0x3
         MOV     R4,#nwkAddr_buf & 0xff
@@ -651,7 +651,7 @@ RS485_HeartBeatCB:
         MOV     R2,#0x0
         MOV     R3,#0x0
         LCALL   ??CommonApp_SendTheMessage?relay
-//  109 }
+//  108 }
         POP     DPH
         CFI DPH0 SameValue
         CFI CFA_SP SP+-4

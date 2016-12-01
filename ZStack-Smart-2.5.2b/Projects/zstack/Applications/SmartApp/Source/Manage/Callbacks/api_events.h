@@ -65,8 +65,7 @@ typedef struct ssaUserEvent
   uint16 duration;	//excute duration for ther next time
   union 
   {
-  	uint8 overall;	
-	
+  	uint8 overall;
 	struct
 	{
 	  uint8 count : 7;

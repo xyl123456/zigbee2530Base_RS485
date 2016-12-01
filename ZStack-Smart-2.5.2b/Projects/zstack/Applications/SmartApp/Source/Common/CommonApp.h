@@ -257,6 +257,8 @@ extern void CommonApp_RS485SendMessage(uint8 *data, uint8 length);
 
 extern uint16 nwkAddr;
 extern uint8 nwkAddr_buf[3];
+extern uint8 value_addr_L;
+extern uint8 value_addr_H;
 
 /*********************************************************************
 *********************************************************************/

@@ -1,11 +1,13 @@
 #include "OSAL.h"
+#include "serial-comm.h"
 #include "list.h"
 //创建链表，头结点data=0;pNext=null
 
-Node *head ;
+Node* head = NULL;
 bool createNodelist(void)
 {
 	head = (Node*)osal_mem_alloc(sizeof(Node));
+        //分配一个头结点
 	if(NULL == head){
 		return list_false;
 		}
@@ -18,10 +20,10 @@ bool createNodelist(void)
 }
 
 //增加节点尾部添加
-bool  addNode(Node * node)
+bool addNode(Node * node)
 {
 	if(NULL == head){
-		return list_false;
+	  return list_false;
 		}
 	Node* p = head ->pNext;
 	Node* q = head;
@@ -38,7 +40,7 @@ bool  addNode(Node * node)
 bool deleteNode(uint8 index)
 {
 	if(NULL == head){
-		return list_false;
+	return list_false;
 		}
 	Node* perior = head;
 	Node* q = head->pNext;
@@ -51,15 +53,12 @@ bool deleteNode(uint8 index)
 		{
 		if(q->pNext == NULL)
 			{
-
 			perior->pNext = NULL;
-		        osal_mem_free(q);
 			return list_true;
 			}
 		else
 			{
 			perior->pNext = q->pNext;
-    			osal_mem_free(q);
 			return list_true;
 			}
 		}
@@ -87,42 +86,52 @@ void destroyNodeList(void)
 	head = NULL;
 }
 
-void setNodeList(Node * node)
+
+bool setNodeList(uint8 *buf, uint16 len)
 {
-  Node* perior = head;
-  uint8 count=0;
-  while(NULL != perior)
-  {
-    if(perior->addr_dev==node->addr_dev)//通过设备地址确认是否在list表中
+    uint16 dev_shortaddr;
+    uint8 dev_addr;
+    uint8 flag=1;
+    uint8 data_buf[3];
+    osal_memcpy(data_buf,buf,len);
+    dev_shortaddr=(uint16)(data_buf[0])<<8 | (uint16)data_buf[1];
+    dev_addr=data_buf[2];
+    if(NULL == head)
     {
-      count=1;
-      if( perior->short_dev==node->short_dev)
-        return;
-      else
-      perior->short_dev=node->short_dev;//if in the list,cover the short_dev
-      break;
+      return list_false;
     }
-    else
-    count=0;
-    perior=perior->pNext;
-  }
-  if(count==0)
-  {
-     addNode(node);
-  }
+    Node* p = head->pNext;
+    while(NULL !=p)
+    {
+      if(p->addr_dev==dev_addr)
+      {
+        flag=0;
+        p->short_dev=dev_shortaddr;//if in the list,cover the short_de
+      }
+      p = p->pNext;
+    }
+    if(1==flag)
+    {
+       Node *node = (Node*)osal_mem_alloc(sizeof(Node));
+       node->short_dev=dev_shortaddr;
+       node->addr_dev=dev_addr;
+       node->pNext=NULL;
+       addNode(node);
+    }
+    return list_true;
 }
 
 uint16 get_NodeList(uint8 dev)
 {
-   Node* p = head;
+   Node* p = head->pNext;
   while(NULL != p)
   {
     if(p->addr_dev==dev)
     {
-      return p->short_dev;
+     return p->short_dev;
     }
     else
     p=p->pNext;
   }
-  return NULL;
+  return 0;
 }

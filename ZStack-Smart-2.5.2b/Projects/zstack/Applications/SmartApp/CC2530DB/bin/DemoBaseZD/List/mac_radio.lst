@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  13:24:51 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         01/Dec/2016  17:09:31 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -39,12 +39,12 @@
 #                          -DMAC_MAX_FRAME_SIZE=116                           #
 #                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
 #                          __code" -DGENERIC=__generic                        #
-#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
 #                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
 #                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
 #                          -2.5.2b\Components\mac\low_level\srf04\mac_radio.c #
 #                           -D SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE    #
-#                          -D SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D   #
+#                          -D xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D  #
 #                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
 #                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
 #                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
@@ -537,8 +537,17 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
     236          #ifndef HAL_MAC_USE_REGISTER_POWER_VALUES
     237          /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     238          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
     239          MAC_INTERNAL_API uint8 macRadioSetTxPower(uint8 txPower)
+   \                     macRadioSetTxPower:
     240          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FE           MOV     R6,A
     241            halIntState_t  s;
     242          #if defined MAC_RUNTIME_CC2591 || defined MAC_RUNTIME_CC2590
     243            const uint8 CODE *pTable = macRadioDefsTxPwrTables[macRadioDefsRefTableId >> 4];
@@ -550,14 +559,41 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
     249          
     250            /* if the selected dBm is out of range, use the closest available */
     251            if ((int8)txPower > (int8)pTable[MAC_RADIO_DEFS_TBL_TXPWR_FIRST_ENTRY])
+   \   000007   90....       MOV     DPTR,#macRadioDefsTxPwrBare
+   \   00000A   E4           CLR     A
+   \   00000B   93           MOVC    A,@A+DPTR
+   \   00000C   C3           CLR     C
+   \   00000D   9E           SUBB    A,R6
+   \   00000E   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000010   65D0         XRL     A,PSW
+   \   000012   33           RLC     A
+   \   000013   5004         JNC     ??macRadioSetTxPower_0
     252            {
     253              /* greater than base value -- out of table range */
     254              txPower = pTable[MAC_RADIO_DEFS_TBL_TXPWR_FIRST_ENTRY];
+   \   000015   E4           CLR     A
+   \   000016   93           MOVC    A,@A+DPTR
+   \   000017   800F         SJMP    ??macRadioSetTxPower_1
     255            }
     256            else if ((int8)txPower < (int8)pTable[MAC_RADIO_DEFS_TBL_TXPWR_LAST_ENTRY])
+   \                     ??macRadioSetTxPower_0:
+   \   000019   A3           INC     DPTR
+   \   00001A   E4           CLR     A
+   \   00001B   93           MOVC    A,@A+DPTR
+   \   00001C   F8           MOV     R0,A
+   \   00001D   EE           MOV     A,R6
+   \   00001E   C3           CLR     C
+   \   00001F   98           SUBB    A,R0
+   \   000020   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000022   65D0         XRL     A,PSW
+   \   000024   33           RLC     A
+   \   000025   5002         JNC     ??macRadioSetTxPower_2
     257            {
     258              /* smaller than the lowest power level -- out of table range */
     259              txPower = pTable[MAC_RADIO_DEFS_TBL_TXPWR_LAST_ENTRY];
+   \   000027   E8           MOV     A,R0
+   \                     ??macRadioSetTxPower_1:
+   \   000028   FE           MOV     R6,A
     260            }
     261          
     262            /*
@@ -568,6 +604,10 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
     267             *  value.
     268             */
     269            HAL_ENTER_CRITICAL_SECTION(s);
+   \                     ??macRadioSetTxPower_2:
+   \   000029   E5A8         MOV     A,0xa8
+   \   00002B   FA           MOV     R2,A
+   \   00002C   C2AF         CLR     0xa8.7
     270            /* When calculating index to the power register value table,
     271             * either txPower (of uint8 type) has to be explicitly type-casted to int8
     272             * or the subtraction expression has to be type-casted to uint8 to work
@@ -578,62 +618,64 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
     277              uint8 index = pTable[MAC_RADIO_DEFS_TBL_TXPWR_FIRST_ENTRY] - txPower
     278                + MAC_RADIO_DEFS_TBL_TXPWR_ENTRIES;
     279              reqTxPower = pTable[index];
+   \   00002E   90....       MOV     DPTR,#macRadioDefsTxPwrBare
+   \   000031   E4           CLR     A
+   \   000032   93           MOVC    A,@A+DPTR
+   \   000033   C3           CLR     C
+   \   000034   9E           SUBB    A,R6
+   \   000035   2402         ADD     A,#0x2
+   \   000037   F8           MOV     R0,A
+   \   000038   74..         MOV     A,#macRadioDefsTxPwrBare & 0xff
+   \   00003A   28           ADD     A,R0
+   \   00003B   F582         MOV     DPL,A
+   \   00003D   74..         MOV     A,#(macRadioDefsTxPwrBare >> 8) & 0xff
+   \   00003F   3400         ADDC    A,#0x0
+   \   000041   F583         MOV     DPH,A
+   \   000043   E4           CLR     A
+   \   000044   93           MOVC    A,@A+DPTR
+   \   000045   90....       MOV     DPTR,#reqTxPower
+   \   000048   F0           MOVX    @DPTR,A
     280            }
     281            HAL_EXIT_CRITICAL_SECTION(s);
+   \   000049   EA           MOV     A,R2
+   \   00004A   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00004C   92AF         MOV     0xa8.7,C
     282          
     283            /* update the radio power setting */
     284            macRadioUpdateTxPower();
+   \   00004E                ; Setup parameters for call to function macRadioUpdateTxPower
+   \   00004E   12....       LCALL   ??macRadioUpdateTxPower?relay
     285          
     286            return txPower;
+   \   000051   EE           MOV     A,R6
+   \   000052   F9           MOV     R1,A
+   \   000053                REQUIRE ?Subroutine1
+   \   000053                REQUIRE _A_IEN0
+   \   000053                ; // Fall through to label ?Subroutine1
     287          }
-    288          
-    289          #else
-    290          /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    291          
-
-   \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    292          MAC_INTERNAL_API uint8 macRadioSetTxPower(uint8 txPower)
-   \                     macRadioSetTxPower:
-    293          {
-   \   000000   74F7         MOV     A,#-0x9
-   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
-   \   000005                ; Saved register size: 9
-   \   000005                ; Auto size: 0
-   \   000005   E9           MOV     A,R1
-   \   000006   FE           MOV     R6,A
-    294            halIntState_t  s;
-    295          
-    296            /* same as above but with no lookup table, use raw register value */
-    297            HAL_ENTER_CRITICAL_SECTION(s);
-   \   000007   E5A8         MOV     A,0xa8
-   \   000009   F8           MOV     R0,A
-   \   00000A   C2AF         CLR     0xa8.7
-    298            reqTxPower = txPower;
-   \   00000C   EE           MOV     A,R6
-   \   00000D   90....       MOV     DPTR,#reqTxPower
-   \   000010   F0           MOVX    @DPTR,A
-    299            HAL_EXIT_CRITICAL_SECTION(s);
-   \   000011   E8           MOV     A,R0
-   \   000012   A2E7         MOV     C,0xE0 /* A   */.7
-   \   000014   92AF         MOV     0xa8.7,C
-    300          
-    301            /* update the radio power setting */
-    302            macRadioUpdateTxPower();
-   \   000016                ; Setup parameters for call to function macRadioUpdateTxPower
-   \   000016   12....       LCALL   ??macRadioUpdateTxPower?relay
-    303          
-    304            return txPower;
-   \   000019   EE           MOV     A,R6
-   \   00001A   F9           MOV     R1,A
-   \   00001B                REQUIRE ?Subroutine1
-   \   00001B                REQUIRE _A_IEN0
-   \   00001B                ; // Fall through to label ?Subroutine1
-    305          }
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \                     ?Subroutine1:
    \   000000   7F01         MOV     R7,#0x1
    \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    288          
+    289          #else
+    290          /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    291          
+    292          MAC_INTERNAL_API uint8 macRadioSetTxPower(uint8 txPower)
+    293          {
+    294            halIntState_t  s;
+    295          
+    296            /* same as above but with no lookup table, use raw register value */
+    297            HAL_ENTER_CRITICAL_SECTION(s);
+    298            reqTxPower = txPower;
+    299            HAL_EXIT_CRITICAL_SECTION(s);
+    300          
+    301            /* update the radio power setting */
+    302            macRadioUpdateTxPower();
+    303          
+    304            return txPower;
+    305          }
     306          
     307          #endif
     308          
@@ -1071,22 +1113,22 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
    \   000008   24B7         ADD     A,#-0x49
    \   00000A   F8           MOV     R0,A
    \   00000B   C3           CLR     C
-   \   00000C   9497         SUBB    A,#-0x69
+   \   00000C   94A9         SUBB    A,#-0x57
    \   00000E   A2D2         MOV     C,0xD0 /* PSW */.2
    \   000010   65D0         XRL     A,PSW
    \   000012   33           RLC     A
    \   000013   5004         JNC     ??macRadioEnergyDetectStop_0
-   \   000015   7897         MOV     R0,#-0x69
+   \   000015   78A9         MOV     R0,#-0x57
    \   000017   800D         SJMP    ??macRadioEnergyDetectStop_1
    \                     ??macRadioEnergyDetectStop_0:
    \   000019   E8           MOV     A,R0
    \   00001A   C3           CLR     C
-   \   00001B   94FD         SUBB    A,#-0x3
+   \   00001B   940B         SUBB    A,#0xb
    \   00001D   A2D2         MOV     C,0xD0 /* PSW */.2
    \   00001F   65D0         XRL     A,PSW
    \   000021   33           RLC     A
    \   000022   4002         JC      ??macRadioEnergyDetectStop_1
-   \   000024   78FC         MOV     R0,#-0x4
+   \   000024   780A         MOV     R0,#0xa
     522          
     523            /* Trun on CC2591 compresson workaround */
     524            COMPRESSION_WORKAROUND_ON();
@@ -1108,7 +1150,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
    \   000001   95E0         SUBB    A,0xE0 /* A   */
    \   000003   F9           MOV     R1,A
    \   000004   E8           MOV     A,R0
-   \   000005   2469         ADD     A,#0x69
+   \   000005   2457         ADD     A,#0x57
    \   000007   F8           MOV     R0,A
    \   000008   E9           MOV     A,R1
    \   000009   3400         ADDC    A,#0x0
@@ -1123,7 +1165,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
    \   000018   A4           MUL     AB
    \   000019   2A           ADD     A,R2
    \   00001A   F9           MOV     R1,A
-   \   00001B   7A65         MOV     R2,#0x65
+   \   00001B   7A61         MOV     R2,#0x61
    \   00001D   7B00         MOV     R3,#0x0
    \   00001F   22           RET
     528          
@@ -1196,22 +1238,22 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
     589            return(radioComputeED(rssiDbm));
    \   000001   FD           MOV     R5,A
    \   000002   C3           CLR     C
-   \   000003   9497         SUBB    A,#-0x69
+   \   000003   94A9         SUBB    A,#-0x57
    \   000005   A2D2         MOV     C,0xD0 /* PSW */.2
    \   000007   65D0         XRL     A,PSW
    \   000009   33           RLC     A
    \   00000A   5004         JNC     ??macRadioComputeLQI_0
-   \   00000C   7D97         MOV     R5,#-0x69
+   \   00000C   7DA9         MOV     R5,#-0x57
    \   00000E   800D         SJMP    ??macRadioComputeLQI_1
    \                     ??macRadioComputeLQI_0:
    \   000010   ED           MOV     A,R5
    \   000011   C3           CLR     C
-   \   000012   94FD         SUBB    A,#-0x3
+   \   000012   940B         SUBB    A,#0xb
    \   000014   A2D2         MOV     C,0xD0 /* PSW */.2
    \   000016   65D0         XRL     A,PSW
    \   000018   33           RLC     A
    \   000019   4002         JC      ??macRadioComputeLQI_1
-   \   00001B   7DFC         MOV     R5,#-0x4
+   \   00001B   7D0A         MOV     R5,#0xa
    \                     ??macRadioComputeLQI_1:
    \   00001D   ED           MOV     A,R5
    \   00001E   F8           MOV     R0,A
@@ -1364,7 +1406,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
      macRadioSetPanID                    10
      macRadioSetShortAddr                10
      macRadioSetIEEEAddr                 19
-     macRadioSetTxPower                  27
+     macRadioSetTxPower                  83
      ?Subroutine1                         5
      macRadioUpdateTxPower               57
      macRadioSetChannel                  46
@@ -1393,12 +1435,12 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\low_level\srf04\mac_radio.c
      ??macRadioComputeLQI?relay           6
 
  
- 577 bytes in segment BANKED_CODE
+ 633 bytes in segment BANKED_CODE
   96 bytes in segment BANK_RELAYS
    1 byte  in segment SFR_AN
    4 bytes in segment XDATA_Z
  
- 673 bytes of CODE  memory
+ 729 bytes of CODE  memory
    0 bytes of DATA  memory (+ 1 byte shared)
    4 bytes of XDATA memory
 

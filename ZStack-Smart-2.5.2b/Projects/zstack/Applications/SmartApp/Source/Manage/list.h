@@ -19,7 +19,7 @@ void sort(void);
 void destroyNodeList(void);
 extern bool createNodelist(void);
 extern uint16 get_NodeList(uint8 dev);
-void setNodeList(Node * node);
+bool setNodeList(uint8 *buf, uint16 len);
 bool addNode(Node * node);
 extern bool deleteNode(uint8 index);
 

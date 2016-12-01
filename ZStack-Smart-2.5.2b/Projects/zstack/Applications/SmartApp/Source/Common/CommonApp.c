@@ -100,8 +100,6 @@ uint8 EXT_ADDR_G[16] = "";
 
 uint8 isFirstState = 1;
 
-
-
 #if(DEVICE_TYPE_ID!=0)
 /* operations data */
 uint8 *optData = NULL;
@@ -270,7 +268,7 @@ uint16 CommonApp_ProcessEvent(uint8 task_id, uint16 events)
 		  CommonApp_PowerOnFactorySetting(CommonApp_NwkState);
 #endif
 		  CommonApp_ProcessZDOStates( CommonApp_NwkState );
-                  	  isFirstState = 0;
+                  isFirstState = 0;
   
           break;
 
@@ -786,7 +784,6 @@ ZStatus_t CommonApp_PermitJoiningRequest( byte PermitDuration )
  */
 void CommonApp_SendTheMessage(uint16 dstNwkAddr, uint8 *data, uint8 length)
 {
-
   CommonApp_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;
   CommonApp_DstAddr.endPoint = COMMONAPP_ENDPOINT;
   CommonApp_DstAddr.addr.shortAddr = dstNwkAddr;
@@ -813,18 +810,12 @@ void CommonApp_GetDevDataSend(uint8 *buf, uint16 len)
 
 void RS485_GetDevDataSend(uint8 *buf, uint16 len)
 {
-  uint8 data_buf[64];
   uint8 lenght = len;
-  
+
   if(lenght==3)
   {
-   //将设备信息添加到LIST中,最后一位有效
-    osal_memcpy(data_buf,buf,len);
-    //HalUARTWrite(SERIAL_COM_PORT,data_buf,3);
-    Node *node1 = (Node*)osal_mem_alloc(sizeof(Node));
-    node1->short_dev=(uint16)(data_buf[0])<<8 | (uint16)data_buf[1];
-    node1->addr_dev=data_buf[2];
-    setNodeList(node1); 
+   //判断是否是在链表中
+    setNodeList(buf,len);
   }
   else
   HalUARTWrite(SERIAL_COM_PORT, buf, len);

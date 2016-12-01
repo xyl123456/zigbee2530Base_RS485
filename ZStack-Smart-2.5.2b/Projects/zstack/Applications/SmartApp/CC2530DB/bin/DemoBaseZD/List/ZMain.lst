@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         25/Nov/2016  09:41:51 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         01/Dec/2016  17:09:41 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -39,12 +39,12 @@
 #                          -DMAC_MAX_FRAME_SIZE=116                           #
 #                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
 #                          __code" -DGENERIC=__generic                        #
-#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
 #                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
 #                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
 #                          -2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c -D  #
 #                          SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D     #
-#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     #
 #                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
 #                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
 #                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
@@ -275,55 +275,53 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
      84          int main( void )
    \                     main:
      85          {
-   \   000000                ; Auto size: 1
-   \   000000   74FF         MOV     A,#-0x1
-   \   000002   12....       LCALL   ?ALLOC_XSTACK8
+   \   000000                ; Auto size: 0
      86            // Turn off interrupts
      87            osal_int_disable( INTS_ALL );
-   \   000005                ; Setup parameters for call to function osal_int_disable
-   \   000005   79FF         MOV     R1,#-0x1
-   \   000007   12....       LCALL   ??osal_int_disable?relay
+   \   000000                ; Setup parameters for call to function osal_int_disable
+   \   000000   79FF         MOV     R1,#-0x1
+   \   000002   12....       LCALL   ??osal_int_disable?relay
      88          
      89            // Initialization for board related stuff such as LEDs
      90            HAL_BOARD_INIT();
-   \   00000A   53BEFB       ANL     0xbe,#0xfb
+   \   000005   53BEFB       ANL     0xbe,#0xfb
    \                     ??main_0:
-   \   00000D   E59D         MOV     A,0x9d
-   \   00000F   A2E6         MOV     C,0xE0 /* A   */.6
-   \   000011   50FA         JNC     ??main_0
-   \   000013   00           NOP
-   \   000014   78F8         MOV     R0,#-0x8
-   \   000016   7901         MOV     R1,#0x1
+   \   000008   E59D         MOV     A,0x9d
+   \   00000A   A2E6         MOV     C,0xE0 /* A   */.6
+   \   00000C   50FA         JNC     ??main_0
+   \   00000E   00           NOP
+   \   00000F   78F8         MOV     R0,#-0x8
+   \   000011   7901         MOV     R1,#0x1
    \                     ??main_1:
-   \   000018   00           NOP
-   \   000019   E8           MOV     A,R0
-   \   00001A   24FF         ADD     A,#-0x1
-   \   00001C   18           DEC     R0
-   \   00001D   E9           MOV     A,R1
-   \   00001E   34FF         ADDC    A,#-0x1
-   \   000020   F9           MOV     R1,A
-   \   000021   E8           MOV     A,R0
-   \   000022   49           ORL     A,R1
-   \   000023   70F3         JNZ     ??main_1
-   \   000025   75C600       MOV     0xc6,#0x0
+   \   000013   00           NOP
+   \   000014   E8           MOV     A,R0
+   \   000015   24FF         ADD     A,#-0x1
+   \   000017   18           DEC     R0
+   \   000018   E9           MOV     A,R1
+   \   000019   34FF         ADDC    A,#-0x1
+   \   00001B   F9           MOV     R1,A
+   \   00001C   E8           MOV     A,R0
+   \   00001D   49           ORL     A,R1
+   \   00001E   70F3         JNZ     ??main_1
+   \   000020   75C600       MOV     0xc6,#0x0
    \                     ??main_2:
-   \   000028   E59E         MOV     A,0x9e
-   \   00002A   70FC         JNZ     ??main_2
-   \   00002C   43BE04       ORL     0xbe,#0x4
-   \   00002F   906270       MOV     DPTR,#0x6270
-   \   000032   7408         MOV     A,#0x8
-   \   000034   F0           MOVX    @DPTR,A
-   \   000035   C290         CLR     0x90.0
-   \   000037   43FE01       ORL     0xfe,#0x1
-   \   00003A   C291         CLR     0x90.1
-   \   00003C   43FE02       ORL     0xfe,#0x2
-   \   00003F   C294         CLR     0x90.4
-   \   000041   43FE10       ORL     0xfe,#0x10
-   \   000044   43FE10       ORL     0xfe,#0x10
-   \   000047   43FE20       ORL     0xfe,#0x20
-   \   00004A   43FE40       ORL     0xfe,#0x40
-   \   00004D   43FE80       ORL     0xfe,#0x80
-   \   000050   438F01       ORL     0x8f,#0x1
+   \   000023   E59E         MOV     A,0x9e
+   \   000025   70FC         JNZ     ??main_2
+   \   000027   43BE04       ORL     0xbe,#0x4
+   \   00002A   906270       MOV     DPTR,#0x6270
+   \   00002D   7408         MOV     A,#0x8
+   \   00002F   F0           MOVX    @DPTR,A
+   \   000030   C290         CLR     0x90.0
+   \   000032   43FE01       ORL     0xfe,#0x1
+   \   000035   C291         CLR     0x90.1
+   \   000037   43FE02       ORL     0xfe,#0x2
+   \   00003A   C294         CLR     0x90.4
+   \   00003C   43FE10       ORL     0xfe,#0x10
+   \   00003F   43FE10       ORL     0xfe,#0x10
+   \   000042   43FE20       ORL     0xfe,#0x20
+   \   000045   43FE40       ORL     0xfe,#0x40
+   \   000048   43FE80       ORL     0xfe,#0x80
+   \   00004B   438F01       ORL     0x8f,#0x1
      91          
      92          #ifdef POWER_AMPLIFIER_POSITION_2
      93            P2DIR |= 0x01;
@@ -332,58 +330,49 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
      96          
      97            // Make sure supply voltage is high enough to run
      98            zmain_vdd_check();
-   \   000053   7E10         MOV     R6,#0x10
+   \   00004E   7E10         MOV     R6,#0x10
    \                     ??main_3:
-   \   000055                ; Setup parameters for call to function HalAdcCheckVdd
-   \   000055   794A         MOV     R1,#0x4a
-   \   000057   12....       LCALL   ??HalAdcCheckVdd?relay
-   \   00005A   E9           MOV     A,R1
-   \   00005B   60F8         JZ      ??main_3
-   \   00005D   1E           DEC     R6
-   \   00005E   EE           MOV     A,R6
-   \   00005F   70F4         JNZ     ??main_3
+   \   000050                ; Setup parameters for call to function HalAdcCheckVdd
+   \   000050   794A         MOV     R1,#0x4a
+   \   000052   12....       LCALL   ??HalAdcCheckVdd?relay
+   \   000055   E9           MOV     A,R1
+   \   000056   60F8         JZ      ??main_3
+   \   000058   1E           DEC     R6
+   \   000059   EE           MOV     A,R6
+   \   00005A   70F4         JNZ     ??main_3
      99          
     100            // Initialize board I/O
     101            InitBoard( OB_COLD );
-   \   000061                ; Setup parameters for call to function InitBoard
-   \   000061   7900         MOV     R1,#0x0
-   \   000063   12....       LCALL   ??InitBoard?relay
+   \   00005C                ; Setup parameters for call to function InitBoard
+   \   00005C   7900         MOV     R1,#0x0
+   \   00005E   12....       LCALL   ??InitBoard?relay
     102          
     103            // Initialze HAL drivers
     104            HalDriverInit();
-   \   000066                ; Setup parameters for call to function HalDriverInit
-   \   000066   12....       LCALL   ??HalDriverInit?relay
+   \   000061                ; Setup parameters for call to function HalDriverInit
+   \   000061   12....       LCALL   ??HalDriverInit?relay
     105          
     106            // Initialize NV System
     107            osal_nv_init( NULL );
-   \   000069                ; Setup parameters for call to function osal_nv_init
-   \   000069   7A00         MOV     R2,#0x0
-   \   00006B   7B00         MOV     R3,#0x0
-   \   00006D   12....       LCALL   ??osal_nv_init?relay
+   \   000064                ; Setup parameters for call to function osal_nv_init
+   \   000064   7A00         MOV     R2,#0x0
+   \   000066   7B00         MOV     R3,#0x0
+   \   000068   12....       LCALL   ??osal_nv_init?relay
     108          
     109            // Initialize the MAC
     110            ZMacInit();
-   \   000070                ; Setup parameters for call to function ZMacInit
-   \   000070   12....       LCALL   ??ZMacInit?relay
+   \   00006B                ; Setup parameters for call to function ZMacInit
+   \   00006B   12....       LCALL   ??ZMacInit?relay
     111          
     112          #ifdef SIGNAL_AMPLIFIER_SETTING
     113            uint8 value = 0xD5;
-   \   000073   85..82       MOV     DPL,?XSP + 0
-   \   000076   85..83       MOV     DPH,?XSP + 1
-   \   000079   74D5         MOV     A,#-0x2b
-   \   00007B   F0           MOVX    @DPTR,A
     114            MAC_MlmeSetReq(MAC_PHY_TRANSMIT_POWER, &value);
-   \   00007C                ; Setup parameters for call to function MAC_MlmeSetReq
-   \   00007C   AA82         MOV     R2,DPL
-   \   00007E   AB83         MOV     R3,DPH
-   \   000080   79E0         MOV     R1,#-0x20
-   \   000082   12....       LCALL   ??MAC_MlmeSetReq?relay
     115          #endif
     116          
     117            // Determine the extended address
     118            zmain_ext_addr();
-   \   000085                ; Setup parameters for call to function zmain_ext_addr
-   \   000085   12....       LCALL   ??zmain_ext_addr?relay
+   \   00006E                ; Setup parameters for call to function zmain_ext_addr
+   \   00006E   12....       LCALL   ??zmain_ext_addr?relay
     119          
     120          #if defined ZCL_KEY_ESTABLISH
     121            // Initialize the Certicom certificate information.
@@ -392,8 +381,8 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
     124          
     125            // Initialize basic NV items
     126            zgInit();
-   \   000088                ; Setup parameters for call to function zgInit
-   \   000088   12....       LCALL   ??zgInit?relay
+   \   000071                ; Setup parameters for call to function zgInit
+   \   000071   12....       LCALL   ??zgInit?relay
     127          
     128          #ifndef NONWK
     129            // Since the AF isn't a task, call it's initialization routine
@@ -402,20 +391,20 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
     132          
     133            // Initialize the operating system
     134            osal_init_system();
-   \   00008B                ; Setup parameters for call to function osal_init_system
-   \   00008B   12....       LCALL   ??osal_init_system?relay
+   \   000074                ; Setup parameters for call to function osal_init_system
+   \   000074   12....       LCALL   ??osal_init_system?relay
     135          
     136            // Allow interrupts
     137            osal_int_enable( INTS_ALL );
-   \   00008E                ; Setup parameters for call to function osal_int_enable
-   \   00008E   79FF         MOV     R1,#-0x1
-   \   000090   12....       LCALL   ??osal_int_enable?relay
+   \   000077                ; Setup parameters for call to function osal_int_enable
+   \   000077   79FF         MOV     R1,#-0x1
+   \   000079   12....       LCALL   ??osal_int_enable?relay
     138          
     139            // Final board initialization
     140            InitBoard( OB_READY );
-   \   000093                ; Setup parameters for call to function InitBoard
-   \   000093   7902         MOV     R1,#0x2
-   \   000095   12....       LCALL   ??InitBoard?relay
+   \   00007C                ; Setup parameters for call to function InitBoard
+   \   00007C   7902         MOV     R1,#0x2
+   \   00007E   12....       LCALL   ??InitBoard?relay
     141          
     142            // Display information about this device
     143            zmain_dev_info();
@@ -431,22 +420,20 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
     153          #endif
     154            
     155            osal_start_system(); // No Return from here
-   \   000098                ; Setup parameters for call to function osal_start_system
-   \   000098   12....       LCALL   ??osal_start_system?relay
+   \   000081                ; Setup parameters for call to function osal_start_system
+   \   000081   12....       LCALL   ??osal_start_system?relay
     156          
     157            return 0;  // Shouldn't get here.
-   \   00009B   7A00         MOV     R2,#0x0
-   \   00009D   7B00         MOV     R3,#0x0
-   \   00009F   7401         MOV     A,#0x1
-   \   0000A1   12....       LCALL   ?DEALLOC_XSTACK8
-   \   0000A4   02....       LJMP    ?BRET
-   \   0000A7                REQUIRE SLEEPCMD
-   \   0000A7                REQUIRE SLEEPSTA
-   \   0000A7                REQUIRE CLKCONCMD
-   \   0000A7                REQUIRE CLKCONSTA
-   \   0000A7                REQUIRE _A_P1
-   \   0000A7                REQUIRE P1DIR
-   \   0000A7                REQUIRE P0INP
+   \   000084   7A00         MOV     R2,#0x0
+   \   000086   7B00         MOV     R3,#0x0
+   \   000088   02....       LJMP    ?BRET
+   \   00008B                REQUIRE SLEEPCMD
+   \   00008B                REQUIRE SLEEPSTA
+   \   00008B                REQUIRE CLKCONCMD
+   \   00008B                REQUIRE CLKCONSTA
+   \   00008B                REQUIRE _A_P1
+   \   00008B                REQUIRE P1DIR
+   \   00008B                REQUIRE P0INP
     158          } // main()
     159          
     160          /*********************************************************************
@@ -901,21 +888,20 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
 
      Function               ISTACK PSTACK XSTACK
      --------               ------ ------ ------
-     main                       0      0      1
-       -> osal_int_disable      0      0      2
-       -> HalAdcCheckVdd        0      0      2
-       -> InitBoard             0      0      2
-       -> HalDriverInit         0      0      2
-       -> osal_nv_init          0      0      2
-       -> ZMacInit              0      0      2
-       -> MAC_MlmeSetReq        0      0      2
-       -> zmain_ext_addr        0      0      2
-       -> zgInit                0      0      2
-       -> osal_init_system      0      0      2
-       -> osal_int_enable       0      0      2
-       -> InitBoard             0      0      2
-       -> osal_start_system     0      0      2
-     zmain_ext_addr             2      0     24
+     main                       0      0      0
+       -> osal_int_disable      0      0      0
+       -> HalAdcCheckVdd        0      0      0
+       -> InitBoard             0      0      0
+       -> HalDriverInit         0      0      0
+       -> osal_nv_init          0      0      0
+       -> ZMacInit              0      0      0
+       -> zmain_ext_addr        0      0      0
+       -> zgInit                0      0      0
+       -> osal_init_system      0      0      0
+       -> osal_int_enable       0      0      0
+       -> InitBoard             0      0      0
+       -> osal_start_system     0      0      0
+     zmain_ext_addr             2      0     23
        -> osal_nv_item_init     0      0     42
        -> osal_nv_read          0      0     46
        -> osal_memcmp           0      0     44
@@ -939,19 +925,19 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\ZMain\TI2530DB\ZMain.c
      SLEEPCMD                                          1
      CLKCONCMD                                         1
      P1DIR                                             1
-     main                                            167
+     main                                            139
      zmain_ext_addr                                  406
      ??main?relay                                      6
      ??zmain_ext_addr?relay                            6
      ?<Constant {255, 255, 255, 255, 255, 255, 255,    8
 
  
- 573 bytes in segment BANKED_CODE
+ 545 bytes in segment BANKED_CODE
   12 bytes in segment BANK_RELAYS
    7 bytes in segment SFR_AN
    8 bytes in segment XDATA_ROM_C
  
- 585 bytes of CODE  memory
+ 557 bytes of CODE  memory
    8 bytes of CONST memory
    0 bytes of DATA  memory (+ 7 bytes shared)
 

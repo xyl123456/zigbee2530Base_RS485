@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        25/Nov/2016  10:40:14 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        01/Dec/2016  17:11:31 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -41,7 +41,7 @@
 //                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
 //                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
 //                          __code" -DGENERIC=__generic                       /
-//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000        /
 //                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
 //                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
 //                          t-2.5.2b\Projects\zstack\Applications\SmartApp\So /
@@ -170,10 +170,16 @@
         RSEG PSTACK:XDATA:NOROOT(0)
         RSEG XSTACK:XDATA:NOROOT(0)
 
+        EXTERN ?ALLOC_XSTACK8
         EXTERN ?BANKED_ENTER_XDATA
         EXTERN ?BANKED_LEAVE_XDATA
         EXTERN ?BDISPATCH
         EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?PUSH_XSTACK_I_THREE
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
         EXTERN __INIT_XDATA_Z
 
         PUBLIC ??addNode?relay
@@ -190,7 +196,7 @@
         FUNCTION ??setNodeList?relay,0203H
         PUBLIC addNode
         FUNCTION addNode,0203H
-        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         LOCFRAME XSTACK, 9, STACK
@@ -199,9 +205,9 @@
         ARGFRAME XSTACK, 0, STACK
         LOCFRAME ISTACK, 2, STACK
         PUBLIC deleteNode
-        FUNCTION deleteNode,021203H
+        FUNCTION deleteNode,0203H
         ARGFRAME XSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME ISTACK, 2, STACK
         PUBLIC destroyNodeList
         FUNCTION destroyNodeList,021203H
         ARGFRAME XSTACK, 0, STACK
@@ -214,7 +220,8 @@
         PUBLIC setNodeList
         FUNCTION setNodeList,021203H
         ARGFRAME XSTACK, 0, STACK
-        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 18, STACK
         
         CFI Names cfiNames0
         CFI StackFrame CFA_SP SP IDATA
@@ -373,8 +380,10 @@
         
 osal_mem_alloc      SYMBOL "osal_mem_alloc"
 osal_mem_free       SYMBOL "osal_mem_free"
+osal_memcpy         SYMBOL "osal_memcpy"
 ??osal_mem_alloc?relay SYMBOL "?relay", osal_mem_alloc
 ??osal_mem_free?relay SYMBOL "?relay", osal_mem_free
+??osal_memcpy?relay SYMBOL "?relay", osal_memcpy
 addNode             SYMBOL "addNode"
 ??addNode?relay     SYMBOL "?relay", addNode
 createNodelist      SYMBOL "createNodelist"
@@ -392,7 +401,7 @@ setNodeList         SYMBOL "setNodeList"
         FUNCTION osal_mem_alloc,0202H
         ARGFRAME ISTACK, 2, STACK
         ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN osal_mem_free
@@ -402,31 +411,41 @@ setNodeList         SYMBOL "setNodeList"
         ARGFRAME XSTACK, 9, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN osal_memcpy
+        FUNCTION osal_memcpy,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 18, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
         EXTERN ??osal_mem_alloc?relay
         FUNCTION ??osal_mem_alloc?relay,00H
         EXTERN ??osal_mem_free?relay
         FUNCTION ??osal_mem_free?relay,00H
+        EXTERN ??osal_memcpy?relay
+        FUNCTION ??osal_memcpy?relay,00H
 
 // E:\work\zigbee\ZStack-Smart-2.5.2b\Projects\zstack\Applications\SmartApp\Source\Manage\list.c
 //    1 #include "OSAL.h"
-//    2 #include "list.h"
-//    3 //创建链表，头结点data=0;pNext=null
-//    4 
+//    2 #include "serial-comm.h"
+//    3 #include "list.h"
+//    4 //创建链表，头结点data=0;pNext=null
+//    5 
 
         RSEG XDATA_Z:XDATA:NOROOT(0)
         DATA16
-//    5 Node *head ;
+//    6 Node* head = NULL;
 head:
         DS 2
         REQUIRE __INIT_XDATA_Z
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//    6 bool createNodelist(void)
+//    7 bool createNodelist(void)
 createNodelist:
         CFI Block cfiBlock0 Using cfiCommon0
         CFI Function createNodelist
         CODE
-//    7 {
+//    8 {
         FUNCALL createNodelist, osal_mem_alloc
         LOCFRAME ISTACK, 2, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -446,7 +465,7 @@ createNodelist:
         CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
-//    8 	head = (Node*)osal_mem_alloc(sizeof(Node));
+//    9 	head = (Node*)osal_mem_alloc(sizeof(Node));
         ; Setup parameters for call to function osal_mem_alloc
         MOV     R2,#0x5
         MOV     R3,#0x0
@@ -457,16 +476,17 @@ createNodelist:
         INC     DPTR
         MOV     A,R3
         MOVX    @DPTR,A
-//    9 	if(NULL == head){
+//   10         //分配一个头结点
+//   11 	if(NULL == head){
         LCALL   ?Subroutine2 & 0xFFFF
-??CrossCallReturnLabel_11:
+??CrossCallReturnLabel_13:
         JNZ     ??createNodelist_0
-//   10 		return list_false;
+//   12 		return list_false;
         MOV     R1,#0x0
         SJMP    ??createNodelist_1
-//   11 		}
-//   12 	else {
-//   13 		head->short_dev =0;
+//   13 		}
+//   14 	else {
+//   15 		head->short_dev =0;
 ??createNodelist_0:
         MOVX    A,@DPTR
         MOV     DPH,A
@@ -475,25 +495,25 @@ createNodelist:
         MOVX    @DPTR,A
         INC     DPTR
         LCALL   ?Subroutine3 & 0xFFFF
-//   14                 head->addr_dev =0;
+//   16                 head->addr_dev =0;
 ??CrossCallReturnLabel_0:
         CLR     A
         LCALL   ?Subroutine3 & 0xFFFF
-//   15 		head->pNext = NULL;
+//   17 		head->pNext = NULL;
 ??CrossCallReturnLabel_1:
         INC     DPTR
         CLR     A
         MOVX    @DPTR,A
         INC     DPTR
         MOVX    @DPTR,A
-//   16 		return list_true;
+//   18 		return list_true;
         MOV     R1,#0x1
         CFI EndBlock cfiBlock0
-//   17 		}
+//   19 		}
 ??createNodelist_1:
         REQUIRE ?Subroutine0
         ; // Fall through to label ?Subroutine0
-//   18 }
+//   20 }
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
 ?Subroutine0:
@@ -529,13 +549,8 @@ createNodelist:
         CFI (cfiPicker4) NoFunction
         CFI (cfiPicker4) Picker
         MOVX    @DPTR,A
-        MOV     DPTR,#head
-        MOVX    A,@DPTR
-        MOV     R0,A
-        INC     DPTR
-        MOVX    A,@DPTR
-        MOV     DPH,A
-        MOV     DPL,R0
+        LCALL   ?Subroutine8 & 0xFFFF
+??CrossCallReturnLabel_9:
         INC     DPTR
         INC     DPTR
         RET
@@ -547,13 +562,13 @@ createNodelist:
 ?Subroutine2:
         CFI Block cfiCond5 Using cfiCommon0
         CFI NoFunction
-        CFI Conditional ??CrossCallReturnLabel_11
+        CFI Conditional ??CrossCallReturnLabel_13
         CFI DPL0 Frame(CFA_SP, 4)
         CFI DPH0 Frame(CFA_SP, 5)
         CFI CFA_SP SP+-5
         CFI Block cfiCond6 Using cfiCommon0
         CFI (cfiCond6) NoFunction
-        CFI (cfiCond6) Conditional ??CrossCallReturnLabel_12
+        CFI (cfiCond6) Conditional ??CrossCallReturnLabel_14
         CFI (cfiCond6) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
         CFI (cfiCond6) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
         CFI (cfiCond6) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
@@ -567,21 +582,13 @@ createNodelist:
         CFI (cfiCond6) CFA_XSP16 add(XSP16, 9)
         CFI Block cfiCond7 Using cfiCommon0
         CFI (cfiCond7) NoFunction
-        CFI (cfiCond7) Conditional ??CrossCallReturnLabel_13
-        CFI (cfiCond7) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-        CFI (cfiCond7) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-        CFI (cfiCond7) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-        CFI (cfiCond7) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-        CFI (cfiCond7) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        CFI (cfiCond7) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-        CFI (cfiCond7) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-        CFI (cfiCond7) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-        CFI (cfiCond7) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-        CFI (cfiCond7) CFA_SP SP+0
-        CFI (cfiCond7) CFA_XSP16 add(XSP16, 9)
+        CFI (cfiCond7) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond7) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond7) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond7) CFA_SP SP+-5
         CFI Block cfiCond8 Using cfiCommon0
         CFI (cfiCond8) NoFunction
-        CFI (cfiCond8) Conditional ??CrossCallReturnLabel_14
+        CFI (cfiCond8) Conditional ??CrossCallReturnLabel_16
         CFI (cfiCond8) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
         CFI (cfiCond8) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
         CFI (cfiCond8) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
@@ -593,23 +600,41 @@ createNodelist:
         CFI (cfiCond8) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
         CFI (cfiCond8) CFA_SP SP+0
         CFI (cfiCond8) CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiPicker9 Using cfiCommon1
-        CFI (cfiPicker9) NoFunction
-        CFI (cfiPicker9) Picker
+        CFI Block cfiCond9 Using cfiCommon0
+        CFI (cfiCond9) NoFunction
+        CFI (cfiCond9) Conditional ??CrossCallReturnLabel_17
+        CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond9) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond9) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond9) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond9) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond9) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond9) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond9) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond9) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond9) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond9) CFA_SP SP+0
+        CFI (cfiCond9) CFA_XSP16 add(XSP16, 15)
+        CFI Block cfiPicker10 Using cfiCommon1
+        CFI (cfiPicker10) NoFunction
+        CFI (cfiPicker10) Picker
         MOV     DPTR,#head
         CFI EndBlock cfiCond5
         CFI EndBlock cfiCond6
         CFI EndBlock cfiCond7
         CFI EndBlock cfiCond8
-        CFI EndBlock cfiPicker9
-        REQUIRE ??Subroutine6_0
-        ; // Fall through to label ??Subroutine6_0
+        CFI EndBlock cfiCond9
+        CFI EndBlock cfiPicker10
+        REQUIRE ??Subroutine9_0
+        ; // Fall through to label ??Subroutine9_0
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-??Subroutine6_0:
-        CFI Block cfiCond10 Using cfiCommon0
+??Subroutine9_0:
+        CFI Block cfiCond11 Using cfiCommon0
         CFI NoFunction
-        CFI Conditional ??CrossCallReturnLabel_10
+        CFI Conditional ??CrossCallReturnLabel_11
         CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
         CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
         CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
@@ -621,24 +646,32 @@ createNodelist:
         CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
         CFI CFA_SP SP+0
         CFI CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiCond11 Using cfiCommon0
-        CFI (cfiCond11) NoFunction
-        CFI (cfiCond11) Conditional ??CrossCallReturnLabel_9
-        CFI (cfiCond11) DPL0 Frame(CFA_SP, 4)
-        CFI (cfiCond11) DPH0 Frame(CFA_SP, 5)
-        CFI (cfiCond11) CFA_SP SP+-5
         CFI Block cfiCond12 Using cfiCommon0
         CFI (cfiCond12) NoFunction
-        CFI (cfiCond12) Conditional ??CrossCallReturnLabel_11
-        CFI (cfiCond12) DPL0 Frame(CFA_SP, 4)
-        CFI (cfiCond12) DPH0 Frame(CFA_SP, 5)
-        CFI (cfiCond12) CFA_SP SP+-5
+        CFI (cfiCond12) Conditional ??CrossCallReturnLabel_10
+        CFI (cfiCond12) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond12) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond12) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond12) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond12) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond12) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond12) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond12) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond12) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond12) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond12) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond12) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond12) CFA_SP SP+0
+        CFI (cfiCond12) CFA_XSP16 add(XSP16, 15)
         CFI Block cfiCond13 Using cfiCommon0
         CFI (cfiCond13) NoFunction
         CFI (cfiCond13) Conditional ??CrossCallReturnLabel_12
-        CFI (cfiCond13) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-        CFI (cfiCond13) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-        CFI (cfiCond13) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond13) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond13) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond13) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond13) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond13) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond13) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
         CFI (cfiCond13) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
         CFI (cfiCond13) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
         CFI (cfiCond13) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
@@ -646,21 +679,13 @@ createNodelist:
         CFI (cfiCond13) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
         CFI (cfiCond13) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
         CFI (cfiCond13) CFA_SP SP+0
-        CFI (cfiCond13) CFA_XSP16 add(XSP16, 9)
+        CFI (cfiCond13) CFA_XSP16 add(XSP16, 15)
         CFI Block cfiCond14 Using cfiCommon0
         CFI (cfiCond14) NoFunction
         CFI (cfiCond14) Conditional ??CrossCallReturnLabel_13
-        CFI (cfiCond14) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-        CFI (cfiCond14) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-        CFI (cfiCond14) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-        CFI (cfiCond14) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-        CFI (cfiCond14) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        CFI (cfiCond14) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-        CFI (cfiCond14) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-        CFI (cfiCond14) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-        CFI (cfiCond14) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-        CFI (cfiCond14) CFA_SP SP+0
-        CFI (cfiCond14) CFA_XSP16 add(XSP16, 9)
+        CFI (cfiCond14) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond14) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond14) CFA_SP SP+-5
         CFI Block cfiCond15 Using cfiCommon0
         CFI (cfiCond15) NoFunction
         CFI (cfiCond15) Conditional ??CrossCallReturnLabel_14
@@ -675,9 +700,46 @@ createNodelist:
         CFI (cfiCond15) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
         CFI (cfiCond15) CFA_SP SP+0
         CFI (cfiCond15) CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiPicker16 Using cfiCommon1
-        CFI (cfiPicker16) NoFunction
-        CFI (cfiPicker16) Picker
+        CFI Block cfiCond16 Using cfiCommon0
+        CFI (cfiCond16) NoFunction
+        CFI (cfiCond16) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond16) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond16) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond16) CFA_SP SP+-5
+        CFI Block cfiCond17 Using cfiCommon0
+        CFI (cfiCond17) NoFunction
+        CFI (cfiCond17) Conditional ??CrossCallReturnLabel_16
+        CFI (cfiCond17) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond17) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond17) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond17) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond17) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond17) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond17) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond17) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond17) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond17) CFA_SP SP+0
+        CFI (cfiCond17) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond18 Using cfiCommon0
+        CFI (cfiCond18) NoFunction
+        CFI (cfiCond18) Conditional ??CrossCallReturnLabel_17
+        CFI (cfiCond18) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond18) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond18) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond18) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond18) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond18) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond18) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond18) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond18) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond18) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond18) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond18) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond18) CFA_SP SP+0
+        CFI (cfiCond18) CFA_XSP16 add(XSP16, 15)
+        CFI Block cfiPicker19 Using cfiCommon1
+        CFI (cfiPicker19) NoFunction
+        CFI (cfiPicker19) Picker
         MOVX    A,@DPTR
         MOV     R0,A
         INC     DPTR
@@ -686,23 +748,25 @@ createNodelist:
         MOV     A,R0
         ORL     A,R1
         RET
-        CFI EndBlock cfiCond10
         CFI EndBlock cfiCond11
         CFI EndBlock cfiCond12
         CFI EndBlock cfiCond13
         CFI EndBlock cfiCond14
         CFI EndBlock cfiCond15
-        CFI EndBlock cfiPicker16
-//   19 
-//   20 //增加节点尾部添加
+        CFI EndBlock cfiCond16
+        CFI EndBlock cfiCond17
+        CFI EndBlock cfiCond18
+        CFI EndBlock cfiPicker19
+//   21 
+//   22 //增加节点尾部添加
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//   21 bool  addNode(Node * node)
+//   23 bool addNode(Node * node)
 addNode:
-        CFI Block cfiBlock17 Using cfiCommon0
+        CFI Block cfiBlock20 Using cfiCommon0
         CFI Function addNode
         CODE
-//   22 {
+//   24 {
         MOV     A,#-0x9
         LCALL   ?BANKED_ENTER_XDATA
         CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
@@ -718,50 +782,50 @@ addNode:
         CFI CFA_XSP16 add(XSP16, 9)
         ; Saved register size: 9
         ; Auto size: 0
-//   23 	if(NULL == head){
+//   25 	if(NULL == head){
         LCALL   ?Subroutine2 & 0xFFFF
-??CrossCallReturnLabel_12:
+??CrossCallReturnLabel_14:
         JNZ     ??addNode_0
-//   24 		return list_false;
+//   26 	  return list_false;
         MOV     R1,#0x0
         SJMP    ??addNode_1
-//   25 		}
-//   26 	Node* p = head ->pNext;
+//   27 		}
+//   28 	Node* p = head ->pNext;
 ??addNode_0:
         LCALL   ?Subroutine5 & 0xFFFF
-??CrossCallReturnLabel_7:
+??CrossCallReturnLabel_4:
         MOV     R0,A
         INC     DPTR
         MOVX    A,@DPTR
         MOV     R1,A
-//   27 	Node* q = head;
+//   29 	Node* q = head;
         MOV     DPTR,#head
         MOVX    A,@DPTR
         MOV     R4,A
         INC     DPTR
         MOVX    A,@DPTR
         MOV     R5,A
-//   28 	while(NULL !=p){
+//   30 	while(NULL !=p){
         MOV     A,R0
         ORL     A,R1
         JZ      ??addNode_2
-//   29 		q = p;
+//   31 		q = p;
 ??addNode_3:
         MOV     A,R0
         MOV     R4,A
         MOV     A,R1
         MOV     R5,A
-//   30 		p = p->pNext;
+//   32 		p = p->pNext;
         MOV     DPL,R0
         MOV     DPH,R1
         INC     DPTR
         INC     DPTR
         INC     DPTR
-        LCALL   ??Subroutine6_0 & 0xFFFF
-//   31 		}
-??CrossCallReturnLabel_10:
+        LCALL   ??Subroutine9_0 & 0xFFFF
+//   33 		}
+??CrossCallReturnLabel_11:
         JNZ     ??addNode_3
-//   32 	q->pNext = node;
+//   34 	q->pNext = node;
 ??addNode_2:
         MOV     DPL,R4
         MOV     DPH,R5
@@ -772,28 +836,20 @@ addNode:
         MOVX    @DPTR,A
         INC     DPTR
         MOV     A,R3
-        MOVX    @DPTR,A
-//   33 	node ->pNext = NULL;	
-        MOV     DPL,R2
-        MOV     DPH,R3
-        INC     DPTR
-        INC     DPTR
-        INC     DPTR
-        CLR     A
-        MOVX    @DPTR,A
-        INC     DPTR
-        MOVX    @DPTR,A
-//   34 	return list_true;
+        LCALL   ?Subroutine4 & 0xFFFF
+//   35 	node ->pNext = NULL;	
+//   36 	return list_true;
+??CrossCallReturnLabel_2:
         MOV     R1,#0x1
-        CFI EndBlock cfiBlock17
+        CFI EndBlock cfiBlock20
 ??addNode_1:
         REQUIRE ?Subroutine1
         ; // Fall through to label ?Subroutine1
-//   35 }
+//   37 }
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
 ?Subroutine1:
-        CFI Block cfiBlock18 Using cfiCommon0
+        CFI Block cfiBlock21 Using cfiCommon0
         CFI NoFunction
         CFI CFA_SP SP+0
         CFI CFA_XSP16 add(XSP16, 9)
@@ -808,114 +864,56 @@ addNode:
         CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
         MOV     R7,#0x1
         LJMP    ?BANKED_LEAVE_XDATA
-        CFI EndBlock cfiBlock18
-//   36 
-//   37 //删除节点
+        CFI EndBlock cfiBlock21
+//   38 
+//   39 //删除节点
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//   38 bool deleteNode(uint8 index)
+//   40 bool deleteNode(uint8 index)
 deleteNode:
-        CFI Block cfiBlock19 Using cfiCommon0
+        CFI Block cfiBlock22 Using cfiCommon0
         CFI Function deleteNode
         CODE
-//   39 {
-        FUNCALL deleteNode, osal_mem_free
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL deleteNode, osal_mem_free
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        MOV     A,#-0x9
-        LCALL   ?BANKED_ENTER_XDATA
-        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-        CFI CFA_SP SP+0
-        CFI CFA_XSP16 add(XSP16, 9)
-        ; Saved register size: 9
+//   41 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
         ; Auto size: 0
         MOV     A,R1
-        MOV     R6,A
-//   40 	if(NULL == head){
+        MOV     R4,A
+//   42 	if(NULL == head){
         LCALL   ?Subroutine2 & 0xFFFF
-??CrossCallReturnLabel_13:
+??CrossCallReturnLabel_15:
         JNZ     ??deleteNode_0
-//   41 		return list_false;
+//   43 	return list_false;
 ??deleteNode_1:
         MOV     R1,#0x0
         SJMP    ??deleteNode_2
-//   42 		}
-//   43 	Node* perior = head;
+//   44 		}
+//   45 	Node* perior = head;
 ??deleteNode_0:
-        MOV     DPTR,#head
-        MOVX    A,@DPTR
-        MOV     R4,A
-        INC     DPTR
-        MOVX    A,@DPTR
-        MOV     R5,A
-//   44 	Node* q = head->pNext;
+        LCALL   ?Subroutine6 & 0xFFFF
+//   46 	Node* q = head->pNext;
+??CrossCallReturnLabel_20:
         MOV     DPH,A
         MOV     DPL,R0
         SJMP    ??deleteNode_3
-//   45 	while((q!=NULL)&&(q->addr_dev != index))
-//   46 		{
-//   47 		perior = q;
+//   47 	while((q!=NULL)&&(q->addr_dev != index))
+//   48 		{
+//   49 		perior = q;
 ??deleteNode_4:
-        MOV     A,R2
-        MOV     R4,A
-        MOV     A,R3
-        MOV     R5,A
-//   48 		q = q->pNext;
-        MOV     DPL,R2
-        MOV     DPH,R3
+        MOV     A,R0
+        MOV     R2,A
+        MOV     A,R1
+        MOV     R3,A
+//   50 		q = q->pNext;
+        MOV     DPL,R0
+        MOV     DPH,R1
 ??deleteNode_3:
-        INC     DPTR
-        INC     DPTR
-        INC     DPTR
-//   49 		}
-        LCALL   ?Subroutine4 & 0xFFFF
-??CrossCallReturnLabel_2:
-        MOV     A,R2
-        ADD     A,#0x2
-        MOV     DPL,A
-        MOV     A,R3
-        ADDC    A,#0x0
-        MOV     DPH,A
-        MOV     A,R2
-        ORL     A,R3
-        JZ      ??deleteNode_5
-        MOVX    A,@DPTR
-        XRL     A,R6
-        JNZ     ??deleteNode_4
-//   50 	if(q->addr_dev == index)
-??deleteNode_5:
-        MOVX    A,@DPTR
-        XRL     A,R6
-        JNZ     ??deleteNode_1
-        MOV     DPL,R2
-        MOV     DPH,R3
         INC     DPTR
         INC     DPTR
         INC     DPTR
@@ -924,25 +922,51 @@ deleteNode:
         INC     DPTR
         MOVX    A,@DPTR
         MOV     R1,A
-        MOV     A,R4
+//   51 		}
+        MOV     A,R0
+        ADD     A,#0x2
+        MOV     DPL,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??deleteNode_5
+        MOVX    A,@DPTR
+        XRL     A,R4
+        JNZ     ??deleteNode_4
+//   52 	if(q->addr_dev == index)
+??deleteNode_5:
+        MOVX    A,@DPTR
+        XRL     A,R4
+        JNZ     ??deleteNode_1
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R2
         ADD     A,#0x3
         MOV     DPL,A
-        MOV     A,R5
+        MOV     A,R3
         ADDC    A,#0x0
         MOV     DPH,A
         MOV     A,R0
         ORL     A,R1
         JNZ     ??deleteNode_6
-//   51 		{
-//   52 		if(q->pNext == NULL)
-//   53 			{
-//   54 
-//   55 			perior->pNext = NULL;
+//   53 		{
+//   54 		if(q->pNext == NULL)
+//   55 			{
+//   56 			perior->pNext = NULL;
         CLR     A
         MOVX    @DPTR,A
         INC     DPTR
         SJMP    ??deleteNode_7
-//   56 		        osal_mem_free(q);
 //   57 			return list_true;
 //   58 			}
 //   59 		else
@@ -955,28 +979,106 @@ deleteNode:
         MOV     A,R1
 ??deleteNode_7:
         MOVX    @DPTR,A
-//   62     			osal_mem_free(q);
-        ; Setup parameters for call to function osal_mem_free
-        LCALL   ??osal_mem_free?relay
-//   63 			return list_true;
+//   62 			return list_true;
         MOV     R1,#0x1
-//   64 			}
-//   65 		}
+//   63 			}
+//   64 		}
 ??deleteNode_2:
-        SJMP    ?Subroutine1
-        CFI EndBlock cfiBlock19
-//   66         return list_false;
-//   67 }
-//   68 
-//   69 //销毁
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock22
+//   65         return list_false;
+//   66 }
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//   70 void destroyNodeList(void)
+?Subroutine6:
+        CFI Block cfiCond23 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_20
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond24 Using cfiCommon0
+        CFI (cfiCond24) NoFunction
+        CFI (cfiCond24) Conditional ??CrossCallReturnLabel_21
+        CFI (cfiCond24) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond24) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond24) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond24) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond24) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond24) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond24) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond24) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond24) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond24) CFA_SP SP+0
+        CFI (cfiCond24) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker25 Using cfiCommon1
+        CFI (cfiPicker25) NoFunction
+        CFI (cfiPicker25) Picker
+        MOV     DPTR,#head
+        CFI EndBlock cfiCond23
+        CFI EndBlock cfiCond24
+        CFI EndBlock cfiPicker25
+        REQUIRE ??Subroutine10_0
+        ; // Fall through to label ??Subroutine10_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine10_0:
+        CFI Block cfiCond26 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_18
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond27 Using cfiCommon0
+        CFI (cfiCond27) NoFunction
+        CFI (cfiCond27) Conditional ??CrossCallReturnLabel_19
+        CFI (cfiCond27) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond27) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond27) CFA_SP SP+-5
+        CFI Block cfiCond28 Using cfiCommon0
+        CFI (cfiCond28) NoFunction
+        CFI (cfiCond28) Conditional ??CrossCallReturnLabel_20
+        CFI (cfiCond28) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond28) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond28) CFA_SP SP+-5
+        CFI Block cfiCond29 Using cfiCommon0
+        CFI (cfiCond29) NoFunction
+        CFI (cfiCond29) Conditional ??CrossCallReturnLabel_21
+        CFI (cfiCond29) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond29) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond29) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond29) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond29) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond29) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond29) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond29) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond29) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond29) CFA_SP SP+0
+        CFI (cfiCond29) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker30 Using cfiCommon1
+        CFI (cfiPicker30) NoFunction
+        CFI (cfiPicker30) Picker
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        RET
+        CFI EndBlock cfiCond26
+        CFI EndBlock cfiCond27
+        CFI EndBlock cfiCond28
+        CFI EndBlock cfiCond29
+        CFI EndBlock cfiPicker30
+//   67 
+//   68 //销毁
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   69 void destroyNodeList(void)
 destroyNodeList:
-        CFI Block cfiBlock20 Using cfiCommon0
+        CFI Block cfiBlock31 Using cfiCommon0
         CFI Function destroyNodeList
         CODE
-//   71 {
+//   70 {
         FUNCALL destroyNodeList, osal_mem_free
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1014,15 +1116,15 @@ destroyNodeList:
         CFI CFA_XSP16 add(XSP16, 9)
         ; Saved register size: 9
         ; Auto size: 0
-//   72 	if(NULL == head){
+//   71 	if(NULL == head){
         LCALL   ?Subroutine2 & 0xFFFF
-??CrossCallReturnLabel_14:
+??CrossCallReturnLabel_16:
         JZ      ??destroyNodeList_0
-//   73 		return;
-//   74 		}
-//   75 	if(NULL == head->pNext){
+//   72 		return;
+//   73 		}
+//   74 	if(NULL == head->pNext){
         LCALL   ?Subroutine5 & 0xFFFF
-??CrossCallReturnLabel_8:
+??CrossCallReturnLabel_5:
         MOV     R6,A
         INC     DPTR
         MOVX    A,@DPTR
@@ -1030,32 +1132,31 @@ destroyNodeList:
         MOV     A,R6
         ORL     A,R7
         JNZ     ??destroyNodeList_1
-//   76 		osal_mem_free(head);
+//   75 		osal_mem_free(head);
 ??destroyNodeList_2:
         ; Setup parameters for call to function osal_mem_free
-        MOV     DPTR,#head
-        LCALL   ?Subroutine4 & 0xFFFF
-??CrossCallReturnLabel_3:
+        LCALL   ?Subroutine6 & 0xFFFF
+??CrossCallReturnLabel_21:
         LCALL   ??osal_mem_free?relay
-//   77 		head =NULL;
+//   76 		head =NULL;
         MOV     DPTR,#head
         CLR     A
         MOVX    @DPTR,A
         INC     DPTR
         MOVX    @DPTR,A
-//   78 		return;
-//   79 		}
+//   77 		return;
+//   78 		}
 ??destroyNodeList_0:
         LJMP    ?Subroutine1 & 0xFFFF
-//   80 	Node* p = head->pNext;
-//   81 	while(NULL != p){
-//   82 		Node* tmp =p;
+//   79 	Node* p = head->pNext;
+//   80 	while(NULL != p){
+//   81 		Node* tmp =p;
 ??destroyNodeList_1:
         MOV     A,R6
         MOV     R2,A
         MOV     A,R7
         MOV     R3,A
-//   83 		p = p->pNext;
+//   82 		p = p->pNext;
         MOV     DPL,R6
         MOV     DPH,R7
         INC     DPTR
@@ -1066,24 +1167,24 @@ destroyNodeList:
         INC     DPTR
         MOVX    A,@DPTR
         MOV     R7,A
-//   84 		osal_mem_free(tmp);
+//   83 		osal_mem_free(tmp);
         ; Setup parameters for call to function osal_mem_free
         LCALL   ??osal_mem_free?relay
         MOV     A,R6
         ORL     A,R7
         JZ      ??destroyNodeList_2
         SJMP    ??destroyNodeList_1
-        CFI EndBlock cfiBlock20
-//   85 		}
-//   86 	osal_mem_free(head);
-//   87 	head = NULL;
-//   88 }
+        CFI EndBlock cfiBlock31
+//   84 		}
+//   85 	osal_mem_free(head);
+//   86 	head = NULL;
+//   87 }
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
 ?Subroutine5:
-        CFI Block cfiCond21 Using cfiCommon0
+        CFI Block cfiCond32 Using cfiCommon0
         CFI NoFunction
-        CFI Conditional ??CrossCallReturnLabel_7
+        CFI Conditional ??CrossCallReturnLabel_4
         CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
         CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
         CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
@@ -1095,141 +1196,290 @@ destroyNodeList:
         CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
         CFI CFA_SP SP+0
         CFI CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiCond22 Using cfiCommon0
-        CFI (cfiCond22) NoFunction
-        CFI (cfiCond22) Conditional ??CrossCallReturnLabel_8
-        CFI (cfiCond22) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-        CFI (cfiCond22) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-        CFI (cfiCond22) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-        CFI (cfiCond22) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-        CFI (cfiCond22) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        CFI (cfiCond22) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-        CFI (cfiCond22) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-        CFI (cfiCond22) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-        CFI (cfiCond22) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-        CFI (cfiCond22) CFA_SP SP+0
-        CFI (cfiCond22) CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiPicker23 Using cfiCommon1
-        CFI (cfiPicker23) NoFunction
-        CFI (cfiPicker23) Picker
+        CFI Block cfiCond33 Using cfiCommon0
+        CFI (cfiCond33) NoFunction
+        CFI (cfiCond33) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond33) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond33) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond33) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond33) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond33) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond33) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond33) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond33) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond33) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond33) CFA_SP SP+0
+        CFI (cfiCond33) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiPicker34 Using cfiCommon1
+        CFI (cfiPicker34) NoFunction
+        CFI (cfiPicker34) Picker
+        LCALL   ?Subroutine7 & 0xFFFF
+??CrossCallReturnLabel_7:
+        MOVX    A,@DPTR
+        RET
+        CFI EndBlock cfiCond32
+        CFI EndBlock cfiCond33
+        CFI EndBlock cfiPicker34
+//   88 
+//   89 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   90 bool setNodeList(uint8 *buf, uint16 len)
+setNodeList:
+        CFI Block cfiBlock35 Using cfiCommon0
+        CFI Function setNodeList
+        CODE
+//   91 {
+        FUNCALL setNodeList, osal_memcpy
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 18, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 18, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL setNodeList, osal_mem_alloc
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL setNodeList, addNode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 3
+        MOV     A,#-0x3
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 15)
+//   92     uint16 dev_shortaddr;
+//   93     uint8 dev_addr;
+//   94     uint8 flag=1;
+        MOV     ?V0 + 3,#0x1
+//   95     uint8 data_buf[3];
+//   96     osal_memcpy(data_buf,buf,len);
+        ; Setup parameters for call to function osal_memcpy
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     ?V0 + 2,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_THREE
+        CFI CFA_XSP16 add(XSP16, 18)
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??osal_memcpy?relay
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 15)
+//   97     dev_shortaddr=(uint16)(data_buf[0])<<8 | (uint16)data_buf[1];
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+//   98     dev_addr=data_buf[2];
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+//   99     if(NULL == head)
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_17:
+        JNZ     ??setNodeList_0
+//  100     {
+//  101       return list_false;
+        MOV     R1,#0x0
+        SJMP    ??setNodeList_1
+//  102     }
+//  103     Node* p = head->pNext;
+??setNodeList_0:
+        LCALL   ?Subroutine7 & 0xFFFF
+??CrossCallReturnLabel_6:
+        LCALL   ??Subroutine9_0 & 0xFFFF
+//  104     while(NULL !=p)
+??CrossCallReturnLabel_10:
+        JZ      ??setNodeList_2
+//  105     {
+//  106       if(p->addr_dev==dev_addr)
+??setNodeList_3:
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        XRL     A,?V0 + 0
+        JNZ     ??setNodeList_4
+//  107       {
+//  108         flag=0;
+        MOV     ?V0 + 3,#0x0
+//  109         p->short_dev=dev_shortaddr;//if in the list,cover the short_de
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOV     A,R6
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R7
+        MOVX    @DPTR,A
+//  110       }
+//  111       p = p->pNext;
+??setNodeList_4:
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        LCALL   ??Subroutine9_0 & 0xFFFF
+//  112     }
+??CrossCallReturnLabel_12:
+        JNZ     ??setNodeList_3
+//  113     if(1==flag)
+        MOV     A,?V0 + 3
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??setNodeList_5
+//  114     {
+//  115        Node *node = (Node*)osal_mem_alloc(sizeof(Node));
+??setNodeList_2:
+        ; Setup parameters for call to function osal_mem_alloc
+        MOV     R2,#0x5
+        MOV     R3,#0x0
+        LCALL   ??osal_mem_alloc?relay
+//  116        node->short_dev=dev_shortaddr;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOV     A,R6
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R7
+        MOVX    @DPTR,A
+//  117        node->addr_dev=dev_addr;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        MOV     A,?V0 + 0
+        LCALL   ?Subroutine4 & 0xFFFF
+//  118        node->pNext=NULL;
+//  119        addNode(node);
+??CrossCallReturnLabel_3:
+        ; Setup parameters for call to function addNode
+        LCALL   ??addNode?relay
+//  120     }
+//  121     return list_true;
+??setNodeList_5:
+        MOV     R1,#0x1
+??setNodeList_1:
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 12)
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock35
+//  122 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine7:
+        CFI Block cfiCond36 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_7, ??CrossCallReturnLabel_4
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond37 Using cfiCommon0
+        CFI (cfiCond37) NoFunction
+        CFI (cfiCond37) Conditional ??CrossCallReturnLabel_7, ??CrossCallReturnLabel_5
+        CFI (cfiCond37) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond37) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond37) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond37) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond37) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond37) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond37) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond37) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond37) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond37) CFA_SP SP+0
+        CFI (cfiCond37) CFA_XSP16 add(XSP16, 9)
+        CFI Block cfiCond38 Using cfiCommon0
+        CFI (cfiCond38) NoFunction
+        CFI (cfiCond38) Conditional ??CrossCallReturnLabel_6
+        CFI (cfiCond38) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond38) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond38) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond38) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond38) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond38) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond38) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond38) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond38) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond38) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond38) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond38) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond38) CFA_SP SP+0
+        CFI (cfiCond38) CFA_XSP16 add(XSP16, 15)
+        CFI Block cfiPicker39 Using cfiCommon1
+        CFI (cfiPicker39) NoFunction
+        CFI (cfiPicker39) Picker
         MOVX    A,@DPTR
         MOV     DPH,A
         MOV     DPL,R0
         INC     DPTR
         INC     DPTR
         INC     DPTR
-        MOVX    A,@DPTR
         RET
-        CFI EndBlock cfiCond21
-        CFI EndBlock cfiCond22
-        CFI EndBlock cfiPicker23
-//   89 
-
-        RSEG BANKED_CODE:CODE:NOROOT(0)
-//   90 void setNodeList(Node * node)
-setNodeList:
-        CFI Block cfiBlock24 Using cfiCommon0
-        CFI Function setNodeList
-        CODE
-//   91 {
-        FUNCALL setNodeList, addNode
-        LOCFRAME ISTACK, 2, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 0, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        PUSH    DPL
-        CFI DPL0 Frame(CFA_SP, 4)
-        CFI CFA_SP SP+-4
-        PUSH    DPH
-        CFI DPH0 Frame(CFA_SP, 5)
-        CFI CFA_SP SP+-5
-        ; Saved register size: 2
-        ; Auto size: 0
-//   92   Node* perior = head;
-        MOV     DPTR,#head
-        SJMP    ??setNodeList_0
-//   93   uint8 count=0;
-//   94   while(NULL != perior)
-//   95   {
-//   96     if(perior->addr_dev==node->addr_dev)//通过设备地址确认是否在list表中
-//   97     {
-//   98       count=1;
-//   99       if( perior->short_dev==node->short_dev)
-//  100         return;
-//  101       else
-//  102       perior->short_dev=node->short_dev;//if in the list,cover the short_dev
-//  103       break;
-//  104     }
-//  105     else
-//  106     count=0;
-//  107     perior=perior->pNext;
-??setNodeList_1:
-        MOV     DPL,R0
-        MOV     DPH,R1
-        INC     DPTR
-        INC     DPTR
-        INC     DPTR
-??setNodeList_0:
-        LCALL   ??Subroutine6_0 & 0xFFFF
-??CrossCallReturnLabel_9:
-        JZ      ??setNodeList_2
-        MOV     DPL,R0
-        MOV     DPH,R1
-        INC     DPTR
-        INC     DPTR
-        MOVX    A,@DPTR
-        MOV     R4,A
-        MOV     DPL,R2
-        MOV     DPH,R3
-        INC     DPTR
-        INC     DPTR
-        MOVX    A,@DPTR
-        XRL     A,R4
-        JNZ     ??setNodeList_1
-        MOV     DPL,R2
-        MOV     DPH,R3
-        LCALL   ?Subroutine4 & 0xFFFF
-??CrossCallReturnLabel_4:
-        MOV     DPL,R0
-        MOV     DPH,R1
-        MOVX    A,@DPTR
-        XRL     A,R2
-        JNZ     ??setNodeList_3
-        INC     DPTR
-        MOVX    A,@DPTR
-        XRL     A,R3
-??setNodeList_3:
-        JZ      ??setNodeList_4
-        MOV     DPL,R0
-        MOV     DPH,R1
-        MOV     A,R2
-        MOVX    @DPTR,A
-        INC     DPTR
-        MOV     A,R3
-        MOVX    @DPTR,A
-        SJMP    ??setNodeList_4
-//  108   }
-//  109   if(count==0)
-//  110   {
-//  111      addNode(node);
-??setNodeList_2:
-        ; Setup parameters for call to function addNode
-        LCALL   ??addNode?relay
-//  112   }
-??setNodeList_4:
-        LJMP    ?Subroutine0 & 0xFFFF
-        CFI EndBlock cfiBlock24
-//  113 }
+        CFI EndBlock cfiCond36
+        CFI EndBlock cfiCond37
+        CFI EndBlock cfiCond38
+        CFI EndBlock cfiPicker39
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
 ?Subroutine4:
-        CFI Block cfiCond25 Using cfiCommon0
+        CFI Block cfiCond40 Using cfiCommon0
         CFI NoFunction
         CFI Conditional ??CrossCallReturnLabel_2
         CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
@@ -1243,62 +1493,49 @@ setNodeList:
         CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
         CFI CFA_SP SP+0
         CFI CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiCond26 Using cfiCommon0
-        CFI (cfiCond26) NoFunction
-        CFI (cfiCond26) Conditional ??CrossCallReturnLabel_3
-        CFI (cfiCond26) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-        CFI (cfiCond26) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-        CFI (cfiCond26) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-        CFI (cfiCond26) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-        CFI (cfiCond26) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        CFI (cfiCond26) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-        CFI (cfiCond26) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-        CFI (cfiCond26) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-        CFI (cfiCond26) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-        CFI (cfiCond26) CFA_SP SP+0
-        CFI (cfiCond26) CFA_XSP16 add(XSP16, 9)
-        CFI Block cfiCond27 Using cfiCommon0
-        CFI (cfiCond27) NoFunction
-        CFI (cfiCond27) Conditional ??CrossCallReturnLabel_4
-        CFI (cfiCond27) DPL0 Frame(CFA_SP, 4)
-        CFI (cfiCond27) DPH0 Frame(CFA_SP, 5)
-        CFI (cfiCond27) CFA_SP SP+-5
-        CFI Block cfiCond28 Using cfiCommon0
-        CFI (cfiCond28) NoFunction
-        CFI (cfiCond28) Conditional ??CrossCallReturnLabel_5
-        CFI (cfiCond28) DPL0 Frame(CFA_SP, 4)
-        CFI (cfiCond28) DPH0 Frame(CFA_SP, 5)
-        CFI (cfiCond28) CFA_SP SP+-5
-        CFI Block cfiCond29 Using cfiCommon0
-        CFI (cfiCond29) NoFunction
-        CFI (cfiCond29) Conditional ??CrossCallReturnLabel_6
-        CFI (cfiCond29) DPL0 Frame(CFA_SP, 4)
-        CFI (cfiCond29) DPH0 Frame(CFA_SP, 5)
-        CFI (cfiCond29) CFA_SP SP+-5
-        CFI Block cfiPicker30 Using cfiCommon1
-        CFI (cfiPicker30) NoFunction
-        CFI (cfiPicker30) Picker
-        MOVX    A,@DPTR
-        MOV     R2,A
+        CFI Block cfiCond41 Using cfiCommon0
+        CFI (cfiCond41) NoFunction
+        CFI (cfiCond41) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond41) R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond41) VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond41) V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond41) V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond41) V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond41) V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond41) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond41) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond41) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond41) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond41) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond41) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond41) CFA_SP SP+0
+        CFI (cfiCond41) CFA_XSP16 add(XSP16, 15)
+        CFI Block cfiPicker42 Using cfiCommon1
+        CFI (cfiPicker42) NoFunction
+        CFI (cfiPicker42) Picker
+        MOVX    @DPTR,A
+        MOV     DPL,R2
+        MOV     DPH,R3
         INC     DPTR
-        MOVX    A,@DPTR
-        MOV     R3,A
+        INC     DPTR
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
         RET
-        CFI EndBlock cfiCond25
-        CFI EndBlock cfiCond26
-        CFI EndBlock cfiCond27
-        CFI EndBlock cfiCond28
-        CFI EndBlock cfiCond29
-        CFI EndBlock cfiPicker30
-//  114 
+        CFI EndBlock cfiCond40
+        CFI EndBlock cfiCond41
+        CFI EndBlock cfiPicker42
+//  123 
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//  115 uint16 get_NodeList(uint8 dev)
+//  124 uint16 get_NodeList(uint8 dev)
 get_NodeList:
-        CFI Block cfiBlock31 Using cfiCommon0
+        CFI Block cfiBlock43 Using cfiCommon0
         CFI Function get_NodeList
         CODE
-//  116 {
+//  125 {
         PUSH    DPL
         CFI DPL0 Frame(CFA_SP, 4)
         CFI CFA_SP SP+-4
@@ -1307,27 +1544,25 @@ get_NodeList:
         CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
-//  117    Node* p = head;
-        MOV     DPTR,#head
-        SJMP    ??get_NodeList_0
-//  118   while(NULL != p)
-//  119   {
-//  120     if(p->addr_dev==dev)
-//  121     {
-//  122       return p->short_dev;
-//  123     }
-//  124     else
-//  125     p=p->pNext;
-??get_NodeList_1:
+//  126    Node* p = head->pNext;
+        LCALL   ?Subroutine8 & 0xFFFF
+//  127   while(NULL != p)
+//  128   {
+//  129     if(p->addr_dev==dev)
+//  130     {
+//  131      return p->short_dev;
+//  132     }
+//  133     else
+//  134     p=p->pNext;
+??CrossCallReturnLabel_8:
         INC     DPTR
         INC     DPTR
         INC     DPTR
-??get_NodeList_0:
-        LCALL   ?Subroutine4 & 0xFFFF
-??CrossCallReturnLabel_5:
+        LCALL   ??Subroutine10_0 & 0xFFFF
+??CrossCallReturnLabel_18:
         MOV     A,R2
         ORL     A,R3
-        JZ      ??get_NodeList_2
+        JZ      ??get_NodeList_0
         MOV     DPL,R2
         MOV     DPH,R3
         INC     DPTR
@@ -1336,19 +1571,55 @@ get_NodeList:
         XRL     A,R1
         MOV     DPL,R2
         MOV     DPH,R3
-        JNZ     ??get_NodeList_1
-        LCALL   ?Subroutine4 & 0xFFFF
-//  126   }
-??CrossCallReturnLabel_6:
-        SJMP    ??get_NodeList_3
-//  127   return NULL;
-??get_NodeList_2:
+        JNZ     ??CrossCallReturnLabel_8
+        LCALL   ??Subroutine10_0 & 0xFFFF
+//  135   }
+??CrossCallReturnLabel_19:
+        SJMP    ??get_NodeList_1
+//  136   return 0;
+??get_NodeList_0:
         MOV     R2,#0x0
         MOV     R3,#0x0
-??get_NodeList_3:
+??get_NodeList_1:
         LJMP    ?Subroutine0 & 0xFFFF
-        CFI EndBlock cfiBlock31
-//  128 }
+        CFI EndBlock cfiBlock43
+//  137 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine8:
+        CFI Block cfiCond44 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_0
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond45 Using cfiCommon0
+        CFI (cfiCond45) NoFunction
+        CFI (cfiCond45) Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_1
+        CFI (cfiCond45) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond45) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond45) CFA_SP SP+-5
+        CFI Block cfiCond46 Using cfiCommon0
+        CFI (cfiCond46) NoFunction
+        CFI (cfiCond46) Conditional ??CrossCallReturnLabel_8
+        CFI (cfiCond46) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond46) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond46) CFA_SP SP+-5
+        CFI Block cfiPicker47 Using cfiCommon1
+        CFI (cfiPicker47) NoFunction
+        CFI (cfiPicker47) Picker
+        MOV     DPTR,#head
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R0
+        RET
+        CFI EndBlock cfiCond44
+        CFI EndBlock cfiCond45
+        CFI EndBlock cfiCond46
+        CFI EndBlock cfiPicker47
 
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
 ??createNodelist?relay:
@@ -1388,11 +1659,11 @@ get_NodeList:
 
         END
 // 
-// 473 bytes in segment BANKED_CODE
+// 568 bytes in segment BANKED_CODE
 //  36 bytes in segment BANK_RELAYS
 //   2 bytes in segment XDATA_Z
 // 
-// 509 bytes of CODE  memory
+// 604 bytes of CODE  memory
 //   2 bytes of XDATA memory
 //
 //Errors: none

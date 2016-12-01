@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  14:18:05 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        01/Dec/2016  17:11:32 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -41,7 +41,7 @@
 //                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
 //                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
 //                          __code" -DGENERIC=__generic                       /
-//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000        /
 //                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
 //                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
 //                          t-2.5.2b\Components\mac\high_level\mac_pib.c -D   /
@@ -1451,26 +1451,26 @@ MAC_MlmeSetReq:
 //  387   /* handle special cases */
 //  388   switch (pibAttribute)
         MOV     A,?V0 + 0
-        ADD     A,#0x20
+        ADD     A,#-0x50
         JZ      ??MAC_MlmeSetReq_11
-        DEC     A
+        ADD     A,#-0x2
         JZ      ??MAC_MlmeSetReq_12
         DEC     A
         JZ      ??MAC_MlmeSetReq_13
-        ADD     A,#-0x3
-        JZ      ??MAC_MlmeSetReq_11
-        ADD     A,#-0x6b
+        ADD     A,#0x73
         JZ      ??MAC_MlmeSetReq_14
-        ADD     A,#-0x2
+        DEC     A
         JZ      ??MAC_MlmeSetReq_15
         DEC     A
         JZ      ??MAC_MlmeSetReq_16
+        ADD     A,#-0x3
+        JZ      ??MAC_MlmeSetReq_14
         SJMP    ??MAC_MlmeSetReq_1
 //  389   {
 //  390     case MAC_PAN_ID:
 //  391       /* set pan id in radio */
 //  392       macRadioSetPanID(macPib.panId);
-??MAC_MlmeSetReq_14:
+??MAC_MlmeSetReq_11:
         ; Setup parameters for call to function macRadioSetPanID
         MOV     DPTR,#macPib + 29
         MOVX    A,@DPTR
@@ -1485,7 +1485,7 @@ MAC_MlmeSetReq:
 //  395     case MAC_SHORT_ADDRESS:
 //  396       /* set short address in radio */
 //  397       macRadioSetShortAddr(macPib.shortAddress);
-??MAC_MlmeSetReq_16:
+??MAC_MlmeSetReq_13:
         ; Setup parameters for call to function macRadioSetShortAddr
         MOV     DPTR,#macPib + 33
         MOVX    A,@DPTR
@@ -1500,7 +1500,7 @@ MAC_MlmeSetReq:
 //  400     case MAC_RX_ON_WHEN_IDLE:
 //  401       /* turn rx on or off */
 //  402       if (macPib.rxOnWhenIdle)
-??MAC_MlmeSetReq_15:
+??MAC_MlmeSetReq_12:
         MOV     DPTR,#macPib + 32
         MOVX    A,@DPTR
         MOV     R1,#0x2
@@ -1523,7 +1523,7 @@ MAC_MlmeSetReq:
 //  411 
 //  412     case MAC_LOGICAL_CHANNEL:
 //  413       macRadioSetChannel(macPib.logicalChannel);
-??MAC_MlmeSetReq_12:
+??MAC_MlmeSetReq_15:
         ; Setup parameters for call to function macRadioSetChannel
         MOV     DPTR,#macPib + 48
         MOVX    A,@DPTR
@@ -1535,7 +1535,7 @@ MAC_MlmeSetReq:
 //  416     case MAC_EXTENDED_ADDRESS:
 //  417       /* set ext address in radio */
 //  418       macRadioSetIEEEAddr(macPib.extendedAddress.addr.extAddr);
-??MAC_MlmeSetReq_13:
+??MAC_MlmeSetReq_16:
         ; Setup parameters for call to function macRadioSetIEEEAddr
         MOV     R2,#(macPib + 49) & 0xff
         MOV     R3,#((macPib + 49) >> 8) & 0xff
@@ -1563,7 +1563,7 @@ MAC_MlmeSetReq:
 //  438 
 //  439     case MAC_PHY_TRANSMIT_POWER_SIGNED:
 //  440       (void)macRadioSetTxPower(macPib.phyTransmitPower);
-??MAC_MlmeSetReq_11:
+??MAC_MlmeSetReq_14:
         ; Setup parameters for call to function macRadioSetTxPower
         MOV     DPTR,#macPib + 47
         MOVX    A,@DPTR

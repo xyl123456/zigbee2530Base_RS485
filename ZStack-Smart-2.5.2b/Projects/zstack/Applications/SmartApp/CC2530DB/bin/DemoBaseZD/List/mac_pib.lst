@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         24/Nov/2016  13:24:51 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         01/Dec/2016  17:09:30 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -39,12 +39,12 @@
 #                          -DMAC_MAX_FRAME_SIZE=116                           #
 #                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
 #                          __code" -DGENERIC=__generic                        #
-#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600         #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
 #                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
 #                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smart #
 #                          -2.5.2b\Components\mac\high_level\mac_pib.c -D     #
 #                          SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D     #
-#                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D      #
+#                          xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     #
 #                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D           #
 #                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D        #
 #                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC           #
@@ -1023,8 +1023,8 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
    \   000117   14           DEC     A
    \   000118   603C         JZ      ??MAC_MlmeSetReq_16
    \   00011A   24FD         ADD     A,#-0x3
-   \   00011C   6041         JZ      ??MAC_MlmeSetReq_14
-   \   00011E   8047         SJMP    ??MAC_MlmeSetReq_1
+   \   00011C   6048         JZ      ??MAC_MlmeSetReq_17
+   \   00011E   804E         SJMP    ??MAC_MlmeSetReq_1
     389            {
     390              case MAC_PAN_ID:
     391                /* set pan id in radio */
@@ -1039,7 +1039,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
    \   000127   FB           MOV     R3,A
    \   000128   12....       LCALL   ??macRadioSetPanID?relay
     393                break;
-   \   00012B   803A         SJMP    ??MAC_MlmeSetReq_1
+   \   00012B   8041         SJMP    ??MAC_MlmeSetReq_1
     394          
     395              case MAC_SHORT_ADDRESS:
     396                /* set short address in radio */
@@ -1054,7 +1054,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
    \   000134   FB           MOV     R3,A
    \   000135   12....       LCALL   ??macRadioSetShortAddr?relay
     398                break;
-   \   000138   802D         SJMP    ??MAC_MlmeSetReq_1
+   \   000138   8034         SJMP    ??MAC_MlmeSetReq_1
     399          
     400              case MAC_RX_ON_WHEN_IDLE:
     401                /* turn rx on or off */
@@ -1063,20 +1063,20 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
    \   00013A   90....       MOV     DPTR,#macPib + 32
    \   00013D   E0           MOVX    A,@DPTR
    \   00013E   7902         MOV     R1,#0x2
-   \   000140   6005         JZ      ??MAC_MlmeSetReq_17
+   \   000140   6005         JZ      ??MAC_MlmeSetReq_18
     403                {
     404                  macRxEnable(MAC_RX_WHEN_IDLE);
    \   000142                ; Setup parameters for call to function macRxEnable
    \   000142   12....       LCALL   ??macRxEnable?relay
-   \   000145   8020         SJMP    ??MAC_MlmeSetReq_1
+   \   000145   8027         SJMP    ??MAC_MlmeSetReq_1
     405                }
     406                else
     407                {
     408                  macRxDisable(MAC_RX_WHEN_IDLE);
-   \                     ??MAC_MlmeSetReq_17:
+   \                     ??MAC_MlmeSetReq_18:
    \   000147                ; Setup parameters for call to function macRxDisable
    \   000147   12....       LCALL   ??macRxDisable?relay
-   \   00014A   801B         SJMP    ??MAC_MlmeSetReq_1
+   \   00014A   8022         SJMP    ??MAC_MlmeSetReq_1
     409                }
     410                break;
     411          
@@ -1089,7 +1089,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
    \   000150   F9           MOV     R1,A
    \   000151   12....       LCALL   ??macRadioSetChannel?relay
     414                break;
-   \   000154   8011         SJMP    ??MAC_MlmeSetReq_1
+   \   000154   8018         SJMP    ??MAC_MlmeSetReq_1
     415          
     416              case MAC_EXTENDED_ADDRESS:
     417                /* set ext address in radio */
@@ -1100,7 +1100,7 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
    \   000158   7B..         MOV     R3,#((macPib + 49) >> 8) & 0xff
    \   00015A   12....       LCALL   ??macRadioSetIEEEAddr?relay
     419                break;
-   \   00015D   8008         SJMP    ??MAC_MlmeSetReq_1
+   \   00015D   800F         SJMP    ??MAC_MlmeSetReq_1
     420          
     421          #ifndef MAC_OBSOLETE_PHY_TRANSMIT_POWER
     422              /* Define MAC_OBSOLETE_PHY_TRANSMIT_POWER to save some code */
@@ -1115,6 +1115,12 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
     431                 * with HAL_PA_LNAxxx definition (without runtime selection)
     432                 * the attribute value is not a negative absolute value. */
     433                macPib.phyTransmitPower = (uint8)(-(int8)macPib.phyTransmitPower);
+   \                     ??MAC_MlmeSetReq_14:
+   \   00015F   90....       MOV     DPTR,#macPib + 47
+   \   000162   E0           MOVX    A,@DPTR
+   \   000163   F4           CPL     A
+   \   000164   04           INC     A
+   \   000165   F0           MOVX    @DPTR,A
     434          #endif /* !defined HAL_MAC_USE_REGISTER_POWER_VALUES && ... */
     435                /* pass through to next case -- do not break*/
     436          
@@ -1122,12 +1128,12 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
     438          
     439              case MAC_PHY_TRANSMIT_POWER_SIGNED:
     440                (void)macRadioSetTxPower(macPib.phyTransmitPower);
-   \                     ??MAC_MlmeSetReq_14:
-   \   00015F                ; Setup parameters for call to function macRadioSetTxPower
-   \   00015F   90....       MOV     DPTR,#macPib + 47
-   \   000162   E0           MOVX    A,@DPTR
-   \   000163   F9           MOV     R1,A
-   \   000164   12....       LCALL   ??macRadioSetTxPower?relay
+   \                     ??MAC_MlmeSetReq_17:
+   \   000166                ; Setup parameters for call to function macRadioSetTxPower
+   \   000166   90....       MOV     DPTR,#macPib + 47
+   \   000169   E0           MOVX    A,@DPTR
+   \   00016A   F9           MOV     R1,A
+   \   00016B   12....       LCALL   ??macRadioSetTxPower?relay
     441                break;
     442          
     443              default:
@@ -1136,11 +1142,11 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
     446          
     447            return MAC_SUCCESS;
    \                     ??MAC_MlmeSetReq_1:
-   \   000167   7900         MOV     R1,#0x0
+   \   00016E   7900         MOV     R1,#0x0
    \                     ??MAC_MlmeSetReq_7:
-   \   000169   7F07         MOV     R7,#0x7
-   \   00016B   02....       LJMP    ?BANKED_LEAVE_XDATA
-   \   00016E                REQUIRE _A_IEN0
+   \   000170   7F07         MOV     R7,#0x7
+   \   000172   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000175                REQUIRE _A_IEN0
     448          }
 
    \                                 In  segment BANK_RELAYS, align 1
@@ -1189,19 +1195,19 @@ E:\work\zigbee\ZStack-Smart-2.5.2b\Components\mac\high_level\mac_pib.c
      macPib                   60
      macPibReset              39
      MAC_MlmeGetReq          124
-     MAC_MlmeSetReq          366
+     MAC_MlmeSetReq          373
      ??macPibReset?relay       6
      ??MAC_MlmeGetReq?relay    6
      ??MAC_MlmeSetReq?relay    6
 
  
- 529 bytes in segment BANKED_CODE
+ 536 bytes in segment BANKED_CODE
   18 bytes in segment BANK_RELAYS
  204 bytes in segment CODE_C
    1 byte  in segment SFR_AN
   60 bytes in segment XDATA_Z
  
- 751 bytes of CODE  memory
+ 758 bytes of CODE  memory
    0 bytes of DATA  memory (+ 1 byte shared)
   60 bytes of XDATA memory
 

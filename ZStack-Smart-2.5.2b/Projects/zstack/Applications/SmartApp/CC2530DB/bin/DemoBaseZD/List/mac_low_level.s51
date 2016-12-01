@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  13:24:51 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        01/Dec/2016  17:09:28 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -39,12 +39,12 @@
 //                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
 //                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
 //                          __code" -DGENERIC=__generic                       /
-//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000        /
 //                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
 //                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
 //                          t-2.5.2b\Components\mac\low_level\srf04\mac_low_l /
 //                          evel.c -D SECURE=1 -D ZTOOL_P1 -D                 /
-//                          DEVICE_TYPE_ID=0xFE -D SIGNAL_AMPLIFIER_SETTING   /
+//                          DEVICE_TYPE_ID=0xFE -D xSIGNAL_AMPLIFIER_SETTING  /
 //                          -D xNWK_AUTO_POLL -D xHAL_UART_DMA=2 -D           /
 //                          xHAL_UART_DMA_ALT1 -D xJIAJU_BUILDIN -D MT_TASK   /
 //                          -D MT_SYS_FUNC -D MT_ZDO_FUNC -D NV_INIT -D       /

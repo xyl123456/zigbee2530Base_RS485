@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        24/Nov/2016  13:24:51 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        01/Dec/2016  17:09:30 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -39,12 +39,12 @@
 //                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
 //                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
 //                          __code" -DGENERIC=__generic                       /
-//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=600        /
+//                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000        /
 //                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
 //                          -DREJOIN_POLL_RATE=440 E:\work\zigbee\ZStack-Smar /
 //                          t-2.5.2b\Components\mac\high_level\mac_pib.c -D   /
 //                          SECURE=1 -D ZTOOL_P1 -D DEVICE_TYPE_ID=0xFE -D    /
-//                          SIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D     /
+//                          xSIGNAL_AMPLIFIER_SETTING -D xNWK_AUTO_POLL -D    /
 //                          xHAL_UART_DMA=2 -D xHAL_UART_DMA_ALT1 -D          /
 //                          xJIAJU_BUILDIN -D MT_TASK -D MT_SYS_FUNC -D       /
 //                          MT_ZDO_FUNC -D NV_INIT -D NV_RESTORE -lC          /
@@ -1461,7 +1461,7 @@ MAC_MlmeSetReq:
         DEC     A
         JZ      ??MAC_MlmeSetReq_16
         ADD     A,#-0x3
-        JZ      ??MAC_MlmeSetReq_14
+        JZ      ??MAC_MlmeSetReq_17
         SJMP    ??MAC_MlmeSetReq_1
 //  389   {
 //  390     case MAC_PAN_ID:
@@ -1501,7 +1501,7 @@ MAC_MlmeSetReq:
         MOV     DPTR,#macPib + 32
         MOVX    A,@DPTR
         MOV     R1,#0x2
-        JZ      ??MAC_MlmeSetReq_17
+        JZ      ??MAC_MlmeSetReq_18
 //  403       {
 //  404         macRxEnable(MAC_RX_WHEN_IDLE);
         ; Setup parameters for call to function macRxEnable
@@ -1511,7 +1511,7 @@ MAC_MlmeSetReq:
 //  406       else
 //  407       {
 //  408         macRxDisable(MAC_RX_WHEN_IDLE);
-??MAC_MlmeSetReq_17:
+??MAC_MlmeSetReq_18:
         ; Setup parameters for call to function macRxDisable
         LCALL   ??macRxDisable?relay
         SJMP    ??MAC_MlmeSetReq_1
@@ -1553,6 +1553,12 @@ MAC_MlmeSetReq:
 //  431        * with HAL_PA_LNAxxx definition (without runtime selection)
 //  432        * the attribute value is not a negative absolute value. */
 //  433       macPib.phyTransmitPower = (uint8)(-(int8)macPib.phyTransmitPower);
+??MAC_MlmeSetReq_14:
+        MOV     DPTR,#macPib + 47
+        MOVX    A,@DPTR
+        CPL     A
+        INC     A
+        MOVX    @DPTR,A
 //  434 #endif /* !defined HAL_MAC_USE_REGISTER_POWER_VALUES && ... */
 //  435       /* pass through to next case -- do not break*/
 //  436 
@@ -1560,7 +1566,7 @@ MAC_MlmeSetReq:
 //  438 
 //  439     case MAC_PHY_TRANSMIT_POWER_SIGNED:
 //  440       (void)macRadioSetTxPower(macPib.phyTransmitPower);
-??MAC_MlmeSetReq_14:
+??MAC_MlmeSetReq_17:
         ; Setup parameters for call to function macRadioSetTxPower
         MOV     DPTR,#macPib + 47
         MOVX    A,@DPTR
@@ -1603,13 +1609,13 @@ MAC_MlmeSetReq:
         END
 //  449 
 // 
-// 529 bytes in segment BANKED_CODE
+// 536 bytes in segment BANKED_CODE
 //  18 bytes in segment BANK_RELAYS
 // 204 bytes in segment CODE_C
 //   1 byte  in segment SFR_AN
 //  60 bytes in segment XDATA_Z
 // 
-// 751 bytes of CODE  memory
+// 758 bytes of CODE  memory
 //   0 bytes of DATA  memory (+ 1 byte shared)
 //  60 bytes of XDATA memory
 //

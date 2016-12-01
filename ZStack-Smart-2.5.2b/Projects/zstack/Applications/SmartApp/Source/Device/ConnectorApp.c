@@ -122,10 +122,6 @@ static void ConnectorApp_HeartBeatEvent(void);
 void CommonApp_InitConfirm( uint8 task_id )
 {
   CommonApp_PermitJoiningRequest(PERMIT_JOIN_FORBID);
-#ifdef RS485_DEV
-  //初始化LIST,分配NV空间
-  createNodelist();
-#endif 
 #if(HAL_UART==TRUE)
   SerialTx_Handler(SERIAL_COM_PORT, ConnectorApp_TxHandler);
 #endif
@@ -220,7 +216,13 @@ void CommonApp_ProcessZDOStates(devStates_t status)
   }
   
 #else
-
+    if(status == DEV_ZB_COORD || status == DEV_ROUTER)
+  {
+#ifdef RS485_DEV
+  //初始化LIST,分配NV空间
+  createNodelist();
+#endif 
+  }
 #endif
 }
 
@@ -434,7 +436,8 @@ void CommonApp_RS485SendMessage(uint8 *data, uint8 length)
 {
    uint16 dest_addr;
    uint8 dev_addr=data[0];
-    if(data[0]==0xFA)
+
+   if(dev_addr==0xFA)
   {
     CommonApp_SendTheMessage(BROADCAST_ADDR, data,length);
   }
@@ -442,8 +445,6 @@ void CommonApp_RS485SendMessage(uint8 *data, uint8 length)
   {
     //get the short_addr
    dest_addr=get_NodeList(dev_addr);
-   if(dest_addr)
-   CommonApp_SendTheMessage(dest_addr, data,length);
+   CommonApp_SendTheMessage(dest_addr,data,length);
   }
-   //CommonApp_SendTheMessage(BROADCAST_ADDR, data,length);
 }
